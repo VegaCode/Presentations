@@ -1,0 +1,1067 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"fo",
+				"font-weight"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"$route",
+				"$routeParams	AngularJS(DI)"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"pa",
+				"padding-right"
+			],
+			[
+				"st",
+				"style	Tag"
+			],
+			[
+				"candid",
+				"candidateNames"
+			],
+			[
+				"candi",
+				"candidateNames"
+			],
+			[
+				"slidec",
+				"slideCounter"
+			],
+			[
+				"getLo",
+				"getLocationServices"
+			],
+			[
+				"con",
+				"controller	Angular.js"
+			],
+			[
+				"TemplateI",
+				"TemplateID"
+			],
+			[
+				"ng-s",
+				"ng-show	AngularJS"
+			],
+			[
+				"column",
+				"columnfield"
+			],
+			[
+				"Proj",
+				"ProjectId"
+			],
+			[
+				"Inpu",
+				"InputType"
+			],
+			[
+				"dataFi",
+				"dataFields"
+			],
+			[
+				"sha",
+				"shareSource"
+			],
+			[
+				"sub",
+				"subgridSource"
+			],
+			[
+				"ng-c",
+				"ng-click	AngularJS"
+			],
+			[
+				"s",
+				"style	Attr"
+			],
+			[
+				"contr",
+				"controller	Angular.js"
+			],
+			[
+				"choose",
+				"chooseProject"
+			],
+			[
+				"h",
+				"h1	Tag"
+			],
+			[
+				"$rou",
+				"$routeParams	AngularJS"
+			],
+			[
+				"$loc",
+				"$location	AngularJS"
+			],
+			[
+				"Project",
+				"ProjectInputControlId"
+			],
+			[
+				"project",
+				"ProjectId"
+			],
+			[
+				"create",
+				"Created"
+			],
+			[
+				"Proje",
+				"ProjectInputControlId"
+			],
+			[
+				"test",
+				"testing"
+			],
+			[
+				"json",
+				"angular.fromJson"
+			],
+			[
+				"to",
+				"angular.toJson"
+			],
+			[
+				"che",
+				"check"
+			],
+			[
+				"for",
+				"angular.forEach"
+			],
+			[
+				"ob",
+				"obj"
+			],
+			[
+				"ng-op",
+				"ng-options	AngularJS"
+			],
+			[
+				"too",
+				"tooltip"
+			],
+			[
+				"tool",
+				"tooltip"
+			],
+			[
+				"bi",
+				"bind"
+			],
+			[
+				"cREATED",
+				"CreatedBy"
+			],
+			[
+				"source",
+				"sourceData"
+			],
+			[
+				"sty",
+				"style"
+			],
+			[
+				"func",
+				"function"
+			],
+			[
+				"focu",
+				"focus"
+			],
+			[
+				"ri",
+				"right"
+			],
+			[
+				"cl",
+				"class"
+			],
+			[
+				"foc",
+				"focusout"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"Tool",
+				"ToolTip"
+			],
+			[
+				"fuc",
+				"function"
+			],
+			[
+				"ng-cli",
+				"ng-click	AngularJS"
+			],
+			[
+				"geF",
+				"getFormElementsData"
+			],
+			[
+				"ng-re",
+				"ng-repeat	AngularJS"
+			],
+			[
+				"fun",
+				"fun	Function"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"bo",
+				"border"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"fon",
+				"font-family"
+			],
+			[
+				"text",
+				"text-decoration"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 4109,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/main.html",
+			"settings":
+			{
+				"buffer_size": 11824,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/auto-font-size/dist/auto_font_size.js",
+			"settings":
+			{
+				"buffer_size": 4018,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "styles/main.css",
+			"settings":
+			{
+				"buffer_size": 3286,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "@import url(\"../CherryFramework/style.css\");\n@import url(//fonts.googleapis.com/css?family=Open+Sans:400,700,600);\n@import url(//fonts.googleapis.com/css?family=Bevan);\nbody {\n	padding:0 !important;\n	background-size:cover;\n}\nh1 small { font-size:inherit; }\na {\n	-webkit-transition:color 0.4s;\n	-moz-transition:color 0.4s;\n	-o-transition:color 0.4s;\n	transition:color 0.4s;\n}\na:hover, a:active, a:focus { text-decoration:none; }\n.main-holder { overflow:hidden; }\n.header {\n	padding:0;\n	border:none;\n	margin-bottom:59px;\n}\n@media (max-width: 767px) {\n	.header { margin-bottom:30px; }\n}\n.pseudoStickyBlock { max-height:115px !important; }\n@media (max-width: 767px) {\n	.pseudoStickyBlock { display:none !important; }\n}\n.logo {\n	padding:34px 0 0 0;\n	-webkit-transition:padding 0.4s;\n	-moz-transition:padding 0.4s;\n	-o-transition:padding 0.4s;\n	transition:padding 0.4s;\n}\n@media (min-width: 768px) and (max-width: 979px) {\n	.logo { width:100%; }\n}\n@media (max-width: 767px) {\n	.logo {\n		padding-top:0;\n		margin-bottom:20px;\n		float:none !important;\n		text-align:center;\n	}\n}\n.isStuck .logo { padding-top:0; }\n@media (min-width: 768px) and (max-width: 979px) {\n	.isStuck .logo { width:65%; }\n}\n.logo_h {\n	display:inline-block;\n	vertical-align:top;\n	margin-right:6px;\n}\n@media (min-width: 768px) and (max-width: 979px) {\n	.isStuck .logo_h { width:75%; }\n}\n.logo_link:hover, .logo_link:active, .logo_link:focus { color:#ff8921; }\n.logo_tagline {\n	font-size:14px;\n	font-family:'Open Sans', sans-serif;\n	color:#626262;\n	text-transform:lowercase;\n	display:inline-block;\n	vertical-align:top;\n	padding:21px 0 0 0;\n}\n@media (min-width: 767px) and (max-width: 979px) {\n	.logo_tagline { padding-top:0; }\n}\n@media (max-width: 480px) {\n	.logo_tagline {\n		display:block;\n		padding-top:0;\n	}\n}\n.search-form_it { margin-right:10px; }\n.search-form_is { margin-top:9px; }\n.nav-wrapper {\n	background-color:#111111;\n	padding: 1px 0 10px 0;\n	-webkit-transition:padding 0.4s;\n	-moz-transition:padding 0.4s;\n	-o-transition:padding 0.4s;\n	transition:padding 0.4s;\n}\n@media (max-width: 767px) {\n	.nav-wrapper { padding:20px !important; }\n}\n.nav-wrapper:before {\n	content:'';\n	background-color:inherit;\n	position:absolute;\n	top:0;\n	width:300%;\n	height:100%;\n	left:50%;\n	margin:0 0 0 -150%;\n	-webkit-box-shadow:0 3px 4px rgba(0,0,0,0.1);\n	-moz-box-shadow:0 3px 4px rgba(0,0,0,0.1);\n	box-shadow:0 3px 4px rgba(0,0,0,0.1);\n}\n@media (max-width: 767px) {\n	.nav-wrapper:before { display:none; }\n}\n.nav-wrapper.isStuck {\n	width:100%;\n	padding-bottom:26px;\n}\n@media (min-width: 768px) and (max-width: 979px) {\n	.nav-wrapper.isStuck { padding-bottom:15px; }\n}\n@media (max-width: 767px) {\n	.nav-wrapper.isStuck {\n		width:auto;\n		position:static !important;\n		top:0 !important;\n	}\n}\n.nav__primary { margin-bottom:0; }\n.sf-menu li:hover ul, .sf-menu li.sfHover ul {\n	left:50%;\n	margin:37px 0 0 -5em;\n}\nul.sf-menu li li:hover ul, ul.sf-menu li li.sfHover ul {\n	margin:0;\n	top:-7px;\n}\n.sf-menu {\n	float:right;\n	padding:57px 0 0 0;\n	-webkit-transition:padding 0.4s;\n	-moz-transition:padding 0.4s;\n	-o-transition:padding 0.4s;\n	transition:padding 0.4s;\n}\n.isStuck .sf-menu { padding-top:23px; }\n.sf-menu > li {\n	background:none;\n	margin-left:43px;\n}\n@media (min-width: 767px) and (max-width: 979px) {\n	.sf-menu > li { margin-left:25px; }\n}\n.sf-menu > li:first-child { margin-left:0; }\n.sf-menu > li > a {\n	padding:0;\n	border:none;\n	text-transform:lowercase;\n	position:relative;\n}\n.sf-menu > li > a .current {\n	position:absolute;\n	left:-13px;\n	right:-13px;\n	top:-27px;\n	height:1px;\n	background-color:#f64f22;\n	pointer-events:none;\n	opacity:0;\n	filter:alpha(opacity=0);\n	-webkit-transition:0.4s;\n	-moz-transition:0.4s;\n	-o-transition:0.4s;\n	transition:0.4s;\n}\n@media (min-width: 767px) and (max-width: 979px) {\n	.sf-menu > li > a .current {\n		left:-8px;\n		right:-8px;\n	}\n}\n.isStuck .sf-menu > li > a .current { top:-12px; }\n.sf-menu > li > ul {\n	background-color:#f64f22;\n	padding:10px 0 7px 0;\n}\n.sf-menu > li > ul:before {\n	content:'';\n	position:absolute;\n	top:-5px;\n	left:50%;\n	margin:0 0 0 -4.5px;\n	width:0;\n	height:0;\n	border-style:solid;\n	border-width:0 4.5px 5px 4.5px;\n	border-color:transparent transparent #f64f22 transparent;\n}\n.sf-menu li li {\n	background:none;\n	border-top-width:1px;\n	border-top-style:solid;\n	border-top-color:rgba(255,255,255,0.34);\n}\n.no-rgba .sf-menu li li { border-top-color:#f98b6d; }\n.sf-menu li li:first-child { border-top:none; }\n.sf-menu li li a {\n	padding:6px 0 7px 0;\n	border:none;\n	color:#fff;\n}\n.sf-menu li li ul {\n	background-color:#fff;\n	padding:7px 0 4px 0;\n}\n.sf-menu li li li { border-color:#e7e7e7 !important; }\n.sf-menu li li li a { color:#b7b7b7; }\n.sf-menu > li > a:hover, .sf-menu > li.sfHover> a, .sf-menu > li.current-menu-item > a, .sf-menu > li.current_page_item > a {\n	background:none;\n	color:#3c3c3c;\n}\n.sf-menu > li > a:hover .current, .sf-menu > li.sfHover> a .current, .sf-menu > li.current-menu-item > a .current, .sf-menu > li.current_page_item > a .current {\n	top:-57px;\n	opacity:1;\n	filter:alpha(opacity=100);\n	-webkit-transition:0.4s;\n	-moz-transition:0.4s;\n	-o-transition:0.4s;\n	transition:0.4s;\n}\n.isStuck .sf-menu > li > a:hover .current, .isStuck .sf-menu > li.sfHover> a .current, .isStuck .sf-menu > li.current-menu-item > a .current, .isStuck .sf-menu > li.current_page_item > a .current { top:-23px; }\n.sf-menu li li > a:hover, .sf-menu li li.sfHover > a, .sf-menu li li.current-menu-item > a, .sf-menu li li.current_page_item > a {\n	background:none;\n	color:#ffeb7f;\n}\n.sf-menu li li li > a:hover, .sf-menu li li li.sfHover > a, .sf-menu li li li.current-menu-item > a, .sf-menu li li li.current_page_item > a { color:#484848; }\n.content-holder { padding-bottom:0; }\n@media (max-width: 767px) {\n	.content-holder {\n		padding-left:20px;\n		padding-right:20px;\n	}\n}\n.home .content-holder { padding-bottom:52px; }\n@media (max-width: 767px) {\n	.home .content-holder { padding-bottom:30px; }\n}\n.content-holder > .container {\n	background-color:#fff;\n	position:relative;\n	padding-bottom:75px;\n}\n@media (max-width: 767px) {\n	.content-holder > .container { padding-bottom:30px; }\n}\n.page-template-page-fullwidth-extra .content-holder > .container {\n	background-color:transparent;\n	padding-bottom:0;\n}\n.content-holder > .container.no-bg {\n	background-color:transparent;\n	padding-bottom:24px;\n}\n@media (max-width: 767px) {\n	.content-holder > .container.no-bg { padding-bottom:30px; }\n}\n.content-holder > .container:before, .content-holder > .container:after {\n	content:'';\n	width:33px;\n	height:100%;\n	position:absolute;\n	top:0;\n	background-color:inherit;\n	display:block !important;\n	z-index:-1;\n}\n.content-holder > .container:before { left:-33px; }\n.content-holder > .container:after { right:-33px; }\n.home .content-holder > .container {\n	background-color:transparent;\n	padding-bottom:0;\n}\n.home .content-holder > .container:before, .home .content-holder > .container:after { display:none; }\n#content { padding-top:68px; }\n.page-template-page-fullwidth-extra #content { padding-top:0; }\n.title-section {\n	background-color:#fff;\n	position:relative;\n	overflow:hidden;\n	margin:0 -33px;\n	padding:0 33px 36px;\n}\n.title-section:before, .title-section:after {\n	content:'';\n	width:33px;\n	height:100%;\n	position:absolute;\n	top:0;\n	background-color:inherit;\n}\n.title-section:before { left:-33px; }\n.title-section:after { right:-33px; }\n.title-header {\n	overflow:visible;\n	margin:0;\n	padding:35px 0 0 0;\n	float:left;\n	width:48%;\n	font-size:30px;\n	line-height:35px;\n	color:#616161;\n}\n@media (max-width: 767px) {\n	.title-header {\n		float:none;\n		width:auto;\n	}\n}\n.breadcrumb__t {\n	padding:44px 0 0 0;\n	background-color:transparent;\n	float:right;\n	width:48%;\n	text-align:right;\n	-webkit-border-radius:0px;\n	-moz-border-radius:0px;\n	border-radius:0px;\n}\n@media (max-width: 767px) {\n	.breadcrumb__t {\n		float:none;\n		width:auto;\n		text-align:left;\n		padding-top:10px;\n	}\n}\n.breadcrumb__t li {\n	font-size:16px;\n	text-shadow:none;\n}\n.breadcrumb__t li.divider {\n	margin:0 9px;\n	font:0/0 a;\n	color:transparent;\n	text-shadow:none;\n	background-color:transparent;\n	border:0;\n}\n.breadcrumb__t li.divider:after {\n	content:'/';\n	color:#434343;\n	font:14px/22px Arial, Helvetica, sans-serif;\n}\n.post__holder .post-header .post-title {\n	font-size:36px;\n	line-height:40px;\n	margin:0 0 29px 0;\n}\n.post__holder .post-header .post-title a { color:#616161; }\n.post__holder .post-header .post-title a:hover, .post__holder .post-header .post-title a:active, .post__holder .post-header .post-title a:focus { color:#f9b244; }\n.post__holder .featured-thumbnail.large { margin:0 0 22px 0; }\n.post__holder .post_content h3 {\n	font-size:17px;\n	font-family:'Open Sans', sans-serif;\n	line-height:28px;\n	color:#1e1e1e;\n}\n.post__holder .btn-primary {\n	font-size:12px;\n	padding:5px 20px;\n}\n.post_meta {\n	padding:9px 0;\n	border-color:#e3e2e2;\n}\n.post_meta div[class^=\"post_\"] { padding:0 26px 0 0; }\n.post_meta i {\n	font-size:13px;\n	color:#f9b244;\n	padding-right:3px;\n}\n.share-buttons span, .share-buttons li { line-height:18px; }\n.post-author {\n	padding:22px 15px 24px 22px;\n	background-color:#fafafb;\n	border-color:#e3e2e2;\n}\n.post-author_h {\n	font-size:24px;\n	line-height:1.2em;\n	margin:0 0 9px 0;\n}\n.post-author_h small { text-transform:capitalize; }\n.post-author_h a {\n	text-transform:capitalize;\n	color:#616161;\n}\n.post-author_h a:hover, .post-author_h a:active, .post-author_h a:focus { color:#f9b244; }\n.post-author_link { margin-top:13px; }\n.post-author_gravatar { margin:6px 14px 10px 0; }\n.post-author_gravatar img {\n	padding:0;\n	border:none;\n	background:none;\n}\n.post-author .post-author_desc {\n	overflow:visible;\n	margin-top:0;\n}\n@media (min-width: 1200px) {\n	.post-author .post-author_desc { overflow:hidden; }\n}\n.post-author .post-author_desc .post-author_link { font-size:14px; }\n.post-author .post-author_desc .post-author_link p { margin-bottom:0; }\n.post-author .post-author_desc .post-author_link a { text-transform:capitalize; }\n#recent-author-posts .post__holder { margin-bottom:40px; }\n#recent-author-comments { padding-top:60px; }\n#recent-author-comments ul { margin:0; }\n#recent-author-comments ul li {\n	list-style-type:none;\n	margin-bottom:5px;\n}\n.related-posts_h {\n	font-size:36px;\n	line-height:40px;\n	margin:0 0 30px 0;\n}\n.related-posts_item {\n	font-family:'Open Sans', sans-serif;\n	font-size:17px;\n	line-height:28px;\n}\n.related-posts .featured-thumbnail { margin:0 0 17px 0; }\n.pagination__posts ul {\n	-webkit-box-shadow:none;\n	-moz-box-shadow:none;\n	box-shadow:none;\n}\n.pagination__posts ul li a {\n	margin:0 2px 4px;\n	border:none !important;\n	background:#eeeeee;\n	-webkit-border-radius:5px !important;\n	-moz-border-radius:5px !important;\n	border-radius:5px !important;\n	-webkit-transition:0.3s;\n	-moz-transition:0.3s;\n	-o-transition:0.3s;\n	transition:0.3s;\n	opacity:1;\n	filter:alpha(opacity=100);\n}\n.pagination__posts ul li a:hover {\n	color:#fff;\n	background:#4a4a4a;\n}\n.pagination__posts ul .active span {\n	color:#fff;\n	margin:0 2px 4px;\n	border:none !important;\n	background:#4a4a4a;\n	-webkit-border-radius:5px !important;\n	-moz-border-radius:5px !important;\n	border-radius:5px !important;\n}\n.faq-list_body .marker { top:1px; }\n.faq-list .marker { font-weight:normal; }\n.testimonial {\n	border-color:#e3e2e2;\n	background-color:#fafafb;\n	font-family:Arial, Helvetica, sans-serif;\n	-webkit-border-radius:0px;\n	-moz-border-radius:0px;\n	border-radius:0px;\n}\n.testimonial_bq p {\n	font-size:14px;\n	line-height:22px;\n}\n.testimonial small {\n	font-family:Arial, Helvetica, sans-serif;\n	font-size:14px;\n}\n.testimonial small span { display:inline; }\n.filter-wrapper strong {\n	padding:0;\n	margin-right:20px;\n	font-weight:normal;\n}\n.nav-pills { margin:0 -20px 30px 0; }\n.nav-pills li a {\n	padding:0;\n	margin:0 20px 0 0;\n	line-height:22px;\n	background:none !important;\n}\n@media (max-width: 480px) {\n	.nav-pills li a { padding:0; }\n}\n.nav-pills li a:hover, .nav-pills li a:active, .nav-pills li a:focus { color:#f9b244; }\n.nav-pills li.active a { color:#f9b244 !important; }\n.filterable-portfolio .caption__portfolio { padding:27px 0 0 0; }\n.filterable-portfolio h3 {\n	font-size:17px;\n	font-family:'Open Sans', sans-serif;\n	line-height:1.2em;\n	margin:0 0 10px 0;\n}\n.filterable-portfolio .excerpt { margin-bottom:28px; }\n.filterable-portfolio .btn-primary {\n	font-size:12px;\n	padding:5px 20px;\n}\n.zoom-icon { background:rgba(0,0,0,0.5); }\n.no-rgba .zoom-icon { background:url(images/black-opacity-50.png); }\n.zoom-icon:before {\n	margin:-48px 0 0 -48px;\n	width:96px;\n	height:96px;\n	background-image:none;\n	background-color:rgba(249,178,68,0.41);\n	font-family:FontAwesome;\n	font-size:30px;\n	line-height:96px;\n	text-align:center;\n	color:#fff;\n	content:'\\f00e';\n	-webkit-transform:scale(1.2);\n	-moz-transform:scale(1.2);\n	-ms-transform:scale(1.2);\n	-o-transform:scale(1.2);\n	transform:scale(1.2);\n	-webkit-transition:0.3s;\n	-moz-transition:0.3s;\n	-o-transition:0.3s;\n	transition:0.3s;\n	-webkit-border-radius:50%;\n	-moz-border-radius:50%;\n	border-radius:50%;\n}\n@media (min-width: 768px) and (max-width: 979px) {\n	.zoom-icon:before {\n		width:60px;\n		height:60px;\n		line-height:60px;\n		margin:-30px 0 0 -30px;\n	}\n}\n@media (max-width: 767px) {\n	.zoom-icon:before {\n		width:50px;\n		height:50px;\n		line-height:50px;\n		margin:-25px 0 0 -25px;\n	}\n}\n.no-rgba .zoom-icon:before { background-image:url(images/yellow-opacity-41.png); }\n.featured-thumbnail a:hover .zoom-icon:before, a.thumbnail:hover .zoom-icon:before, .thumbnail__portfolio a:hover .zoom-icon:before {\n	-webkit-transform:scale(1);\n	-moz-transform:scale(1);\n	-ms-transform:scale(1);\n	-o-transform:scale(1);\n	transform:scale(1);\n}\n.page-header {\n	border:none;\n	margin-top:0;\n	padding-bottom:0;\n}\n.page-header h1 {\n	font-size:36px;\n	line-height:40px;\n	margin:0 0 23px 0;\n	margin-top:0;\n}\n.single-pager { border-color:#e3e2e2; }\n.single-pager a {\n	font-size:14px;\n	border-color:#e3e2e2;\n	-webkit-border-radius:21px;\n	-moz-border-radius:21px;\n	border-radius:21px;\n	-webkit-transition:0.3s;\n	-moz-transition:0.3s;\n	-o-transition:0.3s;\n	transition:0.3s;\n}\n.single-pager a:hover, .single-pager a:active, .single-pager a:focus {\n	background-color:#e3e2e2 !important;\n	color:#434343;\n}\n.wpcf7-form p.field { overflow:visible; }\n.wpcf7-form p.field input {\n	padding:13px;\n	height:50px;\n}\n.wpcf7-form textarea { padding:13px; }\n.wpcf7-form .ajax-loader { margin-top:6px; }\n.wpcf7-not-valid-tip { padding:3px 13px !important; }\n@media (min-width: 1200px) {\n	.wpcf7-not-valid-tip { padding-top:13px !important; }\n}\n@media (max-width: 767px) {\n	.wpcf7-not-valid-tip {\n		padding-top:13px !important;\n		padding-bottom:13px !important;\n	}\n}\n.comments-h {\n	font-size:36px;\n	line-height:40px;\n}\n.comment .comment-body {\n	margin-bottom:11px;\n	padding:19px 23px 23px 22px;\n	border-color:#e3e2e2;\n	background-color:#fafafb;\n}\n@media (min-width: 768px) and (max-width: 979px) {\n	.comment .comment-body .extra-wrap { overflow:visible; }\n}\n@media (max-width: 767px) {\n	.comment .comment-body .extra-wrap { overflow:visible; }\n}\n.comment.bypostauthor .comment-body { background-color:#fafafb; }\n.comment-author { margin:6px 14px 0 0; }\n@media (min-width: 768px) and (max-width: 979px) {\n	.comment-author { margin-bottom:10px; }\n}\n@media (max-width: 767px) {\n	.comment-author { margin-bottom:10px; }\n}\n.comment-author .author {\n	width:80px;\n	padding-top:17px;\n	font-size:14px;\n	font-weight:normal;\n}\n@media (min-width: 768px) and (max-width: 979px) {\n	.comment-author .author { padding-top:10px; }\n}\n@media (max-width: 767px) {\n	.comment-author .author { padding-top:10px; }\n}\n.comment-meta {\n	padding:5px 0 0 0;\n	font-size:14px;\n}\n.comment-meta-wrap { padding:27px 0 0 0; }\n.reply {\n	margin-left:22px;\n	font-size:12px;\n}\n.reply .comment-reply-link {\n	font-size:12px;\n	padding:5px 20px;\n	color:#fff;\n	background:#f9b244;\n	-webkit-border-radius:21px;\n	-moz-border-radius:21px;\n	border-radius:21px;\n	-webkit-transition:0.4s;\n	-moz-transition:0.4s;\n	-o-transition:0.4s;\n	transition:0.4s;\n}\n.reply .comment-reply-link:hover, .reply .comment-reply-link:active, .reply .comment-reply-link:focus {\n	color:#fff;\n	background:#4a4a4a;\n}\n#respond h3 {\n	font-size:36px;\n	line-height:40px;\n}\n#respond form .btn { margin-top:17px; }\n#respond form .comment_submit { margin-bottom:0; }\n.comment-list ul.children { margin:0 0 0 20px; }\n@media (min-width: 768px) and (max-width: 979px) {\n	.comment-list ul.children { margin:0; }\n}\n@media (max-width: 767px) {\n	.comment-list ul.children { margin:0; }\n}\n#commentform p.field { margin-bottom:20px; }\n#commentform input[type=\"text\"] {\n	width:100%;\n	height:50px;\n	padding:13px;\n	-webkit-box-sizing:border-box;\n	-moz-box-sizing:border-box;\n	box-sizing:border-box;\n}\n#commentform textarea {\n	padding:13px;\n	min-height:166px;\n	height:166px;\n}\n#sidebar { padding-top:68px; }\n#sidebar .widget { margin-bottom:54px; }\n#sidebar .widget > h3 {\n	font-size:36px;\n	line-height:40px;\n	margin:0 0 23px 0;\n	color:#616161;\n}\n#sidebar .widget ul { margin:0; }\n#sidebar .widget ul li {\n	list-style-type:none;\n	text-transform:uppercase;\n	font-size:13px;\n	font-family:\"Trebuchet MS\", Arial, Helvetica, sans-serif;\n	margin-top:7px;\n}\n#sidebar .widget ul li:first-child { margin-top:0; }\n#sidebar .widget ul ul { margin:7px 0 0 15px; }\n#wp-calendar td#today {\n	font-weight:bold;\n	color:#f9b244;\n}\n#wp-calendar caption { color:#f9b244; }\n#wp-calendar thead th { color:#f9b244; }\n.social_li {\n	margin-top:0 !important;\n	font-family:Arial, Helvetica, sans-serif !important;\n	font-size:14px !important;\n	text-transform:none !important;\n}\n.flickr_li { margin-top:0 !important; }\n.flickr_li .thumbnail:hover, .flickr_li .thumbnail:active, .flickr_li .thumbnail:focus {\n	-webkit-box-shadow:none;\n	-moz-box-shadow:none;\n	box-shadow:none;\n}\n.post-list li {\n	margin:0 !important;\n	font-family:Arial, Helvetica, sans-serif !important;\n	font-size:14px !important;\n	text-transform:none !important;\n}\n.post-list .btn-primary {\n	font-size:12px;\n	padding:5px 20px;\n}\n.link_show_all {\n	font-size:12px;\n	padding:5px 20px;\n}\n.comments-custom li {\n	margin:28px 0 0 0 !important;\n	padding:0;\n	font-size:14px !important;\n	font-family:Arial, Helvetica, sans-serif !important;\n	text-transform:none !important;\n}\n.comments-custom li:first-child { margin-top:0; }\n.comments-custom .featured-thumbnail {\n	margin:4px 19px 0 0;\n	-webkit-border-radius:0px;\n	-moz-border-radius:0px;\n	border-radius:0px;\n}\n.comments-custom .featured-thumbnail img {\n	-webkit-border-radius:inherit;\n	-moz-border-radius:inherit;\n	border-radius:inherit;\n}\n.comments-custom_txt {\n	padding:0;\n	margin:0;\n	border:none;\n	font-style:italic;\n	overflow:hidden;\n}\n@media (min-width: 768px) and (max-width: 979px) {\n	.comments-custom_txt { overflow:visible; }\n}\n@media (max-width: 767px) {\n	.comments-custom_txt { overflow:visible; }\n}\n.comments-custom_txt a:hover { text-decoration:none; }\n.comments-custom_h_title, .comments-custom_h_author {\n	margin-bottom:0;\n	font-family:'Open Sans', sans-serif;\n	font-size:17px;\n}\n.comments-custom_h_author {\n	color:#1e1e1e;\n	margin-bottom:8px;\n}\n.comments-custom .meta_format {\n	margin-top:0;\n	font-size:12px;\n	font-weight:bold;\n}\n.comments-custom .meta_format.date {\n	color:#f9b244;\n	font-style:normal;\n	display:block;\n	margin-top:1px;\n}\n.banners { margin-bottom:54px; }\n.banner-wrap {\n	margin:0;\n	overflow:visible;\n}\n@media (max-width: 767px) {\n	.banner-wrap { margin-bottom:30px; }\n}\n.banner-wrap .featured-thumbnail {\n	margin:0 0 26px 0;\n	float:left;\n	-webkit-border-radius:50%;\n	-moz-border-radius:50%;\n	border-radius:50%;\n	-webkit-box-shadow:4px 4px 5px rgba(0,0,0,0.05);\n	-moz-box-shadow:4px 4px 5px rgba(0,0,0,0.05);\n	box-shadow:4px 4px 5px rgba(0,0,0,0.05);\n}\n@media (max-width: 767px) {\n	.banner-wrap .featured-thumbnail { margin:0 20px 0 0; }\n}\n@media (max-width: 480px) {\n	.banner-wrap .featured-thumbnail { margin:0 0 26px 0; }\n}\n.banner-wrap .featured-thumbnail a {\n	border:none;\n	position:relative;\n}\n.banner-wrap .featured-thumbnail a:before {\n	content:'';\n	position:absolute;\n	left:0;\n	bottom:0;\n	right:0;\n	height:0;\n	background-color:rgba(249,178,68,0.2);\n	-webkit-transition:0.4s;\n	-moz-transition:0.4s;\n	-o-transition:0.4s;\n	transition:0.4s;\n	-webkit-border-radius:50%;\n	-moz-border-radius:50%;\n	border-radius:50%;\n}\n.banner-wrap .featured-thumbnail a:hover:before, .banner-wrap .featured-thumbnail a:active:before, .banner-wrap .featured-thumbnail a:focus:before {\n	bottom:auto;\n	top:0;\n	height:100%;\n}\n.banner-wrap .featured-thumbnail img {\n	max-width:100%;\n	width:100%;\n	-webkit-border-radius:50%;\n	-moz-border-radius:50%;\n	border-radius:50%;\n}\n.banner-wrap h5 {\n	margin:0 0 7px 0;\n	text-transform:none;\n	font-size:36px;\n	font-weight:400;\n	line-height:40px;\n	color:#616161;\n	clear:both;\n}\n@media (min-width: 768px) and (max-width: 979px) {\n	.banner-wrap h5 {\n		font-size:27px;\n		line-height:33px;\n	}\n}\n@media (max-width: 767px) {\n	.banner-wrap h5 {\n		clear:none;\n		padding:10px 0 0 0;\n	}\n}\n@media (max-width: 480px) {\n	.banner-wrap h5 {\n		clear:both;\n		padding-top:0;\n	}\n}\n.banner-wrap p {\n	padding-right:20px;\n	margin-bottom:28px;\n}\n.banner-wrap .btn-link {\n	font-size:12px;\n	padding:5px 20px;\n	position:relative;\n	z-index:1;\n}\n.banner-wrap .btn-link:before, .banner-wrap .btn-link:after {\n	content:'';\n	position:absolute;\n	top:0;\n	left:0;\n	width:100%;\n	height:100%;\n	z-index:-1;\n	-webkit-transition:0.4s;\n	-moz-transition:0.4s;\n	-o-transition:0.4s;\n	transition:0.4s;\n	-webkit-border-radius:21px;\n	-moz-border-radius:21px;\n	border-radius:21px;\n}\n.banner-wrap .btn-link:before { background:#fff; }\n.banner-wrap .btn-link:after {\n	-webkit-transform:rotateX(-180deg);\n	-moz-transform:rotateX(-180deg);\n	-ms-transform:rotateX(-180deg);\n	-o-transform:rotateX(-180deg);\n	background:#f9b244;\n	opacity:0;\n	filter:alpha(opacity=0);\n}\n.ie8 .banner-wrap .btn-link:after {\n	filter:none !important;\n	display:none;\n}\n.banner-wrap .btn-link:hover, .banner-wrap .btn-link:active, .banner-wrap .btn-link:focus { color:#fff; }\n.banner-wrap .btn-link:hover:before, .banner-wrap .btn-link:active:before, .banner-wrap .btn-link:focus:before {\n	-webkit-transform:rotateX(180deg);\n	-moz-transform:rotateX(180deg);\n	-ms-transform:rotateX(180deg);\n	-o-transform:rotateX(180deg);\n	opacity:0;\n	filter:alpha(opacity=0);\n}\n.ie8 .banner-wrap .btn-link:hover:before, .ie8 .banner-wrap .btn-link:active:before, .ie8 .banner-wrap .btn-link:focus:before {\n	filter:none !important;\n	display:none;\n}\n.banner-wrap .btn-link:hover:after, .banner-wrap .btn-link:active:after, .banner-wrap .btn-link:focus:after {\n	-webkit-transform:rotateX(0deg);\n	-moz-transform:rotateX(0deg);\n	-ms-transform:rotateX(0deg);\n	-o-transform:rotateX(0deg);\n	opacity:1;\n	filter:alpha(opacity=100);\n}\n.ie8 .banner-wrap .btn-link:hover:after, .ie8 .banner-wrap .btn-link:active:after, .ie8 .banner-wrap .btn-link:focus:after {\n	filter:none !important;\n	display:block;\n}\n.service-box {\n	padding:0 13px 48px 13px;\n	margin:0 0 61px 0;\n	background-color:#fff;\n	border:none;\n	border-top-width:8px;\n	border-top-style:solid;\n	text-align:center;\n	-webkit-border-radius:0 0 131px 131px;\n	-moz-border-radius:0 0 131px 131px;\n	border-radius:0 0 131px 131px;\n	-webkit-box-shadow:0 1px 5px rgba(0,0,0,0.05);\n	-moz-box-shadow:0 1px 5px rgba(0,0,0,0.05);\n	box-shadow:0 1px 5px rgba(0,0,0,0.05);\n	-webkit-transition:0.4s;\n	-moz-transition:0.4s;\n	-o-transition:0.4s;\n	transition:0.4s;\n}\n@media (max-width: 767px) {\n	.service-box { margin-bottom:30px; }\n}\n.service-box .icon {\n	float:none;\n	margin:0 0 16px 0;\n}\n.service-box h2 {\n	font-size:26px;\n	overflow:visible;\n	margin:0 0 26px 0;\n	padding:0 0 26px 0;\n	border-bottom:1px solid #f2f2f2;\n}\n@media (min-width: 767px) and (max-width: 979px) {\n	.service-box h2 { font-size:22px; }\n}\n.service-box_txt {\n	margin-bottom:19px;\n	font-family:\"Trebuchet MS\", Arial, Helvetica, sans-serif;\n	font-size:12px;\n	line-height:20px;\n	color:#8b8a8a;\n	text-transform:uppercase;\n}\n.service-box .btn-align { text-align:center; }\n.service-box__color-1 { border-top-color:#ff1737; }\n.service-box__color-2 { border-top-color:#ff7931; }\n.service-box__color-3 { border-top-color:#a0cb01; }\n.service-box__color-4 { border-top-color:#fedd2a; }\n.service-box:hover { border-top-color:#4a4a4a; }\n.service-box:hover .icon {\n	-webkit-transform:rotateY(360deg);\n	-moz-transform:rotateY(360deg);\n	-ms-transform:rotateY(360deg);\n	-o-transform:rotateY(360deg);\n	-webkit-transition:0.4s;\n	-moz-transition:0.4s;\n	-o-transition:0.4s;\n	transition:0.4s;\n}\n.hero-unit {\n	margin:0;\n	color:#fff;\n	font-weight:400;\n	-webkit-border-radius:0px;\n	-moz-border-radius:0px;\n	border-radius:0px;\n}\n.hero-unit h1 { color:inherit; }\n.hero-unit p { font-family:'Open Sans', sans-serif; }\n.hero-unit .btn-primary {\n	font-family:'Open Sans', sans-serif;\n	font-weight:600;\n	text-transform:lowercase;\n	background:none;\n}\n.hero-unit .btn-primary.btn-normal {\n	font-size:16px;\n	padding:0;\n}\n.hero-unit__style-1 {\n	padding:77px 50px 46px 50px;\n	margin:0 0 49px 0;\n	text-align:center;\n	background-color:rgba(0,0,0,0.41);\n}\n@media (min-width: 1200px) {\n	.hero-unit__style-1 {\n		padding-left:80px;\n		padding-right:80px;\n	}\n}\n@media (max-width: 767px) {\n	.hero-unit__style-1 { margin-bottom:30px; }\n}\n@media (max-width: 767px) {\n	.hero-unit__style-1 {\n		padding-top:30px;\n		padding-left:20px;\n		padding-right:20px;\n	}\n}\n.no-rgba .hero-unit__style-1 {\n	background-color:transparent;\n	background-image:url(images/black-opacity-41.png);\n}\n.hero-unit__style-1 h1 {\n	font-size:48px;\n	line-height:55px;\n	margin:0 0 17px 0;\n}\n@media (max-width: 767px) {\n	.hero-unit__style-1 h1 {\n		font-size:40px;\n		line-height:50px;\n	}\n}\n@media (max-width: 480px) {\n	.hero-unit__style-1 h1 {\n		font-size:30px;\n		line-height:40px;\n	}\n}\n.hero-unit__style-1 p {\n	font-size:22px;\n	line-height:30px;\n	margin:0 0 29px 0;\n}\n@media (max-width: 767px) {\n	.hero-unit__style-1 p {\n		font-size:18px;\n		line-height:26px;\n	}\n}\n.hero-unit__style-1 .btn-primary { color:#3c3c3c; }\n.hero-unit__style-1 .btn-primary:before, .hero-unit__style-1 .btn-primary:after {\n	-webkit-border-radius:25px;\n	-moz-border-radius:25px;\n	border-radius:25px;\n	-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.2);\n	-moz-box-shadow:0 1px 2px rgba(0,0,0,0.2);\n	box-shadow:0 1px 2px rgba(0,0,0,0.2);\n}\n.hero-unit__style-1 .btn-primary:before {\n	background-color:#f9f9f9;\n	background-image:-moz-linear-gradient(top,#fff,#f0f0f0);\n	background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#f0f0f0));\n	background-image:-webkit-linear-gradient(top,#fff,#f0f0f0);\n	background-image:-o-linear-gradient(top,#fff,#f0f0f0);\n	background-image:linear-gradient(to bottom,#fff,#f0f0f0);\n	background-repeat:repeat-x;\n	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff0f0f0', GradientType=0);\n}\n.hero-unit__style-1 .btn-primary:after { background:#f64f22; }\n.hero-unit__style-1 .btn-primary.btn-normal { padding:12px 24px; }\n.hero-unit__style-1 .btn-primary:hover, .hero-unit__style-1 .btn-primary:active, .hero-unit__style-1 .btn-primary:focus { color:#fff; }\n.hero-unit__style-2 {\n	padding:59px 40px 58px 40px;\n	background-color:rgba(125, 199, 128, 0.41);\n}\n@media (min-width: 1200px) {\n	.hero-unit__style-2 {\n		padding-left:64px;\n		padding-right:66px;\n	}\n}\n@media (max-width: 767px) {\n	.hero-unit__style-2 {\n		margin-top:35px;\n		padding:30px 20px;\n	}\n}\n.no-rgba .hero-unit__style-2 {\n	background-color:transparent;\n	background-image:url(images/red-opacity-41.png);\n}\n.hero-unit__style-2 h1 {\n	font-size:56px;\n	line-height:55px;\n	margin:0 0 21px 0;\n}\n@media (min-width: 768px) and (max-width: 979px) {\n	.hero-unit__style-2 h1 {\n		font-size:35px;\n		line-height:40px;\n	}\n}\n@media (max-width: 767px) {\n	.hero-unit__style-2 h1 {\n		font-size:35px;\n		line-height:40px;\n	}\n}\n.hero-unit__style-2 p {\n	font-size:24px;\n	line-height:30px;\n	margin-bottom:28px;\n}\n@media (max-width: 767px) {\n	.hero-unit__style-2 p {\n		font-size:18px;\n		line-height:26px;\n	}\n}\n.hero-unit__style-2 .btn-primary { color:#fff; }\n.hero-unit__style-2 .btn-primary:before {\n	background-color:#d22b3d;\n	background-image:-moz-linear-gradient(top,#d83044,#ca2332);\n	background-image:-webkit-gradient(linear,0 0,0 100%,from(#d83044),to(#ca2332));\n	background-image:-webkit-linear-gradient(top,#d83044,#ca2332);\n	background-image:-o-linear-gradient(top,#d83044,#ca2332);\n	background-image:linear-gradient(to bottom,#d83044,#ca2332);\n	background-repeat:repeat-x;\n	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd83044', endColorstr='#ffca2332', GradientType=0);\n}\n.hero-unit__style-2 .btn-primary:after {\n	background-color:#ff9e42;\n	background-image:-moz-linear-gradient(top,#ffab4a,#ff8b36);\n	background-image:-webkit-gradient(linear,0 0,0 100%,from(#ffab4a),to(#ff8b36));\n	background-image:-webkit-linear-gradient(top,#ffab4a,#ff8b36);\n	background-image:-o-linear-gradient(top,#ffab4a,#ff8b36);\n	background-image:linear-gradient(to bottom,#ffab4a,#ff8b36);\n	background-repeat:repeat-x;\n	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffab4a', endColorstr='#ffff8b36', GradientType=0);\n}\n.hero-unit__style-2 .btn-primary.btn-normal { padding:11px 26px; }\n.footer {\n	background-color:transparent;\n	border:none;\n	padding:0;\n}\n.extra-footer-wrap {\n	position:relative;\n	padding:41px 0 37px 0;\n	z-index:1;\n}\n@media (max-width: 767px) {\n	.extra-footer-wrap {\n		padding-left:20px;\n		padding-right:20px;\n		padding-top:28px;\n		background-color:rgba(52,52,52,0.66);\n	}\n	.no-rgba .extra-footer-wrap { background-image:url(images/gray-opacity-66.png); }\n}\n.extra-footer-wrap .fullwidth {\n	position:absolute;\n	left:50%;\n	top:0;\n	width:300%;\n	height:100%;\n	margin:0 0 0 -150%;\n	z-index:-1;\n	background-color:rgba(52,52,52,0.66);\n}\n@media (max-width: 767px) {\n	.extra-footer-wrap .fullwidth { display:none; }\n}\n.no-rgba .extra-footer-wrap .fullwidth { background-image:url(images/gray-opacity-66.png); }\n.extra-footer-wrap:before, .extra-footer-wrap:after {\n	content:'';\n	position:absolute;\n	bottom:-38px;\n	width:493px;\n	height:38px;\n	z-index:-1;\n}\n.extra-footer-wrap:before {\n	left:-42px;\n	background-image:url(images/shadow-left.png);\n}\n.extra-footer-wrap:after {\n	right:-42px;\n	background-image:url(images/shadow-right.png);\n}\nnav.footer-nav {\n	float:none;\n	margin-bottom:0;\n	padding:14px 0 0 0;\n}\n@media (min-width: 1200px) {\n	nav.footer-nav {\n		padding-left:0;\n		padding-right:0;\n	}\n}\n@media (min-width: 768px) and (max-width: 979px) {\n	nav.footer-nav { padding-top:32px; }\n}\n@media (max-width: 767px) {\n	nav.footer-nav { padding:0; }\n}\nnav.footer-nav ul { float:left; }\n@media (max-width: 767px) {\n	nav.footer-nav ul {\n		float:none;\n		text-align:center;\n	}\n}\nnav.footer-nav ul li {\n	float:none;\n	float:left;\n	padding:0 0 0 18px;\n	margin:0 0 0 18px;\n	border-left:1px solid #a5a5a5;\n	text-transform:lowercase;\n}\n@media (min-width: 1200px) {\n	nav.footer-nav ul li {\n		padding-left:23px;\n		margin-left:23px;\n	}\n}\n@media (min-width: 768px) and (max-width: 979px) {\n	nav.footer-nav ul li {\n		margin:0 0 0 8px;\n		padding:0 0 0 8px;\n	}\n}\n@media (max-width: 767px) {\n	nav.footer-nav ul li {\n		float:none;\n		display:inline-block;\n		vertical-align:top;\n		margin-left:15px;\n	}\n}\n@media (max-width: 480px) {\n	nav.footer-nav ul li {\n		display:block;\n		border:none;\n		margin:0 0 7px 0;\n		padding:0;\n	}\n}\nnav.footer-nav ul li:first-child {\n	border-left:none;\n	margin-left:0;\n	padding-left:0;\n}\nnav.footer-nav ul li a:hover, nav.footer-nav ul li a:active, nav.footer-nav ul li a:focus { color:#ffa446; }\nnav.footer-nav ul li.current-menu-item a {\n	color:#ffa446;\n	text-decoration:none;\n}\n.social-nets-wrapper { overflow:hidden; }\n@media (max-width: 767px) {\n	.social-nets-wrapper {\n		padding-top:20px;\n		text-align:center;\n	}\n}\n.social-nets-wrapper .title { float:right; }\n@media (min-width: 768px) and (max-width: 979px) {\n	.social-nets-wrapper .title { float:none; }\n}\n@media (max-width: 767px) {\n	.social-nets-wrapper .title { float:none; }\n}\n.social-nets-wrapper .title h4 {\n	color:#fff;\n	font-size:24px;\n	line-height:1.2em;\n	margin:0 0 -3px 0;\n}\n.social-nets-wrapper .title p {\n	font-size:11px;\n	color:#dddddd;\n	margin:0;\n}\n.social-nets-wrapper .social {\n	margin:0;\n	padding:6px 0 0 0;\n}\n@media (min-width: 1200px) {\n	.social-nets-wrapper .social { float:left; }\n}\n.social-nets-wrapper .social li {\n	list-style-type:none;\n	float:left;\n	margin:0 0 0 11px;\n}\n@media (max-width: 767px) {\n	.social-nets-wrapper .social li {\n		float:none;\n		display:inline-block;\n		vertical-align:top;\n		margin:0 5px 0 6px;\n	}\n}\n.social-nets-wrapper .social li:first-child { margin-left:0; }\n.social-nets-wrapper .social li a:hover img, .social-nets-wrapper .social li a:active img, .social-nets-wrapper .social li a:focus img {\n	-webkit-transform:rotateY(360deg);\n	-moz-transform:rotateY(360deg);\n	-ms-transform:rotateY(360deg);\n	-o-transform:rotateY(360deg);\n	-webkit-transition:transform 0.4s;\n	-moz-transition:transform 0.4s;\n	-o-transition:transform 0.4s;\n	transition:transform 0.4s;\n}\n.copyright {\n	padding:42px 0 54px 0;\n	background-color:#5d5d5d;\n	position:relative;\n}\n.copyright:before, .copyright:after {\n	content:'';\n	position:absolute;\n	top:0;\n	width:200%;\n	height:100%;\n	background-color:inherit;\n	z-index:-1;\n}\n@media (max-width: 767px) {\n	.copyright:before, .copyright:after { display:none; }\n}\n.copyright:before { left:-199%; }\n.copyright:after { right:-199%; }\n.footer-text {\n	font-size:18px;\n	font-family:'Bevan', cursive;\n	line-height:1.2em;\n	color:#fff;\n}\n.footer-text a { color:inherit; }\n.footer-text a:hover, .footer-text a:active, .footer-text a:focus { color:#f9b244; }\n.footer-text .bull {\n	font-family:Arial, Helvetica, sans-serif;\n	color:#fa9924;\n}\n@media (max-width: 767px) {\n	.google-map-api { height:300px; }\n}\n.spacer { height:72px; }\n.list.styled.circle-arrow-list > ul {\n	margin:0 0 18px 0;\n	padding-bottom:5px;\n}\n.list.styled.circle-arrow-list > ul li {\n	list-style-type:none;\n	margin:0 0 2px 0;\n}\n.list.styled.circle-arrow-list > ul li:before {\n	font-size:16px;\n	margin-right:9px;\n	color:#b7b7b7;\n}\n.alignnone, .aligncenter, .alignleft, .alignright {\n	-webkit-border-radius:10px;\n	-moz-border-radius:10px;\n	border-radius:10px;\n}\n.alignleft { margin:4px 26px 10px 0; }\n.alignnone { margin:0 0 24px 0; }\n@media (min-width: 767px) and (max-width: 979px) {\n	.extra-img { width:200px; }\n}\n.extra-wrap__style-1 {\n	margin-top:-12px;\n	padding-left:1px;\n}\n.content_box h5 {\n	font-family:'Open Sans', sans-serif;\n	font-size:20px;\n	line-height:28px;\n}\n.content_box__style-1 {\n	background-color:#fff;\n	background-repeat:no-repeat;\n	background-position:0 100%;\n	background-image:url(images/box-img.jpg);\n	padding:66px 0 76px 465px;\n	margin-bottom:24px;\n}\n@media (min-width: 768px) and (max-width: 979px) {\n	.content_box__style-1 {\n		background-size:295px auto;\n		padding-left:265px;\n	}\n}\n@media (max-width: 767px) {\n	.content_box__style-1 {\n		padding-left:0;\n		background-image:none;\n	}\n}\n.content_box__style-1:before, .content_box__style-1:after {\n	width:33px;\n	background-color:inherit;\n}\n.content_box__style-1:before { left:-33px; }\n.content_box__style-1:after { right:-33px; }\n.content_box__style-1 h2 {\n	font-size:48px;\n	line-height:55px;\n	margin:0 0 37px 0;\n	padding:0 0 26px 0;\n	border-bottom:1px solid #fd373a;\n}\n.content_box__style-1 h5 {\n	color:#fd373a;\n	margin:0 0 13px 0;\n}\n.content_box__style-1 p { margin-bottom:32px; }\n.content_box__style-1 .btn-primary {\n	font-family:'Open Sans', sans-serif;\n	font-weight:bold;\n	color:#fff;\n}\n.content_box__style-1 .btn-primary:before {\n	background-color:#d22b3d;\n	background-image:-moz-linear-gradient(top,#d83044,#ca2332);\n	background-image:-webkit-gradient(linear,0 0,0 100%,from(#d83044),to(#ca2332));\n	background-image:-webkit-linear-gradient(top,#d83044,#ca2332);\n	background-image:-o-linear-gradient(top,#d83044,#ca2332);\n	background-image:linear-gradient(to bottom,#d83044,#ca2332);\n	background-repeat:repeat-x;\n	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd83044', endColorstr='#ffca2332', GradientType=0);\n}\n.content_box__style-1 .btn-primary:after {\n	background-color:#ff973c;\n	background-image:-moz-linear-gradient(top,#ffa04d,#ff8922);\n	background-image:-webkit-gradient(linear,0 0,0 100%,from(#ffa04d),to(#ff8922));\n	background-image:-webkit-linear-gradient(top,#ffa04d,#ff8922);\n	background-image:-o-linear-gradient(top,#ffa04d,#ff8922);\n	background-image:linear-gradient(to bottom,#ffa04d,#ff8922);\n	background-repeat:repeat-x;\n	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffa04d', endColorstr='#ffff8922', GradientType=0);\n}\n.content_box__style-1 .btn-primary.btn-normal {\n	font-size:16px;\n	padding:11px 26px;\n}\n.content_box__style-2 {\n	background-color:#fff;\n	padding:68px 0 52px 0;\n}\n.content_box__style-2:before, .content_box__style-2:after {\n	width:33px;\n	background-color:inherit;\n}\n.content_box__style-2:before { left:-33px; }\n.content_box__style-2:after { right:-33px; }\n.content_box__style-2 h2 { margin:0 0 22px 0; }\n.content_box__style-2 h3 {\n	font-size:24px;\n	line-height:30px;\n	margin:0 0 16px 0;\n}\n.content_box__style-2 h5 { margin:0 0 33px 0; }\n.content_box__style-2 h6 {\n	font-family:Arial, Helvetica, sans-serif;\n	font-weight:bold;\n	font-size:14px;\n	margin:0 0 15px 0;\n}\n.content_box__style-2 p { margin-bottom:28px; }\n.content_box__style-2 blockquote {\n	border:none;\n	padding:0;\n	margin:0 0 39px 0;\n	font-style:italic;\n}\n.content_box__style-2 blockquote p {\n	font-size:14px;\n	line-height:22px;\n}\n.flexslider ul li {\n	font-family:Arial, Helvetica, sans-serif !important;\n	font-size:14px !important;\n	text-transform:none !important;\n}\n.thumbnail, .featured-thumbnail {\n	border:none;\n	padding:0;\n	-webkit-border-radius:10px;\n	-moz-border-radius:10px;\n	border-radius:10px;\n	-webkit-box-shadow:none;\n	-moz-box-shadow:none;\n	box-shadow:none;\n}\n.thumbnail img, .featured-thumbnail img {\n	-webkit-border-radius:inherit;\n	-moz-border-radius:inherit;\n	border-radius:inherit;\n}\n.thumbnail a, .featured-thumbnail a {\n	-webkit-border-radius:inherit;\n	-moz-border-radius:inherit;\n	border-radius:inherit;\n}\n.thumbnail a img, .thumbnail a .zoom-icon, .featured-thumbnail a img, .featured-thumbnail a .zoom-icon {\n	-webkit-border-radius:inherit;\n	-moz-border-radius:inherit;\n	border-radius:inherit;\n}\ninput[type=\"submit\"], input[type=\"reset\"] {\n	font-size:12px;\n	color:#1e1e1e;\n	height:32px;\n	padding:0 20px;\n	background:#eeeeee !important;\n	-webkit-border-radius:21px;\n	-moz-border-radius:21px;\n	border-radius:21px;\n	-webkit-transition:background-color 0.4s;\n	-moz-transition:background-color 0.4s;\n	-o-transition:background-color 0.4s;\n	transition:background-color 0.4s;\n}\ninput[type=\"submit\"]:hover, input[type=\"submit\"]:focus, input[type=\"reset\"]:hover, input[type=\"reset\"]:focus {\n	background:#4a4a4a !important;\n	-webkit-transition:background-color 0.4s;\n	-moz-transition:background-color 0.4s;\n	-o-transition:background-color 0.4s;\n	transition:background-color 0.4s;\n}\nselect, textarea, input[type=\"text\"], input[type=\"password\"], input[type=\"datetime\"], input[type=\"datetime-local\"], input[type=\"date\"], input[type=\"month\"], input[type=\"time\"], input[type=\"week\"], input[type=\"number\"], input[type=\"email\"], input[type=\"url\"], input[type=\"search\"], input[type=\"tel\"], input[type=\"color\"], .uneditable-input {\n	padding:13px;\n	border-color:#e3e2e2 !important;\n	-webkit-border-radius:0px;\n	-moz-border-radius:0px;\n	border-radius:0px;\n	-webkit-box-shadow:3px 3px 6px rgba(0,0,0,0.15);\n	-moz-box-shadow:3px 3px 6px rgba(0,0,0,0.15);\n	box-shadow:3px 3px 6px rgba(0,0,0,0.15);\n}\nselect:focus, textarea:focus, input[type=\"text\"]:focus, input[type=\"password\"]:focus, input[type=\"datetime\"]:focus, input[type=\"datetime-local\"]:focus, input[type=\"date\"]:focus, input[type=\"month\"]:focus, input[type=\"time\"]:focus, input[type=\"week\"]:focus, input[type=\"number\"]:focus, input[type=\"email\"]:focus, input[type=\"url\"]:focus, input[type=\"search\"]:focus, input[type=\"tel\"]:focus, input[type=\"color\"]:focus, .uneditable-input:focus {\n	-webkit-box-shadow:inset 3px 3px 6px rgba(0,0,0,0.1);\n	-moz-box-shadow:inset 3px 3px 6px rgba(0,0,0,0.1);\n	box-shadow:inset 3px 3px 6px rgba(0,0,0,0.1);\n}\nselect {\n	padding:0;\n	-webkit-box-shadow:none;\n	-moz-box-shadow:none;\n	box-shadow:none;\n}\nselect:focus {\n	-webkit-box-shadow:none;\n	-moz-box-shadow:none;\n	box-shadow:none;\n}\n#back-top { margin-bottom:0; }\n#back-top-wrapper {\n	right:50px;\n	bottom:163px;\n}\n#back-top a { width:33px; }\n#back-top a:hover span { background-color:#4a4a4a; }\n#back-top a:hover span:before, #back-top a:hover span:after {\n	-webkit-transform:translate(0,-33px);\n	-moz-transform:translate(0,-33px);\n	-ms-transform:translate(0,-33px);\n	-o-transform:translate(0,-33px);\n	transform:translate(0,-33px);\n	-webkit-transition:0.5s;\n	-moz-transition:0.5s;\n	-o-transition:0.5s;\n	transition:0.5s;\n}\n.ie8 #back-top a:hover span:before, .ie8 #back-top a:hover span:after {\n	top:-33px;\n	position:relative;\n}\n#back-top a:hover span:before {\n	opacity:0;\n	filter:alpha(opacity=0);\n}\n#back-top span {\n	margin-bottom:0;\n	width:33px;\n	height:33px;\n	background:#fff;\n	position:relative;\n	-webkit-transition:0.5s;\n	-moz-transition:0.5s;\n	-o-transition:0.5s;\n	transition:0.5s;\n	-webkit-border-radius:50%;\n	-moz-border-radius:50%;\n	border-radius:50%;\n}\n#back-top span:before, #back-top span:after {\n	content:'';\n	width:inherit;\n	height:inherit;\n	display:block;\n	text-align:center;\n	background:url(images/up-arrow.gif) no-repeat center 0;\n}\n#back-top span:after { background-position:center -33px; }\n.btn-primary {\n	border:none;\n	text-shadow:none;\n	text-transform:lowercase;\n	background:none !important;\n	position:relative;\n	z-index:1;\n	color:#1e1e1e;\n	-webkit-box-shadow:none;\n	-moz-box-shadow:none;\n	box-shadow:none;\n}\n.btn-primary:before, .btn-primary:after {\n	content:'';\n	position:absolute;\n	top:0;\n	left:0;\n	width:100%;\n	height:100%;\n	z-index:-1;\n	-webkit-transition:0.4s;\n	-moz-transition:0.4s;\n	-o-transition:0.4s;\n	transition:0.4s;\n	-webkit-border-radius:21px;\n	-moz-border-radius:21px;\n	border-radius:21px;\n}\n.btn-primary:before {\n	background-color:#f2f2f2;\n	background-image:-moz-linear-gradient(top,#f4f4f4,#eeeeee);\n	background-image:-webkit-gradient(linear,0 0,0 100%,from(#f4f4f4),to(#eeeeee));\n	background-image:-webkit-linear-gradient(top,#f4f4f4,#eeeeee);\n	background-image:-o-linear-gradient(top,#f4f4f4,#eeeeee);\n	background-image:linear-gradient(to bottom,#f4f4f4,#eeeeee);\n	background-repeat:repeat-x;\n	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff4f4f4', endColorstr='#ffeeeeee', GradientType=0);\n}\n.btn-primary:after {\n	-webkit-transform:rotateX(-180deg);\n	-moz-transform:rotateX(-180deg);\n	-ms-transform:rotateX(-180deg);\n	-o-transform:rotateX(-180deg);\n	background:#4a4a4a;\n	opacity:0;\n	filter:alpha(opacity=0);\n}\n.ie8 .btn-primary:after {\n	filter:none !important;\n	display:none;\n}\n.btn-primary:hover, .btn-primary:active, .btn-primary:focus {\n	color:#fff;\n	-webkit-box-shadow:none;\n	-moz-box-shadow:none;\n	box-shadow:none;\n}\n.btn-primary:hover:before, .btn-primary:active:before, .btn-primary:focus:before {\n	-webkit-transform:rotateX(180deg);\n	-moz-transform:rotateX(180deg);\n	-ms-transform:rotateX(180deg);\n	-o-transform:rotateX(180deg);\n	opacity:0;\n	filter:alpha(opacity=0);\n}\n.ie8 .btn-primary:hover:before, .ie8 .btn-primary:active:before, .ie8 .btn-primary:focus:before {\n	filter:none !important;\n	display:none;\n}\n.btn-primary:hover:after, .btn-primary:active:after, .btn-primary:focus:after {\n	-webkit-transform:rotateX(0deg);\n	-moz-transform:rotateX(0deg);\n	-ms-transform:rotateX(0deg);\n	-o-transform:rotateX(0deg);\n	opacity:1;\n	filter:alpha(opacity=100);\n}\n.ie8 .btn-primary:hover:after, .ie8 .btn-primary:active:after, .ie8 .btn-primary:focus:after {\n	filter:none !important;\n	display:block;\n}\n.btn-primary.btn-normal {\n	font-size:12px;\n	padding:5px 20px;\n}\n.btn-link {\n	text-shadow:none;\n	border:none;\n	padding:0;\n}\n.btn-link:hover, .btn-link:active, .btn-link:focus { text-decoration:none; }\n.clearfix { *zoom:1; }\n.clearfix:before, .clearfix:after {\n	display:table;\n	content:\"\";\n	line-height:0;\n}\n.clearfix:after { clear:both; }\n.hide-text {\n	font:0/0 a;\n	color:transparent;\n	text-shadow:none;\n	background-color:transparent;\n	border:0;\n}\n.input-block-level {\n	display:block;\n	width:100%;\n	min-height:32px;\n	-webkit-box-sizing:border-box;\n	-moz-box-sizing:border-box;\n	box-sizing:border-box;\n}\n",
+			"settings":
+			{
+				"buffer_size": 44068,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "'use strict';\n/**\n * @ngdoc function\n * @name nwApp.controller:MainCtrl\n * @description\n * # MainCtrl\n * Controller of the nwApp\n */\nangular.module('nwApp')\n    .controller('MainCtrl', ['$timeout', 'localStorageService', 'GetTestNames', 'GetSlides', '$rootScope', '$routeParams', 'queryStringCheck',\n        function($timeout, localStorageService, GetTestNames, GetSlides, $rootScope, $routeParams, queryStringCheck) {\n            var candidateNames, projectIdPrefixed, storeKey, addDigit;\n            var self = this;\n            self.displayTally = false;\n            var feedBackBox = [];\n            var projectId = '';\n            projectId = queryStringCheck;\n            self.togglePresentation = function() {\n                if (self.isTesNameTime === false) {\n                    self.isTesNameTime = true;\n                } else {\n                    self.isTesNameTime = false;\n                }\n            };\n\n            // Slide Show Configuration\n            self.slides = [];\n            self.isTesNameTime = true;\n\n         GetSlides.getdata(projectId).then(function(result) {\n                addDigit = '00';\n\n                self.totalSlides = result[0].totalSlides;\n                for (var i = 1; i < result[0].totalSlides; i++) {\n                    var id = {};\n                    if (i > 9) {\n                        addDigit = '0';\n                    }\n                    id = result[0].path + addDigit + i + '.jpg';\n                    self.slides.push(id);\n                    // Displaying IMages url \n                }\n                var startTestNamesAtPage = result[0].NameEvaluationFirstSlide;\n                Reveal.addEventListener('slidechanged', function(event) {\n                    //Warning! DO NOT CHANGE  THE \"==\" for \"===\"\n                    // console.log('the index is :  '+event.indexh+1);\n                    // if (2 == event.indexh + 1) {\n                     if (startTestNamesAtPage == event.indexh + 1) {                         \n                           $rootScope.$apply(function() {\n                            self.isTesNameTime = false;\n                        });\n                    }\n                });\n                // slide show configuration settings \n                $timeout(function() {\n                    Reveal.initialize({\n\n\n                        width: 960,\n                        height: 680,\n\n                        // Factor of the display size that should remain empty around the content\n                        margin: 0.1,\n\n                        // Bounds for smallest/largest possible scale to apply to content\n                        minScale: 1.2,\n                        maxScale: 1.2,\n\n\n                        // Display controls in the bottom right corner\n                        controls: true,\n\n                        // Display a presentation progress bar\n                        progress: true,\n\n                        // Display the page number of the current slide\n                        slideNumber: true,\n\n                        // Push each slide change to the browser history\n                        history: false,\n\n                        // Enable keyboard shortcuts for navigation\n                        keyboard: true,\n\n                        // Enable the slide overview mode\n                        overview: true,\n\n                        // Vertical centering of slides\n                        center: true,\n\n                        // Enables touch navigation on devices with touch input\n                        touch: true,\n\n                        // Loop the presentation\n                        loop: false,\n\n                        // Change the presentation direction to be RTL\n                        rtl: false,\n\n                        // Turns fragments on and off globally\n                        fragments: true,\n\n                        // Flags if the presentation is running in an embedded mode,\n                        // i.e. contained within a limited portion of the screen\n                        embedded: false,\n\n                        // Flags if we should show a help overlay when the questionmark\n                        // key is pressed\n                        help: true,\n\n                        // Number of milliseconds between automatically proceeding to the\n                        // next slide, disabled when set to 0, this value can be overwritten\n                        // by using a data-autoslide attribute on your slides\n                        autoSlide: 0,\n\n                        // Stop auto-sliding after user input\n                        autoSlideStoppable: true,\n\n                        // Enable slide navigation via mouse wheel\n                        mouseWheel: true,\n\n                        // Hides the address bar on mobile devices\n                        hideAddressBar: false,\n\n                        // Opens links in an iframe preview overlay\n                        previewLinks: false,\n\n                        // Transition style\n                        transition: 'none', // none/fade/slide/convex/concave/zoom\n\n                        // Transition speed\n                        transitionSpeed: 'fast', // default/fast/slow\n\n                        // Transition style for full page slide backgrounds\n                        backgroundTransition: 'none', // none/fade/slide/convex/concave/zoom\n\n                        // Number of slides away from the current that are visible\n                        viewDistance: 1,\n\n                        // Parallax background image\n                        parallaxBackgroundImage: '', // e.g. \"'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'\"\n\n                        // Parallax background size\n                        parallaxBackgroundSize: '', // CSS syntax, e.g. \"2100px 900px\"\n\n                        // Amount to move parallax background (horizontal and vertical) on slide change\n                        // Number, e.g. 100\n                        parallaxBackgroundHorizontal: '',\n                        parallaxBackgroundVertical: '',\n\n                        dependencies: [{\n                            src: 'bower_components/reveal-js/lib/js/classList.js',\n                            condition: function() {\n                                return !document.body.classList;\n                            }\n                        }, {\n                            src: 'bower_components/reveal-js/plugin/markdown/marked.js',\n                            condition: function() {\n                                return !!document.querySelector('[data-markdown]');\n                            }\n                        }, {\n                            src: 'bower_components/reveal-js/plugin/markdown/markdown.js',\n                            condition: function() {\n                                return !!document.querySelector('[data-markdown]');\n                            }\n                        }, {\n                            src: 'bower_components/reveal-js/plugin/highlight/highlight.js',\n                            async: true,\n                            callback: function() {\n                                hljs.initHighlightingOnLoad();\n                            }\n                        }, {\n                            src: 'bower_components/reveal-js/plugin/notes/notes.js',\n                            async: true,\n                            condition: function() {\n                                return !!document.body.classList;\n                            }\n                        }]\n                    });\n\n                    Reveal.configure({});\n                }, 300);\n            });\n\n\n\n        GetTestNames.getdata(projectId).then(function(result) {\n                if (result.length > 0) {\n                    candidateNames = result;\n                    projectIdPrefixed = candidateNames[0].nwid;\n                    storeKey = projectIdPrefixed + 'FEED_BACK_RESULTS';\n                    self.title = candidateNames[0].Category;\n\n\n                    var UpdateFeedBack = function(storedFeedBack) {\n                        self.radioButtons.map(function(obj) {\n                            if (obj.text === storedFeedBack.feedBackScore) {\n                                obj.isUserAnswer = true;\n                            } else {\n                                obj.isUserAnswer = false;\n                            }\n                        });\n                    };\n                } else {\n                    alert('The test names for this  project is notavailable plese contact IS for further support');\n                }\n\n                var candidateNamesSize = candidateNames.length;\n                var slideCounter = 0;\n                self.slideCounter = false;\n                self.slideCounter2 = true;\n                self.progressBarValue = 1;\n\n                self.radioButtons = [{\n                    id: 1,\n                    text: \"Positive\",\n                    isUserAnswer: false\n                }, {\n                    id: 2,\n                    text: \"Neutral\",\n                    isUserAnswer: false\n                }, {\n                    id: 3,\n                    text: \"Negative\",\n                    isUserAnswer: false\n                }];\n                // INITIAL SETUP\n                self.positiveScore = 0;\n                self.neutralScore = 0;\n                self.negativeScore = 0;\n                self.Rationale = candidateNames[0].Rationale;\n                self.pageNumber = slideCounter + 1;\n                var isStoreAvailable = localStorageService.get(storeKey);\n                var storedFeedBack = (isStoreAvailable === null) ? null : JSON.parse(localStorageService.get(storeKey));\n\n                if (storedFeedBack !== null) {\n                    storedFeedBack = storedFeedBack[0];\n                    self.newName = storedFeedBack.newName;\n                    self.nameCandidate = storedFeedBack.candidate;\n                    self.explore = storedFeedBack.explore;\n                    self.avoid = storedFeedBack.avoid;\n                    UpdateFeedBack(storedFeedBack);\n\n                } else {\n                    self.nameCandidate = candidateNames[0].TestName;\n                    self.newName = '';\n                    self.explore = '';\n                    self.avoid = '';\n                }\n\n                self.resetSlide = function() {\n                    self.displayTally = false;\n                    localStorageService.clearAll();\n                    location.reload();\n                    alert('The slides are reset');\n                    self.pageNumber = 1;\n                };\n\n                self.goPrevSlide = function() {\n                    self.displayTally = false;\n                    if (slideCounter > 0) {\n                        slideCounter = slideCounter - 1;\n                        self.progressBarValue = self.progressBarValue - (100 / candidateNamesSize); // Progress Bar\n                        var storedFeedBack = JSON.parse(localStorageService.get(storeKey));\n                                if(slideCounter < storedFeedBack.length ){\n                                self.nameCandidate = storedFeedBack[slideCounter].candidate;\n                                self.newName = storedFeedBack[slideCounter].newName;\n                                self.explore = storedFeedBack[slideCounter].explore;\n                                self.avoid = storedFeedBack[slideCounter].avoid;\n                                UpdateFeedBack(storedFeedBack[slideCounter]);\n                                self.slideCounter2 = true;\n                                self.pageNumber = slideCounter + 1;\n                                self.Rationale = candidateNames[slideCounter].Rationale;\n                                self.title = candidateNames[slideCounter].Category;\n                                }// end if \n                    } else {\n                        alert('You are in the 1rst Slide');\n                        self.slideCounter = false;\n                        self.slideCounter2 = true;\n                    }\n                };\n\n                self.goNextSlide = function() {\n                    self.displayTally = false;\n                    var feedBack = '';\n                    if (slideCounter < candidateNamesSize) {\n                        self.radioButtons.map(function(obj) {\n                            if (obj.isUserAnswer) {\n                                feedBack = obj.text;\n                            }\n                        });\n\n                        if (feedBack === '') {\n                            alert('Please answer the feed back questions before continuing');\n                        } else { // begin else\n                            self.progressBarValue = self.progressBarValue + (100 / candidateNamesSize); // Progress Bar\n                            var isStoreAvailable = localStorageService.get(storeKey);\n                            var storedFeedBack = (isStoreAvailable === null) ? null : JSON.parse(localStorageService.get(storeKey));\n                            if (storedFeedBack !== null && storedFeedBack[slideCounter + 1] !== undefined) { // record exist                               \n                                var getObjectAlreadyStored = storedFeedBack[slideCounter + 1];\n                                var updateBeforeData = storedFeedBack;\n                                updateBeforeData[slideCounter].newName = self.newName;\n                                updateBeforeData[slideCounter].feedBackScore = feedBack;\n                                updateBeforeData[slideCounter].candidate = self.nameCandidate;\n                                updateBeforeData[slideCounter].explore = self.explore;\n                                updateBeforeData[slideCounter].avoid = self.avoid;\n\n                                localStorageService.remove(storeKey);\n                                localStorageService.set(storeKey, JSON.stringify(updateBeforeData));\n                                self.newName = getObjectAlreadyStored.newName;\n                                self.nameCandidate = getObjectAlreadyStored.candidate;\n                                self.explore = getObjectAlreadyStored.explore;\n                                self.avoid = getObjectAlreadyStored.avoid;\n                                self.Rationale = candidateNames[slideCounter + 1].Rationale;\n                                self.title = candidateNames[slideCounter + 1].Category;\n\n                                UpdateFeedBack(getObjectAlreadyStored);\n                                slideCounter = slideCounter + 1;\n                                self.slideCounter = true;\n                                self.pageNumber = slideCounter + 1;\n                            } else {\n                                if (storedFeedBack === null || storedFeedBack[slideCounter] === undefined) {\n                                    var val = feedBackModel(feedBack, self.newName, self.nameCandidate, self.explore, self.avoid);\n                                    feedBackBox.push(val);\n                                    localStorageService.set(storeKey, JSON.stringify(feedBackBox));\n                                } else {\n\n                                    var updateBeforeData2 = storedFeedBack;\n                                    updateBeforeData2[slideCounter].newName = self.newName;\n                                    updateBeforeData2[slideCounter].feedBackScore = feedBack;\n                                    updateBeforeData2[slideCounter].candidate = self.nameCandidate;\n                                    updateBeforeData2[slideCounter].explore = self.explore;\n                                    updateBeforeData2[slideCounter].avoid = self.avoid;\n                                    localStorageService.remove(storeKey);\n                                    localStorageService.set(storeKey, JSON.stringify(updateBeforeData2));\n                                }\n                                if (slideCounter < candidateNamesSize - 1) {\n                                    slideCounter = slideCounter + 1;\n                                    self.slideCounter = true;\n                                    var addKatakana = (candidateNames[slideCounter].Kana === '') ? '' : ' , ' + candidateNames[slideCounter].Kana;\n                                    self.nameCandidate = candidateNames[slideCounter].TestName + addKatakana;\n                                    self.Rationale = candidateNames[slideCounter].Rationale;\n                                    self.title = candidateNames[slideCounter].Category;\n                                    self.newName = '';\n                                    self.explore = '';\n                                    self.avoid = '';\n                                    self.radioButtons = [{\n                                        id: 1,\n                                        text: \"Positive\",\n                                        isUserAnswer: false\n                                    }, {\n                                        id: 2,\n                                        text: \"Neutral\",\n                                        isUserAnswer: false\n                                    }, {\n                                        id: 3,\n                                        text: \"Negative\",\n                                        isUserAnswer: false\n                                    }];\n\n                                    self.pageNumber = slideCounter;\n                                } // end if counter \n                            }\n\n                        } // end else\n                    } else {\n                        self.slideCounter2 = false;\n                        alert('End of the Slides');\n\n                    }\n                };\n\n                var feedBackModel = function(feedBackScore, newName, candidate, explore, avoid) {\n                    return {\n                        \"feedBackScore\": feedBackScore,\n                        \"newName\": newName,\n                        \"candidate\": candidate,\n                        \"explore\": explore,\n                        \"avoid\": avoid\n                    };\n                };\n\n                self.updateControl = function(buton) {\n                    self.radioButtons.map(function(obj) {\n                        if (obj.text === buton.text) {\n                            obj.isUserAnswer = true;\n                        } else {\n                            obj.isUserAnswer = false;\n                        }\n                    });\n                };\n\n                self.tally = function(buton) {\n\n                    self.displayTally = true;\n                    var storeObject = localStorageService.get(storeKey);\n                    self.positiveScore = 0;\n                    self.neutralScore = 0;\n                    self.negativeScore = 0;\n                    if (storeObject !== null) {\n                        storeObject = JSON.parse(storeObject);\n\n\n                        angular.forEach(storeObject, function(value) {\n\n                            if (value.feedBackScore === 'Positive') {\n                                self.positiveScore += 1;\n                            }\n\n                            if (value.feedBackScore === 'Neutral') {\n                                self.neutralScore += 1;\n                            }\n\n                            if (value.feedBackScore === 'Negative') {\n                                self.negativeScore += 1;\n                            }\n\n                        });\n                    }\n                };\n\n            }); // end of the promise call \n        }\n    ]);\n",
+			"file": "scripts/controllers/main.js",
+			"file_size": 19734,
+			"file_write_time": 130850052681367027,
+			"settings":
+			{
+				"buffer_size": 19754,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "scripts/app.js",
+			"settings":
+			{
+				"buffer_size": 2107,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/reveal-js/css/reveal.css",
+			"settings":
+			{
+				"buffer_size": 56337,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 127.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"Package Control: install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"remove ",
+				"Package Control: Remove Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: pac",
+				"Package Control: List Packages"
+			],
+			[
+				"Install Package",
+				"Package Control: Install Package"
+			],
+			[
+				"synta",
+				"Set Syntax: HTML"
+			],
+			[
+				"syntax coff",
+				"Set Syntax: CoffeeScript"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: l",
+				"Package Control: List Packages"
+			],
+			[
+				"ins	",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 472.0
+	},
+	"console":
+	{
+		"height": 153.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print('Please restart Sublime Text to finish installation')",
+			"https://sublime.wbond.net/alpha/packages.json"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/fonts",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/controllers",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/directives",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/services",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/styles",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/views",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/auto-font-size",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/auto-font-size/dist"
+	],
+	"file_history":
+	[
+		"/C/wamp/www/xv/wp-login.php",
+		"/C/wamp/www/xv/wp-config.php",
+		"/C/wamp/www/xv/wp-load.php",
+		"/C/wamp/www/xv/index.php",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/app.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/controllers/slideShow.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/reveal-js/js/reveal.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/reveal-js/css/reveal.css",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/styles/main.css",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/views/slideShow.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/reveal.js-master/css/reveal.css",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/controllers/navigation.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/directives/keyboard-listener.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/controllers/main.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/views/main.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/reveal-js/js/rvealLatest.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/reveal-js/css/theme/moon.css",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/index.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower.json",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/Gruntfile.js",
+		"/C/Users/cvega/AppData/Local/Temp/Rar$DRa0.788/NW/app/index.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/screenfull/bower.json",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/reveal-js/.bower.json",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/screenfull/.bower.json",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/reveal-js/package.json",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/reveal-js/Gruntfile.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/services/getDataFactory.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/views/slideShow2.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/dist/index.html",
+		"//Code/nw/index.html",
+		"/C/Users/cvega/AppData/Local/Temp/Rar$DRa0.786/index.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/Directives/slideShow.js",
+		"/C/Users/cvega/Desktop/CarlosGomez/New folder/js/impress.js",
+		"/C/Users/cvega/Desktop/CarlosGomez/New folder/css/impress-demo.css",
+		"/C/Users/cvega/Desktop/CarlosGomez/New folder/index.html",
+		"/C/Users/cvega/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/C/Users/cvega/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/bower_components/bootstrap/js/alert.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/scripts/controllers/projectTemplateController.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/scripts/controllers/formCreatorController.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/index.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/views/pages/project-template.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/scripts/app.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/scripts/controllers/chooseProjectController.js",
+		"//CODE/BIDocs/index.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/views/pages/layout-project.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/views/pages/templates.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/views/templates/form-input-text-template.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/scripts/services/formcreatorservice.js",
+		"/C/Users/cvega/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/bower_components/bootstrap/dist/css/bootstrap.css",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/scripts/directives/formcreatordirective.js",
+		"/C/Users/cvega/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/C/Users/cvega/Desktop/Barbie/imges/chocolate_chip_open_box1.jpg",
+		"/C/Users/cvega/Desktop/Barbie/imges/cookiestack.jpg",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/scripts/controllers/main.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/views/form-input-text-template.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/views/pages/choose-project.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIDocsTemplate/bower.json",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIDocsTemplate/Gruntfile.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/views/pages/choose-template.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/dist/index.html",
+		"//CODE/BIDocs/styles/index.html",
+		"//CODE/BIDocs/web.config",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/.htaccess",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/app.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/index.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/scripts/controllers/about.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/dist/views/main.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/MercIonic/MerApp/www/index.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/dist/views/pages/choose-project.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/MercIonic/MerApp/www/templates/home.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/app/views/main.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/app/index.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/views/pages/layoutProject.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/scripts/controllers/formcreatorctrler.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/views/main.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/views/about.html",
+		"/C/Users/cvega/Desktop/Barbie/hosting/index.html",
+		"/C/Users/cvega/Desktop/Barbie/hosting/.htaccess",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/bower_components/angular-loading-bar/src/loading-bar.css",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/bower_components/angular-loading-bar/build/loading-bar.css",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/scripts/directives/directive copy with bugs",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/bower_components/ngwidgets/styles/ngx.base.css",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/bower_components/ngwidgets/styles/ngx.bootstrap.css",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/styles/main.css",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/bower_components/bootstrap/less/tooltip.less",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/Gruntfile.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/styles/ngx.highcontrast.css",
+		"/C/Users/cvega/Desktop/Proyecto A/js/app.js",
+		"/C/Users/cvega/Desktop/Proyecto A/js/angular.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/app/favicon.ico",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocs/web.config",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/BIdocsStriped/app/scripts/BIdocs",
+		"/C/Users/cvega/Desktop/Cesar Settings/Software/Sublime Text 3/Data/Packages/User/AngularJS-sublime-package.sublime-settings",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/pprintranet/GuideLines/Views/ClientPPRQuestions/vendor/form-input-text-template.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/Software/Sublime Text 3/Data/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/pprintranet/GuideLines/Views/ClientPPRQuestions/vendor/ClientUIforIE8.vbhtml",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/FormCreator/formCreatorCtrl.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/Chart/ChartCtrl.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/Chart/ChartDirective.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/Form/FormCtrl.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/Form/FormDirective.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/Form/FormValidation.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/shared/main.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/shared/localize.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/shared/directives.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/Table/TableCtrl.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/Task/Task.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/UI/UICtrl.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/UI/UIDirective.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/UI/UIService.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/FormCreator/formCreatorCtrl.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/app.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/FormCreator/formCreatorService.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/FormCreator/formCreatorService.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/FormCreator/formCreatorDirective.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/views/NRDG/NRDG.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/Auth/authCtrl.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/Auth/authService.coffee",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/Auth/authService.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/Auth/authCtrl.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/Software/Sublime Text 3/Data/Packages/Xdebug Client/Xdebug.sublime-settings",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/BIdocs.sublime-project",
+		"/C/Users/cvega/Desktop/Cesar Settings/Software/Sublime Text 3/Data/Packages/User/Xdebug.sublime-settings",
+		"/C/Users/cvega/Desktop/Cesar Settings/Software/Sublime Text 3/Data/Packages/User/Preferences.sublime-settings",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/FormCreator/formCreatorDirective.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/Software/Sublime Text 3/Data/Packages/User/Emmet.sublime-settings"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"space",
+			"rowSpacing",
+			"spacing",
+			"Durant",
+			"../",
+			"@font-face",
+			"rgb",
+			"testName",
+			" title",
+			"fontTooBig",
+			".nav-wrapper {",
+			"nav",
+			".hero-unit__style-2",
+			".nav-wrapper {",
+			"../",
+			"/",
+			"default",
+			" GetTestNames.getdata(projectId)",
+			"slideCounter",
+			"the index is",
+			".reveal .progress {",
+			"Overview",
+			"updateO",
+			"overview",
+			"activateOverview",
+			"%",
+			"layoutOverview",
+			"Overview",
+			"layoutOverview",
+			"window.innerWidth < 400 ? -1000 : -2500 ",
+			"updateOverview",
+			"transformSlides",
+			"layoutoverview",
+			"transformSlides",
+			";\n",
+			"activateOverviewTimeout",
+			"Overview",
+			"addOverview",
+			"layoutOverview",
+			"HORIZONTAL_SLIDES_SELECTOR ",
+			"	var horizontalSlides = document.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR );",
+			"activateOverview",
+			"activateOverviewTimeout",
+			"function activateOverview() ",
+			"isOverlay",
+			"overlay",
+			"inherit",
+			"function layout() {",
+			"zoom",
+			"reveal.overview .slides ",
+			"s",
+			"reveal.overview .slides ",
+			"reveal.overview .slides s",
+			"layoutSlide",
+			"LAYOUT",
+			"layout",
+			"Overview",
+			"onDocumentKeyPress",
+			"if( config.keyboard ) {",
+			" onDocumentKeyPress ",
+			"onDocumentKeyPress",
+			"getIndices",
+			"setupPostMessage",
+			"setTimeout( function() {",
+			"}\n",
+			"setupIframeScrollPrevention",
+			"loaded = false,",
+			"setupIframeScrollPrevention",
+			"keyboardShortcuts",
+			"touch",
+			"	isMobileDevice = navigator.userAgent.match",
+			"updateOverview",
+			"overview",
+			"triggerKey",
+			"getCurrentSlide",
+			"function layout() ",
+			"function layout() {",
+			"function transformSlides( transforms ) {",
+			"    transform: ",
+			"0",
+			"700",
+			"700px",
+			"overview",
+			"\n.browsehappy {\n  margin: 0.2em 0;\n  background: #ccc;\n  color: #000;\n  padding: 0.2em 0;\n}\n",
+			"config",
+			">",
+			"\"",
+			"controls",
+			"300px",
+			"white",
+			"blue",
+			"red",
+			"plugin",
+			".reveal.overview .slides section",
+			"row",
+			"@media screen and ",
+			"@media screen and (min-width: 700px)\n.container {",
+			".header",
+			"header",
+			"Rational",
+			"Rationale",
+			"candidateNames[slideCounter+1].Rational",
+			"candidateNames[slideCounter+1].",
+			"Rational",
+			"FEED_BACK_RESULTS",
+			" .header {",
+			"targets found",
+			"cssmin",
+			"No \"cssmin\" targets found.",
+			"cdnify",
+			"Running \"cdnify:dist\" (cdnify) task",
+			" <script src=\"bower_components/screenfull/dist/screenfull.js\"></script>",
+			"style.top",
+			"-350",
+			".reveal .slides ",
+			".reveal .slides { margin:",
+			"center",
+			"if( slide.classList.contains( 'stack' ) ) {",
+			"style",
+			"top:",
+			"section",
+			"reveal.",
+			"350",
+			"top: -350px; ",
+			"top: -350px; display: block;",
+			"zoom",
+			"zoom: 0.2",
+			"1/scripts/directives/slideShow.js "
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": true,
+		"regex": false,
+		"replace_history":
+		[
+			"'",
+			" ",
+			"h3",
+			"'",
+			"ng-model=\"Answer\"",
+			"'",
+			"InputType",
+			"sourceData.ToolTipPlacement",
+			"sourceData.DefaultValue",
+			"sourceData.datatype",
+			"\\\\n",
+			",/n",
+			"sourceData.option",
+			"sourceData.defaultValue",
+			"sourceData.DefaultValue",
+			"DefaultValue"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4109,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								959,
+								959
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "views/main.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11824,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4542,
+								4542
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2100.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/auto-font-size/dist/auto_font_size.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4018,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3188,
+								3188
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1020.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "styles/main.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3286,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1405,
+								1405
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 540.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 44068,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1811,
+								1772
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1325.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "scripts/controllers/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19754,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10656,
+								10656
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4420.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "scripts/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2107,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								315,
+								315
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 60.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/reveal-js/css/reveal.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 56337,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9671,
+								9671
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 8945.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "NW.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"alert",
+				"bower_components\\bootstrap\\js\\alert.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 58.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 461.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

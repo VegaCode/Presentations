@@ -1,0 +1,229 @@
+<style type="text/css">
+/*use this to change the height of the page slide*/
+
+.space{
+    margin-bottom: 53px;
+}
+
+.backgroundStyle {
+    border: solid 5px #93A1A1;
+    background-color: #E1E1E1;
+    background: -webkit-linear-gradient(white, white, #E1E1E1);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(white, white, #E1E1E1);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(white, white, #E1E1E1);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(white, white, #E1E1E1);
+    /* Standard syntax (must be last) */
+    height: 100%;
+}
+
+.headerBackground {
+    margin-bottom: 10px;
+    margin: 0px;
+    background-image: url(images/Slide2.JPG);
+    margin-bottom: 14px;
+    background-repeat: no-repeat;
+    border-bottom: solid 5px #002A8E;
+}
+
+label {
+    font-size: 22px !important;
+    font-weight: 100;
+}
+
+.feedBack {
+    border: 0px;
+    width: 20px;
+    height: 1em;
+    margin: 10px;
+    margin-left: -25px !important;
+}
+</style>
+<!-- Slide Show -->
+<div class="container-fluid">
+    <!-- NW -->
+    <div class="backgroundStyle" ng-show="main.isTesNameTime===false">
+        <!--   <div class="header">
+            <div class="container-fluid headerBackground" style="; background-size: cover;">
+                <div class="col-md-12 column">
+                    <div class="row   clearfix">
+                        <div class="col-md-6 column">
+                            <h1 class="text-primary"></h1>
+                        </div>
+                        <div class="col-md-6 column">
+                            <img ng-src="images/logoBIdocs.png" alt="D.S.I." style='width: 125px; float:right; opacity:0;' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="container-fluid" style="background-image: url(images/Slide3.JPG); !important;color:white; background-repeat: no-repeat; background-size: cover;height:800px;" >
+            <div class="row" style="height: 30px;">
+                <div class="col-md-12">
+                    <div class="progress" style="height: 5px;" max="max" value="dynamic">
+                        <div class="progress-bar progress-bar-success" role="progressbar" ng-style="{width: (main.progressBarValue) + '%'}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row" style="height: 175px;">
+                        <div class="col-md-2">
+                            <div class="radio">
+                                <div ng-repeat="buton in main.radioButtons">
+                                    <label>
+                                        <input class="feedBack" type="radio" name="feedback" ng-model="buton.isUserAnswer" ng-change="main.updateControl(buton)" ng-value="true" /> {{buton.text}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 text-Primary text-center" auto-font-size id="category">
+                            {{main.title}}
+                        </div>
+                        <div class="col-md-2">
+                            <div class="row  ">
+                                <div class="col-md-2">
+                                    <button class="btn btn-primary" ng-click="main.tally()" style="margin-bottom: 5px; ;float: left; width:150px">Tally</button>
+                                </div>
+                            </div>
+                            <div class="row  " ng-show="main.displayTally">
+                                <div class="col-md-8">
+                                    <label style="margin-bottom: 5px; width:100px; cursor:text;float: left;">Positive
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <span style="font-size:22px;">{{main.positiveScore}}</span>
+                                </div>
+                            </div>
+                            <div class="row  " ng-show="main.displayTally">
+                                <div class="col-md-8">
+                                    <label style="margin-bottom: 5px; width:100px; cursor:text;float: left;">Neutral
+                                    </label>
+                                </div>
+                                <div style="font-size:22px;" class="col-md-4"> <span class="">{{main.neutralScore}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-md-12 ">
+                            <div class="row" style="height: 300px;">
+                                <div class="col-md-12 text-default text-center roboto" style="max-height: 300px; color:black;background-color:transparent; padding-bottom:35px" id="testName" auto-font-size>
+                                    {{main.nameCandidate}}
+                                </div>
+                            </div>
+                            <div class="row" style="height: 120px;">
+                                <div class="col-md-12 text-default text-center" style="font-size: xx-large; text-align: center; width: 100%; padding:20px; background-color:rgb(0,0,132);opacity: 0.6; color:white;" auto-font-size id="rationale">
+                                    {{main.Rationale}}
+                                </div>
+                            </div>
+                            <div class="row" style="height:60px;">
+                                <div class="col-md-12">
+                                    <input type="text" placeholder="New Names" ng-model="main.newName" style="font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black" autofocus/>
+                                </div>
+                            </div>
+                            <div class="row" style="height: 50px;">
+                                <div class="col-md-6">
+                                    <input type="text" class="center-block" ng-model="main.explore" placeholder="EXPLORE" style="font-size: x-large; text-align: center; width: 500px; height: 39px; border: solid 2px grey;color:black" />
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="center-block" ng-model="main.avoid" placeholder="AVOID" style="font-size: x-large; text-align: center; width: 500px; height: 39px;border: solid 2px grey;color:black" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 10px 0 10px 0; b">
+                        <div class="col-md-4">
+                            <div class="col-md-9">
+                                <p class="text-left">Propietary & Confidential</p>
+                            </div>
+                            <div class="col-md-3">
+                                <a>
+                                    <!-- ngsf-toggle-fullscreen icon="fullscreen" -->
+                                    <span ng-click="main.togglePresentation()" style="font-size: xx-large;" class="glyphicon glyphicon-blackboard iconbuttom"></span>
+                                    <a/>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <button class="btn btn-primary center-block" ng-click="main.resetSlide()" style="width:115px">Reset Slide</button>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="col-md-4">
+                                <button ng-click="main.goPrevSlide()" type="button" class="btn btn-primary" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="col-md-5">
+                                <button ng-click="main.goNextSlide()" type="button" class="btn btn-primary" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-primary" style="cursor:text; float:right"> <span class="badge">{{main.pageNumber}}</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="main.isTesNameTime">
+        <div class="col-md-12">
+            <div class="reveal">
+                <div class="slides">
+                    <section ng-repeat="slide in  main.slides" data-index="{{$index}}">
+                        <img ng-src="{{slide}}"><span class=" "></span>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--   <footer>
+        <div class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container" style="font-size:25px; color:#333; text-align:center;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="glyphicon glyphicon-home"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <span class="glyphicon glyphicon-arrow-left"></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-default" type="button">
+                                            <span style="font-size: 15px;" class="badge bg-info">1</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span class="glyphicon glyphicon-arrow-right"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span ng-click="main.togglePresentation()" class="glyphicon glyphicon-blackboard iconbuttom"></span>
+                                    </div>
+                                    <div class="col-md-6">                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+ -->
