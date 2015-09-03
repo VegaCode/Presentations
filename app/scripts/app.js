@@ -36,7 +36,7 @@ angular.module('nwApp', [
                         if (queryString !== undefined) {
                             deferred.resolve(queryString);
                         } else {
-                            deferred.reject('not_id');                        
+                            deferred.reject('not_id');
                         }
                         return deferred.promise;
                     }
@@ -53,12 +53,12 @@ angular.module('nwApp', [
           //               if (queryString !== undefined) {
           //                   deferred.resolve(queryString);
           //               } else {
-          //                   deferred.reject('not_id');                        
+          //                   deferred.reject('not_id');
           //               }
           //               return deferred.promise;
           //           }
           //       }
-      }) 
+      })
       .otherwise({
         redirectTo: '/'
       });
