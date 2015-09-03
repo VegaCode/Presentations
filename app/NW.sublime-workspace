@@ -263,7 +263,7 @@
 			"file": "views/main.html",
 			"settings":
 			{
-				"buffer_size": 11824,
+				"buffer_size": 11861,
 				"line_ending": "Unix"
 			}
 		},
@@ -271,7 +271,7 @@
 			"file": "/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/auto-font-size/dist/auto_font_size.js",
 			"settings":
 			{
-				"buffer_size": 4018,
+				"buffer_size": 4017,
 				"line_ending": "Unix"
 			}
 		},
@@ -417,9 +417,6 @@
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/fonts",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/controllers",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/directives",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/services",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/styles",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/views",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components",
@@ -428,6 +425,7 @@
 	],
 	"file_history":
 	[
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/.git/info/exclude",
 		"/C/wamp/www/xv/wp-login.php",
 		"/C/wamp/www/xv/wp-config.php",
 		"/C/wamp/www/xv/wp-load.php",
@@ -554,8 +552,7 @@
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/BIdocs.sublime-project",
 		"/C/Users/cvega/Desktop/Cesar Settings/Software/Sublime Text 3/Data/Packages/User/Xdebug.sublime-settings",
 		"/C/Users/cvega/Desktop/Cesar Settings/Software/Sublime Text 3/Data/Packages/User/Preferences.sublime-settings",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/FormCreator/formCreatorDirective.js",
-		"/C/Users/cvega/Desktop/Cesar Settings/Software/Sublime Text 3/Data/Packages/User/Emmet.sublime-settings"
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/FormCreator/formCreatorDirective.js"
 	],
 	"find":
 	{
@@ -735,7 +732,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -765,7 +762,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -774,15 +771,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11824,
+						"buffer_size": 11861,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4542,
-								4542
+								2531,
+								2531
 							]
 						],
 						"settings":
@@ -792,10 +789,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2100.0,
+						"translation.y": 700.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -804,15 +801,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4018,
+						"buffer_size": 4017,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3188,
-								3188
+								2548,
+								2548
 							]
 						],
 						"settings":
@@ -825,7 +822,7 @@
 						"translation.y": 1020.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{

@@ -14,7 +14,8 @@
         <link rel="stylesheet" href="bower_components/reveal-js/css/reveal.css">
         <link rel="stylesheet" href="bower_components/reveal-js/css/theme/moon.css" id="theme">
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="bower_components/alertifyjs/css/alertify.min.css" />
+        <link rel="stylesheet" href="bower_components/alertifyjs/css/themes/default.min.css" />
         <!-- bower:css -->
         <!-- endbower -->
         <!-- endbuild -->
@@ -24,9 +25,8 @@
 </head>
 
 <body ng-app="nwApp" ngsf-fullscreen ng-controller="NavigationController as NavCtrl" keyboardkey>
-
-    <div class="container" >
-        <div ng-view="" ></div>
+    <div class="container">
+        <div ng-view=""></div>
     </div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -63,6 +63,7 @@
     <script src="bower_components/reveal-js/lib/js/head.min.js"></script>
     <script src="bower_components/reveal-js/lib/js/html5shiv.js"></script>
     <script src="bower_components/reveal-js/lib/js/classList.js"></script>
+    <script src="bower_components/alertifyjs/alertify.min.js"></script>
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
@@ -74,8 +75,8 @@
     <!-- endbuild -->
     <script type="text/javascript">
     $("body").bind("keypress", function(e) {
-    console.log(e);
-});
+        console.log(e);
+    });
     </script>
 </body>
 
