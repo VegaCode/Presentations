@@ -24,20 +24,6 @@ angular.module('nwApp')
                 }
             };
 
-            self.legendAboutOption = function(){
-              alertify.alert('<div class="container-fluid"><div class="row"><div class="col-md-12"><div class="row">'
-              +'<div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/O.jpg" class="img-rounded center-block"/>'
-              +'</div><div class="col-md-9"><p class="padding: 0 5 0 20px">Provides an overview layout of the slides</p></div></div></div></div><div class="row"><div class="col-md-12"><br>'
-              +'<div class="row"><div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/F.jpg"  class="img-rounded center-block"/>'
-              +'</div><div class="col-md-9"><pclass="glyphicon glyphicon-arrow-right">Enters Full screen mode</p></div></div></div></div><div class="row"><div class="col-md-12"><br>'
-              +'<div class="row"><div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/H.jpg"  class="img-rounded center-block"/>'
-              +'</div><div class="col-md-9"><pclass="glyphicon glyphicon-arrow-right">Goes to previous slide</p></div></div></div></div></div><br>'
-              +'<div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/Space.jpg" class="img-rounded center-block"/>'
-              +'</div><div class="col-md-9"><p>Goes to next slide</p></div></div></div></div><br><br><br><br>'
-              +'<div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/ArrowKeys.jpg" class="img-rounded center-block"/>'
-              +'</div><div class="col-md-9"><p>Arrow Keys go between Slides, either back or forward</p></div></div></div></div>').set('title', 'Helper').set('resizable', true);
-              };
-
             // Slide Show Configuration
             self.slides = [];
             self.isTesNameTime = true;
@@ -262,6 +248,44 @@ angular.module('nwApp')
                     self.explore = '';
                     self.avoid = '';
                 }
+
+                self.legendAboutOption = function(){
+                  alertify.alert('<div class="container-fluid"> <div class="row"> <div class="col-md-12"> <div class="row">'
+                  +'<div class="col-md-6"> <div class="row"> <div class="col-md-3">'
+                  +'<img alt="Bootstrap Image Preview" src="images/O.png" class="img-rounded" style="width: 50px" /> </div> <div class="col-md-9">'
+                  +'<p class="padding: 0 5 0 20px"> Provides an overview layout of the slides </p> </div> </div> </div> <div class="col-md-6">'
+                  +'<div class="row"> <div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm">'
+                  +'<label class="inputBakcgroundimage"> BackGround: '
+                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>'
+                  +'<div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div><br> <div class="row"> <div class="col-md-12">'
+                  +'<div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">'
+                  +'<img alt="Bootstrap Image Preview" src="images/F.png" class="img-rounded" style="width: 50px"/> </div> <div class="col-md-9">'
+                  +'<p> Enters full screen mode </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">'
+                  +'<div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> TestName: '
+                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>'
+                  +'<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>'
+                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>'
+                  +'<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>'
+                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div> </div> </div> </div>'
+                  +'</div> </div><br> <div class="row"> <div class="col-md-12"> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">'
+                  +'<img alt="Bootstrap Image Preview" src="images/H.png" class="img-rounded" style="width: 50px"/> </div> <div class="col-md-9"> <p>'
+                  +'Goes to previous slide </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">'
+                  +'<div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> Not Rationale: '
+                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>'
+                  +'<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>'
+                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>'
+                  +'<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>'
+                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div> </div> </div>'
+                  +'</div> </div> </div><br> <div class="row"> <div class="col-md-12"> <div class="row"> <div class="col-md-6"> <div class="row">'
+                  +'<div class="col-md-3"> <img alt="Bootstrap Image Preview" src="images/Space.png" style="width: 75px"/> </div> <div class="col-md-9"> <p>'
+                  +' Goes to next slide </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4"> </div>'
+                  +'<div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div><br> <div class="row"> <div class="col-md-12">'
+                  +'<div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">'
+                  +'<img alt="Bootstrap Image Preview" src="images/ArrowKeys.png" style="width: 100px"/> </div> <div class="col-md-9"> <p style="pull-left">'
+                  +' Arrow Keys go between Slides, either back or forward </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">'
+                  +'</div> <div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div>'
+                  +'</div>').set('title', 'Help').set('resizable', true);
+                  };
 
                 self.resetSlide = function() {
                     self.displayTally = false;
