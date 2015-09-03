@@ -88,6 +88,8 @@ label {
                                 <div class="col-md-2">
                                     <button class="btn btn-primary" ng-click="main.tally()" style="margin-bottom: 5px; ;float: left; width:150px">Tally</button>
                                 </div>
+                                <br><br>
+                                <span ng-click="main.legendAboutOption()" class="btn btn-primary btn-xs pull-right glyphicon glyphicon-question-sign" style="margin-right: 10px"></span>
                             </div>
                             <div class="row  " ng-show="main.displayTally">
                                 <div class="col-md-8">
@@ -116,7 +118,7 @@ label {
                                 </div>
                             </div>
                             <div class="row" style="height: 120px;">
-                                <div class="col-md-12 text-default text-center" style="font-size: xx-large; text-align: center; width: 100%; padding:20px; background-color:rgb(0,0,132);opacity: 0.6; color:white;" auto-font-size id="rationale">
+                                <div class="btn col-md-12 text-default text-center" style="font-size: xx-large; cursor: default; text-align: center; width: 98%; margin-left: 10px; padding:20px; background-color:rgb(0,0,132);opacity: 0.6; color:white;" auto-font-size id="rationale">
                                     {{main.Rationale}}
                                 </div>
                             </div>
@@ -137,14 +139,16 @@ label {
                     </div>
                     <div class="row" style="padding: 10px 0 10px 0; b">
                         <div class="col-md-4">
-                            <div class="col-md-9">
-                                <p class="text-left">Propietary & Confidential</p>
-                            </div>
-                            <div class="col-md-3">
-                                <a>
-                                    <!-- ngsf-toggle-fullscreen icon="fullscreen" -->
-                                    <span ng-click="main.togglePresentation()" style="font-size: xx-large;" class="glyphicon glyphicon-blackboard iconbuttom"></span>
-                                    <a/>
+                          <div class="col-md-8" >
+                              <p class="text-left"> (c)</p>
+                              <p class="text-left"> Propietary & Confidential</p>
+                          </div>
+
+                          <div class="col-md-4">
+                            <a>
+                              <!-- ngsf-toggle-fullscreen icon="fullscreen" -->
+                              <span ng-click="main.togglePresentation()" style="font-size: xx-large;" class="glyphicon glyphicon-blackboard iconbuttom"></span>
+                              <a/>
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -216,7 +220,7 @@ label {
                                     <div class="col-md-6">
                                         <span ng-click="main.togglePresentation()" class="glyphicon glyphicon-blackboard iconbuttom"></span>
                                     </div>
-                                    <div class="col-md-6">                                    
+                                    <div class="col-md-6">
                                     </div>
                                 </div>
                             </div>

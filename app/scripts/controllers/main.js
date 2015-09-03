@@ -24,6 +24,20 @@ angular.module('nwApp')
                 }
             };
 
+            self.legendAboutOption = function(){
+              alertify.alert('<div class="container-fluid"><div class="row"><div class="col-md-12"><div class="row">'
+              +'<div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/O.jpg" class="img-rounded center-block"/>'
+              +'</div><div class="col-md-9"><p class="padding: 0 5 0 20px">Provides an overview layout of the slides</p></div></div></div></div><div class="row"><div class="col-md-12"><br>'
+              +'<div class="row"><div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/F.jpg"  class="img-rounded center-block"/>'
+              +'</div><div class="col-md-9"><pclass="glyphicon glyphicon-arrow-right">Enters Full screen mode</p></div></div></div></div><div class="row"><div class="col-md-12"><br>'
+              +'<div class="row"><div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/H.jpg"  class="img-rounded center-block"/>'
+              +'</div><div class="col-md-9"><pclass="glyphicon glyphicon-arrow-right">Goes to previous slide</p></div></div></div></div></div><br>'
+              +'<div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/Space.jpg" class="img-rounded center-block"/>'
+              +'</div><div class="col-md-9"><p>Goes to next slide</p></div></div></div></div><br><br><br><br>'
+              +'<div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/ArrowKeys.jpg" class="img-rounded center-block"/>'
+              +'</div><div class="col-md-9"><p>Arrow Keys go between Slides, either back or forward</p></div></div></div></div>').set('title', 'Helper').set('resizable', true);
+              };
+
             // Slide Show Configuration
             self.slides = [];
             self.isTesNameTime = true;
@@ -39,20 +53,20 @@ angular.module('nwApp')
                     }
                     id = result[0].path + addDigit + i + '.jpg';
                     self.slides.push(id);
-                    // Displaying IMages url 
+                    // Displaying IMages url
                 }
                 var startTestNamesAtPage = result[0].NameEvaluationFirstSlide;
                 Reveal.addEventListener('slidechanged', function(event) {
                     //Warning! DO NOT CHANGE  THE "==" for "==="
                     // console.log('the index is :  '+event.indexh+1);
-                    // if (startTestNamesAtPage == event.indexh + 1) {      
+                    // if (startTestNamesAtPage == event.indexh + 1) {
                     if (2 == event.indexh + 1) {
                         $rootScope.$apply(function() {
                             self.isTesNameTime = false;
                         });
                     }
                 });
-                // slide show configuration settings 
+                // slide show configuration settings
                 $timeout(function() {
                     Reveal.initialize({
 
@@ -273,7 +287,7 @@ angular.module('nwApp')
                                 self.pageNumber = slideCounter + 1;
                                 self.Rationale = candidateNames[slideCounter].Rationale;
                                 self.title = candidateNames[slideCounter].Category;
-                                }// end if 
+                                }// end if
                     } else {
                         alert('You are in the 1rst Slide');
                         self.slideCounter = false;
@@ -297,7 +311,7 @@ angular.module('nwApp')
                             self.progressBarValue = self.progressBarValue + (100 / candidateNamesSize); // Progress Bar
                             var isStoreAvailable = localStorageService.get(storeKey);
                             var storedFeedBack = (isStoreAvailable === null) ? null : JSON.parse(localStorageService.get(storeKey));
-                            if (storedFeedBack !== null && storedFeedBack[slideCounter + 1] !== undefined) { // record exist                               
+                            if (storedFeedBack !== null && storedFeedBack[slideCounter + 1] !== undefined) { // record exist
                                 var getObjectAlreadyStored = storedFeedBack[slideCounter + 1];
                                 var updateBeforeData = storedFeedBack;
                                 updateBeforeData[slideCounter].newName = self.newName;
@@ -360,7 +374,7 @@ angular.module('nwApp')
                                     }];
 
                                     self.pageNumber = slideCounter;
-                                } // end if counter 
+                                } // end if counter
                             }
 
                         } // end else
@@ -420,7 +434,7 @@ angular.module('nwApp')
                     }
                 };
 
-            }); // emd of the promise call 
+            }); // emd of the promise call
 
 
         }
