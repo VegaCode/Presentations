@@ -1,4 +1,4 @@
-<style type="text/css">
+<!-- /*<style type="text/css">
 /*use this to change the height of the page slide*/
 
 .space{
@@ -48,13 +48,121 @@ label {
 }
 
 .roundCorners{
-  border-radius: 5px;
+    border-radius: 5px;
+}
+
+.alertStyle{
+    height: 530px;
+    min-height: 105px;
+    width: 1145px;
+    min-width: 548px;
+    max-width: none;
 }
 
 </style>
 <!-- Slide Show -->
+<!-- working on dropdown list -->
+<div class="container-fluid alertStyle"> <div class="row"> <div class="col-md-12"> <div class="row">
+<div class="col-md-6"> <div class="row"> <div class="col-md-3">
+<img alt="Bootstrap Image Preview" src="images/O.png" class="img-rounded" style="width: 50px" /> </div> <div class="col-md-9">
+<p> Provides an overview layout of the slides </p> </div> </div> </div>
+<div class="col-md-6">
+<div class="row">
+  <div class="col-md-4"> <div>
+    <form name="myForm">
+      <label class="inputBakcgroundimage"> BackGround:
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toogle" type="button" data-toogle="dropdown">Change Background
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href='#'>{{changeBackground}}</a></li>
+        </div> </label> </form> </div> </div>'
+        <div class="col-md-4"> </div>
+        <div class="col-md-4"> </div> </div> </div> </div> </div> </div><br>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-3">
+                    <img alt="Bootstrap Image Preview" src="images/F.png" class="img-rounded" style="width: 50px"/> </div>
+                    <div class="col-md-9">
+                      <p> Enters full screen mode </p> </div> </div> </div>
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div>
+                              <form name="myForm">
+                                <label class="inputBakcgroundimage"> TestName:
+                                  <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toogle" type="button" data-toogle="dropdown">Font
+                                      <span class="caret"></span></button>
+                                      <ul class="dropdown-menu">
+                                        <li><a href='#'>{{typeOfFont}}</a></li> </label> </form> </div> </div>
+                                  <div class="col-md-4"> <div> <form name="myForm"> <label class="inputBakcgroundimage"> <br>
+                                    <div class="dropdown">
+                                      <button class="btn btn-primary dropdown-toogle" type="button" data-toogle="dropdown">Colors
+                                        <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                          <li><a href='#'>{{colors}}</a></li> </label> </form> </div> </div>
+                                    <div class="col-md-4"> <div> <form name="myForm"> <label class="inputBakcgroundimage"> <br>
+                                      <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toogle" type="button" data-toogle="dropdown">Font Sizes
+                                          <span class="caret"></span></button>
+                                          <ul class="dropdown-menu">
+                                            <li><a href='#'>{{fontSizes}}</a></li> </label> </form> </div> </div> </div> </div> </div></div> </div><br>
+                                      <div class="row">
+                                        <div class="col-md-12">
+                                          <div class="row">
+                                            <div class="col-md-6">
+                                              <div class="row">
+                                                <div class="col-md-3">
+                                                  <img alt="Bootstrap Image Preview" src="images/H.png" class="img-rounded" style="width: 50px"/> </div>
+                                                  <div class="col-md-9"> <p>Goes to previous slide </p> </div> </div> </div>
+                                                  <div class="col-md-6"> <div class="row"> <div class="col-md-4">
+                                                    <div> <form name="myForm"> <label class="inputBakcgroundimage"> Not TestName:
+                                                      <div class="dropdown">
+                                                        <button class="btn btn-primary dropdown-toogle" type="button" data-toogle="dropdown">Font
+                                                          <span class="caret"></span></button>
+                                                          <ul class="dropdown-menu">
+                                                            <li><a href='#'>{{typeOfFont}}</a></li> </label> </form> </div> </div>
+                                                      <div class="col-md-4"> <div> <form name="myForm"> <label class="inputBakcgroundimage"> <br>
+                                                        <div class="dropdown">
+                                                          <button class="btn btn-primary dropdown-toogle" type="button" data-toogle="dropdown">Colors
+                                                            <span class="caret"></span></button>
+                                                            <ul class="dropdown-menu">
+                                                              <li><a href='#'>{{colors}}</a></li> </label> </form> </div> </div>
+                                                        <div class="col-md-4"> <div> <form name="myForm"> <label class="inputBakcgroundimage"> <br>
+                                                          <div class="dropdown">
+                                                            <button class="btn btn-primary dropdown-toogle" type="button" data-toogle="dropdown">Font Sizes
+                                                              <span class="caret"></span></button>
+                                                              <ul class="dropdown-menu">
+                                                                <li><a href='#'>{{fontSizes}}</a></li>
+                                                        </label> </form> </div> </div> </div> </div></div> </div> </div><br>
+                                                        <div class="row"> <div class="col-md-12"> <div class="row"> <div class="col-md-6"> <div class="row">
+                                                          <div class="col-md-3"> <img alt="Bootstrap Image Preview" src="images/Space.png" style="width: 75px"/> </div> <div class="col-md-9"> <p>
+                                                            Goes to next slide </p> </div> </div> </div>
+                                                            <div class="col-md-6"> <div class="row"> <div class="col-md-4"> </div>
+                                                            <div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div><br>
+                                                            <div class="row">
+                                                              <div class="col-md-12"><div class="row">
+                                                                <div class="col-md-6">
+                                                                  <div class="row">
+                                                                    <div class="col-md-3">
+                                                                      <img alt="Bootstrap Image Preview" src="images/ArrowKeys.png" style="width: 100px"/> </div>
+                                                                      <div class="col-md-9"> <p style="pull-left">
+                                                                        Arrow Keys go between Slides, either back or forward </p> </div> </div> </div>
+                                                                        <div class="col-md-6">
+                                                                          <div class="row">
+                                                                            <div class="col-md-4"></div>
+                                                                            <div class="col-md-4"> </div>
+                                                                            <div class="col-md-4"> </div> </div> </div> </div> </div> </div>
+<!-- end of working on dropdown list -->
+
 <div class="container-fluid">
     <!-- NW -->
+
+  </div>
     <div class="backgroundStyle" ng-show="main.isTesNameTime===false">
         <!--   <div class="header">
             <div class="container-fluid headerBackground" style="; background-size: cover;">

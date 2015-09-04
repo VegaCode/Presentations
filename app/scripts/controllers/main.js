@@ -249,8 +249,26 @@ angular.module('nwApp')
                     self.avoid = '';
                 }
 
+                self.fontSizes= [
+                  '8',
+                  '14',
+                  '20'
+                ];
+
+                self.changeBackground = [
+                  'images/Slide1.jpg',
+                  'images/Slide2.jpg',
+                  'images/Slide3.jpg'
+                ];
+
+                self.typeOfFont = [
+                  'Serif',
+                  'Sans-serif',
+                  'ROBOTO'
+                ]
+
                 self.legendAboutOption = function(){
-                  alertify.alert('<div class="container-fluid"> <div class="row"> <div class="col-md-12"> <div class="row">'
+                  alertify.alert('</div><div class="container-fluid alertStyle"> <div class="row"> <div class="col-md-12"> <div class="row">'
                   +'<div class="col-md-6"> <div class="row"> <div class="col-md-3">'
                   +'<img alt="Bootstrap Image Preview" src="images/O.png" class="img-rounded" style="width: 50px" /> </div> <div class="col-md-9">'
                   +'<p class="padding: 0 5 0 20px"> Provides an overview layout of the slides </p> </div> </div> </div> <div class="col-md-6">'
