@@ -24,10 +24,25 @@ angular.module('nwApp')
                 }
             };
 
+            self.legendAboutOption = function(){
+              alertify.alert('<div class="container-fluid"><div class="row"><div class="col-md-12"><div class="row">'
+              +'<div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/O.jpg" class="img-rounded center-block"/>'
+              +'</div><div class="col-md-9"><p class="padding: 0 5 0 20px">Provides an overview layout of the slides</p></div></div></div></div><div class="row"><div class="col-md-12"><br>'
+              +'<div class="row"><div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/F.jpg"  class="img-rounded center-block"/>'
+              +'</div><div class="col-md-9"><pclass="glyphicon glyphicon-arrow-right">Enters Full screen mode</p></div></div></div></div><div class="row"><div class="col-md-12"><br>'
+              +'<div class="row"><div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/H.jpg"  class="img-rounded center-block"/>'
+              +'</div><div class="col-md-9"><pclass="glyphicon glyphicon-arrow-right">Goes to previous slide</p></div></div></div></div></div><br>'
+              +'<div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/Space.jpg" class="img-rounded center-block"/>'
+              +'</div><div class="col-md-9"><p>Goes to next slide</p></div></div></div></div><br><br><br><br>'
+              +'<div class="col-md-3"><img alt="Bootstrap Image Preview" src="images/ArrowKeys.jpg" class="img-rounded center-block"/>'
+              +'</div><div class="col-md-9"><p>Arrow Keys go between Slides, either back or forward</p></div></div></div></div>').set('title', 'Helper').set('resizable', true);
+              };
+
+
             // Slide Show Configuration
             self.slides = [];
             self.isTesNameTime = true;
-
+            self.isOverview =false;          
          GetSlides.getdata(projectId).then(function(result) {
                 addDigit = '00';
 
@@ -41,6 +56,20 @@ angular.module('nwApp')
                     self.slides.push(id);
                     // Displaying IMages url
                 }
+
+                Reveal.addEventListener( 'overviewshown', function( event ) { 
+                   $rootScope.$apply(function() {
+                       self.isOverview =true;  
+                       self.slideTitle  ='TEST';                     
+                        });
+                } );
+
+                Reveal.addEventListener( 'overviewhidden', function( event ) {
+                  $rootScope.$apply(function() {
+                         self.isOverview =false; 
+                        });
+             } );
+
                 var startTestNamesAtPage = result[0].NameEvaluationFirstSlide;
                 Reveal.addEventListener('slidechanged', function(event) {
                     //Warning! DO NOT CHANGE  THE "==" for "==="

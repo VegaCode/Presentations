@@ -23,7 +23,7 @@ angular.module('nwApp', [
   .config(function ($routeProvider) {
     $routeProvider
      .when('/', {
-        redirectTo: '/main'
+        //redirectTo: '/main'
       })
       .when('/main/:projectId', {
         templateUrl: 'views/main.html',
