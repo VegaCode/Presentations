@@ -29,9 +29,9 @@ angular.module('nwApp')
 
             self.slides = [];
             self.isTesNameTime = true;
-            self.isOverview =false;          
-            self.imageBackground ='balloon'; 
-         GetSlides.getdata(projectId).then(function(result) {
+            self.isOverview = false;
+            self.imageBackground = 'balloon';
+            GetSlides.getdata(projectId).then(function(result) {
                 addDigit = '00';
 
                 self.totalSlides = result[0].totalSlides;
@@ -45,18 +45,18 @@ angular.module('nwApp')
                     // Displaying IMages url
                 }
 
-                Reveal.addEventListener( 'overviewshown', function( event ) { 
-                   $rootScope.$apply(function() {
-                       self.isOverview =true;  
-                       self.slideTitle  ='TEST';                     
-                        });
-                } );
+                Reveal.addEventListener('overviewshown', function(event) {
+                    $rootScope.$apply(function() {
+                        self.isOverview = true;
+                        self.slideTitle = 'TEST';
+                    });
+                });
 
-                Reveal.addEventListener( 'overviewhidden', function( event ) {
-                  $rootScope.$apply(function() {
-                         self.isOverview =false; 
-                        });
-             } );
+                Reveal.addEventListener('overviewhidden', function(event) {
+                    $rootScope.$apply(function() {
+                        self.isOverview = false;
+                    });
+                });
 
                 var startTestNamesAtPage = result[0].NameEvaluationFirstSlide;
                 Reveal.addEventListener('slidechanged', function(event) {
@@ -202,7 +202,7 @@ angular.module('nwApp')
 
 
 
-        GetTestNames.getdata(projectId).then(function(result) {
+            GetTestNames.getdata(projectId).then(function(result) {
                 if (result.length > 0) {
                     candidateNames = result;
                     projectIdPrefixed = candidateNames[0].nwid;
@@ -266,61 +266,97 @@ angular.module('nwApp')
                     self.avoid = '';
                 }
 
-                self.fontSizes= [
-                  '8',
-                  '14',
-                  '20'
+                self.fontSizes = [
+                    '8',
+                    '14',
+                    '20'
                 ];
 
                 self.changeBackground = [
-                  'images/Slide1.jpg',
-                  'images/Slide2.jpg',
-                  'images/Slide3.jpg'
+                    'images/Slide1.jpg',
+                    'images/Slide2.jpg',
+                    'images/Slide3.jpg'
                 ];
 
                 self.typeOfFont = [
-                  'Serif',
-                  'Sans-serif',
-                  'ROBOTO'
+                    'Serif',
+                    'Sans-serif',
+                    'ROBOTO'
                 ]
 
-                self.legendAboutOption = function(){
-                  alertify.alert('</div><div class="container-fluid alertStyle"> <div class="row"> <div class="col-md-12"> <div class="row">'
-                  +'<div class="col-md-6"> <div class="row"> <div class="col-md-3">'
-                  +'<img alt="Bootstrap Image Preview" src="images/O.jpg" class="img-rounded" style="width: 50px" /> </div> <div class="col-md-9">'
-                  +'<p class="padding: 0 5 0 20px"> Provides an overview layout of the slides </p> </div> </div> </div> <div class="col-md-6">'
-                  +'<div class="row"> <div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm">'
-                  +'<label class="inputBakcgroundimage"> BackGround: '
-                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>'
-                  +'<div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div><br> <div class="row"> <div class="col-md-12">'
-                  +'<div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">'
-                  +'<img alt="Bootstrap Image Preview" src="images/F.jpg" class="img-rounded" style="width: 50px"/> </div> <div class="col-md-9">'
-                  +'<p> Enters full screen mode </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">'
-                  +'<div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> TestName: '
-                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>'
-                  +'<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>'
-                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>'
-                  +'<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>'
-                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div> </div> </div> </div>'
-                  +'</div> </div><br> <div class="row"> <div class="col-md-12"> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">'
-                  +'<img alt="Bootstrap Image Preview" src="images/H.jpg" class="img-rounded" style="width: 50px"/> </div> <div class="col-md-9"> <p>'
-                  +'Goes to previous slide </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">'
-                  +'<div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> Not Rationale: '
-                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>'
-                  +'<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>'
-                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>'
-                  +'<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>'
-                  +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div> </div> </div>'
-                  +'</div> </div> </div><br> <div class="row"> <div class="col-md-12"> <div class="row"> <div class="col-md-6"> <div class="row">'
-                  +'<div class="col-md-3"> <img alt="Bootstrap Image Preview" src="images/Space.jpg" style="width: 75px"/> </div> <div class="col-md-9"> <p>'
-                  +' Goes to next slide </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4"> </div>'
-                  +'<div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div><br> <div class="row"> <div class="col-md-12">'
-                  +'<div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">'
-                  +'<img alt="Bootstrap Image Preview" src="images/ArrowKeys.jpg" style="width: 100px"/> </div> <div class="col-md-9"> <p style="pull-left">'
-                  +' Arrow Keys go between Slides, either back or forward </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">'
-                  +'</div> <div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div>'
-                  +'</div>').set('title', 'Help').set('resizable', true);
-                  };
+                self.legendAboutOption = function() {
+                    alertify.alert(
+                      ' <div class="row">'
+  +'     <div class="col-md-12">'
+  +'         <div class="row">'
+  +'             <div class="col-md-3">'
+  +'                 <img alt="" src="images/HelpImages/F.png" width="50px" class="img-rounded" />'
+  +'             </div>'
+  +'             <div class="col-md-9">'
+  +'                 <h3>'
+  +'                         h3. Lorem ipsum dolor sit amet.'
+  +'                     </h3>'
+  +'             </div>'
+  +'         </div>'
+  +'         <div class="row">'
+  +'             <div class="col-md-3">'
+  +'                 <img alt="" src="images/HelpImages/F.png" width="50px" class="img-rounded" />'
+  +'             </div>'
+  +'             <div class="col-md-9">'
+  +'                 <h3>'
+  +'                         h3. Lorem ipsum dolor sit amet.'
+  +'                     </h3>'
+  +'             </div>'
+  +'         </div>'
+  +'         <div class="row">'
+  +'             <div class="col-md-3">'
+  +'                 <img alt="" src="images/HelpImages/F.png" width="50px" class="img-rounded" />'
+  +'             </div>'
+  +'             <div class="col-md-9">'
+  +'                 <h3>'
+  +'                         h3. Lorem ipsum dolor sit amet.'
+  +'                     </h3>'
+  +'             </div>'
+  +'         </div>'
+  +'         <div class="row">'
+  +'             <div class="col-md-3">'
+  +'                 <img alt="" src="images/HelpImages/F.png" width="50px" class="img-rounded" />'
+  +'             </div>'
+  +'             <div class="col-md-9">'
+  +'                 <h3>'
+  +'                         h3. Lorem ipsum dolor sit amet.'
+  +'                     </h3>'
+  +'             </div>'
+  +'         </div>'
+  +'         <div class="row">'
+  +'             <div class="col-md-3">'
+  +'                 <img alt="" src="images/HelpImages/F.png" width="50px" class="img-rounded" />'
+  +'             </div>'
+  +'             <div class="col-md-9">'
+  +'                 <h3>'
+  +'                         h3. Lorem ipsum dolor sit amet.'
+  +'                     </h3>'
+  +'             </div>'
+  +'         </div>'
+  +'         <div class="row">'
+  +'             <div class="col-md-3">'
+  +'                 <img alt="" src="images/HelpImages/F.png" width="50px" class="img-rounded" />'
+  +'             </div>'
+  +'             <div class="col-md-9">'
+  +'                 <h3>'
+  +'                         h3. Lorem ipsum dolor sit amet.'
+  +'                     </h3>'
+  +'             </div>'
+  +'         </div>'
+  +'     </div>'
+  +' </div>'
+                    ).set('title', 'Help').set('resizable', true).resizeTo('35%', '70%');
+                };
+
+                self.help = function() {
+                    alertify.alert('<div class=""> <div class="row"> <div class="col-md-12"> <div class="row">' + '<div class="col-md-6"> <div class="row"> <div class="col-md-3">' + '<img alt="Bootstrap Image Preview" src="images/O.jpg" class="img-rounded" style="width: 50px" /> </div> <div class="col-md-9">' + '<p class="padding: 0 5 0 20px"> Provides an overview layout of the slides </p> </div> </div> </div> <div class="col-md-6">' + '<div class="row"> <div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm">' + '<label class="inputBakcgroundimage"> BackGround: ' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>' + '<div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div><br> <div class="row"> <div class="col-md-12">' + '<div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">' + '<img alt="Bootstrap Image Preview" src="images/F.jpg" class="img-rounded" style="width: 50px"/> </div> <div class="col-md-9">' + '<p> Enters full screen mode </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">' + '<div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> TestName: ' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>' + '<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>' + '<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div> </div> </div> </div>' + '</div> </div><br> <div class="row"> <div class="col-md-12"> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">' + '<img alt="Bootstrap Image Preview" src="images/H.jpg" class="img-rounded" style="width: 50px"/> </div> <div class="col-md-9"> <p>' + 'Goes to previous slide </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">' + '<div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> Not Rationale: ' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>' + '<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>' + '<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div> </div> </div>' + '</div> </div> </div><br> <div class="row"> <div class="col-md-12"> <div class="row"> <div class="col-md-6"> <div class="row">' + '<div class="col-md-3"> <img alt="Bootstrap Image Preview" src="images/Space.jpg" style="width: 75px"/> </div> <div class="col-md-9"> <p>' + ' Goes to next slide </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4"> </div>' + '<div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div><br> <div class="row"> <div class="col-md-12">' + '<div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">' + '<img alt="Bootstrap Image Preview" src="images/ArrowKeys.jpg" style="width: 100px"/> </div> <div class="col-md-9"> <p style="pull-left">' + ' Arrow Keys go between Slides, either back or forward </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">' + '</div> <div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div>' + '</div>')
+                    .set('title', 'Help').set('resizable', true).resizeTo('35%', '70%');
+                };
 
                 self.resetSlide = function() {
                     self.displayTally = false;
@@ -336,17 +372,17 @@ angular.module('nwApp')
                         slideCounter = slideCounter - 1;
                         self.progressBarValue = self.progressBarValue - (100 / candidateNamesSize); // Progress Bar
                         var storedFeedBack = JSON.parse(localStorageService.get(storeKey));
-                                if(slideCounter < storedFeedBack.length ){
-                                self.nameCandidate = storedFeedBack[slideCounter].candidate;
-                                self.newName = storedFeedBack[slideCounter].newName;
-                                self.explore = storedFeedBack[slideCounter].explore;
-                                self.avoid = storedFeedBack[slideCounter].avoid;
-                                UpdateFeedBack(storedFeedBack[slideCounter]);
-                                self.slideCounter2 = true;
-                                self.pageNumber = slideCounter + 1;
-                                self.Rationale = candidateNames[slideCounter].Rationale;
-                                self.title = candidateNames[slideCounter].Category;
-                                }// end if
+                        if (slideCounter < storedFeedBack.length) {
+                            self.nameCandidate = storedFeedBack[slideCounter].candidate;
+                            self.newName = storedFeedBack[slideCounter].newName;
+                            self.explore = storedFeedBack[slideCounter].explore;
+                            self.avoid = storedFeedBack[slideCounter].avoid;
+                            UpdateFeedBack(storedFeedBack[slideCounter]);
+                            self.slideCounter2 = true;
+                            self.pageNumber = slideCounter + 1;
+                            self.Rationale = candidateNames[slideCounter].Rationale;
+                            self.title = candidateNames[slideCounter].Category;
+                        } // end if
                     } else {
                         alert('You are in the 1rst Slide');
                         self.slideCounter = false;
@@ -498,3 +534,6 @@ angular.module('nwApp')
 
         }
     ]);
+
+
+ 
