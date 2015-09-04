@@ -266,17 +266,35 @@ angular.module('nwApp')
                     self.avoid = '';
                 }
 
+                self.fontSizes= [
+                  '8',
+                  '14',
+                  '20'
+                ];
+
+                self.changeBackground = [
+                  'images/Slide1.jpg',
+                  'images/Slide2.jpg',
+                  'images/Slide3.jpg'
+                ];
+
+                self.typeOfFont = [
+                  'Serif',
+                  'Sans-serif',
+                  'ROBOTO'
+                ]
+
                 self.legendAboutOption = function(){
-                  Alertify.alert('<div class="container-fluid"> <div class="row"> <div class="col-md-12"> <div class="row">'
+                  alertify.alert('</div><div class="container-fluid alertStyle"> <div class="row"> <div class="col-md-12"> <div class="row">'
                   +'<div class="col-md-6"> <div class="row"> <div class="col-md-3">'
-                  +'<img alt="Bootstrap Image Preview" src="images/O.jpe" class="img-rounded" style="width: 50px" /> </div> <div class="col-md-9">'
+                  +'<img alt="Bootstrap Image Preview" src="images/O.jpg" class="img-rounded" style="width: 50px" /> </div> <div class="col-md-9">'
                   +'<p class="padding: 0 5 0 20px"> Provides an overview layout of the slides </p> </div> </div> </div> <div class="col-md-6">'
                   +'<div class="row"> <div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm">'
                   +'<label class="inputBakcgroundimage"> BackGround: '
                   +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>'
                   +'<div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div><br> <div class="row"> <div class="col-md-12">'
                   +'<div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">'
-                  +'<img alt="Bootstrap Image Preview" src="images/F.jpe" class="img-rounded" style="width: 50px"/> </div> <div class="col-md-9">'
+                  +'<img alt="Bootstrap Image Preview" src="images/F.jpg" class="img-rounded" style="width: 50px"/> </div> <div class="col-md-9">'
                   +'<p> Enters full screen mode </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">'
                   +'<div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> TestName: '
                   +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>'
@@ -285,7 +303,7 @@ angular.module('nwApp')
                   +'<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>'
                   +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div> </div> </div> </div>'
                   +'</div> </div><br> <div class="row"> <div class="col-md-12"> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">'
-                  +'<img alt="Bootstrap Image Preview" src="images/H.jpe" class="img-rounded" style="width: 50px"/> </div> <div class="col-md-9"> <p>'
+                  +'<img alt="Bootstrap Image Preview" src="images/H.jpg" class="img-rounded" style="width: 50px"/> </div> <div class="col-md-9"> <p>'
                   +'Goes to previous slide </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">'
                   +'<div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> Not Rationale: '
                   +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>'
@@ -294,11 +312,11 @@ angular.module('nwApp')
                   +'<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>'
                   +'<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div> </div> </div>'
                   +'</div> </div> </div><br> <div class="row"> <div class="col-md-12"> <div class="row"> <div class="col-md-6"> <div class="row">'
-                  +'<div class="col-md-3"> <img alt="Bootstrap Image Preview" src="images/Space.jpe" style="width: 75px"/> </div> <div class="col-md-9"> <p>'
+                  +'<div class="col-md-3"> <img alt="Bootstrap Image Preview" src="images/Space.jpg" style="width: 75px"/> </div> <div class="col-md-9"> <p>'
                   +' Goes to next slide </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4"> </div>'
                   +'<div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div><br> <div class="row"> <div class="col-md-12">'
                   +'<div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">'
-                  +'<img alt="Bootstrap Image Preview" src="images/ArrowKeys.jpe" style="width: 100px"/> </div> <div class="col-md-9"> <p style="pull-left">'
+                  +'<img alt="Bootstrap Image Preview" src="images/ArrowKeys.jpg" style="width: 100px"/> </div> <div class="col-md-9"> <p style="pull-left">'
                   +' Arrow Keys go between Slides, either back or forward </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">'
                   +'</div> <div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div>'
                   +'</div>').set('title', 'Help').set('resizable', true);
