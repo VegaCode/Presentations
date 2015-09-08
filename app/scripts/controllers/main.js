@@ -40,7 +40,7 @@ angular.module('nwApp')
                     if (i > 9) {
                         addDigit = '0';
                     }
-                    id = result[0].path + addDigit + i + '.jpg';
+                    id = result[0].path + addDigit + i + '.png';
                     self.slides.push(id);
                     // Displaying IMages url
                 }
@@ -156,7 +156,7 @@ angular.module('nwApp')
                         viewDistance: 1,
 
                         // Parallax background image
-                        parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+                        parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.png'"
 
                         // Parallax background size
                         parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
@@ -273,9 +273,9 @@ angular.module('nwApp')
                 ];
 
                 self.changeBackground = [
-                    'images/Slide1.jpg',
-                    'images/Slide2.jpg',
-                    'images/Slide3.jpg'
+                    'Slide1',
+                    'Slide2',
+                    'Slide3'
                 ];
 
                 self.typeOfFont = [
@@ -284,13 +284,13 @@ angular.module('nwApp')
                     'ROBOTO'
                 ]
 
-                self.legendAboutOption = function() {
+                self.help = function() {
                     alertify.alert(
                       ' <div class="row">'
                           +'     <div class="col-md-12">'
                           +'         <div class="row">'
                           +'             <div class="col-md-3">'
-                          +'                 <img alt="" src="images/HelpImages/F.PNG" width="50px" class="img-rounded" />'
+                          +'                 <img alt="" src="images/F.png" width="50px" class="img-rounded" />'
                           +'             </div>'
                           +'             <div class="col-md-9">'
                           +'                 <h3>'
@@ -300,7 +300,7 @@ angular.module('nwApp')
                           +'         </div>'
                           +'         <div class="row">'
                           +'             <div class="col-md-3">'
-                          +'                 <img alt="" src="images/HelpImages/F.PNG" width="50px" class="img-rounded" />'
+                          +'                 <img alt="" src="images/H.png" width="50px" class="img-rounded" />'
                           +'             </div>'
                           +'             <div class="col-md-9">'
                           +'                 <h3>'
@@ -310,7 +310,7 @@ angular.module('nwApp')
                           +'         </div>'
                           +'         <div class="row">'
                           +'             <div class="col-md-3">'
-                          +'                 <img alt="" src="images/HelpImages/F.PNG" width="50px" class="img-rounded" />'
+                          +'                 <img alt="" src="images/O.png" width="50px" class="img-rounded" />'
                           +'             </div>'
                           +'             <div class="col-md-9">'
                           +'                 <h3>'
@@ -320,7 +320,7 @@ angular.module('nwApp')
                           +'         </div>'
                           +'         <div class="row">'
                           +'             <div class="col-md-3">'
-                          +'                 <img alt="" src="images/HelpImages/F.PNG" width="50px" class="img-rounded" />'
+                          +'                 <img alt="" src="images/F.png" width="50px" class="img-rounded" />'
                           +'             </div>'
                           +'             <div class="col-md-9">'
                           +'                 <h3>'
@@ -330,7 +330,7 @@ angular.module('nwApp')
                           +'         </div>'
                           +'         <div class="row">'
                           +'             <div class="col-md-3">'
-                          +'                 <img alt="" src="images/HelpImages/F.PNG" width="50px" class="img-rounded" />'
+                          +'                 <img alt="" src="images/Space.png" width="75px" class="img-rounded" />'
                           +'             </div>'
                           +'             <div class="col-md-9">'
                           +'                 <h3>'
@@ -340,7 +340,7 @@ angular.module('nwApp')
                           +'         </div>'
                           +'         <div class="row">'
                           +'             <div class="col-md-3">'
-                          +'                 <img alt="" src="images/HelpImages/F.PNG" width="50px" class="img-rounded" />'
+                          +'                 <img alt="" src="images/ArrowKeys.png" width="100px" class="img-rounded" />'
                           +'             </div>'
                           +'             <div class="col-md-9">'
                           +'                 <h3>'
@@ -349,13 +349,8 @@ angular.module('nwApp')
                           +'             </div>'
                           +'         </div>'
                           +'     </div>'
-                          +' </div>'
-                    ).set('title', 'Help').set('resizable', true).resizeTo('35%', '70%');
-                };
-
-                self.help = function() {
-                    alertify.alert('<div class=""> <div class="row"> <div class="col-md-12"> <div class="row">' + '<div class="col-md-6"> <div class="row"> <div class="col-md-3">' + '<img alt="Bootstrap Image Preview" src="images/O.jpg" class="img-rounded" style="width: 50px" /> </div> <div class="col-md-9">' + '<p class="padding: 0 5 0 20px"> Provides an overview layout of the slides </p> </div> </div> </div> <div class="col-md-6">' + '<div class="row"> <div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm">' + '<label class="inputBakcgroundimage"> BackGround: ' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>' + '<div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div><br> <div class="row"> <div class="col-md-12">' + '<div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">' + '<img alt="Bootstrap Image Preview" src="images/F.jpg" class="img-rounded" style="width: 50px"/> </div> <div class="col-md-9">' + '<p> Enters full screen mode </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">' + '<div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> TestName: ' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>' + '<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>' + '<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div> </div> </div> </div>' + '</div> </div><br> <div class="row"> <div class="col-md-12"> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">' + '<img alt="Bootstrap Image Preview" src="images/H.jpg" class="img-rounded" style="width: 50px"/> </div> <div class="col-md-9"> <p>' + 'Goes to previous slide </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">' + '<div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> Not Rationale: ' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>' + '<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div>' + '<div class="col-md-4"> <div ng-controller="inputFontInformation"> <form name="myForm"> <label class="inputBakcgroundimage"> <br>' + '<input type="text" class="inputBakcgroundimage" name="backGround" ng-model="main.backGround"> </label> </form> </div> </div> </div> </div>' + '</div> </div> </div><br> <div class="row"> <div class="col-md-12"> <div class="row"> <div class="col-md-6"> <div class="row">' + '<div class="col-md-3"> <img alt="Bootstrap Image Preview" src="images/Space.jpg" style="width: 75px"/> </div> <div class="col-md-9"> <p>' + ' Goes to next slide </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4"> </div>' + '<div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div><br> <div class="row"> <div class="col-md-12">' + '<div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-3">' + '<img alt="Bootstrap Image Preview" src="images/ArrowKeys.jpg" style="width: 100px"/> </div> <div class="col-md-9"> <p style="pull-left">' + ' Arrow Keys go between Slides, either back or forward </p> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4">' + '</div> <div class="col-md-4"> </div> <div class="col-md-4"> </div> </div> </div> </div> </div> </div>' + '</div>')
-                    .set('title', 'Help').set('resizable', true).resizeTo('35%', '70%');
+                          +' </div>')
+                          .set('title', 'Help').set('resizable', true).resizeTo('30%', '70%');
                 };
 
                 self.resetSlide = function() {
@@ -534,6 +529,3 @@ angular.module('nwApp')
 
         }
     ]);
-
-
- 
