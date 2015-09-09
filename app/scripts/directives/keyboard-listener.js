@@ -23,7 +23,9 @@ angular.module('nwApp')
     .directive('fontsConfiguration', function(){
       return {
         restrict: 'EA',
-        template: '<button type="button" class="btn btn-primary" ng-click="legendAboutOption()"></button>',
+        scope: true,
+        templateUrl: 'views/font-configuration.html',
+        template: '<button type="button" class="btn btn-primary glyphicon glyphicon-cog" ng-click="legendAboutOption()"></button>',
         controller: function(){
           self.legendAboutOption = function(){
             alertify.alert("views/font-configuration.html").set('title', 'Font Settings').set('resizable', true).resizeTo('35%', '70%');

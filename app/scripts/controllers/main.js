@@ -282,7 +282,7 @@ angular.module('nwApp')
                     'Serif',
                     'Sans-serif',
                     'ROBOTO'
-                ]
+                ];
 
                 self.help = function() {
                     alertify.alert(
