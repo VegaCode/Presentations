@@ -18,7 +18,8 @@ angular.module('nwApp', [
     'ngMdIcons',
     'LocalStorageModule',
     'angularScreenfull',
-    'AutoFontSize'
+    'AutoFontSize',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
