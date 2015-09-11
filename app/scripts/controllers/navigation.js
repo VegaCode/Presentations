@@ -31,7 +31,7 @@
                 self.goRigth = function() {
                       Reveal.right();
                        self.getPagesInfo();
-                 
+
                 };
 
 
@@ -54,6 +54,5 @@
 
 
                 };
-
 
             }]);

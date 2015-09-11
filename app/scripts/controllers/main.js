@@ -27,7 +27,7 @@ angular.module('nwApp')
             self.slides = [];
             self.isTesNameTime = true;
             self.isOverview = false;
-       
+
   GetSlides.getdata(projectId).then(function(result) {
                 addDigit = '00';
 
@@ -197,7 +197,7 @@ angular.module('nwApp')
                 }, 300);
             });
 
-            
+
                 self.testNameFontFamily ='Roboto' ;
                 self.testNameFontColor ='black' ;
                 self.rationaleFontFamily = 'sans-serif';
@@ -214,7 +214,7 @@ angular.module('nwApp')
                     size: '600px'
                 });
                 modalInstance.result.then(function() {}, function() {
-                    self.BackGround = setSettings.getBackground();                 
+                    self.BackGround = setSettings.getBackground();
                     self.testNameFontFamily = (setSettings.getTestNameFontType() ==='')?'Roboto' : setSettings.getTestNameFontType() ;
                     self.testNameFontColor = (setSettings.getTestNameFontColor() ==='')? 'black': setSettings.getTestNameFontColor() ;
                     self.rationaleFontFamily = (setSettings.getRationaleFontType() === '')? 'sans-serif': setSettings.getRationaleFontType();
@@ -227,7 +227,7 @@ angular.module('nwApp')
             self.showTemplate = false;
 
             self.help = function() {
-                alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('transition','fade').set('resizable', true).resizeTo('35%', '40%');
+                alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('transition','fade').set('basic', true);
             };
 
      GetTestNames.getdata(projectId).then(function(result) {
