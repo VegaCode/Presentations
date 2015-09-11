@@ -1,70 +1,91 @@
 <!--Templates For modal box-->
 <style type="text/css">
-    .gap{
+. {
     padding: 10px;
 }
-</style><div class="container-fluid" ng-controller="SettingsCtrl as settings"  ng-show="true" >
-    <div class="row gap">
-        <div class="col-md-3">
-              <span class="label label-default">Backgrounds:</span>
+</style>
+<div class="container-fluid" ng-controller="SettingsCtrl as settings" ng-show="true">
+    <div class="row ">
+        <div class="col-md-12">
+            <h4 class="text text-primary">Header & Background Settings</h4>
         </div>
-        <div class="col-md-9">
-           <select ng-model="MYBackGround" ng-change="settings.backGroundChanged(MYBackGround)" ng-options="BackGround for BackGround in settings.changeBackground"> </select>       
+    </div>
+    <div class="row ">
+        <div class="col-md-6">
+            <h4 > Font-Family:</h4>
+        </div>
+        <div class="col-md-6">
+            <select ng-model="hFont" id="bgselection" ng-change="settings.headerFontTypeChanged(hFont)" ng-options="header for header in settings.typeOfFont"></select>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-md-6">
+            <h4 > Font-Color:</h4>
+        </div>
+        <div class="col-md-6">
+            <select ng-model="hcolor" ng-change="settings.headerFontColorChanged(hcolor)" ng-options="headercolor for headercolor in settings.colors"></select>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-md-6">
+            <h4 >Backgrounds:</h4>
+        </div>
+        <div class="col-md-6">
+            <select ng-model="MYBackGround" 
+            ng-change="settings.backGroundChanged(MYBackGround)" 
+            ng-options="BackGround for BackGround in settings.changeBackground"
+            ng-init="MYBackGround = settings.BackGround" >        
+            </select>
+        </div>
+    </div>
+    <hr>
+    <div class="row gap">
+        <div class="col-md-12">
+            <h4 class="text text-primary">Test-Name Settings</h4>
         </div>
     </div>
     <div class="row gap">
-        <div class="col-md-3">
-              <span class="label label-default">Test Name Font-Family:</span>
+        <div class="col-md-6">
+            <h4 >Font-Family:</h4>
         </div>
-        <div class="col-md-9">
-          <select ng-model="myFont" id="bgselection" ng-change="settings.testNameFontTypeChanged(myFont)" ng-options="font for font in settings.typeOfFont"></select>
+        <div class="col-md-6">
+            <select ng-model="myFont" id="bgselection" ng-change="settings.testNameFontTypeChanged(myFont)" ng-options="font for font in settings.typeOfFont"></select>
         </div>
     </div>
     <div class="row gap">
-        <div class="col-md-3">
-          <span class="label label-default">Test Name Font-Color:</span>
+        <div class="col-md-6">
+            <h4 >Font-Color:</h4>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-6">
             <select ng-model="tcolor" ng-change="settings.testNameFontColorChanged(tcolor)" ng-options="color for color in settings.colors"></select>
         </div>
     </div>
-    <div class="row gap">
-        <div class="col-md-3">
-           <span class="label label-default">Rationale Font-Family:</span>
-        </div>
-        <div class="col-md-9">
-              <select ng-model="rFont" id="bgselection" ng-change="settings.rationaleFontTypeChanged(rFont)" ng-options="rationale for rationale in settings.typeOfFont"></select>
+    <hr>
+    <div class="row ">
+        <div class="col-md-12">
+            <h4 class="text text-primary">Ratinale Settings</h4>
         </div>
     </div>
-    <div class="row gap">
-        <div class="col-md-3">
-           <span class="label label-default">Rationale Font-Color:</span>
+    <div class="row ">
+        <div class="col-md-6">
+            <h4 >Font-Family:</h4>
         </div>
-        <div class="col-md-9">
-             <select ng-model="rcolor" ng-change="settings.rationaleFontColorChanged(rcolor)" ng-options="color for color in settings.colors"></select>
-        </div>
-    </div> 
-    <div class="row gap">
-        <div class="col-md-3">
-           <span class="label label-default">Header Font-Family:</span>
-        </div>
-        <div class="col-md-9">
-              <select ng-model="hFont" id="bgselection" ng-change="settings.headerFontTypeChanged(hFont)" ng-options="header for header in settings.typeOfFont"></select>
+        <div class="col-md-6">
+            <select ng-model="rFont" id="bgselection" ng-change="settings.rationaleFontTypeChanged(rFont)" ng-options="rationale for rationale in settings.typeOfFont"></select>
         </div>
     </div>
-    <div class="row gap">
-        <div class="col-md-3">
-           <span class="label label-default">header Font-Color:</span>
+    <div class="row ">
+        <div class="col-md-6">
+            <h4 >Font-Color:</h4>
         </div>
-        <div class="col-md-9">
-             <select ng-model="hcolor" ng-change="settings.headerFontColorChanged(hcolor)" ng-options="headercolor for headercolor in settings.colors"></select>
+        <div class="col-md-6">
+            <select ng-model="rcolor" ng-change="settings.rationaleFontColorChanged(rcolor)" ng-options="color for color in settings.colors"></select>
         </div>
     </div>
-    <div class="row gap">
+    <div class="row ">
         <div class="col-md-12 ">
-           <button class="btn btn-success pull-right" ng-click="$dismiss()" >Save</span>
+            <button class="btn btn-success pull-right" ng-click="$dismiss()">Save</button>
         </div>
     </div>
+    <hr>
 </div>
-
-

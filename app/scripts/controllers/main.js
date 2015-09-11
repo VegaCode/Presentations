@@ -213,8 +213,6 @@ angular.module('nwApp')
                     templateUrl: 'views/templates/configuration.html',
                     size: '600px'
                 });
-
-
                 modalInstance.result.then(function() {}, function() {
                     self.BackGround = setSettings.getBackground();                 
                     self.testNameFontFamily = (setSettings.getTestNameFontType() ==='')?'Roboto' : setSettings.getTestNameFontType() ;
@@ -228,40 +226,8 @@ angular.module('nwApp')
             };
             self.showTemplate = false;
 
-            self.fontSizes = [
-                '8',
-                '14',
-                '20'
-            ];
-
-
-            self.changeBackground = [
-                'default',
-                'Balloon',
-                'Billboard',
-                'BusStop',
-                'GirlWithBalloons',
-                'GreenField',
-                'NatureCouple',
-                'RedFlowers',
-                'PrescriptionPad',
-                'SeniorMan',
-                'SunCouple',
-                'Victory',
-                'WhiteFlowers',
-                'WomanWithTree',
-            ];
-
-            self.typeOfFont = [
-                'Serif',
-                'Sans-serif',
-                'Roboto'
-            ];
-
-
-
             self.help = function() {
-                alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('resizable', true).resizeTo('35%', '70%');
+                alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('transition','fade').set('resizable', true).resizeTo('35%', '40%');
             };
 
      GetTestNames.getdata(projectId).then(function(result) {
@@ -507,13 +473,6 @@ angular.module('nwApp')
         var self = this;
         self.backGroundSelected = 'Balloon';
         self.showTemplate = false;
-
-        self.setSettings= function(){
-
-alert('hello');
-
-        };
-
         self.backGroundChanged = function(MYBackGround) {
             setSettings.setBackground(MYBackGround);
         };
