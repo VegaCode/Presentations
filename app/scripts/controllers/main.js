@@ -37,7 +37,7 @@ angular.module('nwApp')
                     if (i > 9) {
                         addDigit = '0';
                     }
-                    id = result[0].path + addDigit + i + '.jpg';
+                    id = result[0].path + addDigit + i + '.png';
                     self.slides.push(id);
                     // Displaying IMages url
                 }
@@ -153,7 +153,7 @@ angular.module('nwApp')
                         viewDistance: 1,
 
                         // Parallax background image
-                        parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+                        parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.png'"
 
                         // Parallax background size
                         parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
@@ -293,7 +293,6 @@ angular.module('nwApp')
                     self.explore = '';
                     self.avoid = '';
                 }
-
 
 
                 self.resetSlide = function() {
@@ -468,6 +467,7 @@ angular.module('nwApp')
                 };
             }); // end of the promise call GetTestNames
         }
+
     ])
     .controller('SettingsCtrl', ['setSettings', function(setSettings) {
         var self = this;
