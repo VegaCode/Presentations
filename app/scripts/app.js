@@ -15,7 +15,6 @@ angular.module('nwApp', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ngMdIcons',
     'LocalStorageModule',
     'angularScreenfull',
     'AutoFontSize',

@@ -63,17 +63,25 @@ label {
     -ms-user-select: none; /* IE10+ */
 }
 
+.btn-question-style{
+  position: fixed;
+  top: 35px;
+  left: 1075px;
+}
 
 </style>
-
+</body>
 <div class="row" ng-show="main.isTesNameTime">
     <div class="col-md-12">
         <div class="reveal">
             <div class="slides">
                 <section ng-repeat="slide in  main.slides" style="top: -46px; display: block;" data-index="{{$index}}">
+                    <button type="button" class="btn btn-primary glyphicon glyphicon-question-sign pull-right btn-question-style" ng-show="main.isTesNameTime" ng-click="main.help()"></button>
                     <img ng-src="{{slide}}">
-                    <aside class="notes">Overview Title : {{$index}}</aside>
+                    <aside class="notes">Overview Title : {{$index}}
+                    </aside>
                 </section>
+
             </div>
         </div>
     </div>
@@ -109,11 +117,11 @@ label {
                         </div>
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-primary  glyphicon " ng-click="main.tally()" 
+                                <button type="button" class="btn btn-primary  glyphicon " ng-click="main.tally()"
                                 style="color:white; font-family:arial">Tally
                                 </button>
                                 <button type="button" class="btn btn-primary   glyphicon glyphicon-cog" data-toggle="dropdown" ng-click="main.legendAboutOption()"></button>
-                                <button type="button" class="btn btn-primary   glyphicon glyphicon-question-sign" ng-click="main.help()"></button>
+
                             </div>
                             <div class="row  " ng-show="main.displayTally">
                                 <div class="col-md-8">
@@ -148,7 +156,7 @@ label {
                             </div>
                             </div>
                             <div class="row" style="height: 120px;">
-                                <div class="btn col-md-12 text-default text-center" 
+                                <div class="btn col-md-12 text-default text-center"
                                 style="font-size: xx-large; cursor: default; text-align: center; width: 98%; margin-left: 10px; padding:20px; background-color:rgba(0,0,128,0.9);
                                  font-family:{{main.rationaleFontFamily}}; color:{{main.rationaleFontColor}}" auto-font-size noSelection >
                                  {{main.Rationale}}
@@ -211,6 +219,7 @@ label {
     </div>
 
     <!--Templates For help-->
+    <div
 <div class="container-fluid" id="help" style="display:none">
     <div class="row">
         <div class="col-md-12">
@@ -219,8 +228,8 @@ label {
                     <img alt="" ng-src="images/HelpImages/F.PNG" width="50px" class="img-rounded center-block gap" />
                 </div>
                 <div class="col-md-9">
-                    <h4> 
-                            Press F key to go Full-Screen and scape key to exit 
+                    <h4>
+                            Press F key to go Full-Screen and scape key to exit
                      </h4>
                 </div>
             </div>
@@ -229,8 +238,8 @@ label {
                     <img alt="" ng-src="images/HelpImages/O.PNG" width="50px" class="img-rounded center-block gap" />
                 </div>
                 <div class="col-md-9">
-                    <h4> 
-                            Press O key to overview the slides 
+                    <h4>
+                            Press O key to overview the slides
                     </h4>
                 </div>
             </div>
@@ -239,8 +248,8 @@ label {
                     <img alt="" src="images/HelpImages/Space.PNG" width="70px" class="img-rounded center-block gap" />
                 </div>
                 <div class="col-md-9">
-                    <h4> 
-                               Press Space Bar key to go forward on the slides 
+                    <h4>
+                               Press Space Bar key to go forward on the slides
                     </h4>
                 </div>
             </div>
@@ -249,8 +258,8 @@ label {
                     <img alt="" src="images/HelpImages/ArrowKeys.PNG" width="100px" class="img-rounded center-block gap" />
                 </div>
                 <div class="col-md-9">
-                    <h4> 
-                               Press the Arrow Keys  to go forward on the slides 
+                    <h4>
+                               Press the Arrow Keys  to go forward on the slides
                     </h4>
                 </div>
             </div>
