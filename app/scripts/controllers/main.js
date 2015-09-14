@@ -227,7 +227,7 @@ angular.module('nwApp')
             self.showTemplate = false;
 
             self.help = function() {
-                alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('transition','fade').set('basic', true);
+                alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
             };
 
      GetTestNames.getdata(projectId).then(function(result) {

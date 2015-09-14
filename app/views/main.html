@@ -76,7 +76,7 @@ label {
         <div class="reveal">
             <div class="slides">
                 <section ng-repeat="slide in  main.slides" style="top: -46px; display: block;" data-index="{{$index}}">
-                    <button type="button" class="btn btn-primary glyphicon glyphicon-question-sign pull-right btn-question-style" ng-click="main.help()"></button>
+                    <button type="button" class="btn btn-primary glyphicon glyphicon-question-sign pull-right btn-question-style" ng-show="main.isTesNameTime" ng-click="main.help()"></button>
                     <img ng-src="{{slide}}">
                     <aside class="notes">Overview Title : {{$index}}
                     </aside>
