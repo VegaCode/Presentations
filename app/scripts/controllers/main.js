@@ -45,7 +45,7 @@ angular.module('nwApp')
                 Reveal.addEventListener('overviewshown', function(event) {
                     $rootScope.$apply(function() {
                         self.isOverview = true;
-                        self.slideTitle = 'TEST';
+                        self.slideTitle = 'Slide Title # ';
                     });
                 });
 
