@@ -8,8 +8,8 @@
  * Factory of the nwApp
  */
  var  webBaseUrl;
-webBaseUrl = 'http://localhost:64378/';
- //webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
+//webBaseUrl = 'http://localhost:64378/';
+ webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
 
 angular.module('nwApp')
  .factory('GetNamesAndSlides',  [ '$q' , '$http', function GetSlidesFactory($q, $http) {

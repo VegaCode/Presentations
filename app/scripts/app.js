@@ -44,7 +44,7 @@ angular.module('nwApp', [
       })
       .when('/slideShow/:', {
         templateUrl: 'views/slideShow.html',
-        controller: 'slideShowCtrl',
+        controller: '',
         controllerAs: 'slideShow',
           // resolve: {
           //           queryStringCheck: function($q, $location, $route) {

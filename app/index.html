@@ -1,146 +1,76 @@
-<!doctype html>
-<html>
+        <!doctype html>
+        <html>
 
-<head>
-    <div class="header">
-        <meta charset="utf-8">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <!-- build:css(.) styles/vendor.css -->
-        <link rel="stylesheet" href="bower_components/reveal-js/css/reveal.css">
-        <link rel="stylesheet" href="bower_components/reveal-js/css/theme/moon.css" id="theme">
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="bower_components/alertifyjs/css/alertify.css"/>
-        <link rel="stylesheet" href="bower_components/alertifyjs/css/themes/default.css"/>
-        <!-- bower:css -->
+        <head>
+            <div class="header">
+                <meta charset="utf-8">
+                <title></title>
+                <meta name="description" content="">
+                <meta name="viewport" content="width=device-width">
+                <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+                <!-- build:css(.) styles/vendor.css -->
+                <link rel="stylesheet" href="bower_components/reveal-js/css/reveal.css">
+                <link rel="stylesheet" href="bower_components/reveal-js/css/theme/moon.css" id="theme">
+                <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+                <link rel="stylesheet" href="bower_components/alertifyjs/css/alertify.css" />
+                <link rel="stylesheet" href="bower_components/alertifyjs/css/themes/default.css" />
+                <!-- bower:css -->
+                <!-- endbower -->
+                <!-- endbuild -->
+                <!-- build:css(.tmp) styles/main.css -->
+                <link rel="stylesheet" href="styles/main.css">
+                <!-- endbuild -->
+        </head>
+        <body ng-app="nwApp" ngsf-fullscreen>
+            <div class="container">
+                <div ng-view=""></div>
+            </div>
+        </body>
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+        <script>
+        ! function(A, n, g, u, l, a, r) {
+            A.GoogleAnalyticsObject = l, A[l] = A[l] || function() {
+                    (A[l].q = A[l].q || []).push(arguments)
+                }, A[l].l = +new Date, a = n.createElement(g),
+                r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+        }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-XXXXX-X');
+        ga('send', 'pageview');
+        </script>
+        <!-- build:js(.) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-screenfull/dist/angular-screenfull.js"></script>
+        <script src="bower_components/angular-touch/angular-touch.js"></script>
+        <script src="bower_components/auto-font-size/dist/auto_font_size.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <!-- endbower -->
+        <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+        <script src="bower_components/screenfull/dist/screenfull.js"></script>
+        <script src="bower_components/angular-screenfull/dist/angular-screenfull.min.js"></script>
+        <script src="bower_components/reveal-js/js/reveal.js"></script>
+        <script src="bower_components/reveal-js/lib/js/head.min.js"></script>
+        <script src="bower_components/reveal-js/lib/js/html5shiv.js"></script>
+        <script src="bower_components/alertifyjs/alertify.js"></script>
         <!-- endbuild -->
-        <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/services/getDataFactory.js"></script>
+        <script src="scripts/controllers/main.js"></script>
         <!-- endbuild -->
-</head>
+        <script type="text/javascript">
+        $("body").bind("keypress", function(e) {
+            console.log(e);
+        });
+        </script>
 
-<body ng-app="nwApp" ngsf-fullscreen ng-controller="NavigationController as NavCtrl" keyboardkey>
-
-    <div class="container" >
-        <div ng-view="" ></div>
-    </div>
-
-            <!--   <div class="header">
-            <div class="container-fluid headerBackground" style="; background-size: cover;">
-                <div class="col-md-12 column">
-                    <div class="row   clearfix">
-                        <div class="col-md-6 column">
-                            <h1 class="text-primary"></h1>
-                        </div>
-                        <div class="col-md-6 column">
-                            <img ng-src="images/logoBIdocs.png" alt="D.S.I." style='width: 125px; float:right; opacity:0;' />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-    <!--   <footer>
-        <div class="navbar navbar-inverse navbar-fixed-bottom">
-            <div class="container" style="font-size:25px; color:#333; text-align:center;">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span class="glyphicon glyphicon-home"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <span class="glyphicon glyphicon-arrow-left"></span>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <button class="btn btn-default" type="button">
-                                            <span style="font-size: 15px;" class="badge bg-info">1</span>
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <span class="glyphicon glyphicon-arrow-right"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <span ng-click="main.togglePresentation()" class="glyphicon glyphicon-blackboard iconbuttom"></span>
-                                    </div>
-                                    <div class="col-md-6">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
--->
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-    <script>
-    ! function(A, n, g, u, l, a, r) {
-        A.GoogleAnalyticsObject = l, A[l] = A[l] || function() {
-                (A[l].q = A[l].q || []).push(arguments)
-            }, A[l].l = +new Date, a = n.createElement(g),
-            r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
-    }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-XXXXX-X');
-    ga('send', 'pageview');
-    </script>
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-screenfull/dist/angular-screenfull.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/auto-font-size/dist/auto_font_size.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <!-- endbower -->
-    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
-    <script src="bower_components/screenfull/dist/screenfull.js"></script>
-    <script src="bower_components/angular-screenfull/dist/angular-screenfull.min.js"></script>
-    <script src="bower_components/reveal-js/js/reveal.js"></script>
-    <script src="bower_components/reveal-js/lib/js/head.min.js"></script>
-    <script src="bower_components/reveal-js/lib/js/html5shiv.js"></script>
-    <script src="bower_components/reveal-js/lib/js/html5shiv.js"></script>
-    <script src="bower_components/reveal-js/lib/js/html5shiv.js"></script>
-    <script src="bower_components/alertifyjs/alertify.js"></script>
-    <!-- endbuild -->
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/services/getDataFactory.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/slideShow.js"></script>
-    <script src="scripts/controllers/navigation.js"></script>
-    <script src="scripts/directives/font-and-back-ground-settings.js"></script>
-    <!-- endbuild -->
-    <script type="text/javascript">
-    $("body").bind("keypress", function(e) {
-    console.log(e);
-});
-    </script>
-
-
-
-</html>
+        </html>
