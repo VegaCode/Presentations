@@ -7,15 +7,54 @@
  * # MainCtrl
  * Controller of the nwApp
  */
+
+
+//                 0: Object
+// $id: "1"
+// DisplayName: "SKY"
+// FooterFontColor: ""
+// FooterFontFamily: ""
+// HeaderFontColor: ""
+// HeaderFontFamily: ""
+// Name: ""
+// NameCategory: ""
+// NameGroup: ""
+// NameLogo: ""
+// NameNotation: ""
+// NameRationale: ""
+// PresentationId: "1000"
+// Project: "SKY"
+// RationaleFontColor: ""
+// RationaleFontFamily: ""
+// SlideBGFileName: "001.jpg"
+// SlideDescription: "Slide Desc 1"
+// SlideNumber: "1"
+// SlideType: "Image"
+// TemplateFileName: ""
+// TemplateId: "0"
+// TemplateName: ""
+// TestNameFontColor: ""
+// TestNameFontFamily: ""
+// __proto__: Object
 angular.module('nwApp')
-    .controller('MainCtrl', ['$timeout', 'localStorageService', 'GetTestNames', 'GetSlides', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings',
-        function($timeout, localStorageService, GetTestNames, GetSlides, $rootScope, $routeParams, queryStringCheck, $modal, setSettings) {
+    .controller('MainCtrl', ['$timeout', 'localStorageService', 'GetTestNames', 'GetSlides', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides',
+        function($timeout, localStorageService, GetTestNames, GetSlides, $rootScope, $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides) {
             var candidateNames, projectIdPrefixed, storeKey, addDigit;
             var self = this;
             self.displayTally = false;
             var feedBackBox = [];
             var projectId = '';
             projectId = queryStringCheck;
+
+            GetNamesAndSlides.getdata(1000).then(function(result){
+
+                var t = result;
+                var d  = result;
+
+
+            })
+
+
             self.togglePresentation = function() {
                 if (self.isTesNameTime === false) {
                     self.isTesNameTime = true;
@@ -40,12 +79,12 @@ angular.module('nwApp')
                     id = result[0].path + addDigit + i + '.png';
                     self.slides.push(id);
                     // Displaying IMages url
-                }
+                } 
 
                 Reveal.addEventListener('overviewshown', function(event) {
                     $rootScope.$apply(function() {
                         self.isOverview = true;
-                        self.slideTitle = 'Slide Title # ';
+                        self.slideTitle = 'TEST';
                     });
                 });
 
@@ -56,6 +95,7 @@ angular.module('nwApp')
                 });
 
                 var startTestNamesAtPage = result[0].NameEvaluationFirstSlide;
+
                 Reveal.addEventListener('slidechanged', function(event) {
                     //Warning! DO NOT CHANGE  THE "==" for "==="
                     // console.log('the index is :  '+event.indexh+1);
@@ -198,37 +238,72 @@ angular.module('nwApp')
             });
 
 
-                self.testNameFontFamily ='Roboto' ;
-                self.testNameFontColor ='black' ;
+                self.testNameFontFamily ='Roboto';
+                self.testNameFontColor ='black';
                 self.rationaleFontFamily = 'sans-serif';
                 self.rationaleFontColor ='white';
                 self.headerFontFamily = 'sans-serif';
                 self.headerFontColor ='black';
+                var TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily,RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,FooterFontColor,FooterFontFamily;
+                var themeConfigurationModel = function(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily, RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,FooterFontColor,FooterFontFamily){                    
+                          return{
+                                         'TemplateName': TemplateName,
+                                         'TemplateFileName': TemplateFileName,
+                                         'HeaderFontColor': HeaderFontColor,
+                                         'HeaderFontFamily': HeaderFontFamily,
+                                         'RationaleFontColor': RationaleFontColor,
+                                         'RationaleFontFamily': RationaleFontFamily,
+                                         'TestNameFontColor': TestNameFontColor,
+                                         'TestNameFontFamily': TestNameFontFamily,
+                                         'FooterFontColor': FooterFontColor,
+                                         'FooterFontFamily': FooterFontFamily
+                                     };   
+                         };
 
-
-            self.legendAboutOption = function() {
+                self.legendAboutOption = function() {
 
                 var modalInstance = $modal.open({
                     animation: true,
                     templateUrl: 'views/templates/configuration.html',
                     size: '600px'
                 });
+
                 modalInstance.result.then(function() {}, function() {
-                    self.BackGround = setSettings.getBackground();
+                    self.BackGround = setSettings.getBackground() + '.jpg';
                     self.testNameFontFamily = (setSettings.getTestNameFontType() ==='')?'Roboto' : setSettings.getTestNameFontType() ;
                     self.testNameFontColor = (setSettings.getTestNameFontColor() ==='')? 'black': setSettings.getTestNameFontColor() ;
                     self.rationaleFontFamily = (setSettings.getRationaleFontType() === '')? 'sans-serif': setSettings.getRationaleFontType();
                     self.rationaleFontColor = (setSettings.getRationaleFontColor()==='')? 'white' : setSettings.getRationaleFontColor();
                     self.headerFontColor = (setSettings.getHeaderFontColor()==='')? 'black' : setSettings.getHeaderFontColor();
                     self.headerFontFamily =(setSettings.getHeaderFontType() ==='')? 'sans-serif' : setSettings.getHeaderFontType();
+
+                    // Setting the template configuartion online
+                        TemplateName=  setSettings.getBackground();
+                        TemplateFileName =  self.BackGround ;
+                        HeaderFontColor = self.headerFontColor ;
+                        HeaderFontFamily =   self.headerFontFamily;
+                        RationaleFontColor=  self.rationaleFontColor ;
+                        RationaleFontFamily=  self.rationaleFontFamily;
+                        TestNameFontColor=  self.testNameFontColor;
+                        TestNameFontFamily=  self.testNameFontFamily;
+                        FooterFontColor= 'black';
+                        FooterFontFamily = 'Arial';
+
+                var configModel = themeConfigurationModel(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily,RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,FooterFontColor,FooterFontFamily);
+                    setSettings.postdata(configModel).then(function(result){
+                    });
                 });
 
+
             };
+
             self.showTemplate = false;
 
             self.help = function() {
                 alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
             };
+
+
 
      GetTestNames.getdata(projectId).then(function(result) {
                 if (result.length > 0) {
@@ -236,6 +311,9 @@ angular.module('nwApp')
                     projectIdPrefixed = candidateNames[0].nwid;
                     storeKey = projectIdPrefixed + 'FEED_BACK_RESULTS';
                     self.title = candidateNames[0].Category;
+                    self.BackGround = 'Billboard.jpg';
+                    self.textAttribute = 'default';
+                    self.logoPath = 'images/LogIcons/icon-1.png';
 
 
                     var UpdateFeedBack = function(storedFeedBack) {
@@ -247,9 +325,120 @@ angular.module('nwApp')
                             }
                         });
                     };
-                } else {
-                    alert('The test names for this  project is notavailable plese contact IS for further support');
-                }
+
+                 var centerTestNames = function(nameCandidate) {
+                                    if (self.BackGround === 'Billboard.jpg') {                                      
+                                        self.columnNameCandSet= '8';
+                                        switch (nameCandidate.length) {
+                                            case 3:
+                                                self.columnSet = '12';
+                                                break;
+                                            case 4:
+                                                self.columnSet = '2';
+                                                break;
+                                            case 5:
+                                                self.columnSet = '4';
+                                                break;
+                                            case 6:
+                                                self.columnSet = '11';
+                                                break;
+                                            case 7:
+                                                self.columnSet = '6';
+                                                break;
+                                            case 8:
+                                                self.columnSet = '12';
+                                                break;
+                                            case 9:
+                                                self.columnSet = '8';
+                                                break;
+                                            case 10:
+                                                self.columnSet = '4';
+                                                break;
+                                            default:
+
+                                                break;
+                                        }
+                                        switch (nameCandidate.length) {
+                                            case 3:
+                                            case 4:
+                                            case 5:
+                                                self.columnOffSet = '4';
+                                                break;
+                                            case 6:
+                                            case 7:
+                                                self.columnOffSet = '3';
+                                                break;
+                                            case 8:
+                                            case 9:
+                                            case 10:
+                                                self.columnOffSet = '2';
+                                                break;
+                                            default:
+
+                                                break;
+                                        }
+
+                                        switch (nameCandidate.length) {
+                                            case 3:
+                                                self.marginLeftTestName = '1';
+                                                break;
+                                            case 4:
+                                            case 8:
+                                            case 9:
+                                            case 10:
+                                                self.marginLeftTestName = '0';
+                                                break;
+                                            case 5:
+                                            case 6:
+                                            case 7:
+                                                self.marginLeftTestName = '-9';
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        switch (nameCandidate.length) {
+                                            case 3:
+                                                self.marginLeftImage = '49';
+                                                break;
+                                            case 4:
+                                                self.marginLeftImage = '118';
+                                                break;
+                                            case 5:
+                                                self.marginLeftImage = '119';
+                                                break;
+                                            case 6:
+                                                self.marginLeftImage = '64';
+                                                break;
+                                            case 7:
+                                                self.marginLeftImage = '101';
+                                                break;
+                                            case 8:
+                                                self.marginLeftImage = '50';
+                                                break;
+                                            case 9:
+                                                self.marginLeftImage = '72';
+                                                break;
+                                            case 10:
+                                                self.marginLeftImage = '109';
+                                                break;
+                                            default:
+
+                                                break;
+                                        }
+
+                                    }else{
+                                          self.columnSet = '12';
+                                          self.columnOffSet = '0';
+                                          self.marginLeftImage = '0';
+                                           self.marginLeftTestName = '10';
+                                          self.columnNameCandSet= '12';
+                                          self.textAttribute = 'center';
+                                    }
+
+                       };//  end of centerTestNames
+            } else {
+                alert('The test names for this  project is notavailable plese contact IS for further support');
+            }
 
                 var candidateNamesSize = candidateNames.length;
                 var slideCounter = 0;
@@ -287,6 +476,8 @@ angular.module('nwApp')
                     self.avoid = storedFeedBack.avoid;
                     UpdateFeedBack(storedFeedBack);
 
+                    centerTestNames(self.nameCandidate);
+
                 } else {
                     self.nameCandidate = candidateNames[0].TestName;
                     self.newName = '';
@@ -304,6 +495,8 @@ angular.module('nwApp')
                 };
 
                 self.goPrevSlide = function() {
+
+                  var testNameSize = candidateNames[slideCounter].TestName.length;
                     self.displayTally = false;
                     if (slideCounter > 0) {
                         slideCounter = slideCounter - 1;
@@ -319,7 +512,9 @@ angular.module('nwApp')
                             self.pageNumber = slideCounter + 1;
                             self.Rationale = candidateNames[slideCounter].Rationale;
                             self.title = candidateNames[slideCounter].Category;
-                        } // end if
+                        }
+                        centerTestNames(self.nameCandidate);
+                        // end if
                     } else {
                         alert('You are in the 1rst Slide');
                         self.slideCounter = false;
@@ -365,6 +560,7 @@ angular.module('nwApp')
                                 slideCounter = slideCounter + 1;
                                 self.slideCounter = true;
                                 self.pageNumber = slideCounter + 1;
+                                centerTestNames(self.nameCandidate);
                             } else {
                                 if (storedFeedBack === null || storedFeedBack[slideCounter] === undefined) {
                                     var val = feedBackModel(feedBack, self.newName, self.nameCandidate, self.explore, self.avoid);
@@ -437,7 +633,7 @@ angular.module('nwApp')
                     });
                 };
 
-                self.tally = function(buton) {
+                self.tally = function() {
 
                     self.displayTally = true;
                     var storeObject = localStorageService.get(storeKey);
@@ -446,10 +642,7 @@ angular.module('nwApp')
                     self.negativeScore = 0;
                     if (storeObject !== null) {
                         storeObject = JSON.parse(storeObject);
-
-
                         angular.forEach(storeObject, function(value) {
-
                             if (value.feedBackScore === 'Positive') {
                                 self.positiveScore += 1;
                             }
@@ -471,7 +664,7 @@ angular.module('nwApp')
     ])
     .controller('SettingsCtrl', ['setSettings', function(setSettings) {
         var self = this;
-        self.backGroundSelected = 'Balloon';
+        self.backGroundSelected = 'Billboard';
         self.showTemplate = false;
         self.backGroundChanged = function(MYBackGround) {
             setSettings.setBackground(MYBackGround);
