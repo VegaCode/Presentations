@@ -49,6 +49,61 @@
  font-weight: normal;
 }
 
+@font-face {
+  font-family: 'BabelSans';
+  src:  url('../fonts/BabelSans-Bold.ttf')  format('truetype');
+}
+
+.BabelSans{
+ font-family: 'BabelSans';
+ font-weight: normal;
+}
+
+@font-face {
+  font-family: 'BabelSans-BoldOblique';
+  src:  url('../fonts/BabelSans-BoldOblique.ttf')  format('truetype');
+}
+
+.BabelSans-BoldOblique{
+ font-family: 'BabelSans-BoldOblique';
+ font-weight: normal;
+}
+
+
+@font-face {
+  font-family: 'BadScript';
+  src:  url('../fonts/BadScript-Regular.ttf')  format('truetype');
+}
+
+
+.BadScript{
+ font-family: 'BadScript';
+ font-weight: normal;
+}
+
+
+@font-face {
+  font-family: 'Gidole';
+  src:  url('../fonts/Gidole-Regular.ttf')  format('truetype');
+}
+
+
+.Gidole{
+ font-family: 'Gidole';
+ font-weight: normal;
+}
+
+
+@font-face {
+  font-family: 'LaBelleAurore';
+  src:  url('../fonts/LaBelleAurore.ttf')  format('truetype');
+}
+
+.LaBelleAurore{
+ font-family: 'LaBelleAurore';
+ font-weight: normal;
+}
+
 .iconbuttom {
  cursor:pointer;
 }

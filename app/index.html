@@ -22,6 +22,7 @@
                 <!-- endbuild -->
         </head>
         <body ng-app="nwApp" ngsf-fullscreen>
+
             <div class="container">
                 <div ng-view=""></div>
             </div>
@@ -67,10 +68,4 @@
         <script src="scripts/services/getDataFactory.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <!-- endbuild -->
-        <script type="text/javascript">
-        $("body").bind("keypress", function(e) {
-            console.log(e);
-        });
-        </script>
-
         </html>

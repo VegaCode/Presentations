@@ -8,104 +8,79 @@
  * Controller of the nwApp
  */
 
-
-//                 0: Object
-// $id: "1"
-// DisplayName: "SKY"
-// FooterFontColor: ""
-// FooterFontFamily: ""
-// HeaderFontColor: ""
-// HeaderFontFamily: ""
-// Name: ""
-// NameCategory: ""
-// NameGroup: ""
-// NameLogo: ""
-// NameNotation: ""
-// NameRationale: ""
-// PresentationId: "1000"
-// Project: "SKY"
-// RationaleFontColor: ""
-// RationaleFontFamily: ""
-// SlideBGFileName: "001.jpg"
-// SlideDescription: "Slide Desc 1"
-// SlideNumber: "1"
-// SlideType: "Image"
-// TemplateFileName: ""
-// TemplateId: "0"
-// TemplateName: ""
-// TestNameFontColor: ""
-// TestNameFontFamily: ""
-// __proto__: Object
 angular.module('nwApp')
     .controller('MainCtrl', ['$timeout', 'localStorageService', 'GetTestNames', 'GetSlides', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides',
         function($timeout, localStorageService, GetTestNames, GetSlides, $rootScope, $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides) {
-            var candidateNames, projectIdPrefixed, storeKey, addDigit;
+          
+            var candidateNames, projectIdPrefixed, storeKey, projectId;
             var self = this;
             self.displayTally = false;
             var feedBackBox = [];
-            var projectId = '';
-            projectId = queryStringCheck;
-
-            GetNamesAndSlides.getdata(1000).then(function(result){
-
-                var t = result;
-                var d  = result;
-
-
-            })
-
-
-            self.togglePresentation = function() {
-                if (self.isTesNameTime === false) {
-                    self.isTesNameTime = true;
-                } else {
-                    self.isTesNameTime = false;
-                }
-            };
-
+            projectId = queryStringCheck;        
+            self.displaySettings =false;
             self.slides = [];
             self.isTesNameTime = true;
             self.isOverview = false;
+            self.colors = ['red','blue','black','white'];
+            self.changeBackground = ['Default','Balloon','Billboard',  
+            'GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
+            'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree', 
+             'Cardiology','Cognition','OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue' ];
+            self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore'];
+            self.help = function() {
+                     alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
+                };
 
-  GetSlides.getdata(projectId).then(function(result) {
-                addDigit = '00';
-
-                self.totalSlides = result[0].totalSlides;
-                for (var i = 1; i < result[0].totalSlides; i++) {
-                    var id = {};
-                    if (i > 9) {
-                        addDigit = '0';
-                    }
-                    id = result[0].path + addDigit + i + '.png';
-                    self.slides.push(id);
-                    // Displaying IMages url
-                } 
-
-                Reveal.addEventListener('overviewshown', function(event) {
-                    $rootScope.$apply(function() {
-                        self.isOverview = true;
-                        self.slideTitle = 'TEST';
-                    });
-                });
-
-                Reveal.addEventListener('overviewhidden', function(event) {
-                    $rootScope.$apply(function() {
-                        self.isOverview = false;
-                    });
-                });
-
-                var startTestNamesAtPage = result[0].NameEvaluationFirstSlide;
-
-                Reveal.addEventListener('slidechanged', function(event) {
-                    //Warning! DO NOT CHANGE  THE "==" for "==="
-                    // console.log('the index is :  '+event.indexh+1);
-                    // if (startTestNamesAtPage == event.indexh + 1) {
-                    if (2 == event.indexh + 1) {
-                        $rootScope.$apply(function() {
+         
+            // Model for theme configuration
+            var themeConfigurationModel = function(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily, RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,FooterFontColor,FooterFontFamily,Overlay){                    
+                          return{
+                                         'TemplateName': TemplateName,
+                                         'TemplateFileName': TemplateFileName,
+                                         'HeaderFontColor': HeaderFontColor,
+                                         'HeaderFontFamily': HeaderFontFamily,
+                                         'RationaleFontColor': RationaleFontColor,
+                                         'RationaleFontFamily': RationaleFontFamily,
+                                         'TestNameFontColor': TestNameFontColor,
+                                         'TestNameFontFamily': TestNameFontFamily,
+                                         'FooterFontColor': FooterFontColor,
+                                         'FooterFontFamily': FooterFontFamily,
+                                          'Overlay': Overlay
+                                     };   
+                         };
+            self.togglePresentation = function() {
+                        if (self.isTesNameTime === false) {
+                            self.isTesNameTime = true;
+                        } else {
                             self.isTesNameTime = false;
+                        }
+                    };
+
+            Reveal.addEventListener('overviewshown', function(event) {
+                        $rootScope.$apply(function() {
+                            self.isOverview = true;
                         });
-                    }
-                });
+                    });
+
+            Reveal.addEventListener('overviewhidden', function(event) {
+                        $rootScope.$apply(function() {
+                            self.isOverview = false;
+                        });
+                    });
+
+              //Warning! DO NOT CHANGE  THE "==" for "==="
+            Reveal.addEventListener('slidechanged', function(event) {                  
+                    // if (startTestNamesAtPage == event.indexh + 1) {
+                        if (2 == event.indexh + 1) {
+                            $rootScope.$apply(function() {
+                                self.isTesNameTime = false;
+                            });
+                        }
+                    });
+
+// **********  Getting Slides URL Images aand description for over view  *************************************************************************************
+    GetNamesAndSlides.getdata(1004).then(function(result){
+                self.slides = result;                   
                 // slide show configuration settings
                 $timeout(function() {
                     Reveal.initialize({
@@ -232,297 +207,277 @@ angular.module('nwApp')
                             }
                         }]
                     });
-
                     Reveal.configure({});
                 }, 300);
             });
 
-
-                self.testNameFontFamily ='Roboto';
-                self.testNameFontColor ='black';
-                self.rationaleFontFamily = 'sans-serif';
-                self.rationaleFontColor ='white';
-                self.headerFontFamily = 'sans-serif';
-                self.headerFontColor ='black';
-                var TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily,RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,FooterFontColor,FooterFontFamily;
-                var themeConfigurationModel = function(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily, RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,FooterFontColor,FooterFontFamily){                    
-                          return{
-                                         'TemplateName': TemplateName,
-                                         'TemplateFileName': TemplateFileName,
-                                         'HeaderFontColor': HeaderFontColor,
-                                         'HeaderFontFamily': HeaderFontFamily,
-                                         'RationaleFontColor': RationaleFontColor,
-                                         'RationaleFontFamily': RationaleFontFamily,
-                                         'TestNameFontColor': TestNameFontColor,
-                                         'TestNameFontFamily': TestNameFontFamily,
-                                         'FooterFontColor': FooterFontColor,
-                                         'FooterFontFamily': FooterFontFamily
-                                     };   
-                         };
-
-                self.legendAboutOption = function() {
-
-                var modalInstance = $modal.open({
-                    animation: true,
-                    templateUrl: 'views/templates/configuration.html',
-                    size: '600px'
-                });
-
-                modalInstance.result.then(function() {}, function() {
-                    self.BackGround = setSettings.getBackground() + '.jpg';
-                    self.testNameFontFamily = (setSettings.getTestNameFontType() ==='')?'Roboto' : setSettings.getTestNameFontType() ;
-                    self.testNameFontColor = (setSettings.getTestNameFontColor() ==='')? 'black': setSettings.getTestNameFontColor() ;
-                    self.rationaleFontFamily = (setSettings.getRationaleFontType() === '')? 'sans-serif': setSettings.getRationaleFontType();
-                    self.rationaleFontColor = (setSettings.getRationaleFontColor()==='')? 'white' : setSettings.getRationaleFontColor();
-                    self.headerFontColor = (setSettings.getHeaderFontColor()==='')? 'black' : setSettings.getHeaderFontColor();
-                    self.headerFontFamily =(setSettings.getHeaderFontType() ==='')? 'sans-serif' : setSettings.getHeaderFontType();
-
-                    // Setting the template configuartion online
-                        TemplateName=  setSettings.getBackground();
-                        TemplateFileName =  self.BackGround ;
-                        HeaderFontColor = self.headerFontColor ;
-                        HeaderFontFamily =   self.headerFontFamily;
-                        RationaleFontColor=  self.rationaleFontColor ;
-                        RationaleFontFamily=  self.rationaleFontFamily;
-                        TestNameFontColor=  self.testNameFontColor;
-                        TestNameFontFamily=  self.testNameFontFamily;
-                        FooterFontColor= 'black';
-                        FooterFontFamily = 'Arial';
-
-                var configModel = themeConfigurationModel(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily,RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,FooterFontColor,FooterFontFamily);
-                    setSettings.postdata(configModel).then(function(result){
-                    });
-                });
-
-
-            };
-
-            self.showTemplate = false;
-
-            self.help = function() {
-                alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
-            };
-
-
-
+// **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
      GetTestNames.getdata(projectId).then(function(result) {
-                if (result.length > 0) {
-                    candidateNames = result;
-                    projectIdPrefixed = candidateNames[0].nwid;
-                    storeKey = projectIdPrefixed + 'FEED_BACK_RESULTS';
-                    self.title = candidateNames[0].Category;
-                    self.BackGround = 'Billboard.jpg';
-                    self.textAttribute = 'default';
-                    self.logoPath = 'images/LogIcons/icon-1.png';
+  
+    var centerTestNames = function(nameCandidate) {
+                        if (self.BackGround === 'Billboard') {                                      
+                            self.columnNameCandSet= '8';
+                            switch (nameCandidate.length) {
+                                case 3:
+                                    self.columnSet = '12';
+                                    break;
+                                case 4:
+                                    self.columnSet = '2';
+                                    break;
+                                case 5:
+                                    self.columnSet = '4';
+                                    break;
+                                case 6:
+                                    self.columnSet = '11';
+                                    break;
+                                case 7:
+                                    self.columnSet = '6';
+                                    break;
+                                case 8:
+                                    self.columnSet = '12';
+                                    break;
+                                case 9:
+                                    self.columnSet = '8';
+                                    break;
+                                case 10:
+                                    self.columnSet = '4';
+                                    break;
+                                default:
 
-
-                    var UpdateFeedBack = function(storedFeedBack) {
-                        self.radioButtons.map(function(obj) {
-                            if (obj.text === storedFeedBack.feedBackScore) {
-                                obj.isUserAnswer = true;
-                            } else {
-                                obj.isUserAnswer = false;
+                                    break;
                             }
-                        });
+                            switch (nameCandidate.length) {
+                                case 3:
+                                case 4:
+                                case 5:
+                                    self.columnOffSet = '4';
+                                    break;
+                                case 6:
+                                case 7:
+                                    self.columnOffSet = '3';
+                                    break;
+                                case 8:
+                                case 9:
+                                case 10:
+                                    self.columnOffSet = '2';
+                                    break;
+                                default:
+
+                                    break;
+                            }
+
+                            switch (nameCandidate.length) {
+                                case 3:
+                                    self.marginLeftTestName = '1';
+                                    break;
+                                case 4:
+                                case 8:
+                                case 9:
+                                case 10:
+                                    self.marginLeftTestName = '0';
+                                    break;
+                                case 5:
+                                case 6:
+                                case 7:
+                                    self.marginLeftTestName = '-9';
+                                    break;
+                                default:
+                                    break;
+                            }
+                            switch (nameCandidate.length) {
+                                case 3:
+                                    self.marginLeftImage = '49';
+                                    break;
+                                case 4:
+                                    self.marginLeftImage = '118';
+                                    break;
+                                case 5:
+                                    self.marginLeftImage = '119';
+                                    break;
+                                case 6:
+                                    self.marginLeftImage = '64';
+                                    break;
+                                case 7:
+                                    self.marginLeftImage = '101';
+                                    break;
+                                case 8:
+                                    self.marginLeftImage = '50';
+                                    break;
+                                case 9:
+                                    self.marginLeftImage = '72';
+                                    break;
+                                case 10:
+                                    self.marginLeftImage = '109';
+                                    break;
+                                default:
+
+                                    break;
+                            }
+
+                        }else{
+                              self.columnSet = '12';
+                              self.columnOffSet = '0';
+                              self.marginLeftImage = '0';
+                               self.marginLeftTestName = '10';
+                              self.columnNameCandSet= '12';
+                              self.textAttribute = 'center';
+                        }
+                   };//  end of centerTestNames
+
+    var setThemeOptions = function(index){
+                            self.BackGround  = candidateNames[index].TemplateName;
+                            self.testNameFontFamily  = candidateNames[index].TestNameFontFamily;
+                            self.testNameFontColor  = candidateNames[index].TestNameFontColor;
+                            self.rationaleFontFamily  = candidateNames[index].RationaleFontFamily;
+                            self.rationaleFontColor  = candidateNames[index].RationaleFontColor;
+                            self.headerFontColor  = candidateNames[index].HeaderFontColor;
+                            self.headerFontFamily = candidateNames[index].HeaderFontFamily;                                   
+                            self.nameNotation = candidateNames[index].NameNotation; 
+                            self.isOverlayAvailable =  candidateNames[index].Overlay;     
+                              if (  self.isOverlayAvailable === "True"){
+                              self.overlayStyle = 'url(http://localhost:9001/images/Backgrounds/overlay.png)'; 
+                               }  else{  self.overlayStyle = ''; }  
+                             centerTestNames(self.BackGround)               
                     };
 
-                 var centerTestNames = function(nameCandidate) {
-                                    if (self.BackGround === 'Billboard.jpg') {                                      
-                                        self.columnNameCandSet= '8';
-                                        switch (nameCandidate.length) {
-                                            case 3:
-                                                self.columnSet = '12';
-                                                break;
-                                            case 4:
-                                                self.columnSet = '2';
-                                                break;
-                                            case 5:
-                                                self.columnSet = '4';
-                                                break;
-                                            case 6:
-                                                self.columnSet = '11';
-                                                break;
-                                            case 7:
-                                                self.columnSet = '6';
-                                                break;
-                                            case 8:
-                                                self.columnSet = '12';
-                                                break;
-                                            case 9:
-                                                self.columnSet = '8';
-                                                break;
-                                            case 10:
-                                                self.columnSet = '4';
-                                                break;
-                                            default:
+    var feedBackModel = function(feedBackScore, newName, candidate, explore, avoid) {
+                        return {
+                            "feedBackScore": feedBackScore,
+                            "newName": newName,
+                            "candidate": candidate,
+                            "explore": explore,
+                            "avoid": avoid
+                        };
+                    };
 
-                                                break;
-                                        }
-                                        switch (nameCandidate.length) {
-                                            case 3:
-                                            case 4:
-                                            case 5:
-                                                self.columnOffSet = '4';
-                                                break;
-                                            case 6:
-                                            case 7:
-                                                self.columnOffSet = '3';
-                                                break;
-                                            case 8:
-                                            case 9:
-                                            case 10:
-                                                self.columnOffSet = '2';
-                                                break;
-                                            default:
 
-                                                break;
-                                        }
-
-                                        switch (nameCandidate.length) {
-                                            case 3:
-                                                self.marginLeftTestName = '1';
-                                                break;
-                                            case 4:
-                                            case 8:
-                                            case 9:
-                                            case 10:
-                                                self.marginLeftTestName = '0';
-                                                break;
-                                            case 5:
-                                            case 6:
-                                            case 7:
-                                                self.marginLeftTestName = '-9';
-                                                break;
-                                            default:
-                                                break;
-                                        }
-                                        switch (nameCandidate.length) {
-                                            case 3:
-                                                self.marginLeftImage = '49';
-                                                break;
-                                            case 4:
-                                                self.marginLeftImage = '118';
-                                                break;
-                                            case 5:
-                                                self.marginLeftImage = '119';
-                                                break;
-                                            case 6:
-                                                self.marginLeftImage = '64';
-                                                break;
-                                            case 7:
-                                                self.marginLeftImage = '101';
-                                                break;
-                                            case 8:
-                                                self.marginLeftImage = '50';
-                                                break;
-                                            case 9:
-                                                self.marginLeftImage = '72';
-                                                break;
-                                            case 10:
-                                                self.marginLeftImage = '109';
-                                                break;
-                                            default:
-
-                                                break;
-                                        }
-
-                                    }else{
-                                          self.columnSet = '12';
-                                          self.columnOffSet = '0';
-                                          self.marginLeftImage = '0';
-                                           self.marginLeftTestName = '10';
-                                          self.columnNameCandSet= '12';
-                                          self.textAttribute = 'center';
+    var updateFeedBack = function(storedFeedBack) {
+                                self.radioButtons.map(function(obj) {
+                                    if (obj.text === storedFeedBack.feedBackScore) {
+                                        obj.isUserAnswer = true;
+                                    } else {
+                                        obj.isUserAnswer = false;
                                     }
+                                });
+                        };
+             
+    var candidateNamesSize = 0;
+    var slideCounter = 0;
+    self.radioButtons = [{
+                                    id: 1,
+                                    text: "Positive",
+                                    isUserAnswer: false}, {
+                                    id: 2,
+                                    text: "Neutral",
+                                    isUserAnswer: false}, {
+                                    id: 3,
+                                    text: "Negative",
+                                    isUserAnswer: false
+                        }]; 
+                        
+    if (result.length > 0) {
+                    candidateNames = result;
+                    projectIdPrefixed = candidateNames[0].PresentationId;
+                    storeKey = projectIdPrefixed + 'FEED_BACK_RESULTS';
+                    self.textAttribute = 'default';
+                    self.logoPath = 'images/LogIcons/icon-1.png';
+                    self.isOverlayAvailable =false;
+                    self.showTemplate = false;
+                    candidateNamesSize = candidateNames.length;
+                    self.slideCounter = false;
+                    self.slideCounter2 = true;
+                    self.progressBarValue = 1;   
+                    self.positiveScore = 0;
+                    self.neutralScore = 0;
+                    self.negativeScore = 0;                 
+                    setThemeOptions(0);
+                              
+               self.resetSlide = function() {
+                            self.displayTally = false;
+                            localStorageService.clearAll();
+                            location.reload();
+                            alert('The slides are reset');
+                            self.pageNumber = 1;
+                         };
 
-                       };//  end of centerTestNames
+                self.setOverlay = function() {
+                            if (self.isOverlayAvailable === true) {
+                                self.overlayStyle = 'url(http://localhost:9001/images/Backgrounds/overlay.png)';
+                            } else {
+                                self.overlayStyle = '';
+                            }
+                         };
+
+                self.showThemeOptions = function() {self.displaySettings =  !self.displaySettings;};
+
+                self.saveThemeSettings = function() {
+                            if ( self.BackGround !== '') {
+                                var configModel = themeConfigurationModel( self.BackGround, 
+                                    self.BackGround + '.jpg', self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
+                                     self.testNameFontColor, self.testNameFontFamily, 'black', 'Arial', self.isOverlayAvailable);
+                                setSettings.postdata(configModel).then(function(result) {
+                                  alertify.alert('Your  settings for template: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');                                
+                                });
+                            }
+                        };
+          
             } else {
-                alert('The test names for this  project is notavailable plese contact IS for further support');
-            }
+                alertify.alert('The test names for this  project is not available plese contact IS for further support').set('title', 'Help info');
+        }
+     
+                var setLayoutVariables = function(nameCandidate, storedFeedBack, candidateNamesIndex) {
+                            self.isOverlayAvailable=  candidateNames[candidateNamesIndex].Overlay;
+                            self.nameCandidate =nameCandidate;                                                        
+                            self.nameCategory = candidateNames[candidateNamesIndex].NameCategory;
+                            self.nameNotation = candidateNames[candidateNamesIndex].NameNotation;
+                            self.Rationale = candidateNames[candidateNamesIndex].NameRationale;                        
+                            centerTestNames(self.nameCandidate);
+                            self.newName = (storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex].newName: '';
+                            self.explore = (storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex].explore: '';
+                            self.avoid = (storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex].avoid: '';
+                            updateFeedBack((storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex] : '');
+                              
+                       };
 
-                var candidateNamesSize = candidateNames.length;
-                var slideCounter = 0;
-                self.slideCounter = false;
-                self.slideCounter2 = true;
-                self.progressBarValue = 1;
-
-                self.radioButtons = [{
-                    id: 1,
-                    text: "Positive",
-                    isUserAnswer: false
-                }, {
-                    id: 2,
-                    text: "Neutral",
-                    isUserAnswer: false
-                }, {
-                    id: 3,
-                    text: "Negative",
-                    isUserAnswer: false
-                }];
                 // INITIAL SETUP
-                self.positiveScore = 0;
-                self.neutralScore = 0;
-                self.negativeScore = 0;
-                self.Rationale = candidateNames[0].Rationale;
+                setLayoutVariables (candidateNames[0].Name, [], 0);
                 self.pageNumber = slideCounter + 1;
                 var isStoreAvailable = localStorageService.get(storeKey);
                 var storedFeedBack = (isStoreAvailable === null) ? null : JSON.parse(localStorageService.get(storeKey));
 
                 if (storedFeedBack !== null) {
-                    storedFeedBack = storedFeedBack[0];
-                    self.newName = storedFeedBack.newName;
-                    self.nameCandidate = storedFeedBack.candidate;
-                    self.explore = storedFeedBack.explore;
-                    self.avoid = storedFeedBack.avoid;
-                    UpdateFeedBack(storedFeedBack);
-
-                    centerTestNames(self.nameCandidate);
-
+                    setLayoutVariables (candidateNames[0].Name, storedFeedBack, 0);
                 } else {
-                    self.nameCandidate = candidateNames[0].TestName;
+                    self.nameCandidate = candidateNames[0].Name;
+                    centerTestNames(self.nameCandidate);
                     self.newName = '';
                     self.explore = '';
                     self.avoid = '';
                 }
 
+              // END OF INITIAL SETUP
 
-                self.resetSlide = function() {
-                    self.displayTally = false;
-                    localStorageService.clearAll();
-                    location.reload();
-                    alert('The slides are reset');
-                    self.pageNumber = 1;
-                };
-
-                self.goPrevSlide = function() {
-
-                  var testNameSize = candidateNames[slideCounter].TestName.length;
-                    self.displayTally = false;
-                    if (slideCounter > 0) {
-                        slideCounter = slideCounter - 1;
-                        self.progressBarValue = self.progressBarValue - (100 / candidateNamesSize); // Progress Bar
-                        var storedFeedBack = JSON.parse(localStorageService.get(storeKey));
-                        if (slideCounter < storedFeedBack.length) {
-                            self.nameCandidate = storedFeedBack[slideCounter].candidate;
-                            self.newName = storedFeedBack[slideCounter].newName;
-                            self.explore = storedFeedBack[slideCounter].explore;
-                            self.avoid = storedFeedBack[slideCounter].avoid;
-                            UpdateFeedBack(storedFeedBack[slideCounter]);
+             self.goPrevSlide = function() {                
+                        self.displayTally = false;
+                        if (slideCounter > 0) {
+                            slideCounter = slideCounter - 1;
+                            self.progressBarValue = self.progressBarValue - (100 / candidateNamesSize); 
+                            var storedFeedBack = JSON.parse(localStorageService.get(storeKey));
+                            if (slideCounter < storedFeedBack.length) {
+                                setLayoutVariables (storedFeedBack[slideCounter].candidate, storedFeedBack, slideCounter); 
+                                setThemeOptions(slideCounter);
+                                self.slideCounter2 = true;
+                                self.pageNumber = slideCounter + 1;                         
+                            }
+                           
+                        } else {
+                            alertify.alert('You are in the 1rst Slide').set('title', 'Help info');
+                            self.slideCounter = false;
                             self.slideCounter2 = true;
-                            self.pageNumber = slideCounter + 1;
-                            self.Rationale = candidateNames[slideCounter].Rationale;
-                            self.title = candidateNames[slideCounter].Category;
                         }
-                        centerTestNames(self.nameCandidate);
-                        // end if
-                    } else {
-                        alert('You are in the 1rst Slide');
-                        self.slideCounter = false;
-                        self.slideCounter2 = true;
-                    }
-                };
+                    };
 
-                self.goNextSlide = function() {
+                self.goNextSlide = function() {                  
                     self.displayTally = false;
                     var feedBack = '';
                     if (slideCounter < candidateNamesSize) {
@@ -533,41 +488,34 @@ angular.module('nwApp')
                         });
 
                         if (feedBack === '') {
-                            alert('Please answer the feed back questions before continuing');
+                            alertify.alert('Please answer the feed back questions before continuing').set('title', 'Help info');
                         } else { // begin else
+
                             self.progressBarValue = self.progressBarValue + (100 / candidateNamesSize); // Progress Bar
                             var isStoreAvailable = localStorageService.get(storeKey);
                             var storedFeedBack = (isStoreAvailable === null) ? null : JSON.parse(localStorageService.get(storeKey));
                             if (storedFeedBack !== null && storedFeedBack[slideCounter + 1] !== undefined) { // record exist
-                                var getObjectAlreadyStored = storedFeedBack[slideCounter + 1];
                                 var updateBeforeData = storedFeedBack;
                                 updateBeforeData[slideCounter].newName = self.newName;
                                 updateBeforeData[slideCounter].feedBackScore = feedBack;
                                 updateBeforeData[slideCounter].candidate = self.nameCandidate;
                                 updateBeforeData[slideCounter].explore = self.explore;
                                 updateBeforeData[slideCounter].avoid = self.avoid;
-
                                 localStorageService.remove(storeKey);
                                 localStorageService.set(storeKey, JSON.stringify(updateBeforeData));
-                                self.newName = getObjectAlreadyStored.newName;
-                                self.nameCandidate = getObjectAlreadyStored.candidate;
-                                self.explore = getObjectAlreadyStored.explore;
-                                self.avoid = getObjectAlreadyStored.avoid;
-                                self.Rationale = candidateNames[slideCounter + 1].Rationale;
-                                self.title = candidateNames[slideCounter + 1].Category;
-
-                                UpdateFeedBack(getObjectAlreadyStored);
+                                setLayoutVariables (storedFeedBack[slideCounter + 1].candidate, storedFeedBack, slideCounter + 1);                         
                                 slideCounter = slideCounter + 1;
                                 self.slideCounter = true;
                                 self.pageNumber = slideCounter + 1;
-                                centerTestNames(self.nameCandidate);
+
                             } else {
+
+                                // No Local Stored feed back
                                 if (storedFeedBack === null || storedFeedBack[slideCounter] === undefined) {
                                     var val = feedBackModel(feedBack, self.newName, self.nameCandidate, self.explore, self.avoid);
                                     feedBackBox.push(val);
                                     localStorageService.set(storeKey, JSON.stringify(feedBackBox));
                                 } else {
-
                                     var updateBeforeData2 = storedFeedBack;
                                     updateBeforeData2[slideCounter].newName = self.newName;
                                     updateBeforeData2[slideCounter].feedBackScore = feedBack;
@@ -576,53 +524,40 @@ angular.module('nwApp')
                                     updateBeforeData2[slideCounter].avoid = self.avoid;
                                     localStorageService.remove(storeKey);
                                     localStorageService.set(storeKey, JSON.stringify(updateBeforeData2));
-                                }
+                                }// End Updating the slide data before next name
+
+                                    // Next Name setup
                                 if (slideCounter < candidateNamesSize - 1) {
                                     slideCounter = slideCounter + 1;
                                     self.slideCounter = true;
-                                    var addKatakana = (candidateNames[slideCounter].Kana === '') ? '' : ' , ' + candidateNames[slideCounter].Kana;
-                                    self.nameCandidate = candidateNames[slideCounter].TestName + addKatakana;
-                                    self.Rationale = candidateNames[slideCounter].Rationale;
-                                    self.title = candidateNames[slideCounter].Category;
-                                    self.newName = '';
-                                    self.explore = '';
-                                    self.avoid = '';
+                                    var addKatakana = (candidateNames[slideCounter].Kana === undefined) ? '' : ' , ' + candidateNames[slideCounter].Kana;
+                                    setLayoutVariables ( candidateNames[slideCounter].Name + addKatakana, [], slideCounter);                                           
                                     self.radioButtons = [{
-                                        id: 1,
-                                        text: "Positive",
-                                        isUserAnswer: false
-                                    }, {
-                                        id: 2,
-                                        text: "Neutral",
-                                        isUserAnswer: false
-                                    }, {
-                                        id: 3,
-                                        text: "Negative",
-                                        isUserAnswer: false
-                                    }];
+                                                    id: 1,
+                                                    text: "Positive",
+                                                    isUserAnswer: false
+                                                }, {
+                                                    id: 2,
+                                                    text: "Neutral",
+                                                    isUserAnswer: false
+                                                }, {
+                                                    id: 3,
+                                                    text: "Negative",
+                                                    isUserAnswer: false }
+                                      ];
 
                                     self.pageNumber = slideCounter;
                                 } // end if counter
                             }
 
                         } // end else
+                         setThemeOptions(slideCounter);
                     } else {
                         self.slideCounter2 = false;
-                        alert('End of the Slides');
-
+                         alertify.alert('End of the Slides').set('title', 'Help info');
                     }
                 };
-
-                var feedBackModel = function(feedBackScore, newName, candidate, explore, avoid) {
-                    return {
-                        "feedBackScore": feedBackScore,
-                        "newName": newName,
-                        "candidate": candidate,
-                        "explore": explore,
-                        "avoid": avoid
-                    };
-                };
-
+              
                 self.updateControl = function(buton) {
                     self.radioButtons.map(function(obj) {
                         if (obj.text === buton.text) {
@@ -633,8 +568,7 @@ angular.module('nwApp')
                     });
                 };
 
-                self.tally = function() {
-
+          self.tally = function() {
                     self.displayTally = true;
                     var storeObject = localStorageService.get(storeKey);
                     self.positiveScore = 0;
@@ -646,82 +580,17 @@ angular.module('nwApp')
                             if (value.feedBackScore === 'Positive') {
                                 self.positiveScore += 1;
                             }
-
                             if (value.feedBackScore === 'Neutral') {
                                 self.neutralScore += 1;
                             }
-
                             if (value.feedBackScore === 'Negative') {
                                 self.negativeScore += 1;
                             }
-
                         });
                     }
-                };
+                };// end tally
+
             }); // end of the promise call GetTestNames
         }
 
-    ])
-    .controller('SettingsCtrl', ['setSettings', function(setSettings) {
-        var self = this;
-        self.backGroundSelected = 'Billboard';
-        self.showTemplate = false;
-        self.backGroundChanged = function(MYBackGround) {
-            setSettings.setBackground(MYBackGround);
-        };
-        self.testNameFontTypeChanged = function(ft) {
-            setSettings.setTestNameFontType(ft);
-        };
-        self.testNameFontColorChanged = function(ft) {
-            setSettings.setTestNameFontColor(ft);
-        };
-        self.rationaleFontTypeChanged = function(ft) {
-            setSettings.setRationaleFontType(ft);
-        };
-        self.rationaleFontColorChanged = function(ft) {
-            setSettings.setRationaleFontColor(ft);
-        };
-            self.headerFontTypeChanged = function(ft) {
-            setSettings.setHeaderFontType(ft);
-        };
-        self.headerFontColorChanged = function(ft) {
-            setSettings.setHeaderFontColor(ft);
-        };
-
-        self.fontSizes = [
-            '8',
-            '14',
-            '20'
-        ];
-        self.colors = [
-            'red',
-
-            'blue',
-
-            'black',
-
-            'white',
-        ];
-        self.changeBackground = [
-            'default',
-            'Balloon',
-            'Billboard',
-            'BusStop',
-            'GirlWithBalloons',
-            'GreenField',
-            'NatureCouple',
-            'RedFlowers',
-            'PrescriptionPad',
-            'SeniorMan',
-            'SunCouple',
-            'Victory',
-            'WhiteFlowers',
-            'WomanWithTree',
-        ];
-        self.typeOfFont = [
-            'Serif',
-            'Sans-serif',
-            'Roboto'
-        ];
-
-    }]);
+    ]);
