@@ -11,29 +11,29 @@
 angular.module('nwApp')
     .controller('MainCtrl', ['$timeout', 'localStorageService', 'GetTestNames', 'GetSlides', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides',
         function($timeout, localStorageService, GetTestNames, GetSlides, $rootScope, $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides) {
-          
+
             var candidateNames, projectIdPrefixed, storeKey, projectId;
             var self = this;
             self.displayTally = false;
             var feedBackBox = [];
-            projectId = queryStringCheck;        
+            projectId = queryStringCheck;
             self.displaySettings =false;
             self.slides = [];
             self.isTesNameTime = true;
             self.isOverview = false;
             self.colors = ['red','blue','black','white'];
-            self.changeBackground = ['Default','Balloon','Billboard',  
+            self.changeBackground = ['Default','Balloon','Billboard',
             'GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
-            'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree', 
+            'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',
              'Cardiology','Cognition','OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue' ];
             self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore'];
             self.help = function() {
                      alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
                 };
 
-         
+
             // Model for theme configuration
-            var themeConfigurationModel = function(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily, RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,FooterFontColor,FooterFontFamily,Overlay){                    
+            var themeConfigurationModel = function(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily, RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,FooterFontColor,FooterFontFamily,Overlay){
                           return{
                                          'TemplateName': TemplateName,
                                          'TemplateFileName': TemplateFileName,
@@ -46,7 +46,7 @@ angular.module('nwApp')
                                          'FooterFontColor': FooterFontColor,
                                          'FooterFontFamily': FooterFontFamily,
                                           'Overlay': Overlay
-                                     };   
+                                     };
                          };
             self.togglePresentation = function() {
                         if (self.isTesNameTime === false) {
@@ -69,7 +69,7 @@ angular.module('nwApp')
                     });
 
               //Warning! DO NOT CHANGE  THE "==" for "==="
-            Reveal.addEventListener('slidechanged', function(event) {                  
+            Reveal.addEventListener('slidechanged', function(event) {
                     // if (startTestNamesAtPage == event.indexh + 1) {
                         if (2 == event.indexh + 1) {
                             $rootScope.$apply(function() {
@@ -80,7 +80,7 @@ angular.module('nwApp')
 
 // **********  Getting Slides URL Images aand description for over view  *************************************************************************************
     GetNamesAndSlides.getdata(1004).then(function(result){
-                self.slides = result;                   
+                self.slides = result;
                 // slide show configuration settings
                 $timeout(function() {
                     Reveal.initialize({
@@ -213,9 +213,9 @@ angular.module('nwApp')
 
 // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
      GetTestNames.getdata(projectId).then(function(result) {
-  
+
     var centerTestNames = function(nameCandidate) {
-                        if (self.BackGround === 'Billboard') {                                      
+                        if (self.BackGround === 'Billboard') {
                             self.columnNameCandSet= '8';
                             switch (nameCandidate.length) {
                                 case 3:
@@ -331,13 +331,13 @@ angular.module('nwApp')
                             self.rationaleFontFamily  = candidateNames[index].RationaleFontFamily;
                             self.rationaleFontColor  = candidateNames[index].RationaleFontColor;
                             self.headerFontColor  = candidateNames[index].HeaderFontColor;
-                            self.headerFontFamily = candidateNames[index].HeaderFontFamily;                                   
-                            self.nameNotation = candidateNames[index].NameNotation; 
-                            self.isOverlayAvailable =  candidateNames[index].Overlay;     
+                            self.headerFontFamily = candidateNames[index].HeaderFontFamily;
+                            self.nameNotation = candidateNames[index].NameNotation;
+                            self.isOverlayAvailable =  candidateNames[index].Overlay;
                               if (  self.isOverlayAvailable === "True"){
-                              self.overlayStyle = 'url(http://localhost:9001/images/Backgrounds/overlay.png)'; 
-                               }  else{  self.overlayStyle = ''; }  
-                             centerTestNames(self.BackGround)               
+                              self.overlayStyle = 'url(http://localhost:9001/images/Backgrounds/overlay.png)';
+                               }  else{  self.overlayStyle = ''; }
+                             centerTestNames(self.BackGround)
                     };
 
     var feedBackModel = function(feedBackScore, newName, candidate, explore, avoid) {
@@ -360,7 +360,7 @@ angular.module('nwApp')
                                     }
                                 });
                         };
-             
+
     var candidateNamesSize = 0;
     var slideCounter = 0;
     self.radioButtons = [{
@@ -373,8 +373,8 @@ angular.module('nwApp')
                                     id: 3,
                                     text: "Negative",
                                     isUserAnswer: false
-                        }]; 
-                        
+                        }];
+
     if (result.length > 0) {
                     candidateNames = result;
                     projectIdPrefixed = candidateNames[0].PresentationId;
@@ -386,12 +386,12 @@ angular.module('nwApp')
                     candidateNamesSize = candidateNames.length;
                     self.slideCounter = false;
                     self.slideCounter2 = true;
-                    self.progressBarValue = 1;   
+                    self.progressBarValue = 1;
                     self.positiveScore = 0;
                     self.neutralScore = 0;
-                    self.negativeScore = 0;                 
+                    self.negativeScore = 0;
                     setThemeOptions(0);
-                              
+
                self.resetSlide = function() {
                             self.displayTally = false;
                             localStorageService.clearAll();
@@ -412,31 +412,31 @@ angular.module('nwApp')
 
                 self.saveThemeSettings = function() {
                             if ( self.BackGround !== '') {
-                                var configModel = themeConfigurationModel( self.BackGround, 
+                                var configModel = themeConfigurationModel( self.BackGround,
                                     self.BackGround + '.jpg', self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
                                      self.testNameFontColor, self.testNameFontFamily, 'black', 'Arial', self.isOverlayAvailable);
                                 setSettings.postdata(configModel).then(function(result) {
-                                  alertify.alert('Your  settings for template: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');                                
+                                  alertify.alert('Your  settings for template: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
                                 });
                             }
                         };
-          
+
             } else {
                 alertify.alert('The test names for this  project is not available plese contact IS for further support').set('title', 'Help info');
         }
-     
+
                 var setLayoutVariables = function(nameCandidate, storedFeedBack, candidateNamesIndex) {
                             self.isOverlayAvailable=  candidateNames[candidateNamesIndex].Overlay;
-                            self.nameCandidate =nameCandidate;                                                        
+                            self.nameCandidate =nameCandidate;
                             self.nameCategory = candidateNames[candidateNamesIndex].NameCategory;
                             self.nameNotation = candidateNames[candidateNamesIndex].NameNotation;
-                            self.Rationale = candidateNames[candidateNamesIndex].NameRationale;                        
+                            self.Rationale = candidateNames[candidateNamesIndex].NameRationale;
                             centerTestNames(self.nameCandidate);
                             self.newName = (storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex].newName: '';
                             self.explore = (storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex].explore: '';
                             self.avoid = (storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex].avoid: '';
                             updateFeedBack((storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex] : '');
-                              
+
                        };
 
                 // INITIAL SETUP
@@ -457,19 +457,19 @@ angular.module('nwApp')
 
               // END OF INITIAL SETUP
 
-             self.goPrevSlide = function() {                
+             self.goPrevSlide = function() {
                         self.displayTally = false;
                         if (slideCounter > 0) {
                             slideCounter = slideCounter - 1;
-                            self.progressBarValue = self.progressBarValue - (100 / candidateNamesSize); 
+                            self.progressBarValue = self.progressBarValue - (100 / candidateNamesSize);
                             var storedFeedBack = JSON.parse(localStorageService.get(storeKey));
                             if (slideCounter < storedFeedBack.length) {
-                                setLayoutVariables (storedFeedBack[slideCounter].candidate, storedFeedBack, slideCounter); 
+                                setLayoutVariables (storedFeedBack[slideCounter].candidate, storedFeedBack, slideCounter);
                                 setThemeOptions(slideCounter);
                                 self.slideCounter2 = true;
-                                self.pageNumber = slideCounter + 1;                         
+                                self.pageNumber = slideCounter + 1;
                             }
-                           
+
                         } else {
                             alertify.alert('You are in the 1rst Slide').set('title', 'Help info');
                             self.slideCounter = false;
@@ -477,7 +477,7 @@ angular.module('nwApp')
                         }
                     };
 
-                self.goNextSlide = function() {                  
+                self.goNextSlide = function() {
                     self.displayTally = false;
                     var feedBack = '';
                     if (slideCounter < candidateNamesSize) {
@@ -503,7 +503,7 @@ angular.module('nwApp')
                                 updateBeforeData[slideCounter].avoid = self.avoid;
                                 localStorageService.remove(storeKey);
                                 localStorageService.set(storeKey, JSON.stringify(updateBeforeData));
-                                setLayoutVariables (storedFeedBack[slideCounter + 1].candidate, storedFeedBack, slideCounter + 1);                         
+                                setLayoutVariables (storedFeedBack[slideCounter + 1].candidate, storedFeedBack, slideCounter + 1);
                                 slideCounter = slideCounter + 1;
                                 self.slideCounter = true;
                                 self.pageNumber = slideCounter + 1;
@@ -531,7 +531,7 @@ angular.module('nwApp')
                                     slideCounter = slideCounter + 1;
                                     self.slideCounter = true;
                                     var addKatakana = (candidateNames[slideCounter].Kana === undefined) ? '' : ' , ' + candidateNames[slideCounter].Kana;
-                                    setLayoutVariables ( candidateNames[slideCounter].Name + addKatakana, [], slideCounter);                                           
+                                    setLayoutVariables ( candidateNames[slideCounter].Name + addKatakana, [], slideCounter);
                                     self.radioButtons = [{
                                                     id: 1,
                                                     text: "Positive",
@@ -557,7 +557,7 @@ angular.module('nwApp')
                          alertify.alert('End of the Slides').set('title', 'Help info');
                     }
                 };
-              
+
                 self.updateControl = function(buton) {
                     self.radioButtons.map(function(obj) {
                         if (obj.text === buton.text) {

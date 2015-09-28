@@ -87,6 +87,7 @@ label {
         <div class="reveal">
             <div class="slides">
                 <section ng-repeat="slide in  main.slides" style="top: -46px !important; display: block;" data-index="{{$index}}">
+                    <button type="button" class="btn btn-primary glyphicon glyphicon-question-sign pull-right btn-question-style" ng-show="main.isTesNameTime" ng-click="main.help()"></button>
                     <img ng-src="{{slide.SlideBGFileName}}">
                     <br>
                     <h3 ng-show="main.isOverview" style="color:black" class="text-center">{{slide.SlideDescription +' '}} {{$index}}
@@ -123,7 +124,7 @@ label {
                             </div>
                         </div>
                         <div class="col-md-8 text-Primary text-center" auto-font-size id="category" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}">
-                    {{main.nameCategory}} 
+                    {{main.nameCategory}}
                         </div>
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}">
                             <div class="btn-group" role="group">
@@ -151,23 +152,23 @@ label {
                         </div>
                     </div>
                     <div class="row" style="height: 300px;">
-                        <div class="col-md-{{main.columnSet}} col-md-offset-{{main.columnOffSet}}">                         
+                        <div class="col-md-{{main.columnSet}} col-md-offset-{{main.columnOffSet}}">
                                 <div class="col-md-1 "><img ng-show="main.BackGround == 'Billboard'" width='150' style="padding: 5px; margin-top: -25px; margin-left: -{{main.marginLeftImage}}px;" ng-src="images/LogIcons/icon-1.png" />
                                 </div>
-                                <div class="col-md-{{main.columnNameCandSet}} text-{{main.textAttribute}} " 
-                                style="padding: 10px;  
+                                <div class="col-md-{{main.columnNameCandSet}} text-{{main.textAttribute}} "
+                                style="padding: 10px;
                                 background-image:{{main.overlayStyle}};
-                                  width: 85%; padding-bottom:35px; 
+                                  width: 85%; padding-bottom:35px;
                                   margin-left: {{main.marginLeftTestName}}px;
                                   max-height: 130px;
                                   font-family:{{main.testNameFontFamily}}; border-radius: 5px;
                                   color:{{main.testNameFontColor}}" id="testName" auto-font-size noSelection>
                                     {{main.nameCandidate}}
-                                </div>                      
+                                </div>
                         </div>
                     </div>
                     <div class="row" style="height: 120px;">
-                        <div class="btn col-md-12 text-default text-center bg-primary" id="rationale" style="font-size: xx-large; cursor: default; text-align: center; width: 98%; margin-left: 10px; padding:20px; 
+                        <div class="btn col-md-12 text-default text-center bg-primary" id="rationale" style="font-size: xx-large; cursor: default; text-align: center; width: 98%; margin-left: 10px; padding:20px;
                                  font-family:{{main.rationaleFontFamily}}; color:{{main.rationaleFontColor}}" auto-font-size noSelection>
                             {{main.Rationale}}
                         </div>
@@ -190,7 +191,7 @@ label {
             </div>
             <div class="row" style="padding: 10px 0 10px 0;">
                 <div class="col-md-5">
-                    <div class="col-md-8  btn btn-primary ">                      
+                    <div class="col-md-8  btn btn-primary ">
                         <div class="col-md-9" >
                             <p class="text-left"> Propietary & Confidential</p>
                         </div>
@@ -235,7 +236,7 @@ label {
             <h4 class="text text-primary">Header & Background Settings</h4>
         </div>
     </div>
-      <div class="row form-group">        
+      <div class="row form-group">
         <div class="col-md-6">
             <select class="btn btn-primary"  ng-model="main.BackGround"
             ng-change="main.backGroundChanged(main.BackGround)"
@@ -244,16 +245,16 @@ label {
             </select>
         </div>
     </div>
-    <div class="row form-group">    
+    <div class="row form-group">
         <div class="col-md-6">
             <select class="btn btn-primary" ng-model="main.headerFontFamily" id="bgselection" ng-change="main.headerFontTypeChanged(main.headerFontFamily)" ng-options="header for header in main.typeOfFont" ></select>
         </div>
     </div>
-    <div class="row form-group">       
+    <div class="row form-group">
         <div class="col-md-6">
             <select  class="btn btn-primary"  ng-model="main.headerFontColor"   ng-change="main.headerFontColorChanged(main.headerFontColor)" ng-options="headercolor for headercolor in main.colors"></select>
         </div>
-    </div>  
+    </div>
     <hr>
     <div class="row gap">
         <div class="col-md-12">
@@ -265,7 +266,7 @@ label {
             <select  class="btn btn-primary" ng-model="main.testNameFontFamily" id="bgselection" ng-change="main.testNameFontTypeChanged(main.testNameFontFamily)" ng-options="font for font in main.typeOfFont"></select>
         </div>
     </div>
-    <div class="row form-groupgap">      
+    <div class="row form-groupgap">
         <div class="col-md-6">
             <select  class="btn btn-primary" ng-model="main.testNameFontColor" ng-change="main.testNameFontColorChanged(main.testNameFontColor)" ng-options="color for color in main.colors"></select>
         </div>
@@ -276,12 +277,12 @@ label {
             <h4 class="text text-primary">Rationale Settings</h4>
         </div>
     </div>
-    <div class="row form-group">    
+    <div class="row form-group">
         <div class="col-md-6">
             <select class="btn btn-primary"  ng-model="main.rationaleFontFamily" id="bgselection" ng-change="main.rationaleFontTypeChanged(main.rationaleFontFamily)" ng-options="rationale for rationale in main.typeOfFont"></select>
         </div>
     </div>
-    <div class="row form-group">        
+    <div class="row form-group">
         <div class="col-md-6">
             <select  class="btn btn-primary" ng-model="main.rationaleFontColor" ng-change="main.rationaleFontColorChanged(main.rationaleFontColor)" ng-options="color for color in main.colors"></select>
         </div>
@@ -344,4 +345,3 @@ label {
         </div>
     </div>
 </div>
-
