@@ -26,7 +26,7 @@ angular.module('nwApp')
             'GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
             'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree', 
              'Cardiology','Cognition','OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue' ];
-            self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore'];
+            self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore','Lato'];
             self.help = function() {
                      alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
                 };
@@ -334,9 +334,10 @@ angular.module('nwApp')
                             self.headerFontFamily = candidateNames[index].HeaderFontFamily;                                   
                             self.nameNotation = candidateNames[index].NameNotation; 
                             self.isOverlayAvailable =  candidateNames[index].Overlay;     
-                              if (  self.isOverlayAvailable === "True"){
+                              if (self.isOverlayAvailable === "True" || self.isOverlayAvailable === true){
+                              self.isOverlayAvailable = true;
                               self.overlayStyle = 'url(http://localhost:9001/images/Backgrounds/overlay.png)'; 
-                               }  else{  self.overlayStyle = ''; }  
+                               }  else{  self.overlayStyle = ''; self.isOverlayAvailable = false; }  
                              centerTestNames(self.BackGround)               
                     };
 
@@ -362,6 +363,7 @@ angular.module('nwApp')
                         };
              
     var candidateNamesSize = 0;
+  
     var slideCounter = 0;
     self.radioButtons = [{
                                     id: 1,
@@ -384,6 +386,7 @@ angular.module('nwApp')
                     self.isOverlayAvailable =false;
                     self.showTemplate = false;
                     candidateNamesSize = candidateNames.length;
+                    self.totalOfTestNames = candidateNames.length;
                     self.slideCounter = false;
                     self.slideCounter2 = true;
                     self.progressBarValue = 1;   
@@ -416,7 +419,7 @@ angular.module('nwApp')
                                     self.BackGround + '.jpg', self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
                                      self.testNameFontColor, self.testNameFontFamily, 'black', 'Arial', self.isOverlayAvailable);
                                 setSettings.postdata(configModel).then(function(result) {
-                                  alertify.alert('Your  settings for template: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');                                
+                                  alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');                                
                                 });
                             }
                         };

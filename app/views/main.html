@@ -72,15 +72,13 @@ label {
     left: 1075px;
 }
 
-.settings{
+.settings {
     float: right;
     top: 12px;
     right: 0px;
     position: fixed;
 }
 </style>
-
-
 <!-- Slide Show -->
 <div class="row" ng-show="main.isTesNameTime">
     <div class="col-md-12">
@@ -96,8 +94,6 @@ label {
         </div>
     </div>
 </div>
-
-
 <div class="container-fluid">
     <!-- NW -->
     <div class="backgroundStyle" ng-show="main.isTesNameTime===false">
@@ -123,13 +119,13 @@ label {
                             </div>
                         </div>
                         <div class="col-md-8 text-Primary text-center" auto-font-size id="category" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}">
-                    {{main.nameCategory}} 
+                            {{main.nameCategory}}
                         </div>
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-primary  glyphicon " ng-click="main.tally()" style="color:white; font-family:arial">Tally
+                                <button type="button" class="btn btn-default  glyphicon " ng-click="main.tally()" style="font-family:arial">Tally
                                 </button>
-                                <button type="button" class="btn btn-primary   glyphicon glyphicon-cog" data-toggle="dropdown" ng-click="main.showThemeOptions()"></button>
+                                <button type="button" class="btn btn-default   glyphicon glyphicon-cog" data-toggle="dropdown" ng-click="main.showThemeOptions()"></button>
                             </div>
                             <div class="row  " ng-show="main.displayTally">
                                 <div class="col-md-8">
@@ -151,19 +147,18 @@ label {
                         </div>
                     </div>
                     <div class="row" style="height: 300px;">
-                        <div class="col-md-{{main.columnSet}} col-md-offset-{{main.columnOffSet}}">                         
-                                <div class="col-md-1 "><img ng-show="main.BackGround == 'Billboard'" width='150' style="padding: 5px; margin-top: -25px; margin-left: -{{main.marginLeftImage}}px;" ng-src="images/LogIcons/icon-1.png" />
-                                </div>
-                                <div class="col-md-{{main.columnNameCandSet}} text-{{main.textAttribute}} " 
-                                style="padding: 10px;  
+                        <div class="col-md-{{main.columnSet}} col-md-offset-{{main.columnOffSet}}">
+                            <div class="col-md-1 "><img ng-show="main.BackGround == 'Billboard' || main.BackGround == 'SubwayStop'" width='150' style="padding: 5px; margin-top: -25px; margin-left: -{{main.marginLeftImage}}px;" ng-src="images/LogIcons/icon-1.png" />
+                            </div>
+                            <div class="col-md-{{main.columnNameCandSet}} text-{{main.textAttribute}} " style="padding: 10px;  
                                 background-image:{{main.overlayStyle}};
                                   width: 85%; padding-bottom:35px; 
                                   margin-left: {{main.marginLeftTestName}}px;
                                   max-height: 130px;
                                   font-family:{{main.testNameFontFamily}}; border-radius: 5px;
                                   color:{{main.testNameFontColor}}" id="testName" auto-font-size noSelection>
-                                    {{main.nameCandidate}}
-                                </div>                      
+                                {{main.nameCandidate}}
+                            </div>
                         </div>
                     </div>
                     <div class="row" style="height: 120px;">
@@ -188,72 +183,72 @@ label {
                     </div>
                 </div>
             </div>
-            <div class="row" style="padding: 10px 0 10px 0;">
-                <div class="col-md-5">
-                    <div class="col-md-8  btn btn-primary ">                      
-                        <div class="col-md-9" >
-                            <p class="text-left"> Propietary & Confidential</p>
+            <div class="row">
+                <div class="col-md-12" style="position: relative; bottom: -23px;">
+                    <div class="col-md-4">
+                        <div class="btn-group text-primary">
+                            <button type="button" class="btn btn-default" aria-label="Left Align">
+                                <span aria-hidden="true"></span>Propietary & Confidential</button>
+                            <button type="button" class="btn btn-default" aria-label="Center Align" ng-show="main.nameNotation.length > 0">
+                                <span aria-hidden="true" ></span>{{main.nameNotation}}</button>
                         </div>
-                          <div class="col-md-3">
-                            <p class="text-left">{{main.nameNotation}}</p>
+                    </div>
+                    <div class="col-md-4 text-align: center;" >
+                        <div class="btn-group ">
+                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.togglePresentation()" >
+                                <span class="glyphicon glyphicon-blackboard" aria-hidden="true">                       
+                        </span>
+                            </button>
+                            <button type="button" class="btn btn-default" aria-label="Center Align">
+                                <span aria-hidden="true"></span>Reset Slide</button>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <a>
-                            <span ng-click="main.togglePresentation()" style="font-size: 40px; border: 1px solid white" class="glyphicon glyphicon-blackboard iconbuttom pull-right"></span>
-                            <a/>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-primary pull-left" ng-click="main.resetSlide()" style="width:115px; margin-left: 10px">Reset Slide</button>
-                </div>
-                <div class="col-md-3">
-                    <div class="col-md-4">
-                        <button ng-click="main.goPrevSlide()" type="button" class="btn btn-primary" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <div class="col-md-5">
-                        <button ng-click="main.goNextSlide()" type="button" class="btn btn-primary" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <div class="col-md-3">
-                        <button class="btn btn-primary" style="cursor:text; float:right"> <span class="badge">{{main.pageNumber}}</span></button>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goPrevSlide()">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">                        
+                    </span>
+                            </button>
+                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goNextSlide()">
+                                <span class="glyphicon glyphicon-chevron-right"  aria-hidden="true">                        
+                    </span>
+                            </button>
+                            <button type="button" class="btn btn-default" aria-label="Left Align">
+                                <span>{{main.pageNumber}} / {{main.totalOfTestNames}} 
+                    </span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
+</div>
+</div>
 <!-- Side menu Settings-->
-<div class="container-fluid settings slide" ng-show="main.displaySettings" >
+<div class="container-fluid settings slide" ng-show="main.displaySettings">
     <div class="row">
         <div class="col-md-12">
             <h4 class="text text-primary">Header & Background Settings</h4>
         </div>
     </div>
-      <div class="row form-group">        
+    <div class="row form-group">
         <div class="col-md-6">
-            <select class="btn btn-primary"  ng-model="main.BackGround"
-            ng-change="main.backGroundChanged(main.BackGround)"
-            ng-options="BackGround for BackGround in main.changeBackground"
-            ng-init="main.BackGround" >
+            <select class="btn btn-primary" ng-model="main.BackGround" ng-change="main.backGroundChanged(main.BackGround)" ng-options="BackGround for BackGround in main.changeBackground" ng-init="main.BackGround">
             </select>
         </div>
     </div>
-    <div class="row form-group">    
+    <div class="row form-group">
         <div class="col-md-6">
-            <select class="btn btn-primary" ng-model="main.headerFontFamily" id="bgselection" ng-change="main.headerFontTypeChanged(main.headerFontFamily)" ng-options="header for header in main.typeOfFont" ></select>
+            <select class="btn btn-primary" ng-model="main.headerFontFamily" id="bgselection" ng-change="main.headerFontTypeChanged(main.headerFontFamily)" ng-options="header for header in main.typeOfFont"></select>
         </div>
     </div>
-    <div class="row form-group">       
+    <div class="row form-group">
         <div class="col-md-6">
-            <select  class="btn btn-primary"  ng-model="main.headerFontColor"   ng-change="main.headerFontColorChanged(main.headerFontColor)" ng-options="headercolor for headercolor in main.colors"></select>
+            <input type="color" class="bg-primary" ng-model="main.headerFontColor" ng-change="main.headerFontColorChanged(main.headerFontColor)" />
         </div>
-    </div>  
+    </div>
     <hr>
     <div class="row gap">
         <div class="col-md-12">
@@ -262,12 +257,12 @@ label {
     </div>
     <div class="row form-group gap">
         <div class="col-md-6">
-            <select  class="btn btn-primary" ng-model="main.testNameFontFamily" id="bgselection" ng-change="main.testNameFontTypeChanged(main.testNameFontFamily)" ng-options="font for font in main.typeOfFont"></select>
+            <select class="btn btn-primary" ng-model="main.testNameFontFamily" id="bgselection" ng-change="main.testNameFontTypeChanged(main.testNameFontFamily)" ng-options="font for font in main.typeOfFont"></select>
         </div>
     </div>
-    <div class="row form-groupgap">      
+    <div class="row form-groupgap">
         <div class="col-md-6">
-            <select  class="btn btn-primary" ng-model="main.testNameFontColor" ng-change="main.testNameFontColorChanged(main.testNameFontColor)" ng-options="color for color in main.colors"></select>
+            <input type="color" class="bg-primary" ng-model="main.testNameFontColor" ng-change="main.testNameFontColorChanged(main.testNameFontColor)" />
         </div>
     </div>
     <hr>
@@ -276,27 +271,28 @@ label {
             <h4 class="text text-primary">Rationale Settings</h4>
         </div>
     </div>
-    <div class="row form-group">    
+    <div class="row form-group">
         <div class="col-md-6">
-            <select class="btn btn-primary"  ng-model="main.rationaleFontFamily" id="bgselection" ng-change="main.rationaleFontTypeChanged(main.rationaleFontFamily)" ng-options="rationale for rationale in main.typeOfFont"></select>
+            <select class="btn btn-primary" ng-model="main.rationaleFontFamily" id="bgselection" ng-change="main.rationaleFontTypeChanged(main.rationaleFontFamily)" ng-options="rationale for rationale in main.typeOfFont"></select>
         </div>
     </div>
-    <div class="row form-group">        
+    <div class="row form-group">
         <div class="col-md-6">
-            <select  class="btn btn-primary" ng-model="main.rationaleFontColor" ng-change="main.rationaleFontColorChanged(main.rationaleFontColor)" ng-options="color for color in main.colors"></select>
+            <input type="color" class="bg-primary" ng-model="main.rationaleFontColor" ng-change="main.rationaleFontColorChanged(main.rationaleFontColor)">
+            </select>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 ">
-           <input  ng-model="main.isOverlayAvailable" ng-change="main.setOverlay()" value="main.isOverlayAvailable" type="checkbox" /><div class="text text-primary ">Overlay</div>
+            <p class="text text-primary">
+                <input type="checkbox" style="margin-right: 5px;" ng-model="main.isOverlayAvailable" ng-change="main.setOverlay()" value="main.isOverlayAvailable" />Overlay</p>
         </div>
         <div class="col-md-6 ">
-             <button class="btn btn-success pull-right " ng-click="main.saveThemeSettings()">Save</button>
+            <button class="btn btn-success pull-right " ng-click="main.saveThemeSettings()">Save</button>
         </div>
     </div>
     <hr>
 </div>
-
 <!--Templates For help-->
 <div class="container-fluid" id="help" style="display:none">
     <div class="row">
@@ -344,4 +340,3 @@ label {
         </div>
     </div>
 </div>
-

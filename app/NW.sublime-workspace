@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"ngs",
+				"ng-show	AngularJS"
+			],
+			[
+				"ng-in",
+				"ng-init	AngularJS"
+			],
+			[
 				"sty",
 				"style	Attr"
 			],
@@ -272,21 +280,42 @@
 	"buffers":
 	[
 		{
-			"file": "scripts/controllers/main.js",
+			"file": "views/main.html",
 			"settings":
 			{
-				"buffer_size": 28036,
+				"buffer_size": 16128,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "<style type=\"text/css\">\n/*use this to change the height of the page slide*/\n\n.space {\n    margin-bottom: 53px;\n}\n\n.backgroundStyle {\n    border: solid 5px #93A1A1;\n    background-color: #E1E1E1;\n    background: -webkit-linear-gradient(white, white, #E1E1E1);\n    /* For Safari 5.1 to 6.0 */\n    background: -o-linear-gradient(white, white, #E1E1E1);\n    /* For Opera 11.1 to 12.0 */\n    background: -moz-linear-gradient(white, white, #E1E1E1);\n    /* For Firefox 3.6 to 15 */\n    background: linear-gradient(white, white, #E1E1E1);\n    /* Standard syntax (must be last) */\n    height: 100%;\n}\n\n.headerBackground {\n    margin-bottom: 10px;\n    margin: 0px;\n    background-image: url(images/Slide2.JPG);\n    margin-bottom: 14px;\n    background-repeat: no-repeat;\n    border-bottom: solid 5px #002A8E;\n}\n\n.inputBakcgroundimage {\n    height: 35px;\n    width: 150px;\n    border-radius: 5px;\n}\n\nlabel {\n    font-size: 22px !important;\n    font-weight: 100;\n}\n\n.feedBack {\n    border: 0px;\n    width: 20px;\n    height: 1em;\n    margin: 10px;\n    margin-left: -25px !important;\n}\n\n.roundCorners {\n    border-radius: 5px;\n}\n\n.gap {\n    padding-bottom: 10px;\n}\n\n.noSelection {\n    -webkit-user-select: none;\n    /* webkit (safari, chrome) browsers */\n    -moz-user-select: none;\n    /* mozilla browsers */\n    -khtml-user-select: none;\n    /* webkit (konqueror) browsers */\n    -ms-user-select: none;\n    /* IE10+ */\n}\n\n.btn-question-style {\n    position: fixed;\n    top: 35px;\n    left: 1075px;\n}\n</style>\n</body>\n<div class=\"row\" ng-show=\"main.isTesNameTime\">\n    <div class=\"col-md-12\">\n        <div class=\"reveal\">\n            <div class=\"slides\">\n                <section ng-repeat=\"slide in  main.slides\" style=\"top: -46px !important; display: block;\" data-index=\"{{$index}}\">\n                    <img ng-src=\"{{slide}}\">\n                    <br>\n                    <h3 ng-show=\"main.isOverview\" style=\"color:black\" class=\"text-center\">{{main.slideTitle}}{{$index}}\n                    </h3>\n                </section>\n            </div>\n        </div>\n    </div>\n</div>\n<!-- Slide Show -->\n<div class=\"container-fluid\">\n    <!-- NW -->\n    <div class=\"backgroundStyle\" ng-show=\"main.isTesNameTime===false\">\n        <div class=\"container-fluid\" style=\"background-image: url(images/Backgrounds/{{main.BackGround}}.jpg); !important;color:white; background-repeat: no-repeat; background-size: cover;height:800px;\">\n            <div class=\"row\" style=\"height: 30px;\">\n                <div class=\"col-md-12\">\n                    <div class=\"progress\" style=\"height: 5px;\" max=\"max\" value=\"dynamic\">\n                        <div class=\"progress-bar progress-bar-success\" role=\"progressbar\" ng-style=\"{width: (main.progressBarValue) + '%'}\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"col-md-12\">\n                    <div class=\"row\" style=\"height: 175px;\">\n                        <div class=\"col-md-2\">\n                            <div class=\"radio\">\n                                <div ng-repeat=\"buton in main.radioButtons\" style=\"font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}\">\n                                    <label>\n                                        <input class=\"feedBack\" type=\"radio\" name=\"feedback\" ng-model=\"buton.isUserAnswer\" ng-change=\"main.updateControl(buton)\" ng-value=\"true\" /> {{buton.text}}\n                                    </label>\n                                </div>\n                            </div>\n                        </div>\n                        <div class=\"col-md-8 text-Primary text-center\" auto-font-size id=\"category\" style=\"font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}\">\n                            {{main.title}}\n                        </div>\n                        <div class=\"col-md-2\" style=\"font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}\">\n                            <div class=\"btn-group\" role=\"group\">\n                                <button type=\"button\" class=\"btn btn-primary  glyphicon \" ng-click=\"main.tally()\" style=\"color:white; font-family:arial\">Tally\n                                </button>\n                                <button type=\"button\" class=\"btn btn-primary   glyphicon glyphicon-cog\" data-toggle=\"dropdown\" ng-click=\"main.legendAboutOption()\"></button>\n                            </div>\n                            <div class=\"row  \" ng-show=\"main.displayTally\">\n                                <div class=\"col-md-8\">\n                                    <label style=\"margin-bottom: 5px; width:100px; cursor:text;float: left; \">Positive\n                                    </label>\n                                </div>\n                                <div class=\"col-md-4\">\n                                    <span style=\"font-size:22px;\">{{main.positiveScore}}</span>\n                                </div>\n                            </div>\n                            <div class=\"row  \" ng-show=\"main.displayTally\">\n                                <div class=\"col-md-8\">\n                                    <label style=\"margin-bottom: 5px; width:100px; cursor:text;float: left;\">Neutral\n                                    </label>\n                                </div>\n                                <div style=\"font-size:22px;\" class=\"col-md-4\"> <span class=\"\">{{main.neutralScore}}</span>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"row\" style=\"height: 300px;\">\n                        <div class=\"col-md-{{main.columnSet}} col-md-offset-{{main.columnOffSet}}\">\n                            <div>\n                                <div class=\"col-md-1 \"><img ng-show=\"main.BackGround == 'Billboard'\" width='150' style=\"padding: 5px; margin-top: -25px; margin-left: -{{main.marginLeftImage}}px;\" ng-src=\"images/LogIcons/icon-1.png\" />\n                                </div>\n                                <div class=\"col-md-8 text-default \" style=\"max-height: 300px; background-color:rgba(255,255,128,0,5); padding-bottom:35px; margin-left: {{main.marginLeftTestName}}px;\n                                font-family:{{main.testNameFontFamily}}; color:{{main.testNameFontColor}}\" id=\"testName\" auto-font-size noSelection>\n                                    {{main.nameCandidate}}\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"row\" style=\"height: 120px;\">\n                        <div class=\"btn col-md-12 text-default text-center  bg-primary\" style=\"font-size: xx-large; cursor: default; text-align: center; width: 98%; margin-left: 10px; padding:20px; \n                                 font-family:{{main.rationaleFontFamily}}; color:{{main.rationaleFontColor}}\" auto-font-size noSelection>\n                            {{main.Rationale}}\n                        </div>\n                    </div>\n                    <div class=\"row\" style=\"height:60px;\">\n                        <div class=\"col-md-12\">\n                            <input type=\"text\" placeholder=\"New Names\" class=\"roundCorners\" ng-model=\"main.newName\" style=\"font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black\" autofocus/>\n                            <!--   <input type=\"text\" placeholder=\"New Names\" class=\"roundCorners\" ng-model=\"main.newName\" style=\"font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black\" autofocus/> -->\n                        </div>\n                    </div>\n                    <div class=\"row\" style=\"height: 50px;\">\n                        <div class=\"col-md-6\">\n                            <input type=\"text\" class=\"center-block; roundCorners\" ng-model=\"main.explore\" placeholder=\"EXPLORE\" style=\"font-size: x-large; text-align: center; width: 500px; height: 39px; border: solid 2px green;color:black\" />\n                        </div>\n                        <div class=\"col-md-6\">\n                            <input type=\"text\" class=\"center-block; roundCorners\" ng-model=\"main.avoid\" placeholder=\"AVOID\" style=\"font-size: x-large; text-align: center; width: 500px; height: 39px;border: solid 2px red;color:black\" />\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"row\" style=\"padding: 10px 0 10px 0; color:black\">\n                <div class=\"col-md-5\">\n                    <div class=\"col-md-8 \">\n                        <div class=\"col-md-2\" style=\"background-color:rgba(255,255,255,0.8);\">\n                            <p class=\"text-left\"> (C)</p>\n                        </div>\n                        <div class=\"col-md-10\" style=\"background-color:rgba(255,255,255,0.8);\">\n                            <p class=\"text-left\"> Propietary & Confidential</p>\n                        </div>\n                    </div>\n                    <div class=\"col-md-3\">\n                        <a>\n                            <!-- ngsf-toggle-fullscreen icon=\"fullscreen\" -->\n                            <span ng-click=\"main.togglePresentation()\" style=\"font-size: xx-large;\" class=\"glyphicon glyphicon-blackboard iconbuttom\"></span>\n                            <a/>\n                    </div>\n                </div>\n                <div class=\"col-md-4\">\n                    <button class=\"btn btn-primary pull-left\" ng-click=\"main.resetSlide()\" style=\"width:115px; margin-left: 10px\">Reset Slide</button>\n                </div>\n                <div class=\"col-md-3\">\n                    <div class=\"col-md-4\">\n                        <button ng-click=\"main.goPrevSlide()\" type=\"button\" class=\"btn btn-primary\" aria-label=\"Left Align\">\n                            <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>\n                        </button>\n                    </div>\n                    <div class=\"col-md-5\">\n                        <button ng-click=\"main.goNextSlide()\" type=\"button\" class=\"btn btn-primary\" aria-label=\"Left Align\">\n                            <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>\n                        </button>\n                    </div>\n                    <div class=\"col-md-3\">\n                        <button class=\"btn btn-primary\" style=\"cursor:text; float:right\"> <span class=\"badge\">{{main.pageNumber}}</span></button>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n</div>\n<!--Templates For help-->\n<div <div class=\"container-fluid\" id=\"help\" style=\"display:none\">\n    <div class=\"row\">\n        <div class=\"col-md-12\">\n            <div class=\"row\">\n                <div class=\"col-md-3\">\n                    <img alt=\"\" ng-src=\"images/HelpImages/F.PNG\" width=\"50px\" class=\"img-rounded center-block gap\" />\n                </div>\n                <div class=\"col-md-9\">\n                    <h4>\n                            Press F key to go Full-Screen and scape key to exit\n                     </h4>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"col-md-3\" height=\"60px\">\n                    <img alt=\"\" ng-src=\"images/HelpImages/O.PNG\" width=\"50px\" class=\"img-rounded center-block gap\" />\n                </div>\n                <div class=\"col-md-9\">\n                    <h4>\n                            Press O key to overview the slides\n                    </h4>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"col-md-3\">\n                    <img alt=\"\" src=\"images/HelpImages/Space.PNG\" width=\"70px\" class=\"img-rounded center-block gap\" />\n                </div>\n                <div class=\"col-md-9\">\n                    <h4>\n                               Press Space Bar key to go forward on the slides\n                    </h4>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"col-md-3\">\n                    <img alt=\"\" src=\"images/HelpImages/ArrowKeys.PNG\" width=\"100px\" class=\"img-rounded center-block gap\" />\n                </div>\n                <div class=\"col-md-9\">\n                    <h4>\n                               Press the Arrow Keys  to go forward on the slides\n                    </h4>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n",
-			"file": "views/main.html",
-			"file_size": 13461,
-			"file_write_time": 130869956625566561,
+			"file": "scripts/services/getDataFactory.js",
 			"settings":
 			{
-				"buffer_size": 12581,
+				"buffer_size": 5953,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scripts/controllers/main.js",
+			"settings":
+			{
+				"buffer_size": 30764,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scripts/app.js",
+			"settings":
+			{
+				"buffer_size": 2050,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 4013,
 				"line_ending": "Windows"
 			}
 		}
@@ -387,21 +416,30 @@
 	"expanded_folders":
 	[
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/images/LogIcons",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/controllers",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/directives",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/services",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/styles",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/views",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/views/templates",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/auto-font-size",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/auto-font-size/dist",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/reveal-js/js"
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/auto-font-size/dist"
 	],
 	"file_history":
 	[
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/controllers/main.js",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/auto-font-size/dist/auto_font_size.js",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/views/templates/configuration.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/app.js",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/index.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/directives/font-and-back-ground-settings.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/directives/keyboard-listener.js",
+		"/C/Users/cvega/AppData/Local/Temp/Rar$DRa0.290/main.html",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/angular-route/angular-route.min.js",
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/angular-route/angular-route.min.js.map",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/services/getDataFactory.js",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/reveal-js/js/reveal.js",
 		"/C/Users/cvega/Desktop/W/stellashop.1.0/files/StellaShop.json",
@@ -413,10 +451,6 @@
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/flatify-v2.1/flatify/client/app/chart/chart.controller.js",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/flatify-v2.1/flatify/client/app/chart/chart.module.js",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/views/main.html",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/directives/font-and-back-ground-settings.js",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/app.js",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/controllers/main.js",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/scripts/directives/keyboard-listener.js",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/.git/info/exclude",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/bower_components/reveal-js/css/reveal.css",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/NW/app/styles/main.css",
@@ -523,10 +557,7 @@
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/shared/directives.coffee",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/Table/TableCtrl.coffee",
 		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/Task/Task.coffee",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/UI/UICtrl.coffee",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/UI/UIDirective.coffee",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/UI/UIService.coffee",
-		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/FormCreator/formCreatorCtrl.js"
+		"/C/Users/cvega/Desktop/Cesar Settings/SampleProjects/BIdocs/client/scripts/UI/UICtrl.coffee"
 	],
 	"find":
 	{
@@ -545,6 +576,77 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"Billboard",
+			"blackboard ",
+			"pre",
+			"storedFeedBack",
+			"updateControl",
+			"setLayoutVariables",
+			"themeConfigurationModel",
+			"length",
+			"storedFeedBack",
+			"alertify",
+			"feedBackModel",
+			"setThe",
+			"0",
+			"legend",
+			"legendAboutOption",
+			"storedFeedBack",
+			"title",
+			"UpdateFeedBack",
+			"self.newName",
+			"Rationale",
+			"Category",
+			"centerTestNames",
+			"result",
+			"queryStringCheck",
+			"isOverlayVailable",
+			"MYBackGround",
+			"p",
+			"  <input class=\"pull-right\" ng-model=\"main.isOverlayVailable\" type=\"checkbox\" />Overlay",
+			"danger",
+			"12",
+			"select  c",
+			"row",
+			"h5",
+			" <div class=\"col-md-6\">",
+			"black",
+			"6",
+			"testNameFontColor",
+			"testNameFontF",
+			"testName",
+			"testNameFontFamily",
+			"myFont",
+			"tcolor",
+			"progressBarValue",
+			" centerTestNames ",
+			"rcolor",
+			"rFont",
+			"hcolor",
+			"hFont",
+			"MYBackGround",
+			"self.isTesNameTime",
+			"hFont",
+			"settings",
+			"result",
+			"querySelectorAll",
+			"t.",
+			"t.T",
+			".",
+			"self.BackGroun",
+			"projectid",
+			"/*",
+			"*",
+			"8",
+			",",
+			"this",
+			"=",
+			",",
+			"\":",
+			"modal",
+			"columnNameCanSet",
+			"Test-Name Settings",
+			"BackGround",
 			"columnSet",
 			"inputControlAttribute",
 			" red Arial ",
@@ -601,83 +703,12 @@
 			"testName",
 			"\n\n          _setRationaleFontType =function(rft){\n          self.RationaleFontType   ='';\n        };\n          _setRationaleFontColor =function(rfc){\n           self.RationaleFontColor  ='';\n        };\n",
 			"functin",
-			"  _setBackground =functin(){\n\n\n\n        }",
-			"main",
-			"scope",
-			"main",
-			"angular-bootstrap",
-			"\">\n",
-			"settings",
-			"main",
-			"ball",
-			"ballo",
-			">\n",
-			"imageBackground",
-			".jpg",
-			"spaeker",
-			"/>",
-			"class=\"gap\"",
-			"Ground",
-			"images/",
-			"images",
-			"+",
-			"'",
-			"keyboardkey",
-			"\n                    'images/Balloon.jpg',",
-			"' ",
-			"img-rounded",
-			"h2",
-			"h3",
-			"png",
-			"F.png",
-			"div",
-			">",
-			"images/.jpg",
-			"Bootstrap Image Preview",
-			"jpe",
-			"div",
-			"image",
-			"space",
-			"img-rounded",
-			"'",
-			"png",
-			"p",
-			"h3",
-			"span",
-			"//slide",
-			"Testname",
-			"Testnamed",
-			"kana",
-			"space",
-			"rowSpacing",
-			"spacing",
-			"Durant",
-			"../",
-			"@font-face",
-			"rgb",
-			"testName",
-			" title",
-			"fontTooBig",
-			".nav-wrapper {",
-			"nav",
-			".hero-unit__style-2",
-			".nav-wrapper {",
-			"../",
-			"/",
-			"default",
-			" GetTestNames.getdata(projectId)",
-			"slideCounter",
-			"the index is",
-			".reveal .progress {",
-			"Overview",
-			"updateO",
-			"overview",
-			"activateOverview"
+			"  _setBackground =functin(){\n\n\n\n        }"
 		],
 		"highlight": false,
 		"in_selection": false,
 		"preserve_case": true,
-		"regex": false,
+		"regex": true,
 		"replace_history":
 		[
 			" ",
@@ -707,54 +738,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "scripts/controllers/main.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 28036,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								15107,
-								15107
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3000.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "views/main.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12581,
+						"buffer_size": 16128,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5467,
-								5467
+								5371,
+								5371
 							]
 						],
 						"settings":
@@ -764,10 +765,130 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2617.0,
+						"translation.y": 2357.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "scripts/services/getDataFactory.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5953,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								722,
+								722
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 60.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "scripts/controllers/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 30764,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18080,
+								18080
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 480.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "scripts/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2050,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								337,
+								337
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4013,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3412,
+								3412
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 780.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -775,7 +896,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 31.0
+		"height": 28.0
 	},
 	"input":
 	{
@@ -812,7 +933,7 @@
 	"project": "NW.sublime-project",
 	"replace":
 	{
-		"height": 66.0
+		"height": 52.0
 	},
 	"save_all_on_build": true,
 	"select_file":
