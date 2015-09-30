@@ -138,7 +138,7 @@ label {
                             </div>
                             <div class="row  " ng-show="main.displayTally">
                                 <div class="col-md-8">
-                                    <label style="margin-bottom: 5px; width:100px; cursor:text;float: left;">Neutral
+                                    <label style="margin-bottom:5px; width:100px; cursor:text;float: left;">Neutral
                                     </label>
                                 </div>
                                 <div style="font-size:22px;" class="col-md-4"> <span class="">{{main.neutralScore}}</span>
@@ -146,31 +146,35 @@ label {
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="height: 300px;">
+                    <div class="row" style="height: 270px;">
                         <div class="col-md-{{main.columnSet}} col-md-offset-{{main.columnOffSet}}">
-                            <div class="col-md-1 "><img ng-show="main.BackGround == 'Billboard' || main.BackGround == 'SubwayStop'" width='150' style="padding: 5px; margin-top: -25px; margin-left: -{{main.marginLeftImage}}px;" ng-src="images/LogIcons/icon-1.png" />
+                            <div class="col-md-1 ">
+                            <img ng-show="main.BackGround == 'Billboard' || main.BackGround == 'SubwayStop'" 
+                                   width='150' 
+                                   style="margin-top: 10px; margin-left: -{{main.marginLeftImage}};" 
+                                   ng-src="images/LogIcons/icon-1.png" />
                             </div>
-                            <div class="col-md-{{main.columnNameCandSet}} text-{{main.textAttribute}} " style="padding: 10px;  
-                                background-image:{{main.overlayStyle}};
-                                  width: 85%; padding-bottom:35px; 
+                            <div class="col-md-{{main.columnNameCandSet}} text-{{main.textAttribute}} "
+                             style="background-image:{{main.overlayStyle}};
+                                  font-family:{{main.testNameFontFamily}}; 
                                   margin-left: {{main.marginLeftTestName}}px;
-                                  max-height: 130px;
-                                  font-family:{{main.testNameFontFamily}}; border-radius: 5px;
-                                  color:{{main.testNameFontColor}}" id="testName" auto-font-size noSelection>
+                                  color:{{main.testNameFontColor}};
+                                  border-radius: 5px; width:{{main.testNameWidth}}%;"                                  
+                                  id="testName" auto-font-size noSelection>
                                 {{main.nameCandidate}}
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="height: 120px;">
-                        <div class="btn col-md-12 text-default text-center bg-primary" id="rationale" style="font-size: xx-large; cursor: default; text-align: center; width: 98%; margin-left: 10px; padding:20px; 
-                                 font-family:{{main.rationaleFontFamily}}; color:{{main.rationaleFontColor}}" auto-font-size noSelection>
-                            {{main.Rationale}}
-                        </div>
+                    <div class="row bg-primary context-center" style="height:100px; border-radius: 5px; margin:0px;" >
+                        <div class="col-md-12 text-default text-center" id="rationale" 
+                        style="font-family:{{main.rationaleFontFamily}}; color:{{main.rationaleFontColor}};padding-top: 18px;" auto-font-size noSelection>
+                            {{main.Rationale}}                       
+                        </div>     
+                        <p class="text-center" style="font-size:25px;">{{main.subRationale}}</p>                  
                     </div>
-                    <div class="row" style="height:60px;">
+                    <div class="row" style="height: 110px; padding:20px 0 0 0;">
                         <div class="col-md-12">
                             <input type="text" placeholder="New Names" class="roundCorners" ng-model="main.newName" style="font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black" autofocus/>
-                            <!--   <input type="text" placeholder="New Names" class="roundCorners" ng-model="main.newName" style="font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black" autofocus/> -->
                         </div>
                     </div>
                     <div class="row" style="height: 50px;">
@@ -193,7 +197,7 @@ label {
                                 <span aria-hidden="true" ></span>{{main.nameNotation}}</button>
                         </div>
                     </div>
-                    <div class="col-md-4 text-align: center;" >
+                    <div class="col-md-4 text-center" >
                         <div class="btn-group ">
                             <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.togglePresentation()" >
                                 <span class="glyphicon glyphicon-blackboard" aria-hidden="true">                       

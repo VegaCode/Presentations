@@ -26,7 +26,7 @@ angular.module('nwApp')
             'GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
             'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree', 
              'Cardiology','Cognition','OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue' ];
-            self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore','Lato'];
+            self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore','Calibri'];
             self.help = function() {
                      alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
                 };
@@ -51,8 +51,10 @@ angular.module('nwApp')
             self.togglePresentation = function() {
                         if (self.isTesNameTime === false) {
                             self.isTesNameTime = true;
+                                   self.displaySettings = false;
                         } else {
                             self.isTesNameTime = false;
+                            self.displaySettings = true;
                         }
                     };
 
@@ -215,7 +217,8 @@ angular.module('nwApp')
      GetTestNames.getdata(projectId).then(function(result) {
   
     var centerTestNames = function(nameCandidate) {
-                        if (self.BackGround === 'Billboard') {                                      
+                        self.testNameWidth= '85';
+                        if (self.BackGround === 'Billboard' || self.BackGround === 'SubwayStop') {                                      
                             self.columnNameCandSet= '8';
                             switch (nameCandidate.length) {
                                 case 3:
@@ -279,7 +282,7 @@ angular.module('nwApp')
                                 case 5:
                                 case 6:
                                 case 7:
-                                    self.marginLeftTestName = '-9';
+                                    self.marginLeftTestName = '-40';
                                     break;
                                 default:
                                     break;
@@ -295,7 +298,7 @@ angular.module('nwApp')
                                     self.marginLeftImage = '119';
                                     break;
                                 case 6:
-                                    self.marginLeftImage = '64';
+                                    self.marginLeftImage = ' -13px';
                                     break;
                                 case 7:
                                     self.marginLeftImage = '101';
@@ -318,11 +321,14 @@ angular.module('nwApp')
                               self.columnSet = '12';
                               self.columnOffSet = '0';
                               self.marginLeftImage = '0';
-                               self.marginLeftTestName = '10';
+                               self.marginLeftTestName = '0';
                               self.columnNameCandSet= '12';
                               self.textAttribute = 'center';
                         }
                    };//  end of centerTestNames
+     self.backGroundChanged = function(){
+      centerTestNames(self.nameCandidate);
+     };
 
     var setThemeOptions = function(index){
                             self.BackGround  = candidateNames[index].TemplateName;
@@ -336,7 +342,7 @@ angular.module('nwApp')
                             self.isOverlayAvailable =  candidateNames[index].Overlay;     
                               if (self.isOverlayAvailable === "True" || self.isOverlayAvailable === true){
                               self.isOverlayAvailable = true;
-                              self.overlayStyle = 'url(http://localhost:9001/images/Backgrounds/overlay.png)'; 
+                              self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)'; 
                                }  else{  self.overlayStyle = ''; self.isOverlayAvailable = false; }  
                              centerTestNames(self.BackGround)               
                     };
@@ -388,11 +394,13 @@ angular.module('nwApp')
                     candidateNamesSize = candidateNames.length;
                     self.totalOfTestNames = candidateNames.length;
                     self.slideCounter = false;
-                    self.slideCounter2 = true;
+                    self.slideCounter2 = true; 
                     self.progressBarValue = 1;   
                     self.positiveScore = 0;
                     self.neutralScore = 0;
                     self.negativeScore = 0;                 
+                    self.subRationale ='';               
+                    self.subRationale = "Im a Subrationale";                 
                     setThemeOptions(0);
                               
                self.resetSlide = function() {
@@ -405,7 +413,7 @@ angular.module('nwApp')
 
                 self.setOverlay = function() {
                             if (self.isOverlayAvailable === true) {
-                                self.overlayStyle = 'url(http://localhost:9001/images/Backgrounds/overlay.png)';
+                                self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)'; 
                             } else {
                                 self.overlayStyle = '';
                             }
@@ -433,7 +441,8 @@ angular.module('nwApp')
                             self.nameCandidate =nameCandidate;                                                        
                             self.nameCategory = candidateNames[candidateNamesIndex].NameCategory;
                             self.nameNotation = candidateNames[candidateNamesIndex].NameNotation;
-                            self.Rationale = candidateNames[candidateNamesIndex].NameRationale;                        
+                            self.Rationale = candidateNames[candidateNamesIndex].NameRationale;    
+                            self.BackGround =   candidateNames[candidateNamesIndex].TemplateName;
                             centerTestNames(self.nameCandidate);
                             self.newName = (storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex].newName: '';
                             self.explore = (storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex].explore: '';
@@ -442,8 +451,7 @@ angular.module('nwApp')
                               
                        };
 
-                // INITIAL SETUP
-                setLayoutVariables (candidateNames[0].Name, [], 0);
+                // INITIAL SETUP             
                 self.pageNumber = slideCounter + 1;
                 var isStoreAvailable = localStorageService.get(storeKey);
                 var storedFeedBack = (isStoreAvailable === null) ? null : JSON.parse(localStorageService.get(storeKey));
@@ -451,6 +459,7 @@ angular.module('nwApp')
                 if (storedFeedBack !== null) {
                     setLayoutVariables (candidateNames[0].Name, storedFeedBack, 0);
                 } else {
+                    setLayoutVariables (candidateNames[0].Name, [], 0);
                     self.nameCandidate = candidateNames[0].Name;
                     centerTestNames(self.nameCandidate);
                     self.newName = '';

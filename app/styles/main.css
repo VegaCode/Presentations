@@ -105,12 +105,12 @@
 }
 
 @font-face {
-  font-family: 'Lato';
-  src:  url('../fonts/Lato-Bold.ttf')  format('truetype');
+  font-family: 'Calibri';
+  src:  url('../fonts/Calibri.ttf')  format('truetype');
 }
 
-.Lato{
- font-family: 'Lato-Bold';
+.Calibri{
+ font-family: 'Calibri';
  font-weight: normal;
 }
 
