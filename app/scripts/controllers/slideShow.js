@@ -11,7 +11,7 @@
         angular.module('nwApp')
             .controller('slideShowCtrl', ['$timeout', 'GetSlides', '$location', '$rootScope', '$scope', function($timeout, GetSlides, $location, $rootScope, $scope) {
                 var self = this;
-                self.slides = [];
+                self.slides = [];            
                 GetSlides.getdata('4950').then(function(result) {
                     addDigit = '00';
 
@@ -23,7 +23,7 @@
                         }
                         id = result[0].path + addDigit + i + '.jpg';
                         self.slides.push(id);
-                         // Displaying IMages url
+                         // Displaying IMages url 
                     }
                     var startTestNamesAtPage = result[0].NameEvaluationFirstSlide;
                     Reveal.addEventListener('slidechanged', function(event) {
@@ -35,7 +35,7 @@
                             });
                         }
                     });
-                    // slide show configuration settings
+                    // slide show configuration settings 
                     $timeout(function() {
                         Reveal.initialize({
 
@@ -157,7 +157,7 @@
                             }, {
                                 src: 'bower_components/reveal-js/plugin/zoom-js/zoom.js',
                                 async: true,
-                                condition: function() {
+                                condition: function() { 
                                     return !!document.body.classList;
                                 }
                             }, {
