@@ -85,6 +85,7 @@ label {
         <div class="reveal">
             <div class="slides">
                 <section ng-repeat="slide in  main.slides" style="top: -46px !important; display: block;" data-index="{{$index}}">
+                <button type="button" class="btn btn-primary glyphicon glyphicon-question-sign pull-right btn-question-style" ng-show="main.isTesNameTime" ng-click="main.help()"></button>
                     <img ng-src="{{slide.SlideBGFileName}}">
                     <br>
                     <h3 ng-show="main.isOverview" style="color:black" class="text-center">{{slide.SlideDescription +' '}} {{$index}}
@@ -94,8 +95,8 @@ label {
         </div>
     </div>
 </div>
+<!-- NW -->
 <div class="container-fluid">
-    <!-- NW -->
     <div class="backgroundStyle" ng-show="main.isTesNameTime===false">
         <div class="container-fluid" style="background-image: url(images/Backgrounds/{{main.BackGround+ '.jpg'}} ); !important;color:white; background-repeat: no-repeat; background-size: cover;height:800px;">
             <div class="row" style="height: 30px;">
@@ -149,28 +150,22 @@ label {
                     <div class="row" style="height: 270px;">
                         <div class="col-md-{{main.columnSet}} col-md-offset-{{main.columnOffSet}}">
                             <div class="col-md-1 ">
-                            <img ng-show="main.BackGround == 'Billboard' || main.BackGround == 'SubwayStop'" 
-                                   width='150' 
-                                   style="margin-top: 10px; margin-left: -{{main.marginLeftImage}};" 
-                                   ng-src="images/LogIcons/icon-1.png" />
+                                <img ng-show="main.BackGround == 'Billboard' || main.BackGround == 'SubwayStop'" width='150' style="margin-top: 10px; margin-left: -{{main.marginLeftImage}};" ng-src="images/LogIcons/icon-1.png" />
                             </div>
-                            <div class="col-md-{{main.columnNameCandSet}} text-{{main.textAttribute}} "
-                             style="background-image:{{main.overlayStyle}};
+                            <div class="col-md-{{main.columnNameCandSet}} text-{{main.textAttribute}} " style="background-image:{{main.overlayStyle}};
                                   font-family:{{main.testNameFontFamily}}; 
                                   margin-left: {{main.marginLeftTestName}}px;
                                   color:{{main.testNameFontColor}};
-                                  border-radius: 5px; width:{{main.testNameWidth}}%;"                                  
-                                  id="testName" auto-font-size noSelection>
+                                  border-radius: 5px; width:{{main.testNameWidth}}%;" id="testName" auto-font-size noSelection>
                                 {{main.nameCandidate}}
                             </div>
                         </div>
                     </div>
-                    <div class="row bg-primary context-center" style="height:100px; border-radius: 5px; margin:0px;" >
-                        <div class="col-md-12 text-default text-center" id="rationale" 
-                        style="font-family:{{main.rationaleFontFamily}}; color:{{main.rationaleFontColor}};padding-top: 18px;" auto-font-size noSelection>
-                            {{main.Rationale}}                       
-                        </div>     
-                        <p class="text-center" style="font-size:25px;">{{main.subRationale}}</p>                  
+                    <div class="row bg-primary context-center" style="height:100px; border-radius: 5px; margin:0px;">
+                        <div class="col-md-12 text-default text-center" id="rationale" style="font-family:{{main.rationaleFontFamily}}; color:{{main.rationaleFontColor}};padding-top: 18px;" auto-font-size noSelection>
+                            {{main.Rationale}}
+                        </div>
+                        <p class="text-center" style="font-size:25px;">{{main.subRationale}}</p>
                     </div>
                     <div class="row" style="height: 110px; padding:20px 0 0 0;">
                         <div class="col-md-12">
@@ -194,12 +189,12 @@ label {
                             <button type="button" class="btn btn-default" aria-label="Left Align">
                                 <span aria-hidden="true"></span>Propietary & Confidential</button>
                             <button type="button" class="btn btn-default" aria-label="Center Align" ng-show="main.nameNotation.length > 0">
-                                <span aria-hidden="true" ></span>{{main.nameNotation}}</button>
+                                <span aria-hidden="true"></span>{{main.nameNotation}}</button>
                         </div>
                     </div>
-                    <div class="col-md-4 text-center" >
+                    <div class="col-md-4 text-center">
                         <div class="btn-group ">
-                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.togglePresentation()" >
+                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.togglePresentation()">
                                 <span class="glyphicon glyphicon-blackboard" aria-hidden="true">                       
                         </span>
                             </button>
@@ -214,7 +209,7 @@ label {
                     </span>
                             </button>
                             <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goNextSlide()">
-                                <span class="glyphicon glyphicon-chevron-right"  aria-hidden="true">                        
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true">                        
                     </span>
                             </button>
                             <button type="button" class="btn btn-default" aria-label="Left Align">
@@ -228,8 +223,8 @@ label {
         </div>
     </div>
 </div>
-</div>
-</div>
+<!-- End if NW -->
+
 <!-- Side menu Settings-->
 <div class="container-fluid settings slide" ng-show="main.displaySettings">
     <div class="row">

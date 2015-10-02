@@ -80,7 +80,7 @@ angular.module('nwApp')
                         }
                     });
 
-// **********  Getting Slides URL Images aand description for over view  *************************************************************************************
+// **********  Getting Slides URL Images and the description for over view  *************************************************************************************
     GetNamesAndSlides.getdata(1004).then(function(result){
                 self.slides = result;                   
                 // slide show configuration settings
@@ -214,11 +214,12 @@ angular.module('nwApp')
             });
 
 // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
-     GetTestNames.getdata(projectId).then(function(result) {
+ GetTestNames.getdata(projectId).then(function(result) {
   
     var centerTestNames = function(nameCandidate) {
                         self.testNameWidth= '85';
-                        if (self.BackGround === 'Billboard' || self.BackGround === 'SubwayStop') {                                      
+                        if (self.BackGround === 'Billboard' || self.BackGround === 'SubwayStop') {   
+                           self.textAttribute = 'left';                                   
                             self.columnNameCandSet= '8';
                             switch (nameCandidate.length) {
                                 case 3:
@@ -325,9 +326,15 @@ angular.module('nwApp')
                               self.columnNameCandSet= '12';
                               self.textAttribute = 'center';
                         }
-                   };//  end of centerTestNames
+                   };                   
      self.backGroundChanged = function(){
       centerTestNames(self.nameCandidate);
+      setSettings.getTemplateConfiguration(self.BackGround).then(function(theme){
+      var  Theme = theme;
+      var  Theme2 = theme;
+
+      })
+      
      };
 
     var setThemeOptions = function(index){
@@ -343,8 +350,7 @@ angular.module('nwApp')
                               if (self.isOverlayAvailable === "True" || self.isOverlayAvailable === true){
                               self.isOverlayAvailable = true;
                               self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)'; 
-                               }  else{  self.overlayStyle = ''; self.isOverlayAvailable = false; }  
-                             centerTestNames(self.BackGround)               
+                               }  else{  self.overlayStyle = ''; self.isOverlayAvailable = false; }             
                     };
 
     var feedBackModel = function(feedBackScore, newName, candidate, explore, avoid) {
@@ -357,7 +363,18 @@ angular.module('nwApp')
                         };
                     };
 
-
+      var slideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
+                        return {
+                            "presentationid": presentationid,
+                            "slideNumber": slideNumber,
+                            "NameRanking": NameRanking,
+                            "NewNames": NewNames,
+                            "NamesToExplore": NamesToExplore,
+                            "NamesToAvoid": NamesToAvoid,
+                            "Direction": Direction
+                        };
+                    };
+                                    
     var updateFeedBack = function(storedFeedBack) {
                                 self.radioButtons.map(function(obj) {
                                     if (obj.text === storedFeedBack.feedBackScore) {
@@ -387,7 +404,6 @@ angular.module('nwApp')
                     candidateNames = result;
                     projectIdPrefixed = candidateNames[0].PresentationId;
                     storeKey = projectIdPrefixed + 'FEED_BACK_RESULTS';
-                    self.textAttribute = 'default';
                     self.logoPath = 'images/LogIcons/icon-1.png';
                     self.isOverlayAvailable =false;
                     self.showTemplate = false;
