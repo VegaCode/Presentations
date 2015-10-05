@@ -9,31 +9,34 @@
  */
 
 angular.module('nwApp')
-    .controller('MainCtrl', ['$timeout', 'localStorageService', 'GetTestNames', 'GetSlides', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides',
-        function($timeout, localStorageService, GetTestNames, GetSlides, $rootScope, $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides) {
-
-            var candidateNames, projectIdPrefixed, storeKey, projectId;
+    .controller('MainCtrl', ['$timeout', 'localStorageService', '$http', 'GetSlides', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides',
+        function($timeout, localStorageService, $http, GetSlides, $rootScope, $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides) {
+            var _id, _DisplayName, _FooterFontColor, _FooterFontFamily, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily;
+            var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
-            self.displayTally = false;
+            // webBaseUrl = 'http://localhost:64378/';
+     webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
             var feedBackBox = [];
             projectId = queryStringCheck;
             self.displaySettings =false;
             self.slides = [];
             self.isTesNameTime = true;
-    // Added variable to turn on the katakana input
+
+    // CA- Added variable to turn on the katakana input
             self.isJapanese = false;
+            self.negativeKanaNames = '';
 
             self.isOverview = false;
-            self.colors = ['red','blue','black','white'];
-            self.changeBackground = ['Default','Balloon','Billboard',
-            'GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
-            'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',
-             'Cardiology','Cognition','OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue' ];
+            self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
+                                                        'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',  'Cardiology','Cognition',
+                                                        'OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue' ];
+
+
             self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore','Calibri'];
+
             self.help = function() {
                      alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
                 };
-
 
             // Model for theme configuration
             var themeConfigurationModel = function(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily, RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,FooterFontColor,FooterFontFamily,Overlay){
@@ -83,8 +86,9 @@ angular.module('nwApp')
                         }
                     });
 
-// **********  Getting Slides URL Images aand description for over view  *************************************************************************************
-    GetNamesAndSlides.getdata(1004).then(function(result){
+
+// **********  Getting Slides URL Images and the description for over view  *************************************************************************************
+    GetNamesAndSlides.getdata(projectId).then(function(result){
                 self.slides = result;
                 // slide show configuration settings
                 $timeout(function() {
@@ -216,22 +220,44 @@ angular.module('nwApp')
                 }, 300);
             });
 
-// **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
-     GetTestNames.getdata(projectId).then(function(result) {
+  // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
 
-    var isItJapanese = function(japanese){
-      if(japanese === true){
-        self.makeShorterNewNameInput = '6';
-      }else{
-        self.makeShorterNewNameInput = '12';
-      }};
+     self.backGroundChanged = function(){
+            apiCall = 'api/NW_InsertTemplateConfiguration?templateName=';
+           $http.get(webBaseUrl + apiCall + self.BackGround).success(function(theme){
+                self.BackGround  = theme[0].TemplateName;
+                self.testNameFontFamily  = theme[0].TestNameFontFamily;
+                self.testNameFontColor  = theme[0].TestNameFontColor;
+                self.rationaleFontFamily  = theme[0].RationaleFontFamily;
+                self.rationaleFontColor  = theme[0].RationaleFontColor;
+                self.headerFontColor  = theme[0].HeaderFontColor;
+                self.headerFontFamily = theme[0].HeaderFontFamily;
+                self.nameNotation = theme[0].NameNotation;
+                self.isOverlayAvailable = (theme[0].Overlay === 'False')? false : true ;
+                if (self.isOverlayAvailable === true) {
+                                self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)';
+                            } else {
+                                self.overlayStyle = '';
+                            }
+                centerTestNames(self.nameCandidate)
+              })
+             };
 
-    var centerTestNames = function(nameCandidate) {
+// CA- this will test for japanese NW
+             var isItJapanese = function(japanese){
+                   if(japanese === true){
+                     self.makeShorterNewNameInput = '6';
+                   }else{
+                     self.makeShorterNewNameInput = '12';
+                   }};
+
+             var centerTestNames = function(nameCandidate) {
+               // CA- added function above to make sure if it is katakana or not when billboard or subwaystop is displayed
                         isItJapanese(self.isJapanese);
                         self.testNameWidth= '85';
                         if (self.BackGround === 'Billboard' || self.BackGround === 'SubwayStop') {
-                            self.columnNameCandSet= '8';
                             self.textAttribute = 'left';
+
 // ************************ Column Off Set *************************************
                            switch (nameCandidate.length) {
                                 case 3:
@@ -257,25 +283,25 @@ angular.module('nwApp')
                             switch (nameCandidate.length) {
                                 case 3:
                                 case 5:
-                                    self.marginLeftTestName = '-90px';
+                                    self.marginLeftTestName = '90';
                                     break;
                                 case 4:
-                                    self.marginLeftTestName = '-120px';
+                                    self.marginLeftTestName = '120';
                                     break;
                                 case 6:
-                                    self.marginLeftTestName = '-145px';
+                                    self.marginLeftTestName = '145';
                                     break;
                                 case 7:
-                                    self.marginLeftTestName = '-60px';
+                                    self.marginLeftTestName = '60';
                                     break;
                                 case 8:
-                                    self.marginLeftTestName = '-110px';
+                                    self.marginLeftTestName = '110';
                                     break;
                                 case 9:
-                                    self.marginLeftTestName = '-150px';
+                                    self.marginLeftTestName = '150';
                                     break
                                 case 10:
-                                    self.marginLeftTestName = '-100px';
+                                    self.marginLeftTestName = '100';
                                     break;
                                 default:
                                     break;
@@ -284,25 +310,25 @@ angular.module('nwApp')
                             switch (nameCandidate.length) {
                                 case 3:
                                 case 5:
-                                    self.marginLeftImage = '-140px';
+                                    self.marginLeftImage = '140';
                                     break;
                                 case 4:
-                                    self.marginLeftImage = '-180px';
+                                    self.marginLeftImage = '180';
                                     break;
                                 case 6:
-                                    self.marginLeftImage = '-200px';
+                                    self.marginLeftImage = '200';
                                     break;
                                 case 7:
-                                    self.marginLeftImage = '-120px';
+                                    self.marginLeftImage = '120';
                                     break;
                                 case 8:
-                                    self.marginLeftImage = '-170px';
+                                    self.marginLeftImage = '170';
                                     break;
                                 case 9:
-                                    self.marginLeftImage = '-210px';
+                                    self.marginLeftImage = '210';
                                     break;
                                 case 10:
-                                    self.marginLeftImage = '-160px';
+                                    self.marginLeftImage = '160';
                                     break;
                                 default:
                                     break;
@@ -316,92 +342,11 @@ angular.module('nwApp')
                               self.columnNameCandSet= '12';
                               self.textAttribute = 'center';
                         }
-                 };//  end of centerTestNames
-     self.backGroundChanged = function(){
-      centerTestNames(self.nameCandidate);
-     };
 
-    var setThemeOptions = function(index){
-                            self.BackGround  = candidateNames[index].TemplateName;
-                            self.testNameFontFamily  = candidateNames[index].TestNameFontFamily;
-                            self.testNameFontColor  = candidateNames[index].TestNameFontColor;
-                            self.rationaleFontFamily  = candidateNames[index].RationaleFontFamily;
-                            self.rationaleFontColor  = candidateNames[index].RationaleFontColor;
-                            self.headerFontColor  = candidateNames[index].HeaderFontColor;
-                            self.headerFontFamily = candidateNames[index].HeaderFontFamily;
-                            self.nameNotation = candidateNames[index].NameNotation;
-                            self.isOverlayAvailable =  candidateNames[index].Overlay;
-                              if (self.isOverlayAvailable === "True" || self.isOverlayAvailable === true){
-                              self.isOverlayAvailable = true;
-                              self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)';
-                               }  else{  self.overlayStyle = ''; self.isOverlayAvailable = false; }
-                    };
+                   };
 
-    var feedBackModel = function(feedBackScore, newName, candidate, explore, avoid) {
-                        return {
-                            "feedBackScore": feedBackScore,
-                            "newName": newName,
-                            "candidate": candidate,
-                            "explore": explore,
-                            "avoid": avoid
-                        };
-                    };
+             self.setOverlay = function() {
 
-
-    var updateFeedBack = function(storedFeedBack) {
-                                self.radioButtons.map(function(obj) {
-                                    if (obj.text === storedFeedBack.feedBackScore) {
-                                        obj.isUserAnswer = true;
-                                    } else {
-                                        obj.isUserAnswer = false;
-                                    }
-                                });
-                        };
-
-    var candidateNamesSize = 0;
-
-    var slideCounter = 0;
-    self.radioButtons = [{
-                                    id: 1,
-                                    text: "Positive",
-                                    isUserAnswer: false}, {
-                                    id: 2,
-                                    text: "Neutral",
-                                    isUserAnswer: false}, {
-                                    id: 3,
-                                    text: "Negative",
-                                    isUserAnswer: false
-                        }];
-
-    if (result.length > 0) {
-                    candidateNames = result;
-                    projectIdPrefixed = candidateNames[0].PresentationId;
-                    storeKey = projectIdPrefixed + 'FEED_BACK_RESULTS';
-                    self.textAttribute = 'default';
-                    self.logoPath = 'images/LogIcons/icon-1.png';
-                    self.isOverlayAvailable =false;
-                    self.showTemplate = false;
-                    candidateNamesSize = candidateNames.length;
-                    self.totalOfTestNames = candidateNames.length;
-                    self.slideCounter = false;
-                    self.slideCounter2 = true;
-                    self.progressBarValue = 1;
-                    self.positiveScore = 0;
-                    self.neutralScore = 0;
-                    self.negativeScore = 0;
-                    self.subRationale ='';
-                    self.subRationale = "Im a Subrationale";
-                    setThemeOptions(0);
-
-               self.resetSlide = function() {
-                            self.displayTally = false;
-                            localStorageService.clearAll();
-                            location.reload();
-                            alert('The slides are reset');
-                            self.pageNumber = 1;
-                         };
-
-                self.setOverlay = function() {
                             if (self.isOverlayAvailable === true) {
                                 self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)';
                             } else {
@@ -409,190 +354,113 @@ angular.module('nwApp')
                             }
                          };
 
-                self.showThemeOptions = function() {self.displaySettings =  !self.displaySettings;};
-
-                self.saveThemeSettings = function() {
-                            if ( self.BackGround !== '') {
-                                var configModel = themeConfigurationModel( self.BackGround,
-                                    self.BackGround + '.jpg', self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
-                                     self.testNameFontColor, self.testNameFontFamily, 'black', 'Arial', self.isOverlayAvailable);
-                                setSettings.postdata(configModel).then(function(result) {
-                                  alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
-                                });
-                            }
-                        };
-
-            } else {
-                alertify.alert('The test names for this  project is not available plese contact IS for further support').set('title', 'Help info');
-        }
-
-                var setLayoutVariables = function(nameCandidate, storedFeedBack, candidateNamesIndex) {
-                            self.isOverlayAvailable=  candidateNames[candidateNamesIndex].Overlay;
-                            self.nameCandidate =nameCandidate;
-                            self.nameCategory = candidateNames[candidateNamesIndex].NameCategory;
-                            self.nameNotation = candidateNames[candidateNamesIndex].NameNotation;
-                            self.Rationale = candidateNames[candidateNamesIndex].NameRationale;
-                            self.BackGround =   candidateNames[candidateNamesIndex].TemplateName;
-                            centerTestNames(self.nameCandidate);
-                            self.newName = (storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex].newName: '';
-                            self.explore = (storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex].explore: '';
-                            self.avoid = (storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex].avoid: '';
-                            updateFeedBack((storedFeedBack.length>0) ? storedFeedBack[candidateNamesIndex] : '');
-
-                       };
-
-                // INITIAL SETUP
-                self.pageNumber = slideCounter + 1;
-                var isStoreAvailable = localStorageService.get(storeKey);
-                var storedFeedBack = (isStoreAvailable === null) ? null : JSON.parse(localStorageService.get(storeKey));
-
-                if (storedFeedBack !== null) {
-                    setLayoutVariables (candidateNames[0].Name, storedFeedBack, 0);
-                } else {
-                    setLayoutVariables (candidateNames[0].Name, [], 0);
-                    self.nameCandidate = candidateNames[0].Name;
-                    centerTestNames(self.nameCandidate);
-                    self.newName = '';
-                    self.explore = '';
-                    self.avoid = '';
-                }
-
-              // END OF INITIAL SETUP
-
-             self.goPrevSlide = function() {
-                        self.displayTally = false;
-                        if (slideCounter > 0) {
-                            slideCounter = slideCounter - 1;
-                            self.progressBarValue = self.progressBarValue - (100 / candidateNamesSize);
-                            var storedFeedBack = JSON.parse(localStorageService.get(storeKey));
-                            if (slideCounter < storedFeedBack.length) {
-                                setLayoutVariables (storedFeedBack[slideCounter].candidate, storedFeedBack, slideCounter);
-                                setThemeOptions(slideCounter);
-                                self.slideCounter2 = true;
-                                self.pageNumber = slideCounter + 1;
-                            }
-
-                        } else {
-                            alertify.alert('You are in the 1rst Slide').set('title', 'Help info');
-                            self.slideCounter = false;
-                            self.slideCounter2 = true;
+            self.showThemeOptions = function() {self.displaySettings = !self.displaySettings;};
+            self.saveThemeSettings = function() {
+                        if ( self.BackGround !== '') {
+                            var configModel = themeConfigurationModel( self.BackGround,
+                                self.BackGround + '.jpg', self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
+                                 self.testNameFontColor, self.testNameFontFamily, 'black', 'Arial', self.isOverlayAvailable);
+                            setSettings.postdata(configModel).then(function(result) {
+                              alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
+                            });
                         }
                     };
 
-                self.goNextSlide = function() {
-                    self.displayTally = false;
-                    var feedBack = '';
-                    if (slideCounter < candidateNamesSize) {
-                        self.radioButtons.map(function(obj) {
-                            if (obj.isUserAnswer) {
-                                feedBack = obj.text;
-                            }
-                        });
+            var slideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
+                        return {
+                            "presentationid": presentationid,
+                            "slideNumber": slideNumber,
+                            "NameRanking": NameRanking,
+                            "NewNames": NewNames,
+                            "NamesToExplore": NamesToExplore,
+                            "NamesToAvoid": NamesToAvoid,
+                            "Direction": Direction
+                        };
+                    };
 
-                        if (feedBack === '') {
-                            alertify.alert('Please answer the feed back questions before continuing').set('title', 'Help info');
-                        } else { // begin else
+            var initialSlideModel = JSON.stringify( new slideInfoModel(projectId,0,'','','','', 'First'));
 
-                            self.progressBarValue = self.progressBarValue + (100 / candidateNamesSize); // Progress Bar
-                            var isStoreAvailable = localStorageService.get(storeKey);
-                            var storedFeedBack = (isStoreAvailable === null) ? null : JSON.parse(localStorageService.get(storeKey));
-                            if (storedFeedBack !== null && storedFeedBack[slideCounter + 1] !== undefined) { // record exist
-                                var updateBeforeData = storedFeedBack;
-                                updateBeforeData[slideCounter].newName = self.newName;
-                                updateBeforeData[slideCounter].feedBackScore = feedBack;
-                                updateBeforeData[slideCounter].candidate = self.nameCandidate;
-                                updateBeforeData[slideCounter].explore = self.explore;
-                                updateBeforeData[slideCounter].avoid = self.avoid;
-                                localStorageService.remove(storeKey);
-                                localStorageService.set(storeKey, JSON.stringify(updateBeforeData));
-                                setLayoutVariables (storedFeedBack[slideCounter + 1].candidate, storedFeedBack, slideCounter + 1);
-                                slideCounter = slideCounter + 1;
-                                self.slideCounter = true;
-                                self.pageNumber = slideCounter + 1;
+ var getTestNamesObject = function(initialSlideModel){
 
-                            } else {
+                     apiCall = 'api/NW_SaveAndReturnSlideData';
+                   $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
+                     // capturing the data
+                         if(slideObject.length>0){
+                            _id = slideObject[0].$id;_DisplayName = slideObject[0].DisplayName;_FooterFontColor = slideObject[0].FooterFontColor;
+                            _FooterFontFamily = slideObject[0].FooterFontFamily;_HeaderFontColor = slideObject[0].HeaderFontColor;
+                            _HeaderFontFamily = slideObject[0].HeaderFontFamily;_Name = slideObject[0].Name;_NameCategory = slideObject[0].NameCategory;
+                            _NameGroup = slideObject[0].NameGroup;_NameLogo = slideObject[0].NameLogo;_NameNotation = slideObject[0].NameNotation;
+                            _NameRanking = slideObject[0].NameRanking;_NameRationale = slideObject[0].NameRationale;_NamesToAvoid = slideObject[0].NamesToAvoid;
+                            _NamesToExplore = slideObject[0].NamesToExplore;_NewNames = slideObject[0].NewNames;_Overlay = slideObject[0].Overlay;
+                            _PresentationId = slideObject[0].PresentationId;_Project = slideObject[0].Project;_RationaleFontColor = slideObject[0].RationaleFontColor;
+                            _RationaleFontFamily = slideObject[0].RationaleFontFamily;_SlideBGFileName = slideObject[0].SlideBGFileName;
+                            _SlideDescription = slideObject[0].SlideDescription;_SlideNumber = slideObject[0].SlideNumber;_SlideType = slideObject[0].SlideType;
+                            _TemplateFileName = slideObject[0].TemplateFileName;_TemplateId = slideObject[0].TemplateId;_TemplateName = slideObject[0].TemplateName;
+                            _TestNameFontColor = slideObject[0].TestNameFontColor;_TestNameFontFamily = slideObject[0].TestNameFontFamily;
+                            (_SlideType === 'NameGroup')? self.displayNameGroup = true: self.displayNameGroup = false;
+                            (_SlideType === 'NameGroup')? self.controlsPosition = -286: self.controlsPosition = -23;
+                            self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
+                                 if (self.isOverlayAvailable === true && _SlideType !== 'NameGroup') {
+                                        self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)';
+                                    } else {
+                                        self.overlayStyle = '';
+                                    }
+                            self.pageNumber = _SlideNumber;
+                            pageNumber =parseInt(_SlideNumber);
+                            self.logoPath = 'images/LogIcons/icon-1.png';
 
-                                // No Local Stored feed back
-                                if (storedFeedBack === null || storedFeedBack[slideCounter] === undefined) {
-                                    var val = feedBackModel(feedBack, self.newName, self.nameCandidate, self.explore, self.avoid);
-                                    feedBackBox.push(val);
-                                    localStorageService.set(storeKey, JSON.stringify(feedBackBox));
-                                } else {
-                                    var updateBeforeData2 = storedFeedBack;
-                                    updateBeforeData2[slideCounter].newName = self.newName;
-                                    updateBeforeData2[slideCounter].feedBackScore = feedBack;
-                                    updateBeforeData2[slideCounter].candidate = self.nameCandidate;
-                                    updateBeforeData2[slideCounter].explore = self.explore;
-                                    updateBeforeData2[slideCounter].avoid = self.avoid;
-                                    localStorageService.remove(storeKey);
-                                    localStorageService.set(storeKey, JSON.stringify(updateBeforeData2));
-                                }// End Updating the slide data before next name
+                            self.showTemplate = false;
+                            self.totalOfTestNames = '700';
+                            self.progressBarValue = 1;
+                            self.displayTally = false;
+                            self.nameCandidate = _SlideDescription;
 
-                                    // Next Name setup
-                                if (slideCounter < candidateNamesSize - 1) {
-                                    slideCounter = slideCounter + 1;
-                                    self.slideCounter = true;
-                                    var addKatakana = (candidateNames[slideCounter].Kana === undefined) ? '' : ' , ' + candidateNames[slideCounter].Kana;
-                                    setLayoutVariables ( candidateNames[slideCounter].Name + addKatakana, [], slideCounter);
-                                    self.radioButtons = [{
-                                                    id: 1,
-                                                    text: "Positive",
-                                                    isUserAnswer: false
-                                                }, {
-                                                    id: 2,
-                                                    text: "Neutral",
-                                                    isUserAnswer: false
-                                                }, {
-                                                    id: 3,
-                                                    text: "Negative",
-                                                    isUserAnswer: false }
-                                      ];
+                            self.nameCategory = _NameCategory;
+                            self.nameNotation = _NameNotation;
+                            self.Rationale = _NameRationale.split('-')[0];
+                            self.BackGround = _TemplateName;
 
-                                    self.pageNumber = slideCounter;
-                                } // end if counter
-                            }
+                            // inputs
+                           self.nameRamking  = _NameRanking;
+                           self.newName  = _NewNames;
+                           self.avoid  = _NamesToAvoid;
+                           self.explore  = _NamesToExplore;
+                           // color and font settings
+                            self.headerFontFamily= _HeaderFontFamily;
+                            self.headerFontColor= _HeaderFontColor;
+                            self.testNameFontFamily= _TestNameFontFamily;
+                            self.testNameFontColor= _TestNameFontColor;
+                            self.rationaleFontFamily= _RationaleFontFamily;
+                            self.rationaleFontColor=  _RationaleFontColor;
+                            self.subRationale = ( _NameRationale.split('-')[1] !== undefined) ? _NameRationale.split('-')[1] : '';
+                            centerTestNames(_SlideDescription);
+                        }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
+                   }).error(function(err) {
+                       return err;
+                    })
+            }
+                   // INITIAL SETUP
+                  getTestNamesObject(initialSlideModel);
 
-                        } // end else
-                         setThemeOptions(slideCounter);
-                    } else {
-                        self.slideCounter2 = false;
-                         alertify.alert('End of the Slides').set('title', 'Help info');
-                    }
-                };
+                  self.goNextSlide = function() {
+                   initialSlideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
+                   getTestNamesObject(initialSlideModel);
+                  }
 
-                self.updateControl = function(buton) {
-                    self.radioButtons.map(function(obj) {
-                        if (obj.text === buton.text) {
-                            obj.isUserAnswer = true;
-                        } else {
-                            obj.isUserAnswer = false;
+                  self.goPrevSlide = function() {
+                   initialSlideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
+                   getTestNamesObject(initialSlideModel);
+                 }
+
+                 self.tally = function() {
+                            self.displayTally = true;
+                            self.positiveScore = 0;
+                            self.neutralScore = 0;
+                            self.negativeScore = 0;
+
                         }
-                    });
-                };
 
-          self.tally = function() {
-                    self.displayTally = true;
-                    var storeObject = localStorageService.get(storeKey);
-                    self.positiveScore = 0;
-                    self.neutralScore = 0;
-                    self.negativeScore = 0;
-                    if (storeObject !== null) {
-                        storeObject = JSON.parse(storeObject);
-                        angular.forEach(storeObject, function(value) {
-                            if (value.feedBackScore === 'Positive') {
-                                self.positiveScore += 1;
-                            }
-                            if (value.feedBackScore === 'Neutral') {
-                                self.neutralScore += 1;
-                            }
-                            if (value.feedBackScore === 'Negative') {
-                                self.negativeScore += 1;
-                            }
-                        });
-                    }
-                };// end tally
 
-            }); // end of the promise call GetTestNames
         }
 
     ]);
