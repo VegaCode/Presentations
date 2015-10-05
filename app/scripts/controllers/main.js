@@ -11,11 +11,11 @@
 angular.module('nwApp')
     .controller('MainCtrl', ['$timeout', 'localStorageService', '$http', 'GetSlides', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides',
         function($timeout, localStorageService, $http, GetSlides, $rootScope, $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides) {
-            var _id, _DisplayName, _FooterFontColor, _FooterFontFamily, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily;
+            var _id, _DisplayName, _FooterFontColor, _FooterFontFamily, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
             // webBaseUrl = 'http://localhost:64378/';
-     webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';       
+            webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';       
             var feedBackBox = [];
             projectId = queryStringCheck;        
             self.displaySettings =false;
@@ -226,11 +226,7 @@ angular.module('nwApp')
                 self.headerFontFamily = theme[0].HeaderFontFamily;                                   
                 self.nameNotation = theme[0].NameNotation; 
                 self.isOverlayAvailable = (theme[0].Overlay === 'False')? false : true ;
-                if (self.isOverlayAvailable === true) {
-                                self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)'; 
-                            } else {
-                                self.overlayStyle = '';
-                            }
+                (self.isOverlayAvailable === true ) ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';                                 
                 centerTestNames(self.nameCandidate)    
               })
              };
@@ -399,21 +395,19 @@ angular.module('nwApp')
                             _SlideDescription = slideObject[0].SlideDescription;_SlideNumber = slideObject[0].SlideNumber;_SlideType = slideObject[0].SlideType;
                             _TemplateFileName = slideObject[0].TemplateFileName;_TemplateId = slideObject[0].TemplateId;_TemplateName = slideObject[0].TemplateName;
                             _TestNameFontColor = slideObject[0].TestNameFontColor;_TestNameFontFamily = slideObject[0].TestNameFontFamily;
+                            _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive;
                             (_SlideType === 'NameGroup')? self.displayNameGroup = true: self.displayNameGroup = false;
                             (_SlideType === 'NameGroup')? self.controlsPosition = -286: self.controlsPosition = -23;
                             self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
-                                 if (self.isOverlayAvailable === true && _SlideType !== 'NameGroup') {
-                                        self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)'; 
-                                    } else {
-                                        self.overlayStyle = '';
-                                    }
+                           (self.isOverlayAvailable === true && _SlideType !== 'NameGroup') ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';                                 
                             self.pageNumber = _SlideNumber;
                             pageNumber =parseInt(_SlideNumber);
                             self.logoPath = 'images/LogIcons/icon-1.png';
                          
                             self.showTemplate = false;
-                            self.totalOfTestNames = '700';  
-                            self.progressBarValue = 1; 
+                            self.totalOfTestNames = '700'; 
+                            var progressBarUnit = 100/ self.totalOfTestNames;
+                            self.progressBarValue = self.progressBarValue + progressBarUnit ; 
                             self.displayTally = false;
                             self.nameCandidate = _SlideDescription;
 
@@ -427,6 +421,9 @@ angular.module('nwApp')
                            self.newName  = _NewNames;
                            self.avoid  = _NamesToAvoid;
                            self.explore  = _NamesToExplore;
+                           self.positiveScore = _ToPositive;
+                           self.neutralScore = _ToNeutral;
+                          
                            // color and font settings
                             self.headerFontFamily= _HeaderFontFamily;
                             self.headerFontColor= _HeaderFontColor;
@@ -455,10 +452,7 @@ angular.module('nwApp')
                  }
 
                  self.tally = function() {
-                            self.displayTally = true;                    
-                            self.positiveScore = 0;
-                            self.neutralScore = 0;
-                            self.negativeScore = 0;                        
+                            self.displayTally = true;                                                                    
                         }
 
             
