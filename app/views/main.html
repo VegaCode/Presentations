@@ -96,22 +96,22 @@ label {
                 <button type="button" class="btn btn-primary glyphicon glyphicon-question-sign pull-right btn-question-style" ng-show="main.isTesNameTime" ng-click="main.help()"></button>
                     <img ng-src="{{slide.SlideBGFileName}}">
                     <br>
-                    <h3 ng-show="main.isOverview" style="color:black" class="text-center">{{slide.SlideDescription +' '}} {{$index}}
+                    <h3 ng-show="main.isOverview" style="color:black" >{{slide.SlideDescription +' '}} {{$index}}
                     </h3>
                 </section>
             </div>
         </div>
     </div>
 </div>
-<!-- NW --> 
-<div class="container-fluid">   
+<!-- NW -->
+<div class="container-fluid">
     <div class="backgroundStyle" ng-show="main.isTesNameTime===false">
         <div class="container-fluid" style="background-image: url(images/Backgrounds/{{main.BackGround+ '.jpg'}} ); 
             !important;color:white; background-repeat: no-repeat; background-size: cover;height:800px;">
             <div class="row" style="height: 30px;">
                 <div class="col-md-12">
                     <div class="progress" style="height: 5px;" max="max" value="dynamic">
-                        <div class="progress-bar progress-bar-primary" role="progressbar" ng-style="{width: main.progressBarValue + '%'}">
+                        <div class="progress-bar" role="progressbar" ng-style="{width: main.progressBarValue + '%'}">
                         </div>
                     </div>
                 </div>
@@ -132,27 +132,27 @@ label {
                                 </label>
                             </form>
                         </div>
-                        <div class="col-md-8 text-Primary text-center" auto-font-size id="category" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}">
+                        <div class="col-md-8 text-center" auto-font-size id="category" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}">
                             {{main.nameCategory}}
-                        </div> <!-- *************************************************************************** -->
+                        </div> 
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}"  ng-show="!main.displayNameGroup">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default  glyphicon " ng-click="main.tally()" style="font-family:arial">Tally
+                                <button type="button" class="btn btn-default glyphicon " ng-click="main.tally()" style="font-family:arial">Tally
                                 </button>
-                                <button type="button" class="btn btn-default   glyphicon glyphicon-cog" data-toggle="dropdown" ng-click="main.showThemeOptions()"></button>
+                                <button type="button" class="btn btn-default glyphicon glyphicon-cog" data-toggle="dropdown" ng-click="main.showThemeOptions()"></button>
                             </div>
-                            <div class="row  " ng-show="main.displayTally">
+                            <div class="row" ng-show="main.displayTally">
                                 <div class="col-md-8">
-                                    <label style="margin-bottom: 5px; width:100px; cursor:text;float: left; ">Positive
+                                    <label>Positive
                                     </label>
                                 </div>
                                 <div class="col-md-4">
                                     <span style="font-size:22px;">{{main.positiveScore}}</span>
                                 </div>
                             </div>
-                            <div class="row  " ng-show="main.displayTally">
-                                <div class="col-md-8">
-                                    <label style="margin-bottom:5px; width:100px; cursor:text;float: left;">Neutral
+                            <div class="row" ng-show="main.displayTally">
+                                <div class="col-md-8">                               
+                                    <label>Neutral
                                     </label>
                                 </div>
                                 <div style="font-size:22px;" class="col-md-4"> <span class="">{{main.neutralScore}}</span>
@@ -164,43 +164,46 @@ label {
                     <div class="row" style="height: 270px;">
                         <div class="col-md-{{main.columnSet}} col-md-offset-{{main.columnOffSet}}">
                             <div class="col-md-1 ">
-                                <img ng-show="main.BackGround == 'Billboard' || main.BackGround == 'SubwayStop'" width='150' style="margin-top: 10px; margin-left: -{{main.marginLeftImage}};" ng-src="{{main.logoPath}}" />
+                                <img ng-show="main.BackGround == 'Billboard' || main.BackGround == 'SubwayStop'" width='150' style="margin-top: 10px; margin-left: -{{main.marginLeftImage}}px;" ng-src="{{main.logoPath}}" />
                             </div>
                             <div class="col-md-12 text-{{main.textAttribute}} " style="background-image:{{main.overlayStyle}};
                                   font-family:{{main.testNameFontFamily}};
-                                  margin-left: {{main.marginLeftTestName}}px;
+                                  margin-left: -{{main.marginLeftTestName}}px;
                                   color:{{main.testNameFontColor}};
                                   border-radius: 5px; width:{{main.testNameWidth}}%;" id="testName" auto-font-size noSelection>
                                 {{main.nameCandidate}}
                             </div>
                         </div>
-                    </div><!-- *************************************************************************** -->
+                    </div>
                     <div class="row bg-primary context-center" style="height:100px; border-radius: 5px; margin:0px;" ng-show="!main.displayNameGroup">
                         <div class="col-md-12 text-default text-center" id="rationale" style="font-family:{{main.rationaleFontFamily}}; color:{{main.rationaleFontColor}};padding-top: 18px;" auto-font-size noSelection>
                             {{main.Rationale}}
                         </div>
                         <p class="text-center" style="font-size:25px;">{{main.subRationale}}</p>
-                    </div><!-- *************************************************************************** -->
+                    </div>
+                    <!-- CA- This ng-show will work for both regular NW and JP NW -->
                     <div ng-show="!main.displayNameGroup">
-                    <div class="row" style="height: 110px; padding:20px 0 0 0;" >
-                        <div class="col-md-12">
-                            <input type="text" placeholder="New Names" class="roundCorners" ng-model="main.newName" style="font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black" autofocus/>
+                        <div class="row" style="height: 110px; padding:20px 0 0 0;">
+                            <div class="col-md-{{main.makeShorterNewNameInput}}">
+                                <input type="text" placeholder="New Names" class="roundCorners" ng-model="main.newName" style="font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black" />
+                            </div>
+                            <div class="col-md-6" ng-show="main.isJapanese === true">
+                                <input type="text" class="center-block; roundCorners" ng-model="main.negativeKanaNames" placeholder="Negative Katakana Names" style="font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black" />
+                            </div>
+                        </div>
+                        <div class="row" style="height: 50px;">
+                            <div class="col-md-6">
+                                <input type="text" class="center-block; roundCorners" ng-model="main.explore" placeholder="EXPLORE" style="font-size: x-large; text-align: center; width: 500px; height: 39px; border: solid 2px green;color:black" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="center-block; roundCorners" ng-model="main.avoid" placeholder="AVOID" style="font-size: x-large; text-align: center; width: 500px; height: 39px;border: solid 2px red;color:black" />
+                            </div>
                         </div>
                     </div>
-                    <div class="row" style="height: 50px;">
-                        <div class="col-md-6">
-                            <input type="text" class="center-block; roundCorners" ng-model="main.explore" placeholder="EXPLORE" style="font-size: x-large; text-align: center; width: 500px; height: 39px; border: solid 2px green;color:black" />
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="center-block; roundCorners" ng-model="main.avoid" placeholder="AVOID" style="font-size: x-large; text-align: center; width: 500px; height: 39px;border: solid 2px red;color:black" />
-                        </div>
-             
-            </div>
-            </div>
             <div class="row">
                 <div class="col-md-12" style="position: relative; bottom: {{main.controlsPosition}}px;">
                     <div class="col-md-4">
-                        <div class="btn-group text-primary">
+                        <div class="btn-group">
                             <button type="button" class="btn btn-default" aria-label="Left Align">
                                 <span aria-hidden="true"></span>Propietary & Confidential</button>
                             <button type="button" class="btn btn-default" aria-label="Center Align" ng-show="main.nameNotation.length > 0">
@@ -210,25 +213,25 @@ label {
                     <div class="col-md-4 text-center">
                         <div class="btn-group ">
                             <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.togglePresentation()">
-                                <span class="glyphicon glyphicon-blackboard" aria-hidden="true">                       
+                                <span class="glyphicon glyphicon-blackboard" aria-hidden="true">
                         </span>
                             </button>
                        <!--      <button type="button" class="btn btn-default" ng-click="main.resetSlide()" aria-label="Center Align">
                                 <span aria-hidden="true" ></span>Reset Slide</button>-->
-                        </div> 
+                        </div>
                     </div>
                     <div class="col-md-4">
                         <div class="btn-group pull-right">
                             <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goPrevSlide()">
-                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">                        
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">
                     </span>
                             </button>
                             <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goNextSlide()">
-                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true">                        
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true">
                     </span>
                             </button>
                             <button type="button" class="btn btn-default" aria-label="Left Align">
-                                <span>{{main.pageNumber}} / {{main.totalOfTestNames}} 
+                                <span>{{main.pageNumber}} / {{main.totalOfTestNames}}
                     </span>
                             </button>
                         </div>
@@ -238,13 +241,14 @@ label {
         </div>
     </div>
 </div>
+
 <!-- End if NW -->
 
 <!-- Side menu Settings-->
 <div class="container-fluid settings slide" ng-show="main.displaySettings">
     <div class="row">
         <div class="col-md-12">
-            <h4 class="text text-primary">Header & Background Settings</h4>
+            <h4 class="text ">Header & Background Settings</h4>
         </div>
     </div>
     <div class="row form-group">
@@ -266,7 +270,7 @@ label {
     <hr>
     <div class="row gap">
         <div class="col-md-12">
-            <h4 class="text text-primary">Test-Name Settings</h4>
+            <h4 class="text">Test-Name Settings</h4>
         </div>
     </div>
     <div class="row form-group gap">
@@ -282,7 +286,7 @@ label {
     <hr>
     <div class="row form-group">
         <div class="col-md-12">
-            <h4 class="text text-primary">Rationale Settings</h4>
+            <h4 class="text ">Rationale Settings</h4>
         </div>
     </div>
     <div class="row form-group">
@@ -298,11 +302,11 @@ label {
     </div>
     <div class="row">
         <div class="col-md-6 ">
-            <p class="text text-primary">
-                <input type="checkbox" style="margin-right: 5px;" ng-model="main.isOverlayAvailable" ng-change="main.setOverlay()" value="main.isOverlayAvailable" />Overlay</p>
+            <p class="text ">
+                <input type="checkbox" style="margin-right: 5px;" ng-model="main.isOverlayAvailable" ng-change="main.setOverlay()" value="main.isOverlayAvailable"/>Overlay</p>
         </div>
         <div class="col-md-6 ">
-            <button class="btn btn-success pull-right " ng-click="main.saveThemeSettings()">Save</button>
+            <button class="btn btn-success pull-right" ng-click="main.saveThemeSettings()">Save</button>
         </div>
     </div>
     <hr>

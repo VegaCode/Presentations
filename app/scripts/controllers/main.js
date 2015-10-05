@@ -16,24 +16,31 @@ angular.module('nwApp')
             var self = this;
             // webBaseUrl = 'http://localhost:64378/';
             webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';       
+
             var feedBackBox = [];
-            projectId = queryStringCheck;        
+            projectId = queryStringCheck;
             self.displaySettings =false;
             self.slides = [];
             self.isTesNameTime = true;
+
+    // CA- Added variable to turn on the katakana input
+            self.isJapanese = true;
+            self.negativeKanaNames = '';
+
             self.isOverview = false;
             self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
                                                         'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',  'Cardiology','Cognition',
                                                         'OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue' ];
+
 
             self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore','Calibri'];
 
             self.help = function() {
                      alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
                 };
- 
+
             // Model for theme configuration
-            var themeConfigurationModel = function(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily, RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,FooterFontColor,FooterFontFamily,Overlay){                    
+            var themeConfigurationModel = function(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily, RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,FooterFontColor,FooterFontFamily,Overlay){
                           return{
                                          'TemplateName': TemplateName,
                                          'TemplateFileName': TemplateFileName,
@@ -46,13 +53,13 @@ angular.module('nwApp')
                                          'FooterFontColor': FooterFontColor,
                                          'FooterFontFamily': FooterFontFamily,
                                           'Overlay': Overlay
-                                     };   
+                                     };
                          };
             self.togglePresentation = function() {
                         if (self.isTesNameTime === false) {
                             self.isTesNameTime = true;
                                    self.displaySettings = false;
-                        } else {
+                        }else {
                             self.isTesNameTime = false;
                             self.displaySettings = true;
                         }
@@ -71,7 +78,7 @@ angular.module('nwApp')
                     });
 
               //Warning! DO NOT CHANGE  THE "==" for "==="
-            Reveal.addEventListener('slidechanged', function(event) {                  
+            Reveal.addEventListener('slidechanged', function(event) {
                     // if (startTestNamesAtPage == event.indexh + 1) {
                         if (2 == event.indexh + 1) {
                             $rootScope.$apply(function() {
@@ -80,9 +87,10 @@ angular.module('nwApp')
                         }
                     });
 
+
 // **********  Getting Slides URL Images and the description for over view  *************************************************************************************
     GetNamesAndSlides.getdata(projectId).then(function(result){
-                self.slides = result;                   
+                self.slides = result;
                 // slide show configuration settings
                 $timeout(function() {
                     Reveal.initialize({
@@ -212,9 +220,10 @@ angular.module('nwApp')
                     Reveal.configure({});
                 }, 300);
             });
+
   // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
-  
-     self.backGroundChanged = function(){             
+
+     self.backGroundChanged = function(){
             apiCall = 'api/NW_InsertTemplateConfiguration?templateName=';
            $http.get(webBaseUrl + apiCall + self.BackGround).success(function(theme){
                 self.BackGround  = theme[0].TemplateName;
@@ -223,113 +232,102 @@ angular.module('nwApp')
                 self.rationaleFontFamily  = theme[0].RationaleFontFamily;
                 self.rationaleFontColor  = theme[0].RationaleFontColor;
                 self.headerFontColor  = theme[0].HeaderFontColor;
-                self.headerFontFamily = theme[0].HeaderFontFamily;                                   
-                self.nameNotation = theme[0].NameNotation; 
+                self.headerFontFamily = theme[0].HeaderFontFamily;
+                self.nameNotation = theme[0].NameNotation;
                 self.isOverlayAvailable = (theme[0].Overlay === 'False')? false : true ;
                 (self.isOverlayAvailable === true ) ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';                                 
                 centerTestNames(self.nameCandidate)    
               })
              };
-    
+
+// CA- this will test for japanese NW
+             var isItJapanese = function(japanese){
+                   if(japanese === true){
+                     self.makeShorterNewNameInput = '6';
+                   }else{
+                     self.makeShorterNewNameInput = '12';
+                   }};
+
              var centerTestNames = function(nameCandidate) {
+               // CA- added function above to make sure if it is katakana or not when billboard or subwaystop is displayed
+                        isItJapanese(self.isJapanese);
                         self.testNameWidth= '85';
-                        if (self.BackGround === 'Billboard' || self.BackGround === 'SubwayStop') {   
-                           self.textAttribute = 'left';                                   
-                            self.columnNameCandSet= '8';
-                            switch (nameCandidate.length) {
+                        if (self.BackGround === 'Billboard' || self.BackGround === 'SubwayStop') {
+                            self.textAttribute = 'left';
+
+// ************************ Column Off Set *************************************
+                           switch (nameCandidate.length) {
                                 case 3:
-                                    self.columnSet = '12';
-                                    break;
                                 case 4:
-                                    self.columnSet = '2';
-                                    break;
+                                  self.columnOffSet = '5';
+                                  break;
                                 case 5:
-                                    self.columnSet = '4';
-                                    break;
                                 case 6:
-                                    self.columnSet = '11';
+                                    self.columnOffSet = '4';
                                     break;
                                 case 7:
-                                    self.columnSet = '6';
-                                    break;
                                 case 8:
-                                    self.columnSet = '12';
-                                    break;
                                 case 9:
-                                    self.columnSet = '8';
-                                    break;
-                                case 10:
-                                    self.columnSet = '4';
-                                    break;
-                                default:
-
-                                    break;
-                            }
-                            switch (nameCandidate.length) {
-                                case 3:
-                                case 4:
-                                case 5:
                                     self.columnOffSet = '3';
                                     break;
-                                case 6:
-                                case 7:
+                                case 10:
                                     self.columnOffSet = '2';
                                     break;
-                                case 8:
-                                case 9:
-                                case 10:
-                                    self.columnOffSet = '1';
-                                    break;
-                                default:
-
-                                    break;
-                            }
-
-                            switch (nameCandidate.length) {
-                                case 3:
-                                    self.marginLeftTestName = '1';
-                                    break;
-                                case 4:
-                                case 8:
-                                case 9:
-                                case 10:
-                                    self.marginLeftTestName = '20';
-                                    break;
-                                case 5:
-                                case 6:
-                                case 7:
-                                    self.marginLeftTestName = '30';
-                                    break;
                                 default:
                                     break;
                             }
+// ************************ Margin Left of TestName ****************************
                             switch (nameCandidate.length) {
                                 case 3:
-                                    self.marginLeftImage = '49';
+                                case 5:
+                                    self.marginLeftTestName = '90';
                                     break;
                                 case 4:
-                                    self.marginLeftImage = '118';
-                                    break;
-                                case 5:
-                                    self.marginLeftImage = '119';
+                                    self.marginLeftTestName = '120';
                                     break;
                                 case 6:
-                                    self.marginLeftImage = ' -13px';
+                                    self.marginLeftTestName = '145';
                                     break;
                                 case 7:
-                                    self.marginLeftImage = '101';
+                                    self.marginLeftTestName = '60';
                                     break;
                                 case 8:
-                                    self.marginLeftImage = '50';
+                                    self.marginLeftTestName = '110';
                                     break;
                                 case 9:
-                                    self.marginLeftImage = '72';
-                                    break;
+                                    self.marginLeftTestName = '150';
+                                    break
                                 case 10:
-                                    self.marginLeftImage = '109';
+                                    self.marginLeftTestName = '100';
                                     break;
                                 default:
-
+                                    break;
+                            }
+// ************************ Margin Left of Image *******************************
+                            switch (nameCandidate.length) {
+                                case 3:
+                                case 5:
+                                    self.marginLeftImage = '140';
+                                    break;
+                                case 4:
+                                    self.marginLeftImage = '180';
+                                    break;
+                                case 6:
+                                    self.marginLeftImage = '200';
+                                    break;
+                                case 7:
+                                    self.marginLeftImage = '120';
+                                    break;
+                                case 8:
+                                    self.marginLeftImage = '170';
+                                    break;
+                                case 9:
+                                    self.marginLeftImage = '210';
+                                    break;
+                                case 10:
+                                    self.marginLeftImage = '160';
+                                    break;
+                                default:
                                     break;
                             }
 
@@ -341,25 +339,26 @@ angular.module('nwApp')
                               self.columnNameCandSet= '12';
                               self.textAttribute = 'center';
                         }
-                   };  
+
+                   };
 
              self.setOverlay = function() {
+
                             if (self.isOverlayAvailable === true) {
-                                self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)'; 
+                                self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)';
                             } else {
                                 self.overlayStyle = '';
                             }
                          };
 
             self.showThemeOptions = function() {self.displaySettings = !self.displaySettings;};
-
             self.saveThemeSettings = function() {
                         if ( self.BackGround !== '') {
-                            var configModel = themeConfigurationModel( self.BackGround, 
+                            var configModel = themeConfigurationModel( self.BackGround,
                                 self.BackGround + '.jpg', self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
                                  self.testNameFontColor, self.testNameFontFamily, 'black', 'Arial', self.isOverlayAvailable);
                             setSettings.postdata(configModel).then(function(result) {
-                              alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');                                
+                              alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
                             });
                         }
                     };
@@ -377,12 +376,12 @@ angular.module('nwApp')
                     };
 
             var initialSlideModel = JSON.stringify( new slideInfoModel(projectId,0,'','','','', 'First'));
-         
- var getTestNamesObject = function(initialSlideModel){   
-                
-                     apiCall = 'api/NW_SaveAndReturnSlideData';                                       
+
+ var getTestNamesObject = function(initialSlideModel){
+
+                     apiCall = 'api/NW_SaveAndReturnSlideData';
                    $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
-                     // capturing the data 
+                     // capturing the data
                          if(slideObject.length>0){
                             _id = slideObject[0].$id;_DisplayName = slideObject[0].DisplayName;_FooterFontColor = slideObject[0].FooterFontColor;
                             _FooterFontFamily = slideObject[0].FooterFontFamily;_HeaderFontColor = slideObject[0].HeaderFontColor;
@@ -400,21 +399,23 @@ angular.module('nwApp')
                             (_SlideType === 'NameGroup')? self.controlsPosition = -286: self.controlsPosition = -23;
                             self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
                            (self.isOverlayAvailable === true && _SlideType !== 'NameGroup') ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';                                 
+
                             self.pageNumber = _SlideNumber;
                             pageNumber =parseInt(_SlideNumber);
                             self.logoPath = 'images/LogIcons/icon-1.png';
-                         
+
                             self.showTemplate = false;
                             self.totalOfTestNames = '700'; 
                             var progressBarUnit = 100/ self.totalOfTestNames;
                             self.progressBarValue = self.progressBarValue + progressBarUnit ; 
+
                             self.displayTally = false;
                             self.nameCandidate = _SlideDescription;
 
                             self.nameCategory = _NameCategory;
                             self.nameNotation = _NameNotation;
                             self.Rationale = _NameRationale.split('-')[0];
-                            self.BackGround = _TemplateName;     
+                            self.BackGround = _TemplateName;
 
                             // inputs
                            self.nameRamking  = _NameRanking;
@@ -431,31 +432,30 @@ angular.module('nwApp')
                             self.testNameFontColor= _TestNameFontColor;
                             self.rationaleFontFamily= _RationaleFontFamily;
                             self.rationaleFontColor=  _RationaleFontColor;
-                            self.subRationale = ( _NameRationale.split('-')[1] !== undefined) ? _NameRationale.split('-')[1] : '';   
+                            self.subRationale = ( _NameRationale.split('-')[1] !== undefined) ? _NameRationale.split('-')[1] : '';
                             centerTestNames(_SlideDescription);
                         }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
                    }).error(function(err) {
                        return err;
-                    })    
+                    })
             }
                    // INITIAL SETUP
-                  getTestNamesObject(initialSlideModel);  
+                  getTestNamesObject(initialSlideModel);
 
-                  self.goNextSlide = function() {      
+                  self.goNextSlide = function() {
                    initialSlideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
                    getTestNamesObject(initialSlideModel);
                   }
 
-                  self.goPrevSlide = function() {         
+                  self.goPrevSlide = function() {
                    initialSlideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
                    getTestNamesObject(initialSlideModel);
                  }
 
                  self.tally = function() {
-                            self.displayTally = true;                                                                    
+                        self.displayTally = true;                                                                    
                         }
 
-            
         }
 
     ]);
