@@ -11,20 +11,18 @@
 angular.module('nwApp')
     .controller('MainCtrl', ['$timeout', 'localStorageService', '$http', 'GetSlides', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides',
         function($timeout, localStorageService, $http, GetSlides, $rootScope, $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides) {
-            var _id, _DisplayName, _FooterFontColor, _FooterFontFamily, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive;
+            var _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
             // webBaseUrl = 'http://localhost:64378/';
             webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';       
-
             var feedBackBox = [];
             projectId = queryStringCheck;
             self.displaySettings =false;
             self.slides = [];
             self.isTesNameTime = true;
-
     // CA- Added variable to turn on the katakana input
-            self.isJapanese = true;
+            self.isJapanese = false;
             self.negativeKanaNames = '';
 
             self.isOverview = false;
@@ -40,7 +38,7 @@ angular.module('nwApp')
                 };
 
             // Model for theme configuration
-            var themeConfigurationModel = function(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily, RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,FooterFontColor,FooterFontFamily,Overlay){
+            var themeConfigurationModel = function(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily, RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,StrokeColor,StrokeRange,Stroke,Overlay){
                           return{
                                          'TemplateName': TemplateName,
                                          'TemplateFileName': TemplateFileName,
@@ -50,11 +48,13 @@ angular.module('nwApp')
                                          'RationaleFontFamily': RationaleFontFamily,
                                          'TestNameFontColor': TestNameFontColor,
                                          'TestNameFontFamily': TestNameFontFamily,
-                                         'FooterFontColor': FooterFontColor,
-                                         'FooterFontFamily': FooterFontFamily,
-                                          'Overlay': Overlay
-                                     };
+                                         'StrokeColor': StrokeColor,
+                                         'StrokeRange': StrokeRange,
+                                         'Stroke': Stroke,
+                                         'Overlay': Overlay
+                                     };  
                          };
+                         
             self.togglePresentation = function() {
                         if (self.isTesNameTime === false) {
                             self.isTesNameTime = true;
@@ -223,7 +223,7 @@ angular.module('nwApp')
 
   // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
 
-     self.backGroundChanged = function(){
+        self.backGroundChanged = function(){
             apiCall = 'api/NW_InsertTemplateConfiguration?templateName=';
            $http.get(webBaseUrl + apiCall + self.BackGround).success(function(theme){
                 self.BackGround  = theme[0].TemplateName;
@@ -238,24 +238,26 @@ angular.module('nwApp')
                 (self.isOverlayAvailable === true ) ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';                                 
                 centerTestNames(self.nameCandidate)    
               })
-             };
+             }; if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};                           
+                            self.strokeRange = _StrokeRange;
+                            self.strokeColor= _StrokeColor;
 
 // CA- this will test for japanese NW
-             var isItJapanese = function(japanese){
+        var isItJapanese = function(japanese){
                    if(japanese === true){
                      self.makeShorterNewNameInput = '6';
                    }else{
                      self.makeShorterNewNameInput = '12';
                    }};
 
-             var centerTestNames = function(nameCandidate) {
+        var centerTestNames = function(nameCandidate) {
                // CA- added function above to make sure if it is katakana or not when billboard or subwaystop is displayed
                         isItJapanese(self.isJapanese);
                         self.testNameWidth= '85';
                         if (self.BackGround === 'Billboard' || self.BackGround === 'SubwayStop') {
                             self.textAttribute = 'left';
 
-// ************************ Column Off Set *************************************
+                // ************************ Column Off Set *************************************
                            switch (nameCandidate.length) {
                                 case 3:
                                 case 4:
@@ -276,7 +278,7 @@ angular.module('nwApp')
                                 default:
                                     break;
                             }
-// ************************ Margin Left of TestName ****************************
+                // ************************ Margin Left of TestName ****************************
                             switch (nameCandidate.length) {
                                 case 3:
                                 case 5:
@@ -303,7 +305,7 @@ angular.module('nwApp')
                                 default:
                                     break;
                             }
-// ************************ Margin Left of Image *******************************
+                // ************************ Margin Left of Image *******************************
                             switch (nameCandidate.length) {
                                 case 3:
                                 case 5:
@@ -349,21 +351,27 @@ angular.module('nwApp')
                             } else {
                                 self.overlayStyle = '';
                             }
-                         };
-
-            self.showThemeOptions = function() {self.displaySettings = !self.displaySettings;};
-            self.saveThemeSettings = function() {
+                         };   
+                    
+        self.showThemeOptions = function() {
+         alertify.prompt('Enter Password', '',function(evt, value){ 
+                if(value === 'admin1234'){                    
+                    self.displaySettings = !self.displaySettings;
+                }
+            }).set('title','Enter Your admin Password');            
+        };
+        self.saveThemeSettings = function() {
                         if ( self.BackGround !== '') {
                             var configModel = themeConfigurationModel( self.BackGround,
                                 self.BackGround + '.jpg', self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
-                                 self.testNameFontColor, self.testNameFontFamily, 'black', 'Arial', self.isOverlayAvailable);
-                            setSettings.postdata(configModel).then(function(result) {
-                              alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
+                                 self.testNameFontColor, self.testNameFontFamily,  self.strokeColor,  self.strokeRange, self.isStrokeIt, self.isOverlayAvailable);
+                                 setSettings.postdata(configModel).then(function(result) {
+                                 alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
                             });
                         }
                     };
 
-            var slideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
+         var slideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
                         return {
                             "presentationid": presentationid,
                             "slideNumber": slideNumber,
@@ -375,16 +383,16 @@ angular.module('nwApp')
                         };
                     };
 
-            var initialSlideModel = JSON.stringify( new slideInfoModel(projectId,0,'','','','', 'First'));
+         var initialSlideModel = JSON.stringify( new slideInfoModel(projectId,0,'','','','', 'First'));
 
- var getTestNamesObject = function(initialSlideModel){
+         var getTestNamesObject = function(initialSlideModel){
 
                      apiCall = 'api/NW_SaveAndReturnSlideData';
                    $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
                      // capturing the data
                          if(slideObject.length>0){
-                            _id = slideObject[0].$id;_DisplayName = slideObject[0].DisplayName;_FooterFontColor = slideObject[0].FooterFontColor;
-                            _FooterFontFamily = slideObject[0].FooterFontFamily;_HeaderFontColor = slideObject[0].HeaderFontColor;
+                            _id = slideObject[0].$id;_DisplayName = slideObject[0].DisplayName;_StrokeRange  = slideObject[0].StrokeRange;
+                            _StrokeColor = slideObject[0].StrokeColor; _Stroke = slideObject[0].Stroke;_HeaderFontColor = slideObject[0].HeaderFontColor;
                             _HeaderFontFamily = slideObject[0].HeaderFontFamily;_Name = slideObject[0].Name;_NameCategory = slideObject[0].NameCategory;
                             _NameGroup = slideObject[0].NameGroup;_NameLogo = slideObject[0].NameLogo;_NameNotation = slideObject[0].NameNotation;
                             _NameRanking = slideObject[0].NameRanking;_NameRationale = slideObject[0].NameRationale;_NamesToAvoid = slideObject[0].NamesToAvoid;
@@ -399,6 +407,7 @@ angular.module('nwApp')
                             (_SlideType === 'NameGroup')? self.controlsPosition = -286: self.controlsPosition = -23;
                             self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
                            (self.isOverlayAvailable === true && _SlideType !== 'NameGroup') ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';                                 
+                           (_Stroke === 'false')?  self.isStrokeIt = false:  self.isStrokeIt = true;
 
                             self.pageNumber = _SlideNumber;
                             pageNumber =parseInt(_SlideNumber);
@@ -432,6 +441,9 @@ angular.module('nwApp')
                             self.testNameFontColor= _TestNameFontColor;
                             self.rationaleFontFamily= _RationaleFontFamily;
                             self.rationaleFontColor=  _RationaleFontColor;
+                            if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};                           
+                            self.strokeRange = _StrokeRange;
+                            self.strokeColor= _StrokeColor;
                             self.subRationale = ( _NameRationale.split('-')[1] !== undefined) ? _NameRationale.split('-')[1] : '';
                             centerTestNames(_SlideDescription);
                         }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}

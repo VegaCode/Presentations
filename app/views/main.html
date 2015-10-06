@@ -1,52 +1,14 @@
 <style type="text/css">
-/*use this to change the height of the page slide*/
-
-.space {
-    margin-bottom: 53px;
+.backGroundStyle {
+  border: solid 5px #93A1A1;
 }
-
-.backgroundStyle {
-    border: solid 5px #93A1A1;
-    background-color: #E1E1E1;
-    background: -webkit-linear-gradient(white, white, #E1E1E1);
-    /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(white, white, #E1E1E1);
-    /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(white, white, #E1E1E1);
-    /* For Firefox 3.6 to 15 */
-    background: linear-gradient(white, white, #E1E1E1);
-    /* Standard syntax (must be last) */
-    height: 100%;
-}
-
-.headerBackground {
-    margin-bottom: 10px;
-    margin: 0px;
-    background-image: url(images/Slide2.JPG);
-    margin-bottom: 14px;
-    background-repeat: no-repeat;
-    border-bottom: solid 5px #002A8E;
-}
-
-.inputBakcgroundimage {
-    height: 35px;
-    width: 150px;
-    border-radius: 5px;
-}
-
 label {
     font-size: 22px !important;
     font-weight: 100;
 }
-
 .roundCorners {
     border-radius: 5px;
 }
-
-.gap {
-    padding-bottom: 10px;
-}
-
 .noSelection {
     -webkit-user-select: none;
     /* webkit (safari, chrome) browsers */
@@ -57,34 +19,30 @@ label {
     -ms-user-select: none;
     /* IE10+ */
 }
-
 .btn-question-style {
     position: fixed;
     top: 35px;
     left: 1075px;
 }
-
 .settings {
     float: right;
     top: 12px;
     right: 0px;
     position: fixed;
 }
-
 .feedBack {
     width: 20px;
     height: 20px;
     position: relative;
     top: 3px;
 }
-
-.groupName {
-     display: table-cell;
-    vertical-align: middle;
-    height: 860px;
-    padding: inherit;
-    border: solid 1px #cccccc;
-    }
+ .strokeme {
+    text-shadow:
+    -1px -1px 0 #FFF,
+    1px -1px 0 #FFF,
+    -1px 1px 0 #FFF,
+    1px 1px 0 #FFF;    
+}
 </style>
 
 <!-- Slide Show -->
@@ -105,7 +63,7 @@ label {
 </div>
 <!-- NW -->
 <div class="container-fluid">
-    <div class="backgroundStyle" ng-show="main.isTesNameTime===false">
+    <div class="backGroundStyle" ng-show="main.isTesNameTime===false">
         <div class="container-fluid" style="background-image: url(images/Backgrounds/{{main.BackGround+ '.jpg'}} ); 
             !important;color:white; background-repeat: no-repeat; background-size: cover;height:800px;">
             <div class="row" style="height: 30px;">
@@ -116,7 +74,7 @@ label {
                     </div>
                 </div>
             </div>
-                 <div class="row" style="height: 175px;"><!-- *************************************************************************** -->
+                 <div class="row" style="height: 175px;">
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}" ng-show="!main.displayNameGroup">
                             <form name="nameRamking">
                                 <label>
@@ -160,14 +118,18 @@ label {
                             </div>
                         </div>
                     </div>
-
                     <div class="row" style="height: 270px;">
                         <div class="col-md-{{main.columnSet}} col-md-offset-{{main.columnOffSet}}">
                             <div class="col-md-1 ">
                                 <img ng-show="main.BackGround == 'Billboard' || main.BackGround == 'SubwayStop'" width='150' style="margin-top: 10px; margin-left: -{{main.marginLeftImage}}px;" ng-src="{{main.logoPath}}" />
                             </div>
-                            <div class="col-md-12 text-{{main.textAttribute}} " style="background-image:{{main.overlayStyle}};
+                            <div class="col-md-12 text-{{main.textAttribute}} "
+                                  style="background-image:{{main.overlayStyle}};
                                   font-family:{{main.testNameFontFamily}};
+                                  {{main.isStrokeIt === true ? 'text-shadow': '' }}:   -{{main.strokeRange}}px  -{{main.strokeRange}}px  0 {{main.strokeColor}},
+                                                        {{main.strokeRange}}px   -{{main.strokeRange}}px  0 {{main.strokeColor}},
+                                                        -{{main.strokeRange}}px  {{main.strokeRange}}px  0 {{main.strokeColor}},
+                                                         {{main.strokeRange}}px  {{main.strokeRange}}px   0 {{main.strokeColor}}; 
                                   margin-left: -{{main.marginLeftTestName}}px;
                                   color:{{main.testNameFontColor}};
                                   border-radius: 5px; width:{{main.testNameWidth}}%;" id="testName" auto-font-size noSelection>
@@ -253,18 +215,18 @@ label {
     </div>
     <div class="row form-group">
         <div class="col-md-6">
-            <select class="btn btn-primary" ng-model="main.BackGround" ng-change="main.backGroundChanged(main.BackGround)" ng-options="BackGround for BackGround in main.changeBackground" ng-init="main.BackGround">
+            <select class="btn btn-primary" ng-model="main.BackGround"  ng-options="BackGround for BackGround in main.changeBackground">
             </select>
         </div>
     </div>
     <div class="row form-group">
         <div class="col-md-6">
-            <select class="btn btn-primary" ng-model="main.headerFontFamily" id="bgselection" ng-change="main.headerFontTypeChanged(main.headerFontFamily)" ng-options="header for header in main.typeOfFont"></select>
+            <select class="btn btn-primary" ng-model="main.headerFontFamily" id="bgselection" ng-options="header for header in main.typeOfFont"></select>
         </div>
     </div>
     <div class="row form-group">
         <div class="col-md-6">
-            <input type="color" class="bg-primary" ng-model="main.headerFontColor" ng-change="main.headerFontColorChanged(main.headerFontColor)" />
+            <input type="color" class="bg-primary" ng-model="main.headerFontColor" />
         </div>
     </div>
     <hr>
@@ -275,12 +237,36 @@ label {
     </div>
     <div class="row form-group gap">
         <div class="col-md-6">
-            <select class="btn btn-primary" ng-model="main.testNameFontFamily" id="bgselection" ng-change="main.testNameFontTypeChanged(main.testNameFontFamily)" ng-options="font for font in main.typeOfFont"></select>
+            <select class="btn btn-primary" ng-model="main.testNameFontFamily" id="bgselection" ng-options="font for font in main.typeOfFont"></select>
         </div>
     </div>
     <div class="row form-groupgap">
         <div class="col-md-6">
-            <input type="color" class="bg-primary" ng-model="main.testNameFontColor" ng-change="main.testNameFontColorChanged(main.testNameFontColor)" />
+            <input type="color" class="bg-primary" ng-model="main.testNameFontColor" />
+        </div>
+    </div>
+    <hr>
+    <div class="row form-group">
+        <div class="col-md-12">
+            <h4 class="text ">Stroke Settings</h4>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            <input type="color" class="bg-primary" ng-model="main.strokeColor">
+            </select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            <input type="range" min="0" max="5"class="bg-primary" ng-model="main.strokeRange">
+            </select>
+        </div>
+    </div>
+    <div class="row form-group">
+          <div class="col-md-6 ">
+            <p class="text ">
+                <input type="checkbox" style="margin-right: 5px;" ng-model="main.isStrokeIt" ng value="main.isStrokeIt"/>Stroke</p>
         </div>
     </div>
     <hr>
@@ -317,7 +303,7 @@ label {
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-3">
-                    <img alt="" ng-src="images/HelpImages/F.PNG" width="50px" class="img-rounded center-block gap" />
+                    <img alt="" ng-src="images/HelpImages/F.PNG" width="50px" class="img-rounded center-block" />
                 </div>
                 <div class="col-md-9">
                     <h4>
@@ -325,9 +311,10 @@ label {
                      </h4>
                 </div>
             </div>
+            <hr>
             <div class="row">
                 <div class="col-md-3" height="60px">
-                    <img alt="" ng-src="images/HelpImages/O.PNG" width="50px" class="img-rounded center-block gap" />
+                    <img alt="" ng-src="images/HelpImages/O.PNG" width="50px" class="img-rounded center-block" />
                 </div>
                 <div class="col-md-9">
                     <h4>
@@ -335,9 +322,10 @@ label {
                     </h4>
                 </div>
             </div>
+            <hr>
             <div class="row">
                 <div class="col-md-3">
-                    <img alt="" src="images/HelpImages/Space.PNG" width="70px" class="img-rounded center-block gap" />
+                    <img alt="" src="images/HelpImages/Space.PNG" width="70px" class="img-rounded center-block" />
                 </div>
                 <div class="col-md-9">
                     <h4>
@@ -345,9 +333,10 @@ label {
                     </h4>
                 </div>
             </div>
+            <hr>
             <div class="row">
                 <div class="col-md-3">
-                    <img alt="" src="images/HelpImages/ArrowKeys.PNG" width="100px" class="img-rounded center-block gap" />
+                    <img alt="" src="images/HelpImages/ArrowKeys.PNG" width="100px" class="img-rounded center-block" />
                 </div>
                 <div class="col-md-9">
                     <h4>
