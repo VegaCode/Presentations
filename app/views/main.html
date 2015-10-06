@@ -36,13 +36,6 @@ label {
     position: relative;
     top: 3px;
 }
- .strokeme {
-    text-shadow:
-    -1px -1px 0 #FFF,
-    1px -1px 0 #FFF,
-    -1px 1px 0 #FFF,
-    1px 1px 0 #FFF;    
-}
 </style>
 
 <!-- Slide Show -->
@@ -202,9 +195,7 @@ label {
             </div>
         </div>
     </div>
-</div>
-
-<!-- End if NW -->
+</div><!-- End if NW -->
 
 <!-- Side menu Settings-->
 <div class="container-fluid settings slide" ng-show="main.displaySettings">
@@ -215,7 +206,7 @@ label {
     </div>
     <div class="row form-group">
         <div class="col-md-6">
-            <select class="btn btn-primary" ng-model="main.BackGround"  ng-options="BackGround for BackGround in main.changeBackground">
+            <select class="btn btn-primary" ng-model="main.BackGround" ng-change="main.backGroundChanged()"  ng-options="BackGround for BackGround in main.changeBackground">
             </select>
         </div>
     </div>
@@ -230,17 +221,17 @@ label {
         </div>
     </div>
     <hr>
-    <div class="row gap">
+    <div class="row ">
         <div class="col-md-12">
             <h4 class="text">Test-Name Settings</h4>
         </div>
     </div>
-    <div class="row form-group gap">
+    <div class="row form-group ">
         <div class="col-md-6">
             <select class="btn btn-primary" ng-model="main.testNameFontFamily" id="bgselection" ng-options="font for font in main.typeOfFont"></select>
         </div>
     </div>
-    <div class="row form-groupgap">
+    <div class="row form-group">
         <div class="col-md-6">
             <input type="color" class="bg-primary" ng-model="main.testNameFontColor" />
         </div>

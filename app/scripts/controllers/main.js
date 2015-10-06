@@ -22,6 +22,7 @@ angular.module('nwApp')
             self.slides = [];
             self.isTesNameTime = true;
             self.progressBarValue = 0;
+            self.presentTestNamesAtSlide = '';
     // CA- Added variable to turn on the katakana input
             self.isJapanese = false;
             self.negativeKanaNames = '';
@@ -81,7 +82,7 @@ angular.module('nwApp')
               //Warning! DO NOT CHANGE  THE "==" for "==="
             Reveal.addEventListener('slidechanged', function(event) {
                     // if (startTestNamesAtPage == event.indexh + 1) {
-                        if (2 == event.indexh + 1) {
+                        if (self.presentTestNamesAtSlide == event.indexh + 1) {
                             $rootScope.$apply(function() {
                                 self.isTesNameTime = false;
                             });
@@ -235,6 +236,10 @@ angular.module('nwApp')
                 self.headerFontColor  = theme[0].HeaderFontColor;
                 self.headerFontFamily = theme[0].HeaderFontFamily;
                 self.nameNotation = theme[0].NameNotation;
+                 (theme[0].Stroke === 'false')? self.isStrokeIt = false : self.isStrokeIt = true;
+                if(self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};                              
+                self.strokeRange =  theme[0].StrokeRange;
+                self.strokeColor=  theme[0].StrokeColor;
                 self.isOverlayAvailable = (theme[0].Overlay === 'False')? false : true ;
                 (self.isOverlayAvailable === true ) ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';                                 
                 centerTestNames(self.nameCandidate)    
@@ -407,14 +412,16 @@ angular.module('nwApp')
                             (_SlideType === 'NameGroup')? self.controlsPosition = -286: self.controlsPosition = -23;
                             self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
                            (self.isOverlayAvailable === true && _SlideType !== 'NameGroup') ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';                                 
-                           (_Stroke === 'false')?  self.isStrokeIt = false:  self.isStrokeIt = true;
+                         
+
+                           ( self.presentTestNamesAtSlide == '')? self.presentTestNamesAtSlide =_SlideNumber : self.presentTestNamesAtSlide = self.presentTestNamesAtSlide;
 
                             self.pageNumber = _SlideNumber;
                             pageNumber =parseInt(_SlideNumber);
                             self.logoPath = 'images/LogIcons/icon-1.png';
 
                             self.showTemplate = false;
-                            self.totalOfTestNames = _TotalNames;    
+                            self.totalOfTestNames = parseInt(_TotalNames);    
                             self.progressBarUnit = 100/ self.totalOfTestNames;                       
 
                             self.displayTally = false;
@@ -440,6 +447,7 @@ angular.module('nwApp')
                             self.testNameFontColor= _TestNameFontColor;
                             self.rationaleFontFamily= _RationaleFontFamily;
                             self.rationaleFontColor=  _RationaleFontColor;
+                            (_Stroke === 'false')?  self.isStrokeIt = false:  self.isStrokeIt = true;
                             if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};                           
                             self.strokeRange = _StrokeRange;
                             self.strokeColor= _StrokeColor;
@@ -458,12 +466,14 @@ angular.module('nwApp')
                    var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
                    getTestNamesObject(slideModel);                    
                    self.progressBarValue = self.progressBarValue + self.progressBarUnit; 
+                   if(self.totalOfTestNames === (pageNumber - 1 )){ self.togglePresentation(); }
                   }
 
                   self.goPrevSlide = function() {
                    var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
                    getTestNamesObject(slideModel);
                      self.progressBarValue = self.progressBarValue - self.progressBarUnit; 
+                     if(self.totalOfTestNames === (pageNumber - 1 )){ self.togglePresentation(); }
                  }
 
                  self.tally = function() {
