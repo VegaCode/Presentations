@@ -11,7 +11,7 @@
 angular.module('nwApp')
     .controller('MainCtrl', ['$timeout', 'localStorageService', '$http', 'GetSlides', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides',
         function($timeout, localStorageService, $http, GetSlides, $rootScope, $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides) {
-            var _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive;
+            var _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
             // webBaseUrl = 'http://localhost:64378/';
@@ -21,6 +21,7 @@ angular.module('nwApp')
             self.displaySettings =false;
             self.slides = [];
             self.isTesNameTime = true;
+            self.progressBarValue = 0;
     // CA- Added variable to turn on the katakana input
             self.isJapanese = false;
             self.negativeKanaNames = '';
@@ -354,11 +355,12 @@ angular.module('nwApp')
                          };   
                     
         self.showThemeOptions = function() {
-         alertify.prompt('Enter Password', '',function(evt, value){ 
-                if(value === 'admin1234'){                    
-                    self.displaySettings = !self.displaySettings;
-                }
-            }).set('title','Enter Your admin Password');            
+              self.displaySettings = !self.displaySettings
+         // alertify.prompt('Enter Password', '',function(evt, value){ 
+         //        if(value === 'admin1234'){                    
+         //            self.displaySettings = !self.displaySettings;
+         //        }
+         //    }).set('title','Enter Your admin Password');            
         };
         self.saveThemeSettings = function() {
                         if ( self.BackGround !== '') {
@@ -382,9 +384,7 @@ angular.module('nwApp')
                             "Direction": Direction
                         };
                     };
-
-         var initialSlideModel = JSON.stringify( new slideInfoModel(projectId,0,'','','','', 'First'));
-
+      
          var getTestNamesObject = function(initialSlideModel){
 
                      apiCall = 'api/NW_SaveAndReturnSlideData';
@@ -402,7 +402,7 @@ angular.module('nwApp')
                             _SlideDescription = slideObject[0].SlideDescription;_SlideNumber = slideObject[0].SlideNumber;_SlideType = slideObject[0].SlideType;
                             _TemplateFileName = slideObject[0].TemplateFileName;_TemplateId = slideObject[0].TemplateId;_TemplateName = slideObject[0].TemplateName;
                             _TestNameFontColor = slideObject[0].TestNameFontColor;_TestNameFontFamily = slideObject[0].TestNameFontFamily;
-                            _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive;
+                            _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive;_TotalNames = slideObject[0].TotalNames;
                             (_SlideType === 'NameGroup')? self.displayNameGroup = true: self.displayNameGroup = false;
                             (_SlideType === 'NameGroup')? self.controlsPosition = -286: self.controlsPosition = -23;
                             self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
@@ -414,9 +414,8 @@ angular.module('nwApp')
                             self.logoPath = 'images/LogIcons/icon-1.png';
 
                             self.showTemplate = false;
-                            self.totalOfTestNames = '700'; 
-                            var progressBarUnit = 100/ self.totalOfTestNames;
-                            self.progressBarValue = self.progressBarValue + progressBarUnit ; 
+                            self.totalOfTestNames = _TotalNames;    
+                            self.progressBarUnit = 100/ self.totalOfTestNames;                       
 
                             self.displayTally = false;
                             self.nameCandidate = _SlideDescription;
@@ -452,16 +451,19 @@ angular.module('nwApp')
                     })
             }
                    // INITIAL SETUP
+                  var initialSlideModel = JSON.stringify( new slideInfoModel(projectId,0,'','','','', 'First'));
                   getTestNamesObject(initialSlideModel);
 
                   self.goNextSlide = function() {
-                   initialSlideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
-                   getTestNamesObject(initialSlideModel);
+                   var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
+                   getTestNamesObject(slideModel);                    
+                   self.progressBarValue = self.progressBarValue + self.progressBarUnit; 
                   }
 
                   self.goPrevSlide = function() {
-                   initialSlideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
-                   getTestNamesObject(initialSlideModel);
+                   var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
+                   getTestNamesObject(slideModel);
+                     self.progressBarValue = self.progressBarValue - self.progressBarUnit; 
                  }
 
                  self.tally = function() {
