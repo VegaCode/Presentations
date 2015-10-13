@@ -57,7 +57,7 @@ label {
 <!-- NW -->
 <div class="container-fluid">
     <div class="backGroundStyle" ng-show="main.isTesNameTime===false">
-        <div class="container-fluid" style="background-image: url(images/Backgrounds/{{main.BackGround+ '.jpg'}} ); 
+        <div class="container-fluid" style="background-image: url(images/Backgrounds/{{main.BackGround+ '.jpg'}} );
             !important;color:white; background-repeat: no-repeat; background-size: cover;height:800px;">
             <div class="row" style="height: 30px;">
                 <div class="col-md-12">
@@ -85,7 +85,7 @@ label {
                         </div>
                         <div class="col-md-8 text-center" auto-font-size id="category" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}">
                             {{main.nameCategory}}
-                        </div> 
+                        </div>
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}"  ng-show="!main.displayNameGroup">
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-default glyphicon " ng-click="main.tally()" style="font-family:arial">Tally
@@ -102,7 +102,7 @@ label {
                                 </div>
                             </div>
                             <div class="row" ng-show="main.displayTally">
-                                <div class="col-md-8">                               
+                                <div class="col-md-8">
                                     <label>Neutral
                                     </label>
                                 </div>
@@ -122,7 +122,7 @@ label {
                                   {{main.isStrokeIt === true ? 'text-shadow': '' }}:   -{{main.strokeRange}}px  -{{main.strokeRange}}px  0 {{main.strokeColor}},
                                                         {{main.strokeRange}}px   -{{main.strokeRange}}px  0 {{main.strokeColor}},
                                                         -{{main.strokeRange}}px  {{main.strokeRange}}px  0 {{main.strokeColor}},
-                                                         {{main.strokeRange}}px  {{main.strokeRange}}px   0 {{main.strokeColor}}; 
+                                                         {{main.strokeRange}}px  {{main.strokeRange}}px   0 {{main.strokeColor}};
                                   margin-left: -{{main.marginLeftTestName}}px;
                                   color:{{main.testNameFontColor}};
                                   border-radius: 5px; width:{{main.testNameWidth}}%;" id="testName" auto-font-size noSelection>
@@ -171,8 +171,9 @@ label {
                                 <span class="glyphicon glyphicon-blackboard" aria-hidden="true">
                         </span>
                             </button>
-                       <!--      <button type="button" class="btn btn-default" ng-click="main.resetSlide()" aria-label="Center Align">
-                                <span aria-hidden="true" ></span>Reset Slide</button>-->
+
+                            <!-- CA- added typeahead to search for a desired word -->
+                            <input type="text" ng-model="main.selectedName" ng-change="main.goToSelectedName()" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" data-updater="" class="center-block text-center" placeholder="Search name" style="height: 34px; border-bottom-right-radius: 4px; border-top-right-radius: 4px">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -196,6 +197,9 @@ label {
         </div>
     </div>
 </div><!-- End if NW -->
+
+<!-- CA - added this piece of code to see if the result of typeahead was working -->
+<h4 style="text-align: center">{{main.selectedName}}</h4>
 
 <!-- Side menu Settings-->
 <div class="container-fluid settings slide" ng-show="main.displaySettings">

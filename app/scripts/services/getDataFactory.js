@@ -26,9 +26,9 @@ angular.module('nwApp')
             });
             return deferred.promise;
         };
-       
-        factory.getdata = _getdata;       
-        return factory; 
+
+        factory.getdata = _getdata;
+        return factory;
     }])
 .factory('GetSlides',  [ '$q' , '$http', function GetSlidesFactory($q, $http) {
  var apiCall, deferred, factory,  _getdata ;
@@ -47,11 +47,11 @@ angular.module('nwApp')
         return factory;
     }])
 .factory('GetTestNames',  [ '$q' , '$http', function GetSlidesFactory($q, $http) {
- var apiCall, deferred, factory,  _getdata, _postdata ;
+ var apiCall, deferred, factory,  _getdata, _postdata;
         factory = {};
         deferred = $q.defer();
-      
-        _getdata = function(projectid) {  
+
+        _getdata = function(projectid) {
            apiCall = 'api/NW_Presentation?projectIdForData=';
            $http.get(webBaseUrl + apiCall +projectid  ).success(function(result){
            deferred.resolve(result);
@@ -79,7 +79,7 @@ factory('setSettings',  [ '$q' , '$http', function ($q, $http) {
                deferred.reject(err);
             });
             return deferred.promise;
-        };  
+        };
         factory.postdata = _postdata;
         return  factory;
   }]);
