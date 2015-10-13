@@ -9,8 +9,8 @@
  */
 
 angular.module('nwApp')
-    .controller('MainCtrl', ['$timeout', 'localStorageService', '$http', 'GetSlides', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides',
-        function($timeout, localStorageService, $http, GetSlides, $rootScope, $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides) {
+    .controller('MainCtrl', ['$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides','GetTestNames',
+        function($timeout, localStorageService, $http, $rootScope, $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides,GetTestNames) {
             var _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
@@ -408,8 +408,17 @@ angular.module('nwApp')
                             _TemplateFileName = slideObject[0].TemplateFileName;_TemplateId = slideObject[0].TemplateId;_TemplateName = slideObject[0].TemplateName;
                             _TestNameFontColor = slideObject[0].TestNameFontColor;_TestNameFontFamily = slideObject[0].TestNameFontFamily;
                             _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive;_TotalNames = slideObject[0].TotalNames;
-                            (_SlideType === 'NameGroup')? self.displayNameGroup = true: self.displayNameGroup = false;
-                            (_SlideType === 'NameGroup')? self.controlsPosition = -286: self.controlsPosition = -23;
+                            
+                            self.BackGround = _TemplateName;
+                            if(_SlideType === 'NameGroup'){
+                                self.displayNameGroup = true;
+                                self.controlsPosition = -286;
+                                self.BackGround = 'Default'
+                            }else{
+                                self.displayNameGroup = false;
+                                self.controlsPosition = -23;
+                            }
+
                             self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
                            (self.isOverlayAvailable === true && _SlideType !== 'NameGroup') ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';                                 
                          
@@ -430,7 +439,7 @@ angular.module('nwApp')
                             self.nameCategory = _NameCategory;
                             self.nameNotation = _NameNotation;
                             self.Rationale = _NameRationale.split('-')[0];
-                            self.BackGround = _TemplateName;
+
 
                             // inputs
                            self.nameRamking  = _NameRanking;
@@ -466,7 +475,19 @@ angular.module('nwApp')
                    var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
                    getTestNamesObject(slideModel);                    
                    self.progressBarValue = self.progressBarValue + self.progressBarUnit; 
-                   if(self.totalOfTestNames === (pageNumber - 1 )){ self.togglePresentation(); }
+                  // if(self.totalOfTestNames === (pageNumber - 1 )){ 
+                    if(self.totalOfTestNames === (pageNumber + 790 )){ 
+
+                //1004, 'Positive Retained Names'1004, 'Neutral Retained Names'1004, 'New Names'1004, 'Roots to Explore'1004, 'Roots to Avoid'
+                    // GetTestNames.getSumaryNames(JSON.stringify(1004)+",'Positive Retained Names'").then(function(result){
+                    //     alert(result);
+                    // });
+                //    self.togglePresentation(); 
+
+                  // GetTestNames.getdata(1004).then(function(result){
+                  //       alert(result);
+                  //   });
+                }
                   }
 
                   self.goPrevSlide = function() {

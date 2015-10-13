@@ -16,7 +16,6 @@ angular.module('nwApp')
  var apiCall, deferred, factory,  _getdata;
         factory = {};
         deferred = $q.defer();
-
         _getdata = function(projectid) {
             apiCall = 'api/NW_NamesAndSlides?projectId=';
            $http.get(webBaseUrl + apiCall + projectid  ).success(function(result){
@@ -25,32 +24,14 @@ angular.module('nwApp')
                deferred.reject(err);
             });
             return deferred.promise;
-        };
-       
+        };       
         factory.getdata = _getdata;       
         return factory; 
     }])
-.factory('GetSlides',  [ '$q' , '$http', function GetSlidesFactory($q, $http) {
- var apiCall, deferred, factory,  _getdata ;
-        factory = {};
-        deferred = $q.defer();
-        apiCall = ' api/NW_SaveAndReturnSlideData';
-        _getdata = function(slideObject) {
-           $http.post(webBaseUrl + apiCall , slideObject ).success(function(result){
-           deferred.resolve(result);
-           }).error(function(err) {
-               deferred.reject(err);
-            });
-            return deferred.promise;
-        };
-        factory.getdata = _getdata;
-        return factory;
-    }])
 .factory('GetTestNames',  [ '$q' , '$http', function GetSlidesFactory($q, $http) {
- var apiCall, deferred, factory,  _getdata, _postdata ;
+ var apiCall, deferred, factory,  _getdata, _postdata, _getSumaryNames ;
         factory = {};
-        deferred = $q.defer();
-      
+        deferred = $q.defer();      
         _getdata = function(projectid) {  
            apiCall = 'api/NW_Presentation?projectIdForData=';
            $http.get(webBaseUrl + apiCall +projectid  ).success(function(result){
@@ -59,10 +40,18 @@ angular.module('nwApp')
                deferred.reject(err);
             });
             return deferred.promise;
+        };     
+        _getSumaryNames = function(instruccion) {  
+           apiCall = 'api/NW_GetSummary?instruccion=';
+           $http.get(webBaseUrl + apiCall + instruccion  ).success(function(result){
+           deferred.resolve(result);
+           }).error(function(err) {
+               deferred.reject(err);
+            });
+            return deferred.promise;
         };
-
-
         factory.getdata = _getdata;
+        factory.getSumaryNames = _getSumaryNames;
         return factory;
     }]).
 factory('setSettings',  [ '$q' , '$http', function ($q, $http) {
@@ -70,7 +59,6 @@ factory('setSettings',  [ '$q' , '$http', function ($q, $http) {
       var  self= this;
        factory = {};
        deferred = $q.defer();
-
       _postdata = function(TemplateObject) {
             apiCall = 'api/NW_InsertTemplateConfiguration';
            $http.post(webBaseUrl + apiCall, TemplateObject  ).success(function(result){
