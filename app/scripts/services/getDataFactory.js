@@ -29,7 +29,7 @@ angular.module('nwApp')
         return factory; 
     }])
 .factory('GetTestNames',  [ '$q' , '$http', function GetSlidesFactory($q, $http) {
- var apiCall, deferred, factory,  _getdata, _postdata, _getSumaryNames ;
+ var apiCall, deferred, factory,  _getdata, _postdata, _getSumaryNames, _getTestNameByName ;
         factory = {};
         deferred = $q.defer();      
         _getdata = function(projectid) {  
@@ -40,7 +40,8 @@ angular.module('nwApp')
                deferred.reject(err);
             });
             return deferred.promise;
-        };     
+        };          
+        
         _getSumaryNames = function(instruccion) {  
            apiCall = 'api/NW_GetSummary?instruccion=';
            $http.get(webBaseUrl + apiCall + instruccion  ).success(function(result){
@@ -50,7 +51,7 @@ angular.module('nwApp')
             });
             return deferred.promise;
         };
-        factory.getdata = _getdata;
+        factory.getdata = _getdata;     
         factory.getSumaryNames = _getSumaryNames;
         return factory;
     }]).

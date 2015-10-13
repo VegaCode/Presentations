@@ -165,16 +165,15 @@ label {
                                 <span aria-hidden="true"></span>{{main.nameNotation}}</button>
                         </div>
                     </div>
-                    <div class="col-md-4 text-center">
-                        <div class="btn-group ">
-                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.togglePresentation()">
-                                <span class="glyphicon glyphicon-blackboard" aria-hidden="true">
-                        </span>
-                            </button>
-
-                            <!-- CA- added typeahead to search for a desired word -->
-                            <input type="text" ng-model="main.selectedName" ng-change="main.goToSelectedName()" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" data-updater="" class="center-block text-center" placeholder="Search name" style="height: 34px; border-bottom-right-radius: 4px; border-top-right-radius: 4px">
-                        </div>
+                 <div class="col-md-4 text-center">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="main.togglePresentation()">
+                                <span class="glyphicon glyphicon-blackboard" aria-hidden="true"> </span> 
+                                </button>
+                                </span>
+                                <input type="text" ng-model="main.selectedName" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" class="form-control text-primary" placeholder="Search name">
+                            </div>
                     </div>
                     <div class="col-md-4">
                         <div class="btn-group pull-right">
@@ -197,9 +196,6 @@ label {
         </div>
     </div>
 </div><!-- End if NW -->
-
-<!-- CA - added this piece of code to see if the result of typeahead was working -->
-<h4 style="text-align: center">{{main.selectedName}}</h4>
 
 <!-- Side menu Settings-->
 <div class="container-fluid settings slide" ng-show="main.displaySettings">

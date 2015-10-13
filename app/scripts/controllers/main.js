@@ -391,13 +391,8 @@ angular.module('nwApp')
                             "Direction": Direction
                         };
                     };
+        var setUpTheSlideInfo = function(slideObject){
 
-         var getTestNamesObject = function(initialSlideModel){
-
-                     apiCall = 'api/NW_SaveAndReturnSlideData';
-                   $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
-                     // capturing the data
-                         if(slideObject.length>0){
                             _id = slideObject[0].$id;_DisplayName = slideObject[0].DisplayName;_StrokeRange  = slideObject[0].StrokeRange;
                             _StrokeColor = slideObject[0].StrokeColor; _Stroke = slideObject[0].Stroke;_HeaderFontColor = slideObject[0].HeaderFontColor;
                             _HeaderFontFamily = slideObject[0].HeaderFontFamily;_Name = slideObject[0].Name;_NameCategory = slideObject[0].NameCategory;
@@ -440,7 +435,7 @@ angular.module('nwApp')
 
                             self.nameCategory = _NameCategory;
                             self.nameNotation = _NameNotation;
-                            self.Rationale = _NameRationale.split('-')[0];
+                            self.Rationale = _NameRationale.split('$')[0];
 
 
                             // inputs
@@ -462,8 +457,15 @@ angular.module('nwApp')
                             if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};
                             self.strokeRange = _StrokeRange;
                             self.strokeColor= _StrokeColor;
-                            self.subRationale = ( _NameRationale.split('-')[1] !== undefined) ? _NameRationale.split('-')[1] : '';
+                            self.subRationale = ( _NameRationale.split('$')[1] !== undefined) ? _NameRationale.split('$')[1] : '';
                             centerTestNames(_SlideDescription);
+        }
+         var getTestNamesObject = function(initialSlideModel){
+
+                     apiCall = 'api/NW_SaveAndReturnSlideData';
+                   $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
+                         if(slideObject.length>0){        
+                         setUpTheSlideInfo(slideObject);
                         }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
                    }).error(function(err) {
                        return err;
@@ -478,18 +480,9 @@ angular.module('nwApp')
 
                    getTestNamesObject(slideModel);                    
                    self.progressBarValue = self.progressBarValue + self.progressBarUnit; 
-                  // if(self.totalOfTestNames === (pageNumber - 1 )){ 
-                    if(self.totalOfTestNames === (pageNumber + 790 )){ 
-
-                //1004, 'Positive Retained Names'1004, 'Neutral Retained Names'1004, 'New Names'1004, 'Roots to Explore'1004, 'Roots to Avoid'
-                    // GetTestNames.getSumaryNames(JSON.stringify(1004)+",'Positive Retained Names'").then(function(result){
-                    //     alert(result);
-                    // });
-                //    self.togglePresentation(); 
-
-                  // GetTestNames.getdata(1004).then(function(result){
-                  //       alert(result);
-                  //   });
+                  if(self.totalOfTestNames === (pageNumber - 1 )){                     
+                    alert('Present Sumary Slides');
+                    self.togglePresentation(); 
                       }
                   }
 
@@ -500,6 +493,14 @@ angular.module('nwApp')
                      if(self.totalOfTestNames === (pageNumber - 1 )){ self.togglePresentation(); }
                  }
 
+                 self.onSelect = function ($item) {
+                    var query = projectId+','+"'"+$item +"'";
+                       apiCall = 'api/NW_NamesAndSlides?projectIdAndTestName=';
+                            $http.get(webBaseUrl + apiCall + query).success(function(result){
+                                // find the slide number and get the next one
+                                setUpTheSlideInfo(result);
+                            })
+                    };
 
                  // CA- the following code will allow to search the candidate names and then display them
                   self.selectedName = undefined;
@@ -511,14 +512,7 @@ angular.module('nwApp')
                      self.testName.push(obj.Name);
                    });
                  });
-
-                 self.goToSelectedName = function(){
-                   if (self.selectedName === self.candidateNames){
-                     var SlideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, ''));
-                     getTestNamesObject(SlideModel);
-                   }
-                 }
-
+               
                  self.tally = function() {
                         self.displayTally = true;
                         }
