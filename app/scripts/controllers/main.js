@@ -10,12 +10,12 @@
 
 angular.module('nwApp')
     .controller('MainCtrl', ['$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides','GetTestNames',
-        function($timeout, localStorageService, $http, $rootScope, $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides,GetTestNames) {
+        function($timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides,GetTestNames) {
             var _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
             // webBaseUrl = 'http://localhost:64378/';
-            webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';       
+            webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
             var feedBackBox = [];
             projectId = queryStringCheck;
             self.displaySettings =false;
@@ -54,9 +54,9 @@ angular.module('nwApp')
                                          'StrokeRange': StrokeRange,
                                          'Stroke': Stroke,
                                          'Overlay': Overlay
-                                     };  
+                                     };
                          };
-                         
+
             self.togglePresentation = function() {
                         if (self.isTesNameTime === false) {
                             self.isTesNameTime = true;
@@ -223,6 +223,8 @@ angular.module('nwApp')
                 }, 300);
             });
 
+
+
   // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
 
         self.backGroundChanged = function(){
@@ -237,14 +239,14 @@ angular.module('nwApp')
                 self.headerFontFamily = theme[0].HeaderFontFamily;
                 self.nameNotation = theme[0].NameNotation;
                  (theme[0].Stroke === 'false')? self.isStrokeIt = false : self.isStrokeIt = true;
-                if(self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};                              
+                if(self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};
                 self.strokeRange =  theme[0].StrokeRange;
                 self.strokeColor=  theme[0].StrokeColor;
                 self.isOverlayAvailable = (theme[0].Overlay === 'False')? false : true ;
-                (self.isOverlayAvailable === true ) ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';                                 
-                centerTestNames(self.nameCandidate)    
+                (self.isOverlayAvailable === true ) ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
+                centerTestNames(self.nameCandidate)
               })
-             }; if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};                           
+             }; if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};
                             self.strokeRange = _StrokeRange;
                             self.strokeColor= _StrokeColor;
 
@@ -357,15 +359,15 @@ angular.module('nwApp')
                             } else {
                                 self.overlayStyle = '';
                             }
-                         };   
-                    
+                         };
+
         self.showThemeOptions = function() {
               self.displaySettings = !self.displaySettings
-         // alertify.prompt('Enter Password', '',function(evt, value){ 
-         //        if(value === 'admin1234'){                    
+         // alertify.prompt('Enter Password', '',function(evt, value){
+         //        if(value === 'admin1234'){
          //            self.displaySettings = !self.displaySettings;
          //        }
-         //    }).set('title','Enter Your admin Password');            
+         //    }).set('title','Enter Your admin Password');
         };
         self.saveThemeSettings = function() {
                         if ( self.BackGround !== '') {
@@ -389,7 +391,7 @@ angular.module('nwApp')
                             "Direction": Direction
                         };
                     };
-      
+
          var getTestNamesObject = function(initialSlideModel){
 
                      apiCall = 'api/NW_SaveAndReturnSlideData';
@@ -420,8 +422,8 @@ angular.module('nwApp')
                             }
 
                             self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
-                           (self.isOverlayAvailable === true && _SlideType !== 'NameGroup') ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';                                 
-                         
+                           (self.isOverlayAvailable === true && _SlideType !== 'NameGroup') ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
+
 
                            ( self.presentTestNamesAtSlide == '')? self.presentTestNamesAtSlide =_SlideNumber : self.presentTestNamesAtSlide = self.presentTestNamesAtSlide;
 
@@ -430,8 +432,8 @@ angular.module('nwApp')
                             self.logoPath = 'images/LogIcons/icon-1.png';
 
                             self.showTemplate = false;
-                            self.totalOfTestNames = parseInt(_TotalNames);    
-                            self.progressBarUnit = 100/ self.totalOfTestNames;                       
+                            self.totalOfTestNames = parseInt(_TotalNames);
+                            self.progressBarUnit = 100/ self.totalOfTestNames;
 
                             self.displayTally = false;
                             self.nameCandidate = _SlideDescription;
@@ -448,7 +450,7 @@ angular.module('nwApp')
                            self.explore  = _NamesToExplore;
                            self.positiveScore = _ToPositive;
                            self.neutralScore = _ToNeutral;
-                          
+
                            // color and font settings
                             self.headerFontFamily= _HeaderFontFamily;
                             self.headerFontColor= _HeaderFontColor;
@@ -457,7 +459,7 @@ angular.module('nwApp')
                             self.rationaleFontFamily= _RationaleFontFamily;
                             self.rationaleFontColor=  _RationaleFontColor;
                             (_Stroke === 'false')?  self.isStrokeIt = false:  self.isStrokeIt = true;
-                            if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};                           
+                            if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};
                             self.strokeRange = _StrokeRange;
                             self.strokeColor= _StrokeColor;
                             self.subRationale = ( _NameRationale.split('-')[1] !== undefined) ? _NameRationale.split('-')[1] : '';
@@ -473,6 +475,7 @@ angular.module('nwApp')
 
                   self.goNextSlide = function() {
                    var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
+
                    getTestNamesObject(slideModel);                    
                    self.progressBarValue = self.progressBarValue + self.progressBarUnit; 
                   // if(self.totalOfTestNames === (pageNumber - 1 )){ 
@@ -487,18 +490,37 @@ angular.module('nwApp')
                   // GetTestNames.getdata(1004).then(function(result){
                   //       alert(result);
                   //   });
-                }
+                      }
                   }
 
                   self.goPrevSlide = function() {
                    var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
                    getTestNamesObject(slideModel);
-                     self.progressBarValue = self.progressBarValue - self.progressBarUnit; 
+                     self.progressBarValue = self.progressBarValue - self.progressBarUnit;
                      if(self.totalOfTestNames === (pageNumber - 1 )){ self.togglePresentation(); }
                  }
 
+
+                 // CA- the following code will allow to search the candidate names and then display them
+                  self.selectedName = undefined;
+                  self.testName = [];
+
+                 GetTestNames.getdata(projectId).then(function(testnames){
+                   var nameTest = [];
+                   nameTest = testnames.map(function(obj){
+                     self.testName.push(obj.Name);
+                   });
+                 });
+
+                 self.goToSelectedName = function(){
+                   if (self.selectedName === self.candidateNames){
+                     var SlideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, ''));
+                     getTestNamesObject(SlideModel);
+                   }
+                 }
+
                  self.tally = function() {
-                        self.displayTally = true;                                                                    
+                        self.displayTally = true;
                         }
 
         }
