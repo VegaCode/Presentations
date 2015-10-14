@@ -44,7 +44,7 @@ label {
         <div class="reveal">
             <div class="slides">
                 <section ng-repeat="slide in  main.slides" style="top: -46px !important; display: block;" data-index="{{$index}}">
-                <button type="button" class="btn btn-primary glyphicon glyphicon-question-sign pull-right btn-question-style" ng-show="main.isTesNameTime" ng-click="main.help()"></button>
+                <button type="button" class="btn btn-default glyphicon glyphicon-question-sign pull-right btn-question-style" ng-show="main.isTesNameTime" ng-click="main.help()"></button>
                     <img ng-src="{{slide.SlideBGFileName}}">
                     <br>
                     <h3 ng-show="main.isOverview" style="color:black" >{{slide.SlideDescription +' '}} {{$index}}
@@ -168,11 +168,17 @@ label {
                  <div class="col-md-4 text-center">
                             <div class="input-group">
                                 <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" ng-click="main.togglePresentation()">
-                                <span class="glyphicon glyphicon-blackboard" aria-hidden="true"> </span> 
-                                </button>
+                                  <button class="btn btn-default" type="button" ng-click="main.togglePresentation()">
+                                    <span class="glyphicon glyphicon-blackboard" aria-hidden="true"> </span>
+                                  </button>
                                 </span>
                                 <input type="text" ng-model="main.selectedName" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" class="form-control text-primary" placeholder="Search name">
+
+                                <span class="input-group-btn">
+                                 <button class="btn btn-default" type="button" ng-click="main.changeToDefault()">
+                                   <span class="glyphicon glyphicon-text-background"></span>
+                                 </button>
+                                </span>
                             </div>
                     </div>
                     <div class="col-md-4">
