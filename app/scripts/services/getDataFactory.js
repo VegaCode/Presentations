@@ -41,7 +41,6 @@ angular.module('nwApp')
             });
             return deferred.promise;
         };          
-        
         _getSumaryNames = function(instruccion) {  
            apiCall = 'api/NW_GetSummary?instruccion=';
            $http.get(webBaseUrl + apiCall + instruccion  ).success(function(result){

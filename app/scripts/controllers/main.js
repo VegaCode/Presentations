@@ -497,18 +497,14 @@ angular.module('nwApp')
                     var query = projectId+','+"'"+$item +"'";
                        apiCall = 'api/NW_NamesAndSlides?projectIdAndTestName=';
                             $http.get(webBaseUrl + apiCall + query).success(function(result){
-                                // find the slide number and get the next one
                                 setUpTheSlideInfo(result);
                             })
                     };
 
                  // CA- the following code will allow to search the candidate names and then display them
-                  self.selectedName = undefined;
-                  self.testName = [];
-
+                self.testName = [];
                  GetTestNames.getdata(projectId).then(function(testnames){
-                   var nameTest = [];
-                   nameTest = testnames.map(function(obj){
+                     testnames.map(function(obj){
                      self.testName.push(obj.Name);
                    });
                  });

@@ -172,7 +172,9 @@ label {
                                 <span class="glyphicon glyphicon-blackboard" aria-hidden="true"> </span> 
                                 </button>
                                 </span>
-                                <input type="text" ng-model="main.selectedName" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" class="form-control text-primary" placeholder="Search name">
+                             <input type="text" ng-model="main.selectedName" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" 
+                             style="border-top-right-radius: 4px;border-bottom-right-radius: 4px;" 
+                             class="form-control text-primary" placeholder="Search name">
                             </div>
                     </div>
                     <div class="col-md-4">
