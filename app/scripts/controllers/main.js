@@ -245,6 +245,7 @@ angular.module('nwApp')
                 self.isOverlayAvailable = (theme[0].Overlay === 'False')? false : true ;
                 (self.isOverlayAvailable === true ) ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
                 centerTestNames(self.nameCandidate)
+
               })
              }; if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};
                             self.strokeRange = _StrokeRange;
@@ -352,6 +353,21 @@ angular.module('nwApp')
 
                    };
 
+//  CA- added function to toggle between on and off default
+        var temporaryBackGround;
+        self.changeToDefault = function(){
+          if (self.BackGround != 'Default'){
+            temporaryBackGround = self.BackGround;
+            self.BackGround = 'Default';
+            self.backGroundChanged(self.BackGround);
+          }
+          else{
+            self.BackGround = temporaryBackGround;
+            self.backGroundChanged(self.BackGround);
+          }
+        };
+
+
              self.setOverlay = function() {
 
                             if (self.isOverlayAvailable === true) {
@@ -392,7 +408,6 @@ angular.module('nwApp')
                         };
                     };
         var setUpTheSlideInfo = function(slideObject){
-
                             _id = slideObject[0].$id;_DisplayName = slideObject[0].DisplayName;_StrokeRange  = slideObject[0].StrokeRange;
                             _StrokeColor = slideObject[0].StrokeColor; _Stroke = slideObject[0].Stroke;_HeaderFontColor = slideObject[0].HeaderFontColor;
                             _HeaderFontFamily = slideObject[0].HeaderFontFamily;_Name = slideObject[0].Name;_NameCategory = slideObject[0].NameCategory;
@@ -405,7 +420,7 @@ angular.module('nwApp')
                             _TemplateFileName = slideObject[0].TemplateFileName;_TemplateId = slideObject[0].TemplateId;_TemplateName = slideObject[0].TemplateName;
                             _TestNameFontColor = slideObject[0].TestNameFontColor;_TestNameFontFamily = slideObject[0].TestNameFontFamily;
                             _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive;_TotalNames = slideObject[0].TotalNames;
-                            
+
                             self.BackGround = _TemplateName;
                             if(_SlideType === 'NameGroup'){
                                 self.displayNameGroup = true;
@@ -464,7 +479,7 @@ angular.module('nwApp')
 
                      apiCall = 'api/NW_SaveAndReturnSlideData';
                    $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
-                         if(slideObject.length>0){        
+                         if(slideObject.length>0){
                          setUpTheSlideInfo(slideObject);
                         }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
                    }).error(function(err) {
@@ -478,11 +493,11 @@ angular.module('nwApp')
                   self.goNextSlide = function() {
                    var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
 
-                   getTestNamesObject(slideModel);                    
-                   self.progressBarValue = self.progressBarValue + self.progressBarUnit; 
-                  if(self.totalOfTestNames === (pageNumber - 1 )){                     
+                   getTestNamesObject(slideModel);
+                   self.progressBarValue = self.progressBarValue + self.progressBarUnit;
+                  if(self.totalOfTestNames === (pageNumber - 1 )){
                     alert('Present Sumary Slides');
-                    self.togglePresentation(); 
+                    self.togglePresentation();
                       }
                   }
 
@@ -508,7 +523,7 @@ angular.module('nwApp')
                      self.testName.push(obj.Name);
                    });
                  });
-               
+
                  self.tally = function() {
                         self.displayTally = true;
                         }
