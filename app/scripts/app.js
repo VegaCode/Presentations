@@ -18,7 +18,8 @@ angular.module('nwApp', [
     'LocalStorageModule',
     'angularScreenfull',
     'AutoFontSize',
-    'ui.bootstrap'
+    'ui.bootstrap',
+     'cfp.hotkeys'
   ])
   .config(function ($routeProvider) {
     $routeProvider

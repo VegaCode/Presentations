@@ -40,7 +40,7 @@ label {
 
 <!-- NW -->
 <div class="container-fluid">
-    <div class="backGroundStyle" ng-show="main.isTesNameTime=true">
+    <div class="backGroundStyle">
         <div class="container-fluid" style="background-image: url({{main.BackGround}});
             !important;color:white; background-repeat: no-repeat; background-size: cover;height:800px;">
             <div class="row" style="height: 30px;">
@@ -53,7 +53,7 @@ label {
             </div>
                  <div class="row" style="height: 175px;">
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}" ng-show="!main.displayNameGroup">
-                            <form name="nameRamking">
+                            <form name="nameRamking" ng-click="main.blurEffect($event)">
                                 <label>
                                     <input class="feedBack" type="radio" name="nameRamking" value="Positive" ng-model="main.nameRamking"> Positive
                                 </label>
@@ -98,7 +98,7 @@ label {
                     <div class="row" style="height: 270px;">
                         <div class="col-md-{{main.columnSet}} col-md-offset-{{main.columnOffSet}}">
                             <div class="col-md-1 ">
-                                <img ng-show="main.BackGround == 'Billboard' || main.BackGround == 'SubwayStop'" width='150' style="margin-top: 10px; margin-left: -{{main.marginLeftImage}}px;" ng-src="{{main.logoPath}}" />
+                                <img ng-show="main.BackGround == 'images/BackGrounds/Billboard.jpg' || main.BackGround == 'images/BackGrounds/SubwayStop.jpg'" width='150' style="margin-top: 10px; margin-left: -{{main.marginLeftImage}}px;" ng-src="{{main.logoPath}}" />
                             </div>
                             <div class="col-md-12 text-{{main.textAttribute}} "
                                   style="background-image:{{main.overlayStyle}};
@@ -139,7 +139,7 @@ label {
                             </div>
                         </div>
                     </div>
-            <div class="row">
+            <div class="row" ng-show="!main.displayNameGroup">
                 <div class="col-md-12" style="position: relative; bottom: {{main.controlsPosition}}px;">
                     <div class="col-md-4">
                         <div class="btn-group">
@@ -149,7 +149,7 @@ label {
                                 <span aria-hidden="true"></span>{{main.nameNotation}}</button>
                         </div>
                     </div>
-                 <div class="col-md-4 text-center">
+                 <div class="col-md-4 text-center" ng-show="main.displayMenu">
                             <div class="input-group">
                                 <span class="input-group-btn">
                                   <button class="btn btn-default" type="button" ng-click="main.togglePresentation()">
@@ -164,7 +164,7 @@ label {
                                 </span>
                             </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" ng-show="main.displayMenu">
                         <div class="btn-group pull-right">
                             <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goPrevSlide()">
                                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">

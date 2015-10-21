@@ -9,22 +9,22 @@
  */
 
 angular.module('nwApp')
-    .controller('MainCtrl', ['$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides','GetTestNames',
-        function($timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides,GetTestNames) {
+    .controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides','GetTestNames',
+        function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides,GetTestNames) {
             var _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
-            var self = this;
+            var self = this;          
             // webBaseUrl = 'http://localhost:64378/';
             webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
             var feedBackBox = [];
             projectId = queryStringCheck;
             self.displaySettings =false;
             self.slides = [];
-            self.isTesNameTime = true;
             self.progressBarValue = 0;
             self.presentTestNamesAtSlide = '';
-    // CA- Added variable to turn on the katakana input
+           // CA- Added variable to turn on the katakana input
             self.isJapanese = false;
+            self.displayMenu = false;
             self.negativeKanaNames = '';
 
             self.isOverview = false;
@@ -78,7 +78,6 @@ angular.module('nwApp')
                 self.isOverlayAvailable = (theme[0].Overlay === 'False')? false : true ;
                 (self.isOverlayAvailable === true ) ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
                 centerTestNames(self.nameCandidate)
-
               })
              }; if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};
                             self.strokeRange = _StrokeRange;
@@ -96,7 +95,7 @@ angular.module('nwApp')
                // CA- added function above to make sure if it is katakana or not when billboard or subwaystop is displayed
                         isItJapanese(self.isJapanese);
                         self.testNameWidth= '85';
-                        if (self.BackGround === 'Billboard' || self.BackGround === 'SubwayStop') {
+                        if (self.BackGround === 'images/BackGrounds/Billboard.jpg' || self.BackGround === 'images/BackGrounds/SubwayStop.jpg') {
                             self.textAttribute = 'left';
 
                 // ************************ Column Off Set *************************************
@@ -254,20 +253,17 @@ angular.module('nwApp')
                             _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive;_TotalNames = slideObject[0].TotalNames;
 
                             self.BackGround = slideObject[0].SlideBGFileName
-                            if(_SlideType === 'NameGroup'){
-                                self.displayNameGroup = true;
-                                self.controlsPosition = -286;
-                                self.BackGround = 'Default'
-                            }else if(_SlideType === 'Image'){
+                            if(_SlideType === 'Image'){
                                  self.displayNameGroup = true;
                                  self.controlsPosition = -286;
+                                 _SlideDescription='';
                             }else{
                                 self.displayNameGroup = false;
-                                self.controlsPosition = -23;
-                            }
+                                self.controlsPosition = -23
+;                            }
 
                             self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
-                           (self.isOverlayAvailable === true && _SlideType !== 'NameGroup') ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
+                           (self.isOverlayAvailable === true && _SlideType !== 'Image') ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
 
 
                            ( self.presentTestNamesAtSlide == '')? self.presentTestNamesAtSlide =_SlideNumber : self.presentTestNamesAtSlide = self.presentTestNamesAtSlide;
@@ -363,6 +359,43 @@ angular.module('nwApp')
                         self.displayTally = true;
                         }
 
-        }
+                          hotkeys.add({
+                            combo:'right',
+                            description:'To go forward',
+                            callback: function(e){
+                                e.preventDefault();
+                                 self.goNextSlide();
+                            }});
+
+                        hotkeys.add({
+                                    combo:'left',
+                                    description:'To go Back',
+                                    callback: function(){
+                                             self.goPrevSlide();
+                            }});
+
+                        hotkeys.add({
+                                    combo:'up',
+                                    description:'Display Menu',
+                                    callback: function(){
+                                                self.displayMenu = true;
+                            }});
+
+                        hotkeys.add({
+                                    combo:'down',
+                                    description:'Hide Menu',
+                                    callback: function(){
+                                               self.displayMenu = false;
+                            }});
+
+                        self.blurEffect= function(e){
+e.preventDefault();
+
+
+
+                        }
+           
+
+        }// end of controller 
 
     ]);
