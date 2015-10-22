@@ -272,7 +272,7 @@ angular.module('nwApp')
                             _TestNameFontColor = slideObject[0].TestNameFontColor;_TestNameFontFamily = slideObject[0].TestNameFontFamily;
                             _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive;
 
-                            self.BackGround = slideObject[0].SlideBGFileName
+                            self.BackGround = slideObject[0].SlideBGFileName;
                             if(_SlideType === 'Image'){
                                  self.displayNameGroup = true;
                                  self.controlsPosition = -286;
@@ -413,10 +413,10 @@ angular.module('nwApp')
                             }});
 
                         self.blurEffect= function(e){
-e.preventDefault();
-
-
-
+                            console.log(e);
+                            $('input[type="radio"]').each(function( index ) {
+                                      $(this).blur();
+                                    });
                         }
 
 
