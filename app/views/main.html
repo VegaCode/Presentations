@@ -152,14 +152,14 @@ label {
                  <div class="col-md-4 text-center" ng-show="main.displayMenu">
                             <div class="input-group">
                                 <span class="input-group-btn">
-                                  <button class="btn btn-default" type="button" ng-click="main.togglePresentation()">
-                                    <span class="glyphicon glyphicon-blackboard" aria-hidden="true"> </span>
+                                  <button class="btn btn-default" type="button" ng-click="main.resetSlide()">
+                                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                                   </button>
                                 </span>
                                 <input type="text" ng-model="main.selectedName" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" class="form-control text-primary" placeholder="Search name">
                                 <span class="input-group-btn">
                                  <button class="btn btn-default" type="button" ng-click="main.changeToDefault()">
-                                   <span class="glyphicon glyphicon-text-background"></span>
+                                   <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                  </button>
                                 </span>
                             </div>
@@ -266,10 +266,16 @@ label {
             </select>
         </div>
     </div>
-    <div class="row">
+    <div class="row form-group">
         <div class="col-md-6 ">
             <p class="text ">
                 <input type="checkbox" style="margin-right: 5px;" ng-model="main.isOverlayAvailable" ng-change="main.setOverlay()" value="main.isOverlayAvailable"/>Overlay</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 ">
+            <button class="btn btn-success pull-left" ng-click="main.resetAll()">Reset All</button>
         </div>
         <div class="col-md-6 ">
             <button class="btn btn-success pull-right" ng-click="main.saveThemeSettings()">Save</button>
