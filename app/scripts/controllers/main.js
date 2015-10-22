@@ -13,7 +13,7 @@ angular.module('nwApp')
         function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides,GetTestNames) {
             var _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
-            var self = this;          
+            var self = this;
             // webBaseUrl = 'http://localhost:64378/';
             webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
             var feedBackBox = [];
@@ -31,7 +31,6 @@ angular.module('nwApp')
             self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
                                                         'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',  'Cardiology','Cognition',
                                                         'OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue' ];
-
 
             self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore','Calibri'];
 
@@ -57,18 +56,19 @@ angular.module('nwApp')
                                      };
                          };
 
-         
+
   // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
 
         self.backGroundChanged = function(){
             apiCall = 'api/NW_InsertTemplateConfiguration?templateName=';
            $http.get(webBaseUrl + apiCall + self.BackGround).success(function(theme){
-                self.BackGround  = theme[0].TemplateName;
+                self.BackGround  = theme[0].TemplateFileName;
+                //self.BackGround  = theme[0].TemplateName;
                 self.testNameFontFamily  = theme[0].TestNameFontFamily;
                 self.testNameFontColor  = theme[0].TestNameFontColor;
                 self.rationaleFontFamily  = theme[0].RationaleFontFamily;
                 self.rationaleFontColor  = theme[0].RationaleFontColor;
-                self.headerFontColor  = theme[0].HeaderFontColor;           
+                self.headerFontColor  = theme[0].HeaderFontColor;
                 self.headerFontFamily = theme[0].HeaderFontFamily;
                 self.nameNotation = theme[0].NameNotation;
                  (theme[0].Stroke === 'false')? self.isStrokeIt = false : self.isStrokeIt = true;
@@ -185,38 +185,57 @@ angular.module('nwApp')
 
                    };
 
-//  CA- added function to toggle between on and off default
+        //  CA- added function to toggle between on and off default
         var temporaryBackGround;
         self.changeToDefault = function(){
-          if (self.BackGround != 'Default'){
+          if (!(self.BackGround === 'Default' || self.BackGround === "images/BackGrounds/Default.jpg")){
             temporaryBackGround = self.BackGround;
             self.BackGround = 'Default';
             self.backGroundChanged(self.BackGround);
           }
           else{
-            self.BackGround = temporaryBackGround;
+            self.BackGround = temporaryBackGround.replace('images/BackGrounds/', "");
+            self.BackGround = self.BackGround.replace('.jpg', "");
             self.backGroundChanged(self.BackGround);
           }
         };
 
-
-             self.setOverlay = function() {
-
-                            if (self.isOverlayAvailable === true) {
-                                self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)';
-                            } else {
-                                self.overlayStyle = '';
-                            }
-                         };
-
-        self.showThemeOptions = function() {            
-         alertify.prompt('Enter Password', '',function(evt, value){
-                if(value === 'admin1234'){
-                    self.displaySettings = !self.displaySettings;
-                }
-            }).set('title','Enter Your admin Password');
+        // CA- added reset buttons. just need to correct logic behind resetAll
+        self.resetSlide = function(){
+          self.nameRamking = false;
+          self.newName = "";
+          self.explore = "";
+          self.avoid = "";
         };
-        self.saveThemeSettings = function() {
+
+        self.resetAll = function(){
+          alertify.confirm('Slides will be reset').set('onok', function(closeEvent){
+            self.displayTally = false;
+            localStorageService.clearAll();
+            location.reload();
+            alert('The slides are reset');
+            self.pageNumber = 1;
+          }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Sides');
+
+        };
+
+       self.setOverlay = function() {
+
+          if (self.isOverlayAvailable === true) {
+              self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)';
+          } else {
+              self.overlayStyle = '';
+          }
+       };
+
+       self.showThemeOptions = function() {
+        alertify.prompt('Enter Password', '',function(evt, value){
+              if(value === 'admin1234'){
+                  self.displaySettings = !self.displaySettings;
+              }
+          }).set('title','Enter Your admin Password');
+       };
+       self.saveThemeSettings = function() {
                         if ( self.BackGround !== '') {
                             var configModel = themeConfigurationModel( self.BackGround,
                                 self.BackGround + '.jpg', self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
@@ -227,7 +246,7 @@ angular.module('nwApp')
                         }
                     };
 
-         var slideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
+        var slideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
                         return {
                             "presentationid": presentationid,
                             "slideNumber": slideNumber,
@@ -259,8 +278,8 @@ angular.module('nwApp')
                                  _SlideDescription='';
                             }else{
                                 self.displayNameGroup = false;
-                                self.controlsPosition = -23
-;                            }
+                                self.controlsPosition = -23;
+                            }
 
                             self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
                            (self.isOverlayAvailable === true && _SlideType !== 'Image') ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
@@ -394,8 +413,8 @@ e.preventDefault();
 
 
                         }
-           
 
-        }// end of controller 
+
+        }// end of controller
 
     ]);
