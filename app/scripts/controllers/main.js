@@ -252,15 +252,15 @@ angular.module('nwApp')
                             _TestNameFontColor = slideObject[0].TestNameFontColor;_TestNameFontFamily = slideObject[0].TestNameFontFamily;
                             _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive;_TotalNames = slideObject[0].TotalNames;
 
-                            self.BackGround = slideObject[0].SlideBGFileName
+                            self.BackGround = slideObject[0].SlideBGFileName;
                             if(_SlideType === 'Image'){
                                  self.displayNameGroup = true;
                                  self.controlsPosition = -286;
                                  _SlideDescription='';
                             }else{
                                 self.displayNameGroup = false;
-                                self.controlsPosition = -23
-;                            }
+                                self.controlsPosition = -23;
+                            }
 
                             self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
                            (self.isOverlayAvailable === true && _SlideType !== 'Image') ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
@@ -389,10 +389,10 @@ angular.module('nwApp')
                             }});
 
                         self.blurEffect= function(e){
-e.preventDefault();
-
-
-
+                            console.log(e);
+                            $('input[type="radio"]').each(function( index ) {
+                                      $(this).blur();
+                                    });
                         }
            
 
