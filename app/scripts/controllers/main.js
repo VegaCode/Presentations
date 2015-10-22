@@ -211,10 +211,7 @@ angular.module('nwApp')
         self.resetAll = function(){
           alertify.confirm('Slides will be reset').set('onok', function(closeEvent){
             self.displayTally = false;
-            localStorageService.clearAll();
-            location.reload();
             alert('The slides are reset');
-            self.pageNumber = 1;
           }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Sides');
 
         };
