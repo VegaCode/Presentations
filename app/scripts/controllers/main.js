@@ -61,9 +61,9 @@ angular.module('nwApp')
 
         self.backGroundChanged = function(){
             apiCall = 'api/NW_InsertTemplateConfiguration?templateName=';
-           $http.get(webBaseUrl + apiCall + self.BackGround).success(function(theme){
+           $http.get(webBaseUrl + apiCall + self.BackGroundName).success(function(theme){
                 self.BackGround  = theme[0].TemplateFileName;
-                //self.BackGround  = theme[0].TemplateName;
+                self.BackGroundName  = theme[0].TemplateName;
                 self.testNameFontFamily  = theme[0].TestNameFontFamily;
                 self.testNameFontColor  = theme[0].TestNameFontColor;
                 self.rationaleFontFamily  = theme[0].RationaleFontFamily;
@@ -188,15 +188,15 @@ angular.module('nwApp')
         //  CA- added function to toggle between on and off default
         var temporaryBackGround;
         self.changeToDefault = function(){
-          if (!(self.BackGround === 'Default' || self.BackGround === "images/BackGrounds/Default.jpg")){
+          if (!(self.BackGroundName === 'Default' || self.BackGroundName === "images/BackGrounds/Default.jpg")){
             temporaryBackGround = self.BackGround;
-            self.BackGround = 'Default';
-            self.backGroundChanged(self.BackGround);
+            self.BackGroundName = 'Default';
+            self.backGroundChanged(self.BackGroundName);
           }
           else{
-            self.BackGround = temporaryBackGround.replace('images/BackGrounds/', "");
-            self.BackGround = self.BackGround.replace('.jpg', "");
-            self.backGroundChanged(self.BackGround);
+            self.BackGroundName = temporaryBackGround.replace('images/BackGrounds/', "");
+            self.BackGroundName = self.BackGroundName.replace('.jpg', "");
+            self.backGroundChanged(self.BackGroundName);
           }
         };
 
@@ -257,6 +257,7 @@ angular.module('nwApp')
                             "Direction": Direction
                         };
                     };
+
         var setUpTheSlideInfo = function(slideObject){
                             _id = slideObject[0].$id;_DisplayName = slideObject[0].DisplayName;_StrokeRange  = slideObject[0].StrokeRange;
                             _StrokeColor = slideObject[0].StrokeColor; _Stroke = slideObject[0].Stroke;_HeaderFontColor = slideObject[0].HeaderFontColor;
@@ -269,7 +270,7 @@ angular.module('nwApp')
                             _SlideDescription = slideObject[0].SlideDescription;_SlideNumber = slideObject[0].SlideNumber;_SlideType = slideObject[0].SlideType;
                             _TemplateFileName = slideObject[0].TemplateFileName;_TemplateId = slideObject[0].TemplateId;_TemplateName = slideObject[0].TemplateName;
                             _TestNameFontColor = slideObject[0].TestNameFontColor;_TestNameFontFamily = slideObject[0].TestNameFontFamily;
-                            _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive;_TotalNames = slideObject[0].TotalNames;
+                            _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive;
 
                             self.BackGround = slideObject[0].SlideBGFileName
                             if(_SlideType === 'Image'){
@@ -292,8 +293,6 @@ angular.module('nwApp')
                             self.logoPath = 'images/LogIcons/icon-1.png';
 
                             self.showTemplate = false;
-                            self.totalOfTestNames = parseInt(_TotalNames);
-                            self.progressBarUnit = 100/ self.totalOfTestNames;
 
                             self.displayTally = false;
                             self.nameCandidate = _SlideDescription;
@@ -325,13 +324,19 @@ angular.module('nwApp')
                             self.subRationale = ( _NameRationale.split('$')[1] !== undefined) ? _NameRationale.split('$')[1] : '';
                             centerTestNames(_SlideDescription);
         }
+
+
+
          var getTestNamesObject = function(initialSlideModel){
 
                      apiCall = 'api/NW_SaveAndReturnSlideData';
                    $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
                          if(slideObject.length>0){
-                         setUpTheSlideInfo(slideObject);
-                        }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
+                           _TotalNames = slideObject[0].TotalNames;
+                           self.totalOfTestNames = parseInt(_TotalNames);
+                           self.progressBarUnit = 100/ self.totalOfTestNames;
+                           setUpTheSlideInfo(slideObject);
+                         }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
                    }).error(function(err) {
                        return err;
                     })
