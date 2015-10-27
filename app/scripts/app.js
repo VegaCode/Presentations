@@ -19,7 +19,7 @@ angular.module('nwApp', [
     'angularScreenfull',
     'AutoFontSize',
     'ui.bootstrap',
-     'cfp.hotkeys'
+    'cfp.hotkeys'
   ])
   .config(function ($routeProvider) {
     $routeProvider
