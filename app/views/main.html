@@ -36,6 +36,11 @@ label {
     position: relative;
     top: 3px;
 }
+.tab-style{
+    font-family: calibri;
+    font-size: 18px;
+    padding-top: 100px;
+}
 </style>
 
 <!-- NW -->
@@ -50,6 +55,22 @@ label {
                         </div>
                     </div>
                 </div>
+            </div>
+             <div ng-show="main.displaySummary" class="text-primary tab-style">  <!-- CA- added tabs to the summary Slide, needs to adjust the type of color will be used for the names-->
+              <tabset>
+                <tab heading="Positive">
+                  <img alt="Bootstrap Image Preview" src="images/BackGrounds/Summarycopy.jpg" width="500px" height="250px"/>
+                </tab>
+                <tab heading="Neutral">
+                  <img alt="Bootstrap Image Preview" src="images/BackGrounds/Summary2.jpg" width="700px" height="400px"/>
+                </tab>
+                <tab heading="Negative">
+                  <img alt="Bootstrap Image Preview" src="images/BackGrounds/Summary3.jpg" width="700px" height="400px"/>
+                </tab>
+                <tab heading="New Names"></tab>
+                <tab heading="Explore"></tab>
+                <tab heading="Avoid"></tab>
+              </tabset>
             </div>
                  <div class="row" style="height: 175px;">
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}" ng-show="!main.displayNameGroup">
@@ -185,7 +206,6 @@ label {
         </div>
     </div>
 </div><!-- End if NW -->
-
 <!-- Side menu Settings-->
 <div class="container-fluid settings slide" ng-show="main.displaySettings">
     <div class="row">
@@ -275,7 +295,7 @@ label {
     <hr>
     <div class="row">
         <div class="col-md-6 ">
-            <button class="btn btn-success pull-left" ng-click="main.resetAll()">Reset All</button>
+            <button class="btn btn-success pull-left" ng-click="main.resetingProjects()">Reset All</button>
         </div>
         <div class="col-md-6 ">
             <button class="btn btn-success pull-right" ng-click="main.saveThemeSettings()">Save</button>

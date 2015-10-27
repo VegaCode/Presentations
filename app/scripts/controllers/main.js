@@ -9,8 +9,8 @@
  */
 
 angular.module('nwApp')
-    .controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides','GetTestNames',
-        function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides,GetTestNames) {
+.controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides', 'GetTestNames', 'ResetProject',
+    function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides,GetTestNames, ResetProject) {
             var _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
@@ -22,8 +22,7 @@ angular.module('nwApp')
             self.slides = [];
             self.progressBarValue = 0;
             self.presentTestNamesAtSlide = '';
-           // CA- Added variable to turn on the katakana input
-            self.isJapanese = false;
+            self.isJapanese = false; // CA- Added variable to turn on the katakana input
             self.displayMenu = false;
             self.negativeKanaNames = '';
 
@@ -200,7 +199,36 @@ angular.module('nwApp')
           }
         };
 
-        // CA- added reset buttons. just need to correct logic behind resetAll
+        self.positiveBackground = "images/BackGrounds/Summarycopy.jpg";
+
+        // CA- requires users to rank each testName
+        self.mustRank = function(){
+          if (self.nameRamking === "False"){
+            alertify.confirm("Please Rank the Name").set('onok', function(closeEvent){})
+            .set('oncancel', function(closeEvent){
+              alertify.alert("You are about to move to the Next Slide")
+              .set('onok', function(closeEvent){
+                var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
+                getTestNamesObject(slideModel);
+                self.progressBarValue = self.progressBarValue + self.progressBarUnit;
+               if(self.totalOfTestNames === (pageNumber - 1 )){
+                 alert('Present Sumary Slides');
+                 self.togglePresentation();
+                   }
+              }).set('title', 'Moving to next slide');
+            }).set('title', 'Ranking Names');
+          }else{
+            var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
+            getTestNamesObject(slideModel);
+            self.progressBarValue = self.progressBarValue + self.progressBarUnit;
+           if(self.totalOfTestNames === (pageNumber - 1 )){
+             alert('Present Sumary Slides');
+             self.togglePresentation();
+               }
+          }
+        }
+
+        // CA- added reset button per slide
         self.resetSlide = function(){
           self.nameRamking = false;
           self.newName = "";
@@ -281,9 +309,14 @@ angular.module('nwApp')
                                  self.displayNameGroup = true;
                                  self.controlsPosition = -286;
                                  _SlideDescription='';
+                                 self.displaySummary = false;
+                            }else if (_SlideType === 'NameSummary') {
+                                self.displaySummary = true;
+                                self.displayNameGroup = true;
                             }else{
                                 self.displayNameGroup = false;
                                 self.controlsPosition = -23;
+                                self.displaySummary = false;
                             }
 
                             self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
@@ -351,13 +384,16 @@ angular.module('nwApp')
 
                   self.goNextSlide = function() {
                    var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
-
-                   getTestNamesObject(slideModel);
-                   self.progressBarValue = self.progressBarValue + self.progressBarUnit;
-                  if(self.totalOfTestNames === (pageNumber - 1 )){
-                    alert('Present Sumary Slides');
-                    self.togglePresentation();
-                      }
+                   if(_SlideType !== 'Image'){
+                     self.mustRank();
+                   }else{
+                     getTestNamesObject(slideModel);
+                     self.progressBarValue = self.progressBarValue + self.progressBarUnit;
+                    if(self.totalOfTestNames === (pageNumber - 1 )){
+                      alert('Present Sumary Slides');
+                      self.togglePresentation();
+                        }
+                   }
                   }
 
                   self.goPrevSlide = function() {
@@ -382,6 +418,16 @@ angular.module('nwApp')
                      self.testName.push(obj.Name);
                    });
                  });
+
+                 // CA- assume it works. (It doesn't work yet since we cannot delete the data from the current project)
+                 self.resetingProjects = function(){
+                   alertify.confirm('Slides will be reset').set('onok', function(closeEvent){
+                     self.displayTally = false;
+                     ResetProject.resetProject(projectId);
+                     alert('The slides are reset');
+                     self.pageNumber = 1;
+                   }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Slides');
+                 };
 
                  self.tally = function() {
                         self.displayTally = true;
