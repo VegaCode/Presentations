@@ -277,7 +277,7 @@ angular.module('nwApp')
 
                             self.BackGroundName = _TemplateName;
 
-                            if(_SlideType === 'Image'){
+                            if(_SlideType === 'Image' || _SlideType === 'NameSummary'){
                                  self.displayNameGroup = true;
                                  self.controlsPosition = -286;
                                  _SlideDescription='';
@@ -416,12 +416,13 @@ angular.module('nwApp')
                                                self.displayMenu = false;
                             }});
 
-                        self.blurEffect= function(e){
-                            console.log(e);
+                        self.blurEffect= function(e){                         
                             $('input[type="radio"]').each(function( index ) {
                                       $(this).blur();
                                     });
                         }
+
+          
 
 
         }// end of controller
