@@ -86,4 +86,72 @@ factory('setSettings',  [ '$q' , '$http', function ($q, $http) {
           };
           factory.resetProject = _resetProject;
           return factory;
+      }]).
+      factory('GetRetainedNames',  [ '$q' , '$http', function GetRetainedNameFactory($q, $http) {
+        var apiCall, instruccion, deferred, factory,  _getPositiveNames, _postdata, _getNeutralNames, _getNewNames, _getRootsToAvoid, _getRootsToExplore;
+        //var apiCall, instruccion, deferred, factory,  _getPositiveNames, _postdata, _getNeutralNames, _getNegativeNames, _getNewNames, _getRootsToAvoid, _getRootsToExplore;
+          factory = {};
+          //deferred = $q.defer();
+          _getPositiveNames = function(projectid) {
+            deferred = $q.defer();
+             instruccion = projectid + ', "Positive Retained Names"';
+             apiCall = 'api/NW_GetSummary?instruccion=';
+             $http.get(webBaseUrl + apiCall + instruccion).success(function(result){
+             deferred.resolve(result);
+             }).error(function(err) {
+                 deferred.reject(err);
+              });
+              return deferred.promise;
+          };
+          _getNeutralNames = function(projectid) {
+            deferred = $q.defer();
+             apiCall = 'api/NW_GetSummary?instruccion=';
+             instruccion = projectid + ', "Neutral Retained Names"';
+             $http.get(webBaseUrl + apiCall + instruccion ).success(function(result){
+             deferred.resolve(result);
+             }).error(function(err) {
+                 deferred.reject(err);
+              });
+              return deferred.promise;
+          };
+          _getNewNames = function(projectid) {
+            deferred = $q.defer();
+             apiCall = 'api/NW_GetSummary?instruccion=';
+             instruccion = projectid + ', "New Names"';
+             $http.get(webBaseUrl + apiCall + instruccion ).success(function(result){
+             deferred.resolve(result);
+             }).error(function(err) {
+                 deferred.reject(err);
+              });
+              return deferred.promise;
+          };
+          _getRootsToExplore = function(projectid) {
+            deferred = $q.defer();
+             apiCall = 'api/NW_GetSummary?instruccion=';
+             instruccion = projectid + ', "Roots to Explore"';
+             $http.get(webBaseUrl + apiCall + instruccion ).success(function(result){
+             deferred.resolve(result);
+             }).error(function(err) {
+                 deferred.reject(err);
+              });
+              return deferred.promise;
+          };
+          _getRootsToAvoid = function(projectid) {
+            deferred = $q.defer();
+             apiCall = 'api/NW_GetSummary?instruccion=';
+             instruccion = projectid + ', "Roots to Avoid"';
+             $http.get(webBaseUrl + apiCall + instruccion ).success(function(result){
+             deferred.resolve(result);
+             }).error(function(err) {
+                 deferred.reject(err);
+              });
+              return deferred.promise;
+          };
+
+          factory.getPositiveNames = _getPositiveNames;
+          factory.getNeutralNames = _getNeutralNames;
+          factory.getNewNames = _getNewNames;
+          factory.getRootsToExplore = _getRootsToExplore;
+          factory.getRootsToAvoid = _getRootsToAvoid;
+          return factory;
       }]);

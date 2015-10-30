@@ -9,8 +9,8 @@
  */
 
 angular.module('nwApp')
-.controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides', 'GetTestNames', 'ResetProject',
-    function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides,GetTestNames, ResetProject) {
+.controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides', 'GetTestNames', 'ResetProject', 'GetRetainedNames',
+    function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides,GetTestNames, ResetProject, GetRetainedNames) {
             var _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
@@ -201,6 +201,9 @@ angular.module('nwApp')
 
         self.positiveBackground = "images/BackGrounds/Summarycopy.jpg";
 
+        self.positiveCount = 0;
+        self.neutralCount = 0;
+        self.newNameCount = 0;
         // CA- requires users to rank each testName
         self.mustRank = function(){
           if (self.nameRamking === "False"){
@@ -225,8 +228,28 @@ angular.module('nwApp')
              alert('Present Sumary Slides');
              self.togglePresentation();
                }
+               self.positiveCount = 0;
+               self.neutralCount = 0;
+               self.newNameCount = 0;
+
+               var instruccion = projectId + ', "Positive Retained Names"';
+               var apiCall = 'api/NW_GetSummary?instruccion=';
+               $http.get(webBaseUrl + apiCall + instruccion).success(function(result){
+                 self.positiveCount = result.length;
+               });
+
+               var instruccion1 = projectId + ', "Neutral Retained Names"';
+               var apiCall1 = 'api/NW_GetSummary?instruccion=';
+               $http.get(webBaseUrl + apiCall1 + instruccion1).success(function(result1){
+                 self.neutralCount = result1.length;
+               });
+               var instruccion2 = projectId + ', "New Names"';
+               var apiCall2 = 'api/NW_GetSummary?instruccion=';
+               $http.get(webBaseUrl + apiCall2 + instruccion2).success(function(result2){
+                 self.newNameCount = result2.length;
+               });
           }
-        }
+        };
 
         // CA- added reset button per slide
         self.resetSlide = function(){
@@ -362,7 +385,91 @@ angular.module('nwApp')
                             centerTestNames(_SlideDescription);
         }
 
+        self.jqueryScrollBarOptions = {
+          "onScroll": function(x,y){
+            if(y.scroll == y.maxScroll){
+              alert('Scrolled to bottom');
+            }
+          }
+        }
+        
+        self.positiveNames = [];
+        self.neutralNames = [];
+        self.newNames = [];
+        self.rootsToExplore = [];
+        self.rootsToAvoid = [];
 
+        self.displayPositive = false;
+        self.displayNeutral = false;
+        self.displayNewName = false;
+        self.displayRootExplore = false;
+        self.displayRootAvoid = false;
+
+        self.getPositivesNames = function(){
+
+          self.displayPositive = true;
+          self.displayNeutral = false;
+          self.displayNewName = false;
+          self.displayRootExplore = false;
+          self.displayRootAvoid = false;
+
+          GetRetainedNames.getPositiveNames(projectId).then(function(positiveName){
+            for(var i = 0; i<positiveName.length; i++){
+              self.positiveNames.push(positiveName[i].Name);
+            }
+          });
+        };
+
+        self.getNeutralsNames = function(){
+          self.displayPositive = false;
+          self.displayNeutral = true;
+          self.displayNewName = false;
+          self.displayRootExplore = false;
+          self.displayRootAvoid = false;
+
+          GetRetainedNames.getNeutralNames(projectId).then(function(neutralName){
+            for(var i = 0; i<neutralName.length; i++){
+              self.neutralNames.push(neutralName[i].Name);
+            }
+          });
+        };
+        self.getNewsNames = function(){
+          self.displayPositive = false;
+          self.displayNeutral = false;
+          self.displayNewName = true;
+          self.displayRootExplore = false;
+          self.displayRootAvoid = false;
+
+          GetRetainedNames.getNewNames(projectId).then(function(newName){
+            for(var i = 0; i<newName.length; i++){
+              self.newNames.push(newName[i].Name);
+            }
+          });
+        };
+        self.getrootsToExplores = function(){
+          self.displayPositive = false;
+          self.displayNeutral = false;
+          self.displayNewName = false;
+          self.displayRootExplore = true;
+          self.displayRootAvoid = false;
+          GetRetainedNames.getRootsToExplore(projectId).then(function(rootExplore){
+            for(var i = 0; i<rootExplore.length; i++){
+              self.rootsToExplore.push(rootExplore[i].Name);
+            }
+          });
+        };
+        self.getrootsToAvoids = function(){
+          self.displayPositive = false;
+          self.displayNeutral = false;
+          self.displayNewName = false;
+          self.displayRootExplore = false;
+          self.displayRootAvoid = true;
+          GetRetainedNames.getRootsToAvoid(projectId).then(function(rootAvoid){
+            for(var i = 0; i<rootAvoid.length; i++){
+              self.rootsToAvoid.push(rootAvoid[i].Name);
+            }
+          });
+        };
 
          var getTestNamesObject = function(initialSlideModel){
 
@@ -393,6 +500,9 @@ angular.module('nwApp')
                       alert('Present Sumary Slides');
                       self.togglePresentation();
                         }
+
+
+
                    }
                   }
 
@@ -462,13 +572,13 @@ angular.module('nwApp')
                                                self.displayMenu = false;
                             }});
 
-                        self.blurEffect= function(e){                         
+                        self.blurEffect= function(e){
                             $('input[type="radio"]').each(function( index ) {
                                       $(this).blur();
                                     });
                         }
 
-          
+
 
 
         }// end of controller
