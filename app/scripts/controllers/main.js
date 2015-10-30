@@ -305,7 +305,7 @@ angular.module('nwApp')
 
                             self.BackGroundName = _TemplateName;
 
-                            if(_SlideType === 'Image' || _SlideType === 'NameSummary'){
+                            if(_SlideType === 'Image'){
                                  self.displayNameGroup = true;
                                  self.controlsPosition = -286;
                                  _SlideDescription='';

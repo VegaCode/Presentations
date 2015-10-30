@@ -41,6 +41,11 @@ label {
     font-size: 18px;
     padding-top: 100px;
 }
+
+.tab-style img{
+  width: 100%;
+  height: 100%;
+}
 </style>
 
 <!-- NW -->
@@ -57,20 +62,20 @@ label {
                 </div>
             </div>
              <div ng-show="main.displaySummary" class="text-primary tab-style">  <!-- CA- added tabs to the summary Slide, needs to adjust the type of color will be used for the names-->
-              <tabset>
-                <tab heading="Positive">
-                  <img alt="Bootstrap Image Preview" src="images/BackGrounds/Summarycopy.jpg" width="500px" height="250px"/>
-                </tab>
-                <tab heading="Neutral">
-                  <img alt="Bootstrap Image Preview" src="images/BackGrounds/Summary2.jpg" width="700px" height="400px"/>
-                </tab>
-                <tab heading="Negative">
-                  <img alt="Bootstrap Image Preview" src="images/BackGrounds/Summary3.jpg" width="700px" height="400px"/>
-                </tab>
-                <tab heading="New Names"></tab>
-                <tab heading="Explore"></tab>
-                <tab heading="Avoid"></tab>
-              </tabset>
+              <uib-Tabset>
+                <uib-tab heading="Positive">
+                  <img alt="Bootstrap Image Preview" src="images/BackGrounds/Summary1.jpg"/>
+                </uib-tab>
+                <uib-tab heading="Neutral">
+                  <img alt="Bootstrap Image Preview" src="images/BackGrounds/Summary2.jpg"/>
+                </uib-tab>
+                <uib-tab heading="Negative">
+                  <img alt="Bootstrap Image Preview" src="images/BackGrounds/Summary3.jpg"/>
+                </uib-tab>
+                <uib-tab heading="New Names"></uib-tab>
+                <uib-tab heading="Explore"></uib-tab>
+                <uib-tab heading="Avoid"></uib-tab>
+              </uib-Tabset>
             </div>
                  <div class="row" style="height: 175px;">
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}" ng-show="!main.displayNameGroup">
