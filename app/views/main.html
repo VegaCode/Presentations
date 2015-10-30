@@ -38,9 +38,24 @@ label {
 }
 .tab-style{
     font-family: calibri;
-    font-size: 18px;
-    padding-top: 100px;
+    font-size: 21px;
+    padding-top: 95px;
 }
+.tab-style span{
+    font-family: calibri;
+    margin-top: 10px;
+}
+.margin-progressbar{
+    margin-top: 3px;
+}
+.margin-badge{
+    margin-top: -7px;
+}
+.scrollbar-dynamic {
+    max-height: 400px;
+    overflow: auto;
+}
+
 </style>
 
 <!-- NW -->
@@ -56,22 +71,171 @@ label {
                     </div>
                 </div>
             </div>
-             <div ng-show="main.displaySummary" class="text-primary tab-style">  <!-- CA- added tabs to the summary Slide, needs to adjust the type of color will be used for the names-->
-              <tabset>
-                <tab heading="Positive">
-                  <img alt="Bootstrap Image Preview" src="images/BackGrounds/Summarycopy.jpg" width="500px" height="250px"/>
-                </tab>
-                <tab heading="Neutral">
-                  <img alt="Bootstrap Image Preview" src="images/BackGrounds/Summary2.jpg" width="700px" height="400px"/>
-                </tab>
-                <tab heading="Negative">
-                  <img alt="Bootstrap Image Preview" src="images/BackGrounds/Summary3.jpg" width="700px" height="400px"/>
-                </tab>
-                <tab heading="New Names"></tab>
-                <tab heading="Explore"></tab>
-                <tab heading="Avoid"></tab>
-              </tabset>
+            <!-- CA- added tabs to the summary Slide, needs to adjust the type of color will be used for the names-->
+             <div ng-show="main.displaySummary" class="tab-style">
+              <uib-tabset>
+                <uib-tab heading="Summary">
+                    <div class="row" style="margin-top: 10px;">
+                  		<div class="col-md-2">
+                        <span class="label label-default" style="background-color: #5cb85c; font-weight: initial;">Positive</span>
+                  		</div>
+                  		<div class="col-md-8 margin-progressbar">
+                        <uib-progressbar type="success" style="height: 25px" ng-style="{width: main.positiveCount + '%'}"></uib-progressbar>
+                  		</div>
+                  		<div class="col-md-2 margin-badge">
+                        <span class="badge" ng-click="main.getPositivesNames()" style="background-color: #5cb85c;  width: 50%; font-weight: initial; font-size: 14px;">{{main.positiveCount}}</span>
+                  		</div>
+                  	</div>
+                  	<div class="row">
+                  		<div class="col-md-2">
+                        <span class="label label-default" style="background-color: #f0ad4e; font-weight: initial;">Neutral</span>
+                  		</div>
+                  		<div class="col-md-8 margin-progressbar">
+                        <uib-progressbar type="warning" style="height: 25px" ng-style="{width: main.neutralCount + '%'}"></uib-progressbar>
+                  		</div>
+                  		<div class="col-md-2 margin-badge">
+                        <span class="badge" ng-click="main.getNeutralsNames()" style="background-color: #f0ad4e;  width: 50%; font-weight: initial; font-size: 14px;">{{main.neutralCount}}</span>
+                  		</div>
+                  	</div>
+                  	<div class="row" style="margin-bottom: -5px;">
+                  		<div class="col-md-2">
+                        <span class="label label-default" style="background-color: #5bc0de; font-weight: initial;">New Names</span>
+                  		</div>
+                  		<div class="col-md-8 margin-progressbar">
+                        <uib-progressbar type="info" style="height: 25px" ng-style="{width: main.newNameCount + '%'}"></uib-progressbar>
+                  		</div>
+                  		<div class="col-md-2 margin-badge">
+                        <span class="badge" ng-click="main.getNewsNames()" style="background-color: #5bc0de;  width: 50%; font-weight: initial; font-size: 14px;">{{main.newNameCount}}</span>
+                  		</div>
+                  	</div>
+                  </uib-tab>
+                    <uib-tab heading="Explore" ng-click="main.getrootsToExplores()">
+                      <div class="row text-info" ng-show="main.displayRootExplore" style="margin-top: 10px;">
+                        <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
+                          <div class="col-md-3">
+                            <p ng-repeat="roottoexplore in main.rootsToExplore" ng-model="roottoexplore" ng-if="$index % 4 === 0">
+                              {{roottoexplore}}
+                            </p>
+                          </div>
+                          <div class="col-md-3">
+                            <p ng-repeat="roottoexplore in main.rootsToExplore" ng-model="roottoexplore" ng-if="$index % 4 === 1">
+                              {{roottoexplore}}
+                            </p>
+                          </div>
+                          <div class="col-md-3">
+                            <p ng-repeat="roottoexplore in main.rootsToExplore" ng-model="roottoexplore" ng-if="$index % 4 === 2">
+                              {{roottoexplore}}
+                            </p>
+                          </div>
+
+                          <div class="col-md-3">
+                            <p ng-repeat="roottoexplore in main.rootsToExplore" ng-model="roottoexplore" ng-if="$index % 4 === 3">
+                              {{roottoexplore}}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </uib-tab>
+                    <uib-tab heading="Avoid" ng-click="main.getrootsToAvoids()">
+                      <div class="row text-info" ng-show="main.displayRootAvoid" style="margin-top: 10px;">
+                        <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
+                          <div class="col-md-3">
+                            <p ng-repeat="rootstoavoid in main.rootsToAvoid" ng-model="rootstoavoid" ng-if="$index % 4 === 0">
+                              {{rootstoavoid}}
+                            </p>
+                          </div>
+                          <div class="col-md-3">
+                            <p ng-repeat="rootstoavoid in main.rootsToAvoid" ng-model="rootstoavoid" ng-if="$index % 4 === 1">
+                              {{rootstoavoid}}
+                            </p>
+                          </div>
+                          <div class="col-md-3">
+                            <p ng-repeat="rootstoavoid in main.rootsToAvoid" ng-model="rootstoavoid" ng-if="$index % 4 === 2">
+                              {{rootstoavoid}}
+                            </p>
+                          </div>
+
+                          <div class="col-md-3">
+                            <p ng-repeat="rootstoavoid in main.rootsToAvoid" ng-model="rootstoavoid" ng-if="$index % 4 === 3">
+                              {{rootstoavoid}}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </uib-tab>
+              </uib-tabset>
+              <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
+              <div class="row text-success" ng-show="main.displayPositive">
+                  <div class="col-md-3">
+                    <p ng-repeat="positivename in main.positiveNames" ng-model="positivename" ng-if="$index % 4 === 0">
+                      {{positivename}}
+                    </p>
+                  </div>
+                  <div class="col-md-3">
+                    <p ng-repeat="positivename in main.positiveNames" ng-model="positivename" ng-if="$index % 4 === 1">
+                      {{positivename}}
+                    </p>
+                  </div>
+                  <div class="col-md-3">
+                    <p ng-repeat="positivename in main.positiveNames" ng-model="positivename" ng-if="$index % 4 === 2">
+                      {{positivename}}
+                    </p>
+                  </div>
+
+                  <div class="col-md-3">
+                    <p ng-repeat="positivename in main.positiveNames" ng-model="positivename" ng-if="$index % 4 === 3">
+                      {{positivename}}
+                    </p>
+                  </div>
+              </div>
+              <div class="row text-warning" ng-show="main.displayNeutral">
+                  <div class="col-md-3">
+                    <p ng-repeat="neutralname in main.neutralNames" ng-model="neutralname" ng-if="$index % 4 === 0">
+                      {{neutralname}}
+                    </p>
+                  </div>
+                  <div class="col-md-3">
+                    <p ng-repeat="neutralname in main.neutralNames" ng-model="neutralname" ng-if="$index % 4 === 1">
+                      {{neutralname}}
+                    </p>
+                  </div>
+                  <div class="col-md-3">
+                    <p ng-repeat="neutralname in main.neutralNames" ng-model="neutralname" ng-if="$index % 4 === 2">
+                      {{neutralname}}
+                    </p>
+                  </div>
+                  <div class="col-md-3">
+                    <p ng-repeat="neutralname in main.neutralNames" ng-model="neutralname" ng-if="$index % 4 === 3">
+                      {{neutralname}}
+                    </p>
+                  </div>
+              </div>
+              <div class="row text-info" ng-show="main.displayNewName">
+                  <div class="col-md-3">
+                    <p ng-repeat="newname in main.newNames" ng-model="newname" ng-if="$index % 4 === 0">
+                      {{newname}}
+                    </p>
+                  </div>
+                  <div class="col-md-3">
+                    <p ng-repeat="newname in main.newNames" ng-model="newname" ng-if="$index % 4 === 1">
+                      {{newname}}
+                    </p>
+                  </div>
+                  <div class="col-md-3">
+                    <p ng-repeat="newname in main.newNames" ng-model="newname" ng-if="$index % 4 === 2">
+                      {{newname}}
+                    </p>
+                  </div>
+
+                  <div class="col-md-3">
+                    <p ng-repeat="newname in main.newNames" ng-model="newname" ng-if="$index % 4 === 3">
+                      {{newname}}
+                    </p>
+                  </div>
+              </div>
             </div>
+            </div>
+            <!-- Summary Slide End -->
                  <div class="row" style="height: 175px;">
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}" ng-show="!main.displayNameGroup">
                             <form name="nameRamking" ng-click="main.blurEffect($event)">
