@@ -204,6 +204,11 @@ angular.module('nwApp')
         self.positiveCount = 0;
         self.neutralCount = 0;
         self.newNameCount = 0;
+        self.stacked = [];
+
+        self.addToBar = function(Count){
+               self.stacked.push(Count);
+        };
         // CA- requires users to rank each testName
         self.mustRank = function(){
           if (self.nameRamking === "False"){
@@ -228,6 +233,8 @@ angular.module('nwApp')
              alert('Present Sumary Slides');
              self.togglePresentation();
                }
+
+
                self.positiveCount = 0;
                self.neutralCount = 0;
                self.newNameCount = 0;
@@ -236,17 +243,20 @@ angular.module('nwApp')
                var apiCall = 'api/NW_GetSummary?instruccion=';
                $http.get(webBaseUrl + apiCall + instruccion).success(function(result){
                  self.positiveCount = result.length;
+                 self.addToBar(self.positiveCount);
                });
 
                var instruccion1 = projectId + ', "Neutral Retained Names"';
                var apiCall1 = 'api/NW_GetSummary?instruccion=';
                $http.get(webBaseUrl + apiCall1 + instruccion1).success(function(result1){
                  self.neutralCount = result1.length;
+                 self.addToBar(self.neutralCount);
                });
                var instruccion2 = projectId + ', "New Names"';
                var apiCall2 = 'api/NW_GetSummary?instruccion=';
                $http.get(webBaseUrl + apiCall2 + instruccion2).success(function(result2){
                  self.newNameCount = result2.length;
+                 self.addToBar(self.newNameCount);
                });
           }
         };
@@ -392,7 +402,7 @@ angular.module('nwApp')
             }
           }
         }
-        
+
         self.positiveNames = [];
         self.neutralNames = [];
         self.newNames = [];
@@ -419,6 +429,37 @@ angular.module('nwApp')
             }
           });
         };
+
+        self.displaySummarys = function(index){
+          if(index === 0){
+            self.getPositivesNames();
+          }else if (index === 1){
+            self.getNeutralsNames();
+          }else if (index === 2){
+            self.getNewsNames();
+          }
+        };
+
+        self.dataInput = "";
+
+        self.saveComments = function(data){
+          self.dataInput = data;
+        };
+
+        self.cancelComments = function(){
+          self.dataInput = "";
+        };
+
+
+
+        self.selectNameFromSummary = function(name){
+            var query = projectId+','+"'"+ name +"'";
+
+             apiCall = 'api/NW_NamesAndSlides?projectIdAndTestName=';
+                  $http.get(webBaseUrl + apiCall + query).success(function(result){
+                      setUpTheSlideInfo(result);
+                  })
+        }
 
         self.getNeutralsNames = function(){
           self.displayPositive = false;
