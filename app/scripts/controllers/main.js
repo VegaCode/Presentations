@@ -204,6 +204,11 @@ angular.module('nwApp')
         self.positiveCount = 0;
         self.neutralCount = 0;
         self.newNameCount = 0;
+        self.stacked = [];
+
+        self.addToBar = function(Count){
+               self.stacked.push(Count);
+        };
         // CA- requires users to rank each testName
         self.mustRank = function(){
           if (self.nameRamking === "False"){
@@ -228,26 +233,6 @@ angular.module('nwApp')
              alert('Present Sumary Slides');
              self.togglePresentation();
                }
-
-          
-
-               // var apiCall = 'api/NW_GetSummary?instruccion=';
-               // $http.get(webBaseUrl + apiCall + instruccion).success(function(result){
-               //  if() self.positiveCount = result.length;
-               //   self.neutralCount = result.length;
-               //    self.newNameCount  = result.length;
-               // });
-
-               // var instruccion1 = projectId + ', "Neutral Retained Names"';
-               // var apiCall1 = 'api/NW_GetSummary?instruccion=';
-               // $http.get(webBaseUrl + apiCall1 + instruccion1).success(function(result1){
-               //   self.neutralCount = result1.length;
-               // });
-               // var instruccion2 = projectId + ', "Neutral Retained Names"';
-               // var apiCall2 = 'api/NW_GetSummary?instruccion=';
-               // $http.get(webBaseUrl + apiCall2 + instruccion2).success(function(result2){
-               //   self.newNameCount = result2.length;
-               // });
           }
         };
 
@@ -336,32 +321,53 @@ angular.module('nwApp')
                             }else if (_SlideType === 'NameSummary') {
                                 self.displaySummary = true;
                                 self.displayNameGroup = true;
+// <<<<<<< HEAD
 
-                               self.positiveCount = 0;
-                               self.neutralCount = 0;
-                               self.newNameCount = 0;
+//                                self.positiveCount = 0;
+//                                self.neutralCount = 0;
+//                                self.newNameCount = 0;
 
-                               var instruccion = [projectId + ', "Positive Retained Names"',
-                                                        projectId + ', "Neutral Retained Names"',
-                                                        projectId + ', "New Names"'];
-                               var instruccionCounter = 0;
-                               instruccion.map(function(obj) {
+//                                var instruccion = [projectId + ', "Positive Retained Names"',
+//                                                         projectId + ', "Neutral Retained Names"',
+//                                                         projectId + ', "New Names"'];
+//                                var instruccionCounter = 0;
+//                                instruccion.map(function(obj) {
 
-                                   var instruccions = obj;
-                                   var apiCall = 'api/NW_GetSummary?instruccion=';
-                                   $http.get(webBaseUrl + apiCall + instruccions).success(function(result) {
-                                       instruccionCounter = instruccionCounter + 1;
-                                       if (instruccionCounter === 1) {
-                                           self.positiveCount = result.length
-                                       };
-                                       if (instruccionCounter === 2) {
-                                           self.neutralCount = result.length
-                                       };
-                                       if (instruccionCounter === 3) {
-                                           self.newNameCount = result.length
-                                       };
-                                   });
-                               });
+//                                    var instruccions = obj;
+//                                    var apiCall = 'api/NW_GetSummary?instruccion=';
+//                                    $http.get(webBaseUrl + apiCall + instruccions).success(function(result) {
+//                                        instruccionCounter = instruccionCounter + 1;
+//                                        if (instruccionCounter === 1) {
+//                                            self.positiveCount = result.length
+//                                        };
+//                                        if (instruccionCounter === 2) {
+//                                            self.neutralCount = result.length
+//                                        };
+//                                        if (instruccionCounter === 3) {
+//                                            self.newNameCount = result.length
+//                                        };
+//                                    });
+//                                });
+
+// =======
+                                var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "New Names"'];
+                                var apiCall = 'api/NW_GetSummary?instruccion=';
+                                var instructionCounter = 0;
+                                  for(var index = 0; index<3; index++){
+                                  $http.get(webBaseUrl + apiCall + instruccion[index]).success(function(result){
+                                    instructionCounter = instructionCounter + 1;
+                                    if (instructionCounter === 1){
+                                      self.positiveCount = result.length;
+                                      self.addToBar(self.positiveCount);
+                                    }else if(instructionCounter === 2){
+                                      self.neutralCount = result.length;
+                                      self.addToBar(self.neutralCount);
+                                    }else if(instructionCounter === 3){
+                                      self.newNameCount = result.length;
+                                      self.addToBar(self.newNameCount);
+                                    }
+                                  });
+                              }
 
                             }else{
                                 self.displayNameGroup = false;
@@ -419,7 +425,7 @@ angular.module('nwApp')
             }
           }
         }
-        
+
         self.positiveNames = [];
         self.neutralNames = [];
         self.newNames = [];
@@ -446,6 +452,38 @@ angular.module('nwApp')
             }
           });
         };
+
+
+        self.displaySummarys = function(index){
+          if(index === 0){
+            self.getPositivesNames();
+          }else if (index === 1){
+            self.getNeutralsNames();
+          }else if (index === 2){
+            self.getNewsNames();
+          }
+        };
+
+        self.dataInput = "";
+
+        self.saveComments = function(data){
+          self.dataInput = data;
+        };
+
+        self.cancelComments = function(){
+          self.dataInput = "";
+        };
+
+
+
+        self.selectNameFromSummary = function(name){
+            var query = projectId+','+"'"+ name +"'";
+
+             apiCall = 'api/NW_NamesAndSlides?projectIdAndTestName=';
+                  $http.get(webBaseUrl + apiCall + query).success(function(result){
+                      setUpTheSlideInfo(result);
+                  })
+        }
 
         self.getNeutralsNames = function(){
           self.displayPositive = false;
@@ -523,13 +561,10 @@ angular.module('nwApp')
                    }else{
                      getTestNamesObject(slideModel);
                      self.progressBarValue = self.progressBarValue + self.progressBarUnit;
-                    if(self.totalOfTestNames === (pageNumber - 1 )){
+                    if(self.totalOfTestNames === (pageNumber + 2 )){
                       alert('Present Sumary Slides');
                       self.togglePresentation();
                         }
-
-
-
                    }
                   }
 
