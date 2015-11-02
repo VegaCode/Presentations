@@ -234,30 +234,30 @@ angular.module('nwApp')
              self.togglePresentation();
                }
 
-
-               self.positiveCount = 0;
-               self.neutralCount = 0;
-               self.newNameCount = 0;
-
-               var instruccion = projectId + ', "Positive Retained Names"';
-               var apiCall = 'api/NW_GetSummary?instruccion=';
-               $http.get(webBaseUrl + apiCall + instruccion).success(function(result){
-                 self.positiveCount = result.length;
-                 self.addToBar(self.positiveCount);
-               });
-
-               var instruccion1 = projectId + ', "Neutral Retained Names"';
-               var apiCall1 = 'api/NW_GetSummary?instruccion=';
-               $http.get(webBaseUrl + apiCall1 + instruccion1).success(function(result1){
-                 self.neutralCount = result1.length;
-                 self.addToBar(self.neutralCount);
-               });
-               var instruccion2 = projectId + ', "New Names"';
-               var apiCall2 = 'api/NW_GetSummary?instruccion=';
-               $http.get(webBaseUrl + apiCall2 + instruccion2).success(function(result2){
-                 self.newNameCount = result2.length;
-                 self.addToBar(self.newNameCount);
-               });
+               //
+              //  self.positiveCount = 0;
+              //  self.neutralCount = 0;
+              //  self.newNameCount = 0;
+               //
+              //  var instruccion = projectId + ', "Positive Retained Names"';
+              //  var apiCall = 'api/NW_GetSummary?instruccion=';
+              //  $http.get(webBaseUrl + apiCall + instruccion).success(function(result){
+              //    self.positiveCount = result.length;
+              //    self.addToBar(self.positiveCount);
+              //  });
+               //
+              //  var instruccion1 = projectId + ', "Neutral Retained Names"';
+              //  var apiCall1 = 'api/NW_GetSummary?instruccion=';
+              //  $http.get(webBaseUrl + apiCall1 + instruccion1).success(function(result1){
+              //    self.neutralCount = result1.length;
+              //    self.addToBar(self.neutralCount);
+              //  });
+              //  var instruccion2 = projectId + ', "New Names"';
+              //  var apiCall2 = 'api/NW_GetSummary?instruccion=';
+              //  $http.get(webBaseUrl + apiCall2 + instruccion2).success(function(result2){
+              //    self.newNameCount = result2.length;
+              //    self.addToBar(self.newNameCount);
+              //  });
           }
         };
 
