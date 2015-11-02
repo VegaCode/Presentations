@@ -233,31 +233,6 @@ angular.module('nwApp')
              alert('Present Sumary Slides');
              self.togglePresentation();
                }
-
-               //
-              //  self.positiveCount = 0;
-              //  self.neutralCount = 0;
-              //  self.newNameCount = 0;
-               //
-              //  var instruccion = projectId + ', "Positive Retained Names"';
-              //  var apiCall = 'api/NW_GetSummary?instruccion=';
-              //  $http.get(webBaseUrl + apiCall + instruccion).success(function(result){
-              //    self.positiveCount = result.length;
-              //    self.addToBar(self.positiveCount);
-              //  });
-               //
-              //  var instruccion1 = projectId + ', "Neutral Retained Names"';
-              //  var apiCall1 = 'api/NW_GetSummary?instruccion=';
-              //  $http.get(webBaseUrl + apiCall1 + instruccion1).success(function(result1){
-              //    self.neutralCount = result1.length;
-              //    self.addToBar(self.neutralCount);
-              //  });
-              //  var instruccion2 = projectId + ', "New Names"';
-              //  var apiCall2 = 'api/NW_GetSummary?instruccion=';
-              //  $http.get(webBaseUrl + apiCall2 + instruccion2).success(function(result2){
-              //    self.newNameCount = result2.length;
-              //    self.addToBar(self.newNameCount);
-              //  });
           }
         };
 
@@ -346,6 +321,24 @@ angular.module('nwApp')
                             }else if (_SlideType === 'NameSummary') {
                                 self.displaySummary = true;
                                 self.displayNameGroup = true;
+                                var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "New Names"'];
+                                var apiCall = 'api/NW_GetSummary?instruccion=';
+                                var instructionCounter = 0;
+                                  for(var index = 0; index<3; index++){
+                                  $http.get(webBaseUrl + apiCall + instruccion[index]).success(function(result){
+                                    instructionCounter = instructionCounter + 1;
+                                    if (instructionCounter === 1){
+                                      self.positiveCount = result.length;
+                                      self.addToBar(self.positiveCount);
+                                    }else if(instructionCounter === 2){
+                                      self.neutralCount = result.length;
+                                      self.addToBar(self.neutralCount);
+                                    }else if(instructionCounter === 3){
+                                      self.newNameCount = result.length;
+                                      self.addToBar(self.newNameCount);
+                                    }
+                                  });
+                              }
                             }else{
                                 self.displayNameGroup = false;
                                 self.controlsPosition = -23;
@@ -429,6 +422,7 @@ angular.module('nwApp')
             }
           });
         };
+
 
         self.displaySummarys = function(index){
           if(index === 0){
@@ -537,13 +531,10 @@ angular.module('nwApp')
                    }else{
                      getTestNamesObject(slideModel);
                      self.progressBarValue = self.progressBarValue + self.progressBarUnit;
-                    if(self.totalOfTestNames === (pageNumber - 1 )){
+                    if(self.totalOfTestNames === (pageNumber + 2 )){
                       alert('Present Sumary Slides');
                       self.togglePresentation();
                         }
-
-
-
                    }
                   }
 
