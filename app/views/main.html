@@ -89,7 +89,7 @@ label {
              <div ng-show="main.displaySummary" class="tab-style">
               <uib-tabset>
                 <uib-tab heading="test">
-                  <uib-progress><uib-bar ng-repeat="bar in main.stacked track by $index" value="bar" ng-click="main.displaySummarys($index)"><span>{{bar}}%</span></uib-bar></uib-progress>
+                  <uib-progress><uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span>{{bar.value}}%</span></uib-bar></uib-progress>
                 </uib-tab>
                 <uib-tab heading="Summary">
                     <div class="row" style="margin-top: 10px;">
@@ -551,5 +551,3 @@ label {
         </div>
     </div>
 </div>
-
-
