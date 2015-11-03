@@ -205,10 +205,19 @@ angular.module('nwApp')
         self.neutralCount = 0;
         self.newNameCount = 0;
         self.stacked = [];
+        self.barType = ['success', 'primary', 'info'];
+        var index = 0;
 
         self.addToBar = function(Count){
-               self.stacked.push(Count);
+          self.stacked.push({
+            value: Count,
+            type: self.barType[index]
+          });
+          index = index + 1;
         };
+
+
+
         // CA- requires users to rank each testName
         self.mustRank = function(){
           if (self.nameRamking === "False"){
@@ -321,35 +330,7 @@ angular.module('nwApp')
                             }else if (_SlideType === 'NameSummary') {
                                 self.displaySummary = true;
                                 self.displayNameGroup = true;
-// <<<<<<< HEAD
-
-//                                self.positiveCount = 0;
-//                                self.neutralCount = 0;
-//                                self.newNameCount = 0;
-
-//                                var instruccion = [projectId + ', "Positive Retained Names"',
-//                                                         projectId + ', "Neutral Retained Names"',
-//                                                         projectId + ', "New Names"'];
-//                                var instruccionCounter = 0;
-//                                instruccion.map(function(obj) {
-
-//                                    var instruccions = obj;
-//                                    var apiCall = 'api/NW_GetSummary?instruccion=';
-//                                    $http.get(webBaseUrl + apiCall + instruccions).success(function(result) {
-//                                        instruccionCounter = instruccionCounter + 1;
-//                                        if (instruccionCounter === 1) {
-//                                            self.positiveCount = result.length
-//                                        };
-//                                        if (instruccionCounter === 2) {
-//                                            self.neutralCount = result.length
-//                                        };
-//                                        if (instruccionCounter === 3) {
-//                                            self.newNameCount = result.length
-//                                        };
-//                                    });
-//                                });
-
-// =======
+//piece of code in order to commit
                                 var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "New Names"'];
                                 var apiCall = 'api/NW_GetSummary?instruccion=';
                                 var instructionCounter = 0;
