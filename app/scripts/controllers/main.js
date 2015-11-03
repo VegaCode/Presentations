@@ -356,13 +356,17 @@ angular.module('nwApp')
                                   for(var index = 0; index<3; index++){
                                   $http.get(webBaseUrl + apiCall + instruccion[index]).success(function(result){
                                     instructionCounter = instructionCounter + 1;
-                                    if (instructionCounter === 1){
+                                    if (instructionCounter === 1){                                      
+                                      self.barType = 'success';
                                       self.positiveCount = result.length;
+
                                       self.addToBar(self.positiveCount);
                                     }else if(instructionCounter === 2){
+                                       self.barType = 'info';
                                       self.neutralCount = result.length;
                                       self.addToBar(self.neutralCount);
                                     }else if(instructionCounter === 3){
+                                        self.barType = 'primary'
                                       self.newNameCount = result.length;
                                       self.addToBar(self.newNameCount);
                                     }
