@@ -215,7 +215,14 @@ angular.module('nwApp')
           });
           index = index + 1;
         };
-
+   // self.addToBar = function(Count){
+   //         for (var i = 0;  i <  3 ; i++) {
+   //        self.stacked.push({
+   //          value: Count,
+   //          type: self.barType[i]
+   //        });
+   //        }
+   //      };
 
 
         // CA- requires users to rank each testName
@@ -328,8 +335,10 @@ angular.module('nwApp')
                                  _SlideDescription='';
                                  self.displaySummary = false;
                             }else if (_SlideType === 'NameSummary') {
+                                 _SlideDescription='';
                                 self.displaySummary = true;
                                 self.displayNameGroup = true;
+
 //piece of code in order to commit
                                 var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "New Names"'];
                                 var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -340,7 +349,6 @@ angular.module('nwApp')
                                     if (instructionCounter === 1){                                      
                                       self.barType = 'success';
                                       self.positiveCount = result.length;
-
                                       self.addToBar(self.positiveCount);
                                     }else if(instructionCounter === 2){
                                        self.barType = 'info';

@@ -497,8 +497,7 @@ angular.module('nwApp')
 
                    getTestNamesObject(slideModel);
                    self.progressBarValue = self.progressBarValue + self.progressBarUnit;
-                  if(self.totalOfTestNames === (pageNumber - 1 )){
-                    alert('Present Sumary Slides');
+                  if(self.totalOfTestNames === (pageNumber - 1 )){                  
                     self.togglePresentation();
                       }
                   }
