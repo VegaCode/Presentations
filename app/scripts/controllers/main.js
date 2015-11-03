@@ -227,21 +227,19 @@ angular.module('nwApp')
               .set('onok', function(closeEvent){
                 var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
                 getTestNamesObject(slideModel);
-                self.progressBarValue = self.progressBarValue + self.progressBarUnit;
-               if(self.totalOfTestNames === (pageNumber - 1 )){
-                 alert('Present Sumary Slides');
-                 self.togglePresentation();
-                   }
+              //  if(self.totalOfTestNames === (pageNumber - 1 )){
+              //    alert('Present Sumary Slides');
+              //    self.togglePresentation();
+              //      }
               }).set('title', 'Moving to next slide');
             }).set('title', 'Ranking Names');
           }else{
             var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
             getTestNamesObject(slideModel);
-            self.progressBarValue = self.progressBarValue + self.progressBarUnit;
-           if(self.totalOfTestNames === (pageNumber - 1 )){
-             alert('Present Sumary Slides');
-             self.togglePresentation();
-               }
+          //  if(self.totalOfTestNames === (pageNumber - 1 )){
+          //    alert('Present Sumary Slides');
+          //    self.togglePresentation();
+          //      }
           }
         };
 
@@ -363,7 +361,7 @@ angular.module('nwApp')
                            ( self.presentTestNamesAtSlide == '')? self.presentTestNamesAtSlide =_SlideNumber : self.presentTestNamesAtSlide = self.presentTestNamesAtSlide;
 
                             self.pageNumber = _SlideNumber;
-                            pageNumber =parseInt(_SlideNumber);
+                            //pageNumber =parseInt(_SlideNumber);
                             self.logoPath = 'images/LogIcons/icon-1.png';
 
                             self.showTemplate = false;
@@ -397,6 +395,11 @@ angular.module('nwApp')
                             self.strokeColor= _StrokeColor;
                             self.subRationale = ( _NameRationale.split('$')[1] !== undefined) ? _NameRationale.split('$')[1] : '';
                             centerTestNames(_SlideDescription);
+                            if(parseInt(self.pageNumber) === 1){
+                              self.progressBarValue = 0;
+                            }else{
+                              self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
+                            }
         }
 
         self.jqueryScrollBarOptions = {
@@ -541,19 +544,17 @@ angular.module('nwApp')
                      self.mustRank();
                    }else{
                      getTestNamesObject(slideModel);
-                     self.progressBarValue = self.progressBarValue + self.progressBarUnit;
-                    if(self.totalOfTestNames === (pageNumber + 2 )){
-                      alert('Present Sumary Slides');
-                      self.togglePresentation();
-                        }
+                    // if(self.totalOfTestNames === (pageNumber + 2 )){
+                    //   alert('Present Sumary Slides');
+                    //   self.togglePresentation();
+                    //     }
                    }
                   }
 
                   self.goPrevSlide = function() {
                    var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
                    getTestNamesObject(slideModel);
-                     self.progressBarValue = self.progressBarValue - self.progressBarUnit;
-                     if(self.totalOfTestNames === (pageNumber - 1 )){ self.togglePresentation(); }
+                     //if(self.totalOfTestNames === (pageNumber - 1 )){ self.togglePresentation(); }
                  }
 
                  self.onSelect = function ($item) {
@@ -562,7 +563,13 @@ angular.module('nwApp')
                             $http.get(webBaseUrl + apiCall + query).success(function(result){
                                 setUpTheSlideInfo(result);
                             })
-                    };
+
+                    if(parseInt(self.pageNumber) === 1){
+                      self.progressBarValue = 0;
+                    }else{
+                      self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
+                    }
+                };
 
                  // CA- the following code will allow to search the candidate names and then display them
                 self.testName = [];

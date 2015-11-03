@@ -53,9 +53,8 @@ label {
     margin-top: -7px;
 }
 .scrollbar-dynamic {
-    max-height: 100%;
+    max-height: 400px;
     max-width: 100%;
-    overflow: auto;
 }
 .row-summaryslides{
   margin-right: 0px;
@@ -64,10 +63,16 @@ label {
 .pointer{
   cursor: pointer;
 }
+.row-comment-style{
+    margin-top: 10px;
+}
 .textarea-style{
-  margin-top: 10px;
   width: 100%;
   height: 500px;
+}
+.dropup ul{
+    bottom:100% !important;
+    top:auto !important;
 }
 
 </style>
@@ -88,10 +93,6 @@ label {
             <!-- CA- added tabs to the summary Slide, needs to adjust the type of color will be used for the names-->
              <div ng-show="main.displaySummary" class="tab-style">
               <uib-tabset>
-                <!-- piece of code in order to commit -->
-                <uib-tab heading="test">
-                  <uib-progress><uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span>{{bar.value}}%</span></uib-bar></uib-progress>
-                </uib-tab>
                 <uib-tab heading="Summary">
                     <div class="row" style="margin-top: 10px;">
                   		<div class="col-md-2">
@@ -126,28 +127,98 @@ label {
                         <span class="badge pointer" ng-click="main.getNewsNames()" style="background-color: #5bc0de;  width: 50%; font-weight: initial; font-size: 14px;">{{main.newNameCount}}</span>
                   		</div>
                   	</div>
+                    <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
+                    <div class="row text-success row-summaryslides" ng-show="main.displayPositive">
+                        <div class="col-md-3">
+                          <p class="pointer" ng-repeat="positivename in main.positiveNames" ng-model="positivename" ng-if="$index % 4 === 0" ng-click=(main.selectNameFromSummary(positivename))>
+                            {{positivename}}
+                          </p>
+                        </div>
+                        <div class="col-md-3">
+                          <p class="pointer" ng-repeat="positivename in main.positiveNames" ng-model="positivename" ng-if="$index % 4 === 1" ng-click=(main.selectNameFromSummary(positivename))>
+                            {{positivename}}
+                          </p>
+                        </div>
+                        <div class="col-md-3">
+                          <p class="pointer" ng-repeat="positivename in main.positiveNames" ng-model="positivename" ng-if="$index % 4 === 2" ng-click=(main.selectNameFromSummary(positivename))>
+                            {{positivename}}
+                          </p>
+                        </div>
+
+                        <div class="col-md-3">
+                          <p class="pointer" ng-repeat="positivename in main.positiveNames" ng-model="positivename" ng-if="$index % 4 === 3" ng-click=(main.selectNameFromSummary(positivename))>
+                            {{positivename}}
+                          </p>
+                        </div>
+                    </div>
+                    <div class="row text-primary row-summaryslides" ng-show="main.displayNeutral">
+                        <div class="col-md-3">
+                          <p class="pointer" ng-repeat="neutralname in main.neutralNames" ng-model="neutralname" ng-if="$index % 4 === 0" ng-click=(main.selectNameFromSummary(neutralname))>
+                            {{neutralname}}
+                          </p>
+                        </div>
+                        <div class="col-md-3">
+                          <p class="pointer" ng-repeat="neutralname in main.neutralNames" ng-model="neutralname" ng-if="$index % 4 === 1" ng-click=(main.selectNameFromSummary(neutralname))>
+                            {{neutralname}}
+                          </p>
+                        </div>
+                        <div class="col-md-3">
+                          <p class="pointer" ng-repeat="neutralname in main.neutralNames" ng-model="neutralname" ng-if="$index % 4 === 2" ng-click=(main.selectNameFromSummary(neutralname))>
+                            {{neutralname}}
+                          </p>
+                        </div>
+                        <div class="col-md-3">
+                          <p class="pointer" ng-repeat="neutralname in main.neutralNames" ng-model="neutralname" ng-if="$index % 4 === 3" ng-click=(main.selectNameFromSummary(neutralname))>
+                            {{neutralname}}
+                          </p>
+                        </div>
+                    </div>
+                    <div class="row text-info row-summaryslides" ng-show="main.displayNewName">
+                        <div class="col-md-3">
+                          <p class="pointer" ng-repeat="newname in main.newNames" ng-model="newname" ng-if="$index % 4 === 0" ng-click=(main.selectNameFromSummary(newname))>
+                            {{newname}}
+                          </p>
+                        </div>
+                        <div class="col-md-3">
+                          <p class="pointer" ng-repeat="newname in main.newNames" ng-model="newname" ng-if="$index % 4 === 1" ng-click=(main.selectNameFromSummary(newname))>
+                            {{newname}}
+                          </p>
+                        </div>
+                        <div class="col-md-3">
+                          <p class="pointer" ng-repeat="newname in main.newNames" ng-model="newname" ng-if="$index % 4 === 2" ng-click=(main.selectNameFromSummary(newname))>
+                            {{newname}}
+                          </p>
+                        </div>
+
+                        <div class="col-md-3">
+                          <p class="pointer" ng-repeat="newname in main.newNames" ng-model="newname" ng-if="$index % 4 === 3" ng-click=(main.selectNameFromSummary(newname))>
+                            {{newname}}
+                          </p>
+                        </div>
+                    </div>
+                  </div>
                   </uib-tab>
                     <uib-tab heading="Explore" ng-click="main.getrootsToExplores()">
                       <div class="row text-info" ng-show="main.displayRootExplore" style="margin-top: 10px;">
                         <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
                           <div class="col-md-3">
-                            <p ng-repeat="roottoexplore in main.rootsToExplore track by $index" ng-model="roottoexplore" ng-if="$index % 4 === 0">
+                            <p ng-repeat="roottoexplore in main.rootsToExplore" ng-model="roottoexplore" ng-if="$index % 4 === 0">
                               {{roottoexplore}}
                             </p>
                           </div>
                           <div class="col-md-3">
-                            <p ng-repeat="roottoexplore in main.rootsToExplore track by $index" ng-model="roottoexplore" ng-if="$index % 4 === 1">
+                            <p ng-repeat="roottoexplore in main.rootsToExplore" ng-model="roottoexplore" ng-if="$index % 4 === 1">
                               {{roottoexplore}}
                             </p>
                           </div>
                           <div class="col-md-3">
-                            <p ng-repeat="roottoexplore in main.rootsToExplore track by $index" ng-model="roottoexplore" ng-if="$index % 4 === 2">
+                            <p ng-repeat="roottoexplore in main.rootsToExplore" ng-model="roottoexplore" ng-if="$index % 4 === 2">
                               {{roottoexplore}}
                             </p>
                           </div>
 
                           <div class="col-md-3">
-                            <p ng-repeat="roottoexplore in main.rootsToExplore track by $index" ng-model="roottoexplore" ng-if="$index % 4 === 3">
+                            <p ng-repeat="roottoexplore in main.rootsToExplore" ng-model="roottoexplore" ng-if="$index % 4 === 3">
                               {{roottoexplore}}
                             </p>
                           </div>
@@ -158,23 +229,23 @@ label {
                       <div class="row text-info" ng-show="main.displayRootAvoid" style="margin-top: 10px;">
                         <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
                           <div class="col-md-3">
-                            <p ng-repeat="rootstoavoid in main.rootsToAvoid track by $index" ng-model="rootstoavoid" ng-if="$index % 4 === 0">
+                            <p ng-repeat="rootstoavoid in main.rootsToAvoid" ng-model="rootstoavoid" ng-if="$index % 4 === 0">
                               {{rootstoavoid}}
                             </p>
                           </div>
                           <div class="col-md-3">
-                            <p ng-repeat="rootstoavoid in main.rootsToAvoid track by $index" ng-model="rootstoavoid" ng-if="$index % 4 === 1">
+                            <p ng-repeat="rootstoavoid in main.rootsToAvoid" ng-model="rootstoavoid" ng-if="$index % 4 === 1">
                               {{rootstoavoid}}
                             </p>
                           </div>
                           <div class="col-md-3">
-                            <p ng-repeat="rootstoavoid in main.rootsToAvoid track by $index" ng-model="rootstoavoid" ng-if="$index % 4 === 2">
+                            <p ng-repeat="rootstoavoid in main.rootsToAvoid" ng-model="rootstoavoid" ng-if="$index % 4 === 2">
                               {{rootstoavoid}}
                             </p>
                           </div>
 
                           <div class="col-md-3">
-                            <p ng-repeat="rootstoavoid in main.rootsToAvoid track by $index" ng-model="rootstoavoid" ng-if="$index % 4 === 3">
+                            <p ng-repeat="rootstoavoid in main.rootsToAvoid" ng-model="rootstoavoid" ng-if="$index % 4 === 3">
                               {{rootstoavoid}}
                             </p>
                           </div>
@@ -182,13 +253,11 @@ label {
                       </div>
                     </uib-tab>
                     <uib-tab heading="Comments" ng-click="">
-                      <div class="row">
-                    		<div class="col-md-12">
-                          <textarea class="textarea-style text-primary" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
+                      <div class="row row-comment-style">
+                    		<div class="col-md-7">
+                          <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
                     		</div>
-                    	</div>
-                    	<div class="row">
-                    		<div class="col-md-11">
+                    		<div class="col-md-4">
                     			<button class="btn btn-success pull-right" ng-model="main.dataInput" ng-click="main.saveComments(main.dataInput)">Save</button>
                     		</div>
                     		<div class="col-md-1">
@@ -197,76 +266,6 @@ label {
                     	</div>
                     </uib-tab>
               </uib-tabset>
-              <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
-              <div class="row text-success row-summaryslides" ng-show="main.displayPositive">
-                  <div class="col-md-3">
-                    <p class="pointer" ng-repeat="name in main.positiveNames track by $index" ng-model="name" ng-if="$index % 4 === 0" ng-click=(main.selectNameFromSummary(name))>
-                      {{name}}
-                    </p>
-                  </div>
-                  <div class="col-md-3">
-                    <p class="pointer" ng-repeat="name in main.positiveNames track by $index" ng-model="name" ng-if="$index % 4 === 1" ng-click=(main.selectNameFromSummary(name))>
-                      {{name}}
-                    </p>
-                  </div>
-                  <div class="col-md-3">
-                    <p class="pointer" ng-repeat="name in main.positiveNames track by $index" ng-model="name" ng-if="$index % 4 === 2" ng-click=(main.selectNameFromSummary(name))>
-                      {{name}}
-                    </p>
-                  </div>
-
-                  <div class="col-md-3">
-                    <p class="pointer" ng-repeat="name in main.positiveNames track by $index" ng-model="name" ng-if="$index % 4 === 3" ng-click=(main.selectNameFromSummary(name))>
-                      {{name}}
-                    </p>
-                  </div>
-              </div>
-              <div class="row text-primary row-summaryslides" ng-show="main.displayNeutral">
-                  <div class="col-md-3">
-                    <p class="pointer" ng-repeat="name in main.neutralNames track by $index" ng-model="name" ng-if="$index % 4 === 0" ng-click=(main.selectNameFromSummary(name))>
-                      {{name}}
-                    </p>
-                  </div>
-                  <div class="col-md-3">
-                    <p class="pointer" ng-repeat="name in main.neutralNames track by $index" ng-model="name" ng-if="$index % 4 === 1" ng-click=(main.selectNameFromSummary(name))>
-                      {{name}}
-                    </p>
-                  </div>
-                  <div class="col-md-3">
-                    <p class="pointer" ng-repeat="name in main.neutralNames track by $index" ng-model="name" ng-if="$index % 4 === 2" ng-click=(main.selectNameFromSummary(name))>
-                      {{name}}
-                    </p>
-                  </div>
-                  <div class="col-md-3">
-                    <p class="pointer" ng-repeat="name in main.neutralNames track by $index" ng-model="name" ng-if="$index % 4 === 3" ng-click=(main.selectNameFromSummary(name))>
-                      {{name}}
-                    </p>
-                  </div>
-              </div>
-              <div class="row text-info row-summaryslides" ng-show="main.displayNewName">
-                  <div class="col-md-3">
-                    <p class="pointer" ng-repeat="name in main.newNames track by $index" ng-model="name" ng-if="$index % 4 === 0" ng-click=(main.selectNameFromSummary(name))>
-                      {{name}}
-                    </p>
-                  </div>
-                  <div class="col-md-3">
-                    <p class="pointer" ng-repeat="name in main.newNames track by $index" ng-model="name" ng-if="$index % 4 === 1" ng-click=(main.selectNameFromSummary(name))>
-                      {{name}}
-                    </p>
-                  </div>
-                  <div class="col-md-3">
-                    <p class="pointer" ng-repeat="name in main.newNames track by $index" ng-model="name" ng-if="$index % 4 === 2" ng-click=(main.selectNameFromSummary(name))>
-                      {{name}}
-                    </p>
-                  </div>
-
-                  <div class="col-md-3">
-                    <p class="pointer" ng-repeat="name in main.newNames track by $index" ng-model="name" ng-if="$index % 4 === 3" ng-click=(main.selectNameFromSummary(name))>
-                      {{name}}
-                    </p>
-                  </div>
-              </div>
-            </div>
             </div>
 
             <!-- Summary Slide End -->
@@ -376,7 +375,9 @@ label {
                                     <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                                   </button>
                                 </span>
+                                <div class="dropup">
                                 <input type="text" ng-model="main.selectedName" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" class="form-control text-primary" placeholder="Search name">
+                              </div>
                                 <span class="input-group-btn">
                                  <button class="btn btn-default" type="button" ng-click="main.changeToDefault()">
                                    <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
