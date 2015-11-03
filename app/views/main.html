@@ -88,6 +88,7 @@ label {
             <!-- CA- added tabs to the summary Slide, needs to adjust the type of color will be used for the names-->
              <div ng-show="main.displaySummary" class="tab-style">
               <uib-tabset>
+                <!-- piece of code in order to commit -->
                 <uib-tab heading="test">
                   <uib-progress><uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span>{{bar.value}}%</span></uib-bar></uib-progress>
                 </uib-tab>

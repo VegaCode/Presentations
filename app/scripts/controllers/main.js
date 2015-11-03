@@ -330,7 +330,7 @@ angular.module('nwApp')
                             }else if (_SlideType === 'NameSummary') {
                                 self.displaySummary = true;
                                 self.displayNameGroup = true;
-
+//piece of code in order to commit
                                 var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "New Names"'];
                                 var apiCall = 'api/NW_GetSummary?instruccion=';
                                 var instructionCounter = 0;
