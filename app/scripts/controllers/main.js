@@ -326,6 +326,7 @@ angular.module('nwApp')
                                  _SlideDescription='';
                                  self.displaySummary = false;
                             }else if (_SlideType === 'NameSummary') {
+                                _SlideDescription='';
                                 self.displaySummary = true;
                                 self.displayNameGroup = true;
 //piece of code in order to commit
@@ -336,12 +337,16 @@ angular.module('nwApp')
                                   $http.get(webBaseUrl + apiCall + instruccion[index]).success(function(result){
                                     instructionCounter = instructionCounter + 1;
                                     if (instructionCounter === 1){
+                                      self.barType = 'success';
                                       self.positiveCount = result.length;
+
                                       self.addToBar(self.positiveCount);
                                     }else if(instructionCounter === 2){
+                                       self.barType = 'info';
                                       self.neutralCount = result.length;
                                       self.addToBar(self.neutralCount);
                                     }else if(instructionCounter === 3){
+                                        self.barType = 'primary'
                                       self.newNameCount = result.length;
                                       self.addToBar(self.newNameCount);
                                     }
