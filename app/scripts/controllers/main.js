@@ -374,17 +374,18 @@ angular.module('nwApp')
 
         self.positiveCount = 0;
         self.neutralCount = 0;
+        self.negativeCount = 0;
         self.newNameCount = 0;
         self.stacked = [];
-        self.barType = ['success', 'primary', 'info'];
-        var index = 0;
+        self.barOfType = ['success', 'primary'];
+        var indexOfType = 0;
 
         self.addToBar = function(Count){
           self.stacked.push({
             value: Count,
-            type: self.barType[index]
+            type: self.barOfType[indexOfType]
           });
-          index = index + 1;
+          indexOfType = indexOfType + 1;
         };
 
         // CA- requires users to rank each testName
@@ -499,28 +500,27 @@ angular.module('nwApp')
                                 self.displayNameGroup = true;
 
 //piece of code in order to commit
-                                var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "New Names"'];
+                                var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
                                 var apiCall = 'api/NW_GetSummary?instruccion=';
                                 var instructionCounter = 0;
-                                  for(var index = 0; index<3; index++){
-                                  $http.get(webBaseUrl + apiCall + instruccion[index]).success(function(result){
+                                  for(var i = 0; i<4; i++){
+                                  $http.get(webBaseUrl + apiCall + instruccion[i]).success(function(result){
                                     instructionCounter = instructionCounter + 1;
                                     if (instructionCounter === 1){
                                       self.barType = 'success';
                                       self.positiveCount = result.length;
                                       self.addToBar(self.positiveCount);
                                     }else if(instructionCounter === 2){
-                                       self.barType = 'info';
+                                       self.barType = 'primary';
                                       self.neutralCount = result.length;
                                       self.addToBar(self.neutralCount);
                                     }else if(instructionCounter === 3){
-                                        self.barType = 'primary'
+                                      self.negativeCount = result.length;
+                                    }else if(instructionCounter === 4){
                                       self.newNameCount = result.length;
-                                      self.addToBar(self.newNameCount);
                                     }
                                   });
                               }
-
                             }else{
                                 self.displayNameGroup = false;
                                 self.controlsPosition = -23;
@@ -585,6 +585,7 @@ angular.module('nwApp')
 
         self.positiveNames = [];
         self.neutralNames = [];
+        self.negativeNames = [];
         self.newNames = [];
         self.rootsToExplore = [];
         self.rootsToAvoid = [];
@@ -594,30 +595,22 @@ angular.module('nwApp')
         self.displayNewName = false;
         self.displayRootExplore = false;
         self.displayRootAvoid = false;
+        var pushingNameFirstTime = 1;
 
-        self.getPositivesNames = function(){
-
-          self.displayPositive = true;
-          self.displayNeutral = false;
-          self.displayNewName = false;
-          self.displayRootExplore = false;
-          self.displayRootAvoid = false;
-
-          GetRetainedNames.getPositiveNames(projectId).then(function(positiveName){
-            for(var i = 0; i<positiveName.length; i++){
-              self.positiveNames.push(positiveName[i].Name);
+        var searchForAMatch = function(str, array){
+          for(var k=0; k<array.length;k++){
+            if(array[k].match(str)){
+              return true;
             }
-          });
-        };
-
+          }
+          return false;
+        }
 
         self.displaySummarys = function(index){
           if(index === 0){
             self.getPositivesNames();
           }else if (index === 1){
             self.getNeutralsNames();
-          }else if (index === 2){
-            self.getNewsNames();
           }
         };
 
@@ -631,7 +624,22 @@ angular.module('nwApp')
           self.dataInput = "";
         };
 
-
+// CA- this is an example of what can be done depending on the amount of names
+        var selectColumnSize = function(totalNames){
+          if(totalNames <= 20){
+            self.columnSize = 4; //3 columns will be generated
+            self.sizeOfFont = '40px';
+          }else if(totalNames <= 50){
+            self.columnSize = 3; //4 columns will be generated
+            self.sizeOfFont = '35px';
+          }else if (totalNames <= 70) {
+            self.columnSize = 4; //3 columns will be generated
+            self.sizeOfFont = '35px';
+          }else if (totalNames <=100) {
+            self.columnSize = 3; //4 columns will be generated
+            self.sizeOfFont = '35px';
+          }
+        }
 
         self.selectNameFromSummary = function(name){
             var query = projectId+','+"'"+ name +"'";
@@ -640,56 +648,117 @@ angular.module('nwApp')
                   $http.get(webBaseUrl + apiCall + query).success(function(result){
                       setUpTheSlideInfo(result);
                   })
-        }
+        };
+
+        self.getPositivesNames = function(){
+
+          self.displayPositive = true;
+          self.displayNeutral = false;
+          self.displayNegative = false;
+          self.displayNewName = false;
+          self.displayRootExplore = false;
+          self.displayRootAvoid = false;
+
+          GetRetainedNames.getPositiveNames(projectId).then(function(positiveName){
+            for(var i = 0; i<positiveName.length; i++){
+              var foundMatch = searchForAMatch(positiveName[i].Name, self.positiveNames);
+              if(foundMatch === false){
+                self.positiveNames.push(positiveName[i].Name);
+              }
+            }
+            selectColumnSize(positiveName.length);
+          });
+        };
 
         self.getNeutralsNames = function(){
           self.displayPositive = false;
           self.displayNeutral = true;
+          self.displayNegative = false;
           self.displayNewName = false;
           self.displayRootExplore = false;
           self.displayRootAvoid = false;
 
           GetRetainedNames.getNeutralNames(projectId).then(function(neutralName){
             for(var i = 0; i<neutralName.length; i++){
-              self.neutralNames.push(neutralName[i].Name);
+              var foundMatch = searchForAMatch(neutralName[i].Name, self.neutralNames);
+              if(foundMatch === false){
+                self.neutralNames.push(neutralName[i].Name);
+              }
             }
+            selectColumnSize(neutralName.length);
           });
         };
+
+        self.getNegativesNames = function(){
+          self.displayPositive = false;
+          self.displayNeutral = false;
+          self.displayNegative = true;
+          self.displayNewName = false;
+          self.displayRootExplore = false;
+          self.displayRootAvoid = false;
+
+          GetRetainedNames.getNegativeNames(projectId).then(function(negativeName){
+            for(var i = 0; i<negativeName.length; i++){
+              var foundMatch = searchForAMatch(negativeName[i].Name, self.negativeNames);
+              if(foundMatch === false){
+                self.negativeNames.push(negativeName[i].Name);
+              }
+            }
+            selectColumnSize(negativeName.length);
+          });
+        };
+
         self.getNewsNames = function(){
           self.displayPositive = false;
           self.displayNeutral = false;
+          self.displayNegative = false;
           self.displayNewName = true;
           self.displayRootExplore = false;
           self.displayRootAvoid = false;
 
           GetRetainedNames.getNewNames(projectId).then(function(newName){
             for(var i = 0; i<newName.length; i++){
-              self.newNames.push(newName[i].Name);
+              var foundMatch = searchForAMatch(newName[i].Name, self.newNames);
+              if(foundMatch === false){
+                self.newNames.push(newName[i].Name);
+              }
             }
+            selectColumnSize(newName.length);
           });
         };
         self.getrootsToExplores = function(){
           self.displayPositive = false;
           self.displayNeutral = false;
+          self.displayNegative = false;
           self.displayNewName = false;
           self.displayRootExplore = true;
           self.displayRootAvoid = false;
           GetRetainedNames.getRootsToExplore(projectId).then(function(rootExplore){
             for(var i = 0; i<rootExplore.length; i++){
-              self.rootsToExplore.push(rootExplore[i].Name);
+              var foundMatch = searchForAMatch(rootExplore[i].Name, self.rootsToExplore);
+              if(foundMatch === false){
+                self.rootsToExplore.push(rootExplore[i].Name.trim());
+              }
             }
+            selectColumnSize(rootExplore.length);
           });
         };
+
         self.getrootsToAvoids = function(){
           self.displayPositive = false;
           self.displayNeutral = false;
+          self.displayNegative = false;
           self.displayNewName = false;
           self.displayRootExplore = false;
           self.displayRootAvoid = true;
           GetRetainedNames.getRootsToAvoid(projectId).then(function(rootAvoid){
             for(var i = 0; i<rootAvoid.length; i++){
-              self.rootsToAvoid.push(rootAvoid[i].Name);
+              var foundMatch = searchForAMatch(rootAvoid[i].Name, self.rootsToAvoid);
+              if(foundMatch === false){
+                self.rootsToAvoid.push(rootAvoid[i].Name);
+              }
             }
+            selectColumnSize(rootAvoid.length);
           });
         };
 
@@ -800,10 +869,6 @@ angular.module('nwApp')
                                       $(this).blur();
                                     });
                         }
-
-
-
-
         }// end of controller
 
     ]);

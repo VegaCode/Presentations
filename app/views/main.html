@@ -39,7 +39,6 @@ label {
 .tab-style{
     font-family: calibri;
     font-size: 21px;
-    padding-top: 95px;
 }
 
 .tab-style span{
@@ -53,26 +52,39 @@ label {
     margin-top: -7px;
 }
 .scrollbar-dynamic {
-    max-height: 400px;
+    max-height: 550px;
     max-width: 100%;
+    overflow: auto;
 }
 .row-summaryslides{
   margin-right: 0px;
   margin-left: 0px;
 }
+.summary-size-font{
+  font-size: {{main.sizeOfFont}};
+}
 .pointer{
   cursor: pointer;
 }
 .row-comment-style{
-    margin-top: 10px;
+  margin-top: 10px;
+  margin-right: 0px;
+  margin-left: 0px;
 }
 .textarea-style{
   width: 100%;
-  height: 500px;
+  height: 40px;
+}
+.button-save{
+  height:40px;
 }
 .dropup ul{
     bottom:100% !important;
     top:auto !important;
+}
+/*this functionality is for the type. meaning an extre color such as warning, info, success*/
+.progress-bar-purple{
+  background-color: #4c0099;
 }
 
 </style>
@@ -114,10 +126,11 @@ label {
                 <uib-tab heading="Summary">
                     <div class="row" style="margin-top: 10px;">
                   		<div class="col-md-2">
-                        <span class="label label-success" style=" font-weight: initial;">Positive</span>
+                        <span class="label label-success" style=" font-weight: initial;">Retained</span>
                   		</div>
                   		<div class="col-md-8 margin-progressbar">
-                        <uib-progressbar type="success" style="height: 25px" ng-style="{width: main.positiveCount + '%'}"></uib-progressbar>
+                        <uib-progress><uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}"
+                          ng-click="main.displaySummarys($index)"><span>{{bar.value}}%</span></uib-bar></uib-progress>
                   		</div>
                   		<div class="col-md-2 margin-badge">
                         <span class="badge pointer" ng-click="main.getPositivesNames()" style="background-color: #5cb85c;  width: 50%; font-weight: initial; font-size: 14px;">{{main.positiveCount}}</span>
@@ -125,16 +138,16 @@ label {
                   	</div>
                   	<div class="row">
                   		<div class="col-md-2">
-                        <span class="label label-primary" style="font-weight: initial;">Neutral</span>
+                        <span class="label" ng-click="main.getNegativesNames()" style="font-weight: initial; background-color: #4c0099;">Reconsider</span>
                   		</div>
                   		<div class="col-md-8 margin-progressbar">
-                        <uib-progressbar type="primary" style="height: 25px" ng-style="{width: main.neutralCount + '%'}"></uib-progressbar>
+                        <uib-progressbar type="purple" ng-click="main.getNegativesNames()" style="background-color: #4c0099; height: 25px;" ng-style="{width: main.negativeCount + '%'}"></uib-progressbar>
                   		</div>
                   		<div class="col-md-2 margin-badge">
-                        <span class="badge pointer" ng-click="main.getNeutralsNames()" style="background-color: #337ab7;  width: 50%; font-weight: initial; font-size: 14px;">{{main.neutralCount}}</span>
+                        <span class="badge pointer" ng-click="main.getNegativesNames()" style="background-color: #4c0099;  width: 50%; font-weight: initial; font-size: 14px;">{{main.negativeCount}}</span>
                   		</div>
                   	</div>
-                  	<div class="row" style="margin-bottom: -5px;">
+                  	<div class="row">
                   		<div class="col-md-2">
                         <span class="label label-info" style="font-weight: initial;">New Names</span>
                   		</div>
@@ -145,147 +158,53 @@ label {
                         <span class="badge pointer" ng-click="main.getNewsNames()" style="background-color: #5bc0de;  width: 50%; font-weight: initial; font-size: 14px;">{{main.newNameCount}}</span>
                   		</div>
                   	</div>
+                    <!-- CA- piece of code to display names-->
                     <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
-                    <div class="row text-success row-summaryslides" ng-show="main.displayPositive">
-                        <div class="col-md-3">
-                          <p class="pointer" ng-repeat="positivename in main.positiveNames" ng-model="positivename" ng-if="$index % 4 === 0" ng-click=(main.selectNameFromSummary(positivename))>
-                            {{positivename}}
-                          </p>
-                        </div>
-                        <div class="col-md-3">
-                          <p class="pointer" ng-repeat="positivename in main.positiveNames" ng-model="positivename" ng-if="$index % 4 === 1" ng-click=(main.selectNameFromSummary(positivename))>
-                            {{positivename}}
-                          </p>
-                        </div>
-                        <div class="col-md-3">
-                          <p class="pointer" ng-repeat="positivename in main.positiveNames" ng-model="positivename" ng-if="$index % 4 === 2" ng-click=(main.selectNameFromSummary(positivename))>
-                            {{positivename}}
-                          </p>
-                        </div>
-
-                        <div class="col-md-3">
-                          <p class="pointer" ng-repeat="positivename in main.positiveNames" ng-model="positivename" ng-if="$index % 4 === 3" ng-click=(main.selectNameFromSummary(positivename))>
-                            {{positivename}}
-                          </p>
-                        </div>
+                          <div class="text-success col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayPositive"
+                          ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
+                          <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral"
+                          ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
+                          <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNegative"
+                          ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
+                          <div class="text-info col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNewName"
+                          ng-repeat="newname in main.newNames" ng-click="main.selectNameFromSummary(newname)">{{newname}}</div>
                     </div>
-                    <div class="row text-primary row-summaryslides" ng-show="main.displayNeutral">
-                        <div class="col-md-3">
-                          <p class="pointer" ng-repeat="neutralname in main.neutralNames" ng-model="neutralname" ng-if="$index % 4 === 0" ng-click=(main.selectNameFromSummary(neutralname))>
-                            {{neutralname}}
-                          </p>
-                        </div>
-                        <div class="col-md-3">
-                          <p class="pointer" ng-repeat="neutralname in main.neutralNames" ng-model="neutralname" ng-if="$index % 4 === 1" ng-click=(main.selectNameFromSummary(neutralname))>
-                            {{neutralname}}
-                          </p>
-                        </div>
-                        <div class="col-md-3">
-                          <p class="pointer" ng-repeat="neutralname in main.neutralNames" ng-model="neutralname" ng-if="$index % 4 === 2" ng-click=(main.selectNameFromSummary(neutralname))>
-                            {{neutralname}}
-                          </p>
-                        </div>
-                        <div class="col-md-3">
-                          <p class="pointer" ng-repeat="neutralname in main.neutralNames" ng-model="neutralname" ng-if="$index % 4 === 3" ng-click=(main.selectNameFromSummary(neutralname))>
-                            {{neutralname}}
-                          </p>
-                        </div>
-                    </div>
-                    <div class="row text-info row-summaryslides" ng-show="main.displayNewName">
-                        <div class="col-md-3">
-                          <p class="pointer" ng-repeat="newname in main.newNames" ng-model="newname" ng-if="$index % 4 === 0" ng-click=(main.selectNameFromSummary(newname))>
-                            {{newname}}
-                          </p>
-                        </div>
-                        <div class="col-md-3">
-                          <p class="pointer" ng-repeat="newname in main.newNames" ng-model="newname" ng-if="$index % 4 === 1" ng-click=(main.selectNameFromSummary(newname))>
-                            {{newname}}
-                          </p>
-                        </div>
-                        <div class="col-md-3">
-                          <p class="pointer" ng-repeat="newname in main.newNames" ng-model="newname" ng-if="$index % 4 === 2" ng-click=(main.selectNameFromSummary(newname))>
-                            {{newname}}
-                          </p>
-                        </div>
-
-                        <div class="col-md-3">
-                          <p class="pointer" ng-repeat="newname in main.newNames" ng-model="newname" ng-if="$index % 4 === 3" ng-click=(main.selectNameFromSummary(newname))>
-                            {{newname}}
-                          </p>
-                        </div>
-                    </div>
-                  </div>
                   </uib-tab>
                     <uib-tab heading="Explore" ng-click="main.getrootsToExplores()">
-                      <div class="row text-info" ng-show="main.displayRootExplore" style="margin-top: 10px;">
-                        <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
-                          <div class="col-md-3">
-                            <p ng-repeat="roottoexplore in main.rootsToExplore" ng-model="roottoexplore" ng-if="$index % 4 === 0">
-                              {{roottoexplore}}
-                            </p>
-                          </div>
-                          <div class="col-md-3">
-                            <p ng-repeat="roottoexplore in main.rootsToExplore" ng-model="roottoexplore" ng-if="$index % 4 === 1">
-                              {{roottoexplore}}
-                            </p>
-                          </div>
-                          <div class="col-md-3">
-                            <p ng-repeat="roottoexplore in main.rootsToExplore" ng-model="roottoexplore" ng-if="$index % 4 === 2">
-                              {{roottoexplore}}
-                            </p>
-                          </div>
-
-                          <div class="col-md-3">
-                            <p ng-repeat="roottoexplore in main.rootsToExplore" ng-model="roottoexplore" ng-if="$index % 4 === 3">
-                              {{roottoexplore}}
-                            </p>
+                      <div class="row row-comment-style">
+                        <div class="col-md-11">
+                          <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
+                        </div>
+                        <div class="col-md-1">
+                          <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveComments(main.dataInput)">Save</button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootExplore" style="margin-top: 10px;">
+                          <div class="row text-info row-summaryslides" ng-repeat="groupOfRootsToExplore in main.rootsToExplore | groupBy:5">
+                            <div class="col-md-{{main.columnSize}} summary-size-font" ng-repeat="roottoexplore in groupOfRootsToExplore">{{roottoexplore}}</div>
                           </div>
                         </div>
                       </div>
                     </uib-tab>
                     <uib-tab heading="Avoid" ng-click="main.getrootsToAvoids()">
-                      <div class="row text-info" ng-show="main.displayRootAvoid" style="margin-top: 10px;">
-                        <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
-                          <div class="col-md-3">
-                            <p ng-repeat="rootstoavoid in main.rootsToAvoid" ng-model="rootstoavoid" ng-if="$index % 4 === 0">
-                              {{rootstoavoid}}
-                            </p>
-                          </div>
-                          <div class="col-md-3">
-                            <p ng-repeat="rootstoavoid in main.rootsToAvoid" ng-model="rootstoavoid" ng-if="$index % 4 === 1">
-                              {{rootstoavoid}}
-                            </p>
-                          </div>
-                          <div class="col-md-3">
-                            <p ng-repeat="rootstoavoid in main.rootsToAvoid" ng-model="rootstoavoid" ng-if="$index % 4 === 2">
-                              {{rootstoavoid}}
-                            </p>
-                          </div>
-
-                          <div class="col-md-3">
-                            <p ng-repeat="rootstoavoid in main.rootsToAvoid" ng-model="rootstoavoid" ng-if="$index % 4 === 3">
-                              {{rootstoavoid}}
-                            </p>
-                          </div>
+                      <div class="row row-comment-style">
+                        <div class="col-md-11">
+                          <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
+                        </div>
+                        <div class="col-md-1">
+                          <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveComments(main.dataInput)">Save</button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootAvoid" style="margin-top: 10px;">
+                            <div class="col-md-{{main.columnSize}} text-info summary-size-font" ng-repeat="rootstoavoid in main.rootsToAvoid">{{rootstoavoid}}</div>
                         </div>
                       </div>
                     </uib-tab>
-                    <uib-tab heading="Comments">
-                      <div class="row row-comment-style">
-                    		<div class="col-md-7">
-                          <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
-                    		</div>
-                    		<div class="col-md-4">
-                    			<button class="btn btn-success pull-right" ng-model="main.dataInput" ng-click="main.saveComments(main.dataInput)">Save</button>
-                    		</div>
-                    		<div class="col-md-1">
-                    			<button class="btn btn-danger pull-right" ng-model="main.dataInput" ng-click="main.cancelComments()">Cancel</button>
-                    		</div>
-                    	</div>
-                    </uib-tab>
+                    <!-- display of names ends here -->
               </uib-tabset>
             </div>
-
             <!-- Summary Slide End -->
                  <div class="row" style="height: 175px;">
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}" ng-show="!main.displayNameGroup">
