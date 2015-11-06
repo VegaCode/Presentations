@@ -88,7 +88,7 @@ factory('setSettings',  [ '$q' , '$http', function ($q, $http) {
           return factory;
       }]).
       factory('GetRetainedNames',  [ '$q' , '$http', function GetRetainedNameFactory($q, $http) {
-        var apiCall, instruccion, deferred, factory,  _getPositiveNames, _postdata, _getNeutralNames, _getNewNames, _getRootsToAvoid, _getRootsToExplore;
+        var apiCall, instruccion, deferred, factory,  _getPositiveNames, _postdata, _getNeutralNames, _getNegativeNames, _getNewNames, _getRootsToAvoid, _getRootsToExplore;
         //var apiCall, instruccion, deferred, factory,  _getPositiveNames, _postdata, _getNeutralNames, _getNegativeNames, _getNewNames, _getRootsToAvoid, _getRootsToExplore;
           factory = {};
           //deferred = $q.defer();
@@ -107,6 +107,17 @@ factory('setSettings',  [ '$q' , '$http', function ($q, $http) {
             deferred = $q.defer();
              apiCall = 'api/NW_GetSummary?instruccion=';
              instruccion = projectid + ', "Neutral Retained Names"';
+             $http.get(webBaseUrl + apiCall + instruccion ).success(function(result){
+             deferred.resolve(result);
+             }).error(function(err) {
+                 deferred.reject(err);
+              });
+              return deferred.promise;
+          };
+          _getNegativeNames = function(projectid) {
+            deferred = $q.defer();
+             apiCall = 'api/NW_GetSummary?instruccion=';
+             instruccion = projectid + ', "Negative Names"';
              $http.get(webBaseUrl + apiCall + instruccion ).success(function(result){
              deferred.resolve(result);
              }).error(function(err) {
@@ -150,6 +161,7 @@ factory('setSettings',  [ '$q' , '$http', function ($q, $http) {
 
           factory.getPositiveNames = _getPositiveNames;
           factory.getNeutralNames = _getNeutralNames;
+          factory.getNegativeNames = _getNegativeNames;
           factory.getNewNames = _getNewNames;
           factory.getRootsToExplore = _getRootsToExplore;
           factory.getRootsToAvoid = _getRootsToAvoid;
