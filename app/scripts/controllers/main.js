@@ -56,6 +56,177 @@ angular.module('nwApp')
                          };
 
 
+  // **********  Getting Slides REVEAL TEST  presentation  ****************************************************************************************************
+    self.togglePresentation = function() {
+                        if (self.isTesNameTime === false) {
+                            self.isTesNameTime = true;
+                                   self.displaySettings = false;
+                        }else {
+                            self.isTesNameTime = false;
+                            self.displaySettings = true;
+                        }
+                    };
+
+            Reveal.addEventListener('overviewshown', function(event) {
+                        $rootScope.$apply(function() {
+                            self.isOverview = true;
+                        });
+                    });
+
+            Reveal.addEventListener('overviewhidden', function(event) {
+                        $rootScope.$apply(function() {
+                            self.isOverview = false;
+                        });
+                    });
+
+              //Warning! DO NOT CHANGE  THE "==" for "==="
+            Reveal.addEventListener('slidechanged', function(event) {
+                    // if (startTestNamesAtPage == event.indexh + 1) {
+                        if (self.presentTestNamesAtSlide == event.indexh + 1) {
+                            $rootScope.$apply(function() {
+                                self.isTesNameTime = false;
+                            });
+                        }
+                    });
+             self.selectSlide = function(index) {
+                        var slideModel = JSON.stringify( new slideInfoModel(projectId, index+1, '','','','', '' ));                 
+                     getTestNamesObject(slideModel);
+                   };
+
+// **********  Getting Slides URL Images and the description for over view  *************************************************************************************
+    GetNamesAndSlides.getdata(projectId).then(function(result){
+                self.slides = result;
+                // slide show configuration settings
+                $timeout(function() {
+                    Reveal.initialize({
+
+
+                        width: 960,
+                        height: 680,
+
+                        // Factor of the display size that should remain empty around the content
+                        margin: 0.1,
+
+                        // Bounds for smallest/largest possible scale to apply to content
+                        minScale: 1.2,
+                        maxScale: 1.2,
+
+
+                        // Display controls in the bottom right corner
+                        controls: false,
+
+                        // Display a presentation progress bar
+                        progress: false,
+
+                        // Display the page number of the current slide
+                        slideNumber: false,
+
+                        // Push each slide change to the browser history
+                        history: false,
+
+                        // Enable keyboard shortcuts for navigation
+                        keyboard: true,
+
+                        // Enable the slide overview mode
+                        overview: true,
+
+                        // Vertical centering of slides
+                        center: true,
+
+                        // Enables touch navigation on devices with touch input
+                        touch: true,
+
+                        // Loop the presentation
+                        loop: false,
+
+                        // Change the presentation direction to be RTL
+                        rtl: false,
+
+                        // Turns fragments on and off globally
+                        fragments: true,
+
+                        // Flags if the presentation is running in an embedded mode,
+                        // i.e. contained within a limited portion of the screen
+                        embedded: false,
+
+                        // Flags if we should show a help overlay when the questionmark
+                        // key is pressed
+                        help: false,
+
+                        // Number of milliseconds between automatically proceeding to the
+                        // next slide, disabled when set to 0, this value can be overwritten
+                        // by using a data-autoslide attribute on your slides
+                        autoSlide: 0,
+
+                        // Stop auto-sliding after user input
+                        autoSlideStoppable: true,
+
+                        // Enable slide navigation via mouse wheel
+                        mouseWheel: true,
+
+                        // Hides the address bar on mobile devices
+                        hideAddressBar: true,
+
+                        // Opens links in an iframe preview overlay
+                        previewLinks: false,
+
+                        // Transition style
+                        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+                        // Transition speed
+                        transitionSpeed: 'fast', // default/fast/slow
+
+                        // Transition style for full page slide backgrounds
+                        backgroundTransition: 'none', // none/fade/slide/convex/concave/zoom
+
+                        // Number of slides away from the current that are visible
+                        viewDistance: 1,
+
+                        // Parallax background image
+                        parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.png'"
+
+                        // Parallax background size
+                        parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+                        // Amount to move parallax background (horizontal and vertical) on slide change
+                        // Number, e.g. 100
+                        parallaxBackgroundHorizontal: '',
+                        parallaxBackgroundVertical: '',
+
+                        dependencies: [{
+                            src: 'bower_components/reveal-js/lib/js/classList.js',
+                            condition: function() {
+                                return !document.body.classList;
+                            }
+                        }, {
+                            src: 'bower_components/reveal-js/plugin/markdown/marked.js',
+                            condition: function() {
+                                return !!document.querySelector('[data-markdown]');
+                            }
+                        }, {
+                            src: 'bower_components/reveal-js/plugin/markdown/markdown.js',
+                            condition: function() {
+                                return !!document.querySelector('[data-markdown]');
+                            }
+                        }, {
+                            src: 'bower_components/reveal-js/plugin/highlight/highlight.js',
+                            async: true,
+                            callback: function() {
+                                hljs.initHighlightingOnLoad();
+                            }
+                        }, {
+                            src: 'bower_components/reveal-js/plugin/notes/notes.js',
+                            async: true,
+                            condition: function() {
+                                return !!document.body.classList;
+                            }
+                        }]
+                    });
+                    Reveal.configure({});
+                }, 300);
+            });
+
+        
   // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
 
         self.backGroundChanged = function(){
@@ -217,8 +388,6 @@ angular.module('nwApp')
           indexOfType = indexOfType + 1;
         };
 
-
-
         // CA- requires users to rank each testName
         self.mustRank = function(){
           if (self.nameRamking === "False"){
@@ -318,7 +487,6 @@ angular.module('nwApp')
                             }else {
                               self.BackGround = slideObject[0].SlideBGFileName;
                             }
-
                             self.BackGroundName = _TemplateName;
 
                             if(_SlideType === 'Image'){
@@ -327,9 +495,10 @@ angular.module('nwApp')
                                  _SlideDescription='';
                                  self.displaySummary = false;
                             }else if (_SlideType === 'NameSummary') {
-                                _SlideDescription='';
+                                 _SlideDescription='';
                                 self.displaySummary = true;
                                 self.displayNameGroup = true;
+
 //piece of code in order to commit
                                 var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
                                 var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -630,8 +799,8 @@ angular.module('nwApp')
                      //if(self.totalOfTestNames === (pageNumber - 1 )){ self.togglePresentation(); }
                  }
 
-                 self.onSelect = function ($item) {
-                    var query = projectId+','+"'"+$item +"'";
+                 self.onSelect = function (slideName) {
+                    var query = projectId+','+"'"+ slideName +"'";
                        apiCall = 'api/NW_NamesAndSlides?projectIdAndTestName=';
                             $http.get(webBaseUrl + apiCall + query).success(function(result){
                                 setUpTheSlideInfo(result);

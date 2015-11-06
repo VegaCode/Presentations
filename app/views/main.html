@@ -89,6 +89,24 @@ label {
 
 </style>
 
+<!-- Slide Show -->
+<div class="row" ng-show="main.isTesNameTime= main.isOverview " style="    position: fixed; top:-195px; left: 160px;">
+    <div class="col-md-1">
+        <div class="reveal">
+            <div class="slides">
+             <section class="pull-right">
+                <section ng-repeat="slide in  main.slides" style="top: -46px !important; display: block;" data-index="{{$index}}" ng-click="main.selectSlide({{$index}})">
+                <button type="button" class="btn btn-default glyphicon glyphicon-question-sign pull-right btn-question-style" ng-show="main.isTesNameTime" ng-click="main.help()"></button>
+                    <img ng-src="{{slide.SlideBGFileName}}">
+                    <br>
+                    <h3 ng-show="main.isOverview" style="color:black" >{{slide.SlideDescription +' '}} {{$index}}
+                    </h3>
+                </section>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- NW -->
 <div class="container-fluid">
     <div class="backGroundStyle">
