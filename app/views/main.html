@@ -181,9 +181,7 @@ label {
                       </div>
                       <div class="row">
                         <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootExplore" style="margin-top: 10px;">
-                          <div class="row text-info row-summaryslides" ng-repeat="groupOfRootsToExplore in main.rootsToExplore | groupBy:5">
-                            <div class="col-md-{{main.columnSize}} summary-size-font" ng-repeat="roottoexplore in groupOfRootsToExplore">{{roottoexplore}}</div>
-                          </div>
+                            <div class="col-md-{{main.columnSize}} summary-size-font text-info" ng-repeat="roottoexplore in main.rootsToExplore ">{{roottoexplore}}</div>
                         </div>
                       </div>
                     </uib-tab>

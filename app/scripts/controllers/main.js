@@ -503,24 +503,24 @@ angular.module('nwApp')
                                 var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
                                 var apiCall = 'api/NW_GetSummary?instruccion=';
                                 var instructionCounter = 0;
-                                  for(var i = 0; i<4; i++){
-                                  $http.get(webBaseUrl + apiCall + instruccion[i]).success(function(result){
-                                    instructionCounter = instructionCounter + 1;
-                                    if (instructionCounter === 1){
+                                  
+                                  $http.get(webBaseUrl + apiCall + instruccion[0]).success(function(result){                                                                  
                                       self.barType = 'success';
                                       self.positiveCount = result.length;
-                                      self.addToBar(self.positiveCount);
-                                    }else if(instructionCounter === 2){
-                                       self.barType = 'primary';
-                                      self.neutralCount = result.length;
-                                      self.addToBar(self.neutralCount);
-                                    }else if(instructionCounter === 3){
-                                      self.negativeCount = result.length;
-                                    }else if(instructionCounter === 4){
-                                      self.newNameCount = result.length;
-                                    }
+                                      self.addToBar(self.positiveCount);                                  
                                   });
-                              }
+                                  $http.get(webBaseUrl + apiCall + instruccion[1]).success(function(result){                                                                  
+                                      self.barType = 'primary';
+                                      self.neutralCount = result.length;
+                                      self.addToBar(self.neutralCount);                            
+                                  });
+                                  $http.get(webBaseUrl + apiCall + instruccion[2]).success(function(result){                                                                  
+                                       self.negativeCount = result.length;                               
+                                  });
+                                  $http.get(webBaseUrl + apiCall + instruccion[3]).success(function(result){                                                                  
+                                       self.newNameCount = result.length;                            
+                                  });
+
                             }else{
                                 self.displayNameGroup = false;
                                 self.controlsPosition = -23;
