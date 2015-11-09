@@ -101,7 +101,7 @@ label {
                 <button type="button" class="btn btn-default glyphicon glyphicon-question-sign pull-right btn-question-style" ng-show="main.isTesNameTime" ng-click="main.help()"></button>
                     <img ng-src="{{slide.SlideBGFileName}}">
                     <br>
-                    <h3 ng-show="main.isOverview" style="color:black" >{{slide.SlideDescription +' '}} {{$index}}
+                    <h3 ng-show="main.isOverview" style="color:black" >{{slide.SlideDescription +' '}} {{$index + 1}}
                     </h3>
                 </section>
                 </section>
@@ -178,7 +178,7 @@ label {
                       <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
                     </div>
                     <div class="col-md-1">
-                      <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveComments(main.dataInput)">Save</button>
+                      <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveExploreComments(main.dataInput)">Save</button>
                     </div>
                   </div>
                   <div class="row">
@@ -193,7 +193,7 @@ label {
                       <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
                     </div>
                     <div class="col-md-1">
-                      <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveComments(main.dataInput)">Save</button>
+                      <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveAvoidComments(main.dataInput)">Save</button>
                     </div>
                   </div>
                   <div class="row">

@@ -99,8 +99,8 @@ angular.module('nwApp')
 
 // **********  Getting Slides URL Images and the description for over view  *************************************************************************************
     GetNamesAndSlides.getdata(projectId).then(function(result){
-                //_nameSummarySlideNumber = result[0].nameSummarySlideNumber
-                _nameSummarySlideNumber = 109;
+                _nameSummarySlideNumber = result[0].SummarySlide;
+        
                 self.slides = result;
                 // slide show configuration settings
                 $timeout(function() {
@@ -611,8 +611,15 @@ angular.module('nwApp')
 
         self.dataInput = "";
 
-        self.saveComments = function(data){
-          self.dataInput = data;
+        self.saveExploreComments = function(note){
+            var apiCall = 'api/NW_SaveNotes'
+            var projectIdAndNote = JSON.stringify(projectId + ", N'Explore: "+ note + "'");
+           $http.post(webBaseUrl + apiCall , projectIdAndNote)
+        };
+        self.saveAvoidComments = function(note){
+          var apiCall = 'api/NW_SaveNotes'
+          var projectIdAndNote = JSON.stringify(projectId + ", N'Avoid: "+ note + "'");
+           $http.post(webBaseUrl + apiCall , projectIdAndNote)
         };
 
         self.cancelComments = function(){
