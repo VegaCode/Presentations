@@ -501,7 +501,7 @@ angular.module('nwApp')
                                  _SlideDescription='';
                                 self.displaySummary = true;
                                 self.displayNameGroup = true;
-                                self.controlsPosition = -82;
+                                self.controlsPosition = -282;
 //piece of code in order to commit
                                 var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
                                 var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -620,12 +620,12 @@ angular.module('nwApp')
 
         self.saveExploreComments = function(note){
             var apiCall = 'api/NW_SaveNotes'
-            var projectIdAndNote = JSON.stringify(projectId + ", N'Explore: "+ note + "'");
+            var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Explore'");
            $http.post(webBaseUrl + apiCall , projectIdAndNote)
         };
         self.saveAvoidComments = function(note){
           var apiCall = 'api/NW_SaveNotes'
-          var projectIdAndNote = JSON.stringify(projectId + ", N'Avoid: "+ note + "'");
+          var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Avoid'");
            $http.post(webBaseUrl + apiCall , projectIdAndNote)
         };
 

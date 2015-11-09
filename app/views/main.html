@@ -36,10 +36,6 @@ label {
     position: relative;
     top: 3px;
 }
-.tab-style{
-    font-family: calibri;
-    font-size: 21px;
-}
 
 .tab-style span{
     font-family: calibri;
@@ -121,91 +117,8 @@ label {
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- CA- added tabs to the summary Slide, needs to adjust the type of color will be used for the names-->
-            <div ng-show="main.displaySummary" class="tab-style">
-              <uib-tabset>
-                <uib-tab heading="Summary">
-                    <div class="row" style="margin-top: 10px;">
-                  		<div class="col-md-2">
-                        <span class="label label-success" ng-click="main.getPositivesNames()" style=" font-weight: initial;">Retained</span>
-                  		</div>
-                  		<div class="col-md-8 margin-progressbar">
-                        <uib-progress><uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}"
-                          ng-click="main.displaySummarys($index)"><span>{{bar.value}}%</span></uib-bar></uib-progress>
-                  		</div>
-                  		<div class="col-md-2 margin-badge">
-                        <span class="badge pointer" ng-click="main.getPositivesNames()" style="background-color: #5cb85c;  width: 50%; font-weight: initial; font-size: 14px;">{{main.retainedNameCount}}</span>
-                  		</div>
-                  	</div>
-                  	<div class="row">
-                  		<div class="col-md-2">
-                        <span class="label" ng-click="main.getNegativesNames()" style="font-weight: initial; background-color: #4c0099;">Reconsider</span>
-                  		</div>
-                  		<div class="col-md-8 margin-progressbar">
-                        <uib-progressbar type="purple" ng-click="main.getNegativesNames()" style="background-color: #4c0099; height: 25px;" ng-style="{width: main.negativeCount + '%'}"></uib-progressbar>
-                  		</div>
-                  		<div class="col-md-2 margin-badge">
-                        <span class="badge pointer" ng-click="main.getNegativesNames()" style="background-color: #4c0099;  width: 50%; font-weight: initial; font-size: 14px;">{{main.negativeCount}}</span>
-                  		</div>
-                  	</div>
-                  	<div class="row">
-                  		<div class="col-md-2">
-                        <span class="label label-info" ng-click="main.getNewsNames()" style="font-weight: initial;">New Names</span>
-                  		</div>
-                  		<div class="col-md-8 margin-progressbar">
-                        <uib-progressbar type="info" ng-click="main.getNewsNames()" style="height: 25px" ng-style="{width: main.newNameCount + '%'}"></uib-progressbar>
-                  		</div>
-                  		<div class="col-md-2 margin-badge">
-                        <span class="badge pointer" ng-click="main.getNewsNames()" style="background-color: #5bc0de;  width: 50%; font-weight: initial; font-size: 14px;">{{main.newNameCount}}</span>
-                  		</div>
-                  	</div>
-                    <!-- CA- piece of code to display names-->
-                    <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
-                          <div class="text-success col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayPositive"
-                          ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
-                          <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral"
-                          ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
-                          <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNegative"
-                          ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
-                          <div class="text-info col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNewName"
-                          ng-repeat="newname in main.newNames" ng-click="main.selectNameFromSummary(newname)">{{newname}}</div>
-                    </div>
-                </uib-tab>
-                <uib-tab heading="Explore" ng-click="main.getrootsToExplores()">
-                  <div class="row comment-style-forRow">
-                    <div class="col-md-11">
-                      <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
-                    </div>
-                    <div class="col-md-1">
-                      <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveExploreComments(main.dataInput)">Save</button>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootExplore" style="margin-top: 10px;">
-                        <div class="col-md-{{main.columnSize}} summary-size-font text-info" ng-repeat="roottoexplore in main.rootsToExplore ">{{roottoexplore}}</div>
-                    </div>
-                  </div>
-                </uib-tab>
-                <uib-tab heading="Avoid" ng-click="main.getrootsToAvoids()">
-                  <div class="row comment-style-forRow">
-                    <div class="col-md-11">
-                      <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
-                    </div>
-                    <div class="col-md-1">
-                      <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveAvoidComments(main.dataInput)">Save</button>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootAvoid" style="margin-top: 10px;">
-                        <div class="col-md-{{main.columnSize}} text-info summary-size-font" ng-repeat="rootstoavoid in main.rootsToAvoid">{{rootstoavoid}}</div>
-                    </div>
-                  </div>
-                </uib-tab>
-                    <!-- display of names ends here -->
-              </uib-tabset>
-            </div>
-            <!-- Summary Slide End -->
+            </div>                    
+            <!-- Summary Slide End -->            
                  <div class="row" style="height: 175px;">
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}" ng-show="!main.displayNameGroup">
                             <form name="nameRamking" ng-click="main.blurEffect($event)">
@@ -341,10 +254,93 @@ label {
                         </div>
                     </div>
                 </div>
-            </div>
+             </div>
+                <!-- CA- added tabs to the summary Slide, needs to adjust the type of color will be used for the names-->
+                <div ng-show="main.displaySummary" style=" font-family: calibri; font-size: 21px; position: relative; bottom:{{ (main.displayMenu==true) ? 490 : 456}}px;">
+                    <uib-tabset>
+                        <uib-tab heading="Summary">
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-2">
+                                    <span class="label label-success" ng-click="main.getPositivesNames()" style=" font-weight: initial;">Retained</span>
+                                </div>
+                                <div class="col-md-8 margin-progressbar">
+                                    <uib-progress>
+                                        <uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span>{{bar.value}}%</span></uib-bar>
+                                    </uib-progress>
+                                </div>
+                                <div class="col-md-2 margin-badge">
+                                    <span class="badge pointer" ng-click="main.getPositivesNames()" style="background-color: #5cb85c;  width: 50%; font-weight: initial; font-size: 14px;">{{main.retainedNameCount}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <span class="label" ng-click="main.getNegativesNames()" style="font-weight: initial; background-color: #4c0099;">Reconsider</span>
+                                </div>
+                                <div class="col-md-8 margin-progressbar">
+                                    <uib-progressbar type="purple" ng-click="main.getNegativesNames()" style="background-color: #4c0099; height: 25px;" ng-style="{width: main.negativeCount + '%'}"></uib-progressbar>
+                                </div>
+                                <div class="col-md-2 margin-badge">
+                                    <span class="badge pointer" ng-click="main.getNegativesNames()" style="background-color: #4c0099;  width: 50%; font-weight: initial; font-size: 14px;">{{main.negativeCount}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <span class="label label-info" ng-click="main.getNewsNames()" style="font-weight: initial;">New Names</span>
+                                </div>
+                                <div class="col-md-8 margin-progressbar">
+                                    <uib-progressbar type="info" ng-click="main.getNewsNames()" style="height: 25px" ng-style="{width: main.newNameCount + '%'}"></uib-progressbar>
+                                </div>
+                                <div class="col-md-2 margin-badge">
+                                    <span class="badge pointer" ng-click="main.getNewsNames()" style="background-color: #5bc0de;  width: 50%; font-weight: initial; font-size: 14px;">{{main.newNameCount}}</span>
+                                </div>
+                            </div>
+                            <!-- CA- piece of code to display names-->
+                            <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
+                                <div class="text-success col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
+                                <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
+                                <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
+                                <div class="text-info col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames" ng-click="main.selectNameFromSummary(newname)">{{newname}}</div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="Explore" ng-click="main.getrootsToExplores()">
+                            <div class="row comment-style-forRow">
+                                <div class="col-md-11">
+                                    <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveExploreComments(main.dataInput)">Save</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootExplore" style="margin-top: 10px;">
+                                    <div class="col-md-{{main.columnSize}} summary-size-font text-info" ng-repeat="roottoexplore in main.rootsToExplore ">{{roottoexplore}}</div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="Avoid" ng-click="main.getrootsToAvoids()">
+                            <div class="row comment-style-forRow">
+                                <div class="col-md-11">
+                                    <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveAvoidComments(main.dataInput)">Save</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootAvoid" style="margin-top: 10px;">
+                                    <div class="col-md-{{main.columnSize}} text-info summary-size-font" ng-repeat="rootstoavoid in main.rootsToAvoid">{{rootstoavoid}}</div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+                <!-- display of names ends here -->
+
         </div>
     </div>
-</div><!-- End if NW -->
+</div>
+<!-- End if NW -->
+
 <!-- Side menu Settings-->
 <div class="container-fluid settings slide" ng-show="main.displaySettings">
     <div class="row">
@@ -441,54 +437,4 @@ label {
         </div>
     </div>
     <hr>
-</div>
-<!--Templates For help-->
-<div class="container-fluid" id="help" style="display:none">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-3">
-                    <img alt="" ng-src="images/HelpImages/F.PNG" width="50px" class="img-rounded center-block" />
-                </div>
-                <div class="col-md-9">
-                    <h4>
-                            Press F key to go Full-Screen and scape key to exit
-                     </h4>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-3" height="60px">
-                    <img alt="" ng-src="images/HelpImages/O.PNG" width="50px" class="img-rounded center-block" />
-                </div>
-                <div class="col-md-9">
-                    <h4>
-                            Press O key to overview the slides
-                    </h4>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-3">
-                    <img alt="" src="images/HelpImages/Space.PNG" width="70px" class="img-rounded center-block" />
-                </div>
-                <div class="col-md-9">
-                    <h4>
-                               Press Space Bar key to go forward on the slides
-                    </h4>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-3">
-                    <img alt="" src="images/HelpImages/ArrowKeys.PNG" width="100px" class="img-rounded center-block" />
-                </div>
-                <div class="col-md-9">
-                    <h4>
-                               Press the Arrow Keys  to go forward on the slides
-                    </h4>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
