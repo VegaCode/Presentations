@@ -70,7 +70,7 @@ angular.module('nwApp')
             Reveal.addEventListener('overviewshown', function(event) {
                 if(_SlideNumber > 4){
                     Reveal.slide(  0, _SlideNumber-2, 0 );
-                }else{ Reveal.slide(  0, _SlideNumber-1, 0 );}                    
+                }else{ Reveal.slide(  0, _SlideNumber-1, 0 );}
                         $rootScope.$apply(function() {
                             self.isOverview = true;
                         });
@@ -385,18 +385,20 @@ angular.module('nwApp')
         self.stacked = [];
         self.barOfType = ['success', 'primary'];
         var indexOfType = 0;
+        var percentageCount = 0;
+        var isAddToBarAgain = 0;
 
         self.addToBar = function(Count){
-          var percentageCount = 0;
-          self.retainedNameCount = self.positiveCount + self.neutralCount;
+            self.retainedNameCount = self.positiveCount + self.neutralCount;
 
-          var percentageCount = ((Count * 100) / self.retainedNameCount).toFixed(1);
+            var percentageCount = ((Count * 100) / self.retainedNameCount).toFixed(1);
 
-          self.stacked.push({
-            value: percentageCount,
-            type: self.barOfType[indexOfType]
-          });
-          indexOfType = indexOfType + 1;
+            self.stacked.push({
+              value: percentageCount,
+              type: self.barOfType[indexOfType]
+            });
+            indexOfType = indexOfType + 1;
+            isAddToBarAgain += 1;
         };
 
         // CA- requires users to rank each testName
@@ -407,12 +409,12 @@ angular.module('nwApp')
               alertify.alert("You are about to move to the Next Slide")
               .set('onok', function(closeEvent){
                 var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
-                getTestNamesObject(slideModel);        
+                getTestNamesObject(slideModel);
               }).set('title', 'Moving to next slide');
             }).set('title', 'Ranking Names');
           }else{
             var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
-            getTestNamesObject(slideModel);    
+            getTestNamesObject(slideModel);
           }
         };
 
@@ -599,15 +601,6 @@ angular.module('nwApp')
         self.displayRootAvoid = false;
         var pushingNameFirstTime = 1;
 
-        var searchForAMatch = function(str, array){
-          for(var k=0; k<array.length;k++){
-            if(array[k].match(str)){
-              return true;
-            }
-          }
-          return false;
-        }
-
         self.displaySummarys = function(index){
           if(index === 0){
             self.getPositivesNames();
@@ -667,13 +660,11 @@ angular.module('nwApp')
           self.displayNewName = false;
           self.displayRootExplore = false;
           self.displayRootAvoid = false;
+          self.positiveNames = [];
 
           GetRetainedNames.getPositiveNames(projectId).then(function(positiveName){
             for(var i = 0; i<positiveName.length; i++){
-              var foundMatch = searchForAMatch(positiveName[i].Name, self.positiveNames);
-              if(foundMatch === false){
                 self.positiveNames.push(positiveName[i].Name);
-              }
             }
             selectColumnSize(positiveName.length);
           });
@@ -686,13 +677,11 @@ angular.module('nwApp')
           self.displayNewName = false;
           self.displayRootExplore = false;
           self.displayRootAvoid = false;
+          self.neutralNames = [];
 
           GetRetainedNames.getNeutralNames(projectId).then(function(neutralName){
             for(var i = 0; i<neutralName.length; i++){
-              var foundMatch = searchForAMatch(neutralName[i].Name, self.neutralNames);
-              if(foundMatch === false){
                 self.neutralNames.push(neutralName[i].Name);
-              }
             }
             selectColumnSize(neutralName.length);
           });
@@ -705,13 +694,11 @@ angular.module('nwApp')
           self.displayNewName = false;
           self.displayRootExplore = false;
           self.displayRootAvoid = false;
+          self.negativeNames = [];
 
           GetRetainedNames.getNegativeNames(projectId).then(function(negativeName){
             for(var i = 0; i<negativeName.length; i++){
-              var foundMatch = searchForAMatch(negativeName[i].Name, self.negativeNames);
-              if(foundMatch === false){
                 self.negativeNames.push(negativeName[i].Name);
-              }
             }
             selectColumnSize(negativeName.length);
           });
@@ -724,13 +711,11 @@ angular.module('nwApp')
           self.displayNewName = true;
           self.displayRootExplore = false;
           self.displayRootAvoid = false;
+          self.newNames = [];
 
           GetRetainedNames.getNewNames(projectId).then(function(newName){
             for(var i = 0; i<newName.length; i++){
-              var foundMatch = searchForAMatch(newName[i].Name, self.newNames);
-              if(foundMatch === false){
                 self.newNames.push(newName[i].Name);
-              }
             }
             selectColumnSize(newName.length);
           });
@@ -745,10 +730,7 @@ angular.module('nwApp')
            self.rootsToExplore =[];
           GetRetainedNames.getRootsToExplore(projectId).then(function(rootExplore){
             for(var i = 0; i<rootExplore.length; i++){
-              // var foundMatch = searchForAMatch(rootExplore[i].Name, self.rootsToExplore);
-              // if(foundMatch === false){
                 self.rootsToExplore.push(rootExplore[i].Name.trim());
-              // }
             }
             selectColumnSize(rootExplore.length);
           });
@@ -761,12 +743,10 @@ angular.module('nwApp')
           self.displayNewName = false;
           self.displayRootExplore = false;
           self.displayRootAvoid = true;
+          self.rootsToAvoid = [];
           GetRetainedNames.getRootsToAvoid(projectId).then(function(rootAvoid){
             for(var i = 0; i<rootAvoid.length; i++){
-              var foundMatch = searchForAMatch(rootAvoid[i].Name, self.rootsToAvoid);
-              if(foundMatch === false){
                 self.rootsToAvoid.push(rootAvoid[i].Name);
-              }
             }
             selectColumnSize(rootAvoid.length);
           });
@@ -785,15 +765,15 @@ angular.module('nwApp')
                                return err;
                             })
                     }
-                   // INITIAL SETUP                 
-                  self.goHome = function(){                       
+                   // INITIAL SETUP
+                  self.goHome = function(){
                   var initialSlideModel = JSON.stringify( new slideInfoModel(projectId,0,'','','','', 'First'));
                   getTestNamesObject(initialSlideModel);
                   }
 
-                  self.goHome();  
+                  self.goHome();
 
-                  self.goToSummarySlide = function(){                       
+                  self.goToSummarySlide = function(){
                     self.selectSlide(_nameSummarySlideNumber-1);
                   }
 
@@ -802,13 +782,13 @@ angular.module('nwApp')
                    if(_SlideType !== 'Image'){
                      self.mustRank();
                    }else{
-                     getTestNamesObject(slideModel);                
+                     getTestNamesObject(slideModel);
                    }
                   }
 
                   self.goPrevSlide = function() {
                    var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
-                   getTestNamesObject(slideModel);                  
+                   getTestNamesObject(slideModel);
                  }
 
                  self.onSelect = function (slideName) {
