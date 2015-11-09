@@ -160,7 +160,6 @@ label {
                         <span class="badge pointer" ng-click="main.getNewsNames()" style="background-color: #5bc0de;  width: 50%; font-weight: initial; font-size: 14px;">{{main.newNameCount}}</span>
                   		</div>
                   	</div>
-                    <!-- CA- piece of code to display names-->
                     <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
                           <div class="text-success col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayPositive"
                           ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
@@ -171,6 +170,7 @@ label {
                           <div class="text-info col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNewName"
                           ng-repeat="newname in main.newNames" ng-click="main.selectNameFromSummary(newname)">{{newname}}</div>
                     </div>
+                    <!-- CA- piece of code to display names-->
                 </uib-tab>
                 <uib-tab heading="Explore" ng-click="main.getrootsToExplores()">
                   <div class="row comment-style-forRow">
@@ -298,7 +298,7 @@ label {
             <div class="row">
                 <div class="col-md-12" style="position: relative; bottom: {{main.controlsPosition}}px;">
                     <div class="col-md-4">
-                        <div class="btn-group"  ng-show="!main.displayNameGroup">                        
+                        <div class="btn-group"  ng-show="!main.displayNameGroup">
                             <button type="button" class="btn btn-default" aria-label="Left Align">
                                 <span aria-hidden="true"></span>Propietary & Confidential</button>
                             <button type="button" class="btn btn-default" aria-label="Center Align" ng-show="main.nameNotation.length > 0">
@@ -306,7 +306,7 @@ label {
                         </div>
                     </div>
                  <div class="col-md-4 text-center" ng-show="main.displayMenu">
-                            <div class="input-group">                            
+                            <div class="input-group">
                                 <span class="input-group-btn">
                                   <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goHome()" uib-tooltip="Go to Start" tooltip-class="customClass">
                                   <span class="glyphicon glyphicon-home" aria-hidden="true"></button>
@@ -320,7 +320,7 @@ label {
                                 <span class="input-group-btn">
                                  <button class="btn btn-default" type="button" ng-click="main.changeToDefault()" uib-tooltip="Remove Image" tooltip-class="customClass">
                                    <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
-                                 </button>                                 
+                                 </button>
                                 </span>
                             </div>
                     </div>
