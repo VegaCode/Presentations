@@ -56,17 +56,13 @@ label {
     max-width: 100%;
     overflow: auto;
 }
-.row-summaryslides{
-  margin-right: 0px;
-  margin-left: 0px;
-}
 .summary-size-font{
   font-size: {{main.sizeOfFont}};
 }
 .pointer{
   cursor: pointer;
 }
-.row-comment-style{
+.comment-style-forRow{
   margin-top: 10px;
   margin-right: 0px;
   margin-left: 0px;
@@ -85,6 +81,12 @@ label {
 /*this functionality is for the type. meaning an extre color such as warning, info, success*/
 .progress-bar-purple{
   background-color: #4c0099;
+}
+.tooltip.customClass .tooltip-inner{
+  width: 100px;
+}
+.tooltip.customClassForBiggerTool .tooltip-inner{
+  width: 125px;
 }
 
 </style>
@@ -121,19 +123,19 @@ label {
                 </div>
             </div>
             <!-- CA- added tabs to the summary Slide, needs to adjust the type of color will be used for the names-->
-             <div ng-show="main.displaySummary" class="tab-style">
+            <div ng-show="main.displaySummary" class="tab-style">
               <uib-tabset>
                 <uib-tab heading="Summary">
                     <div class="row" style="margin-top: 10px;">
                   		<div class="col-md-2">
-                        <span class="label label-success" style=" font-weight: initial;">Retained</span>
+                        <span class="label label-success" ng-click="main.getPositivesNames()" style=" font-weight: initial;">Retained</span>
                   		</div>
                   		<div class="col-md-8 margin-progressbar">
                         <uib-progress><uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}"
                           ng-click="main.displaySummarys($index)"><span>{{bar.value}}%</span></uib-bar></uib-progress>
                   		</div>
                   		<div class="col-md-2 margin-badge">
-                        <span class="badge pointer" ng-click="main.getPositivesNames()" style="background-color: #5cb85c;  width: 50%; font-weight: initial; font-size: 14px;">{{main.positiveCount}}</span>
+                        <span class="badge pointer" ng-click="main.getPositivesNames()" style="background-color: #5cb85c;  width: 50%; font-weight: initial; font-size: 14px;">{{main.retainedNameCount}}</span>
                   		</div>
                   	</div>
                   	<div class="row">
@@ -149,10 +151,10 @@ label {
                   	</div>
                   	<div class="row">
                   		<div class="col-md-2">
-                        <span class="label label-info" style="font-weight: initial;">New Names</span>
+                        <span class="label label-info" ng-click="main.getNewsNames()" style="font-weight: initial;">New Names</span>
                   		</div>
                   		<div class="col-md-8 margin-progressbar">
-                        <uib-progressbar type="info" style="height: 25px" ng-style="{width: main.newNameCount + '%'}"></uib-progressbar>
+                        <uib-progressbar type="info" ng-click="main.getNewsNames()" style="height: 25px" ng-style="{width: main.newNameCount + '%'}"></uib-progressbar>
                   		</div>
                   		<div class="col-md-2 margin-badge">
                         <span class="badge pointer" ng-click="main.getNewsNames()" style="background-color: #5bc0de;  width: 50%; font-weight: initial; font-size: 14px;">{{main.newNameCount}}</span>
@@ -169,37 +171,37 @@ label {
                           <div class="text-info col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNewName"
                           ng-repeat="newname in main.newNames" ng-click="main.selectNameFromSummary(newname)">{{newname}}</div>
                     </div>
-                  </uib-tab>
-                    <uib-tab heading="Explore" ng-click="main.getrootsToExplores()">
-                      <div class="row row-comment-style">
-                        <div class="col-md-11">
-                          <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
-                        </div>
-                        <div class="col-md-1">
-                          <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveComments(main.dataInput)">Save</button>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootExplore" style="margin-top: 10px;">
-                            <div class="col-md-{{main.columnSize}} summary-size-font text-info" ng-repeat="roottoexplore in main.rootsToExplore ">{{roottoexplore}}</div>
-                        </div>
-                      </div>
-                    </uib-tab>
-                    <uib-tab heading="Avoid" ng-click="main.getrootsToAvoids()">
-                      <div class="row row-comment-style">
-                        <div class="col-md-11">
-                          <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
-                        </div>
-                        <div class="col-md-1">
-                          <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveComments(main.dataInput)">Save</button>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootAvoid" style="margin-top: 10px;">
-                            <div class="col-md-{{main.columnSize}} text-info summary-size-font" ng-repeat="rootstoavoid in main.rootsToAvoid">{{rootstoavoid}}</div>
-                        </div>
-                      </div>
-                    </uib-tab>
+                </uib-tab>
+                <uib-tab heading="Explore" ng-click="main.getrootsToExplores()">
+                  <div class="row comment-style-forRow">
+                    <div class="col-md-11">
+                      <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
+                    </div>
+                    <div class="col-md-1">
+                      <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveComments(main.dataInput)">Save</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootExplore" style="margin-top: 10px;">
+                        <div class="col-md-{{main.columnSize}} summary-size-font text-info" ng-repeat="roottoexplore in main.rootsToExplore ">{{roottoexplore}}</div>
+                    </div>
+                  </div>
+                </uib-tab>
+                <uib-tab heading="Avoid" ng-click="main.getrootsToAvoids()">
+                  <div class="row comment-style-forRow">
+                    <div class="col-md-11">
+                      <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
+                    </div>
+                    <div class="col-md-1">
+                      <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveComments(main.dataInput)">Save</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootAvoid" style="margin-top: 10px;">
+                        <div class="col-md-{{main.columnSize}} text-info summary-size-font" ng-repeat="rootstoavoid in main.rootsToAvoid">{{rootstoavoid}}</div>
+                    </div>
+                  </div>
+                </uib-tab>
                     <!-- display of names ends here -->
               </uib-tabset>
             </div>
@@ -306,7 +308,7 @@ label {
                  <div class="col-md-4 text-center" ng-show="main.displayMenu">
                             <div class="input-group">
                                 <span class="input-group-btn">
-                                  <button class="btn btn-default" type="button" ng-click="main.resetSlide()">
+                                  <button class="btn btn-default" type="button" ng-click="main.resetSlide()" uib-tooltip="Reset the Slide" tooltip-class="customClass">
                                     <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                                   </button>
                                 </span>
@@ -314,7 +316,7 @@ label {
                                 <input type="text" ng-model="main.selectedName" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" class="form-control text-primary" placeholder="Search name">
                               </div>
                                 <span class="input-group-btn">
-                                 <button class="btn btn-default" type="button" ng-click="main.changeToDefault()">
+                                 <button class="btn btn-default" type="button" ng-click="main.changeToDefault()" uib-tooltip="Remove Image" tooltip-class="customClass">
                                    <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                                  </button>
                                 </span>
@@ -322,15 +324,15 @@ label {
                     </div>
                     <div class="col-md-4" ng-show="main.displayMenu">
                         <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goPrevSlide()">
+                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goPrevSlide()" uib-tooltip="Move Left" tooltip-class="customClass">
                                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">
                     </span>
                             </button>
-                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goNextSlide()">
+                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goNextSlide()" uib-tooltip="Move Right" tooltip-class="customClass">
                                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true">
                     </span>
                             </button>
-                            <button type="button" class="btn btn-default" aria-label="Left Align">
+                            <button type="button" class="btn btn-default" aria-label="Left Align" uib-tooltip="Got to Summary" tooltip-class="customClassForBiggerTool">
                                 <span>{{main.pageNumber}} / {{main.totalOfTestNames}}
                     </span>
                             </button>
