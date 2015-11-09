@@ -293,10 +293,10 @@ label {
                         </div>
                     </div>
 
-            <div class="row" ng-show="!main.displayNameGroup">
+            <div class="row">
                 <div class="col-md-12" style="position: relative; bottom: {{main.controlsPosition}}px;">
                     <div class="col-md-4">
-                        <div class="btn-group">
+                        <div class="btn-group"  ng-show="!main.displayNameGroup">                        
                             <button type="button" class="btn btn-default" aria-label="Left Align">
                                 <span aria-hidden="true"></span>Propietary & Confidential</button>
                             <button type="button" class="btn btn-default" aria-label="Center Align" ng-show="main.nameNotation.length > 0">
@@ -304,8 +304,10 @@ label {
                         </div>
                     </div>
                  <div class="col-md-4 text-center" ng-show="main.displayMenu">
-                            <div class="input-group">
+                            <div class="input-group">                            
                                 <span class="input-group-btn">
+                                  <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goHome()">
+                                  <span class="glyphicon glyphicon-home" aria-hidden="true"></button>
                                   <button class="btn btn-default" type="button" ng-click="main.resetSlide()">
                                     <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                                   </button>
@@ -316,7 +318,7 @@ label {
                                 <span class="input-group-btn">
                                  <button class="btn btn-default" type="button" ng-click="main.changeToDefault()">
                                    <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
-                                 </button>
+                                 </button>                                 
                                 </span>
                             </div>
                     </div>
@@ -330,7 +332,7 @@ label {
                                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true">
                     </span>
                             </button>
-                            <button type="button" class="btn btn-default" aria-label="Left Align">
+                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goToSummarySlide()">
                                 <span>{{main.pageNumber}} / {{main.totalOfTestNames}}
                     </span>
                             </button>

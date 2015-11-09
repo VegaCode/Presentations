@@ -11,7 +11,7 @@
 angular.module('nwApp')
 .controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides', 'GetTestNames', 'ResetProject', 'GetRetainedNames',
     function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides,GetTestNames, ResetProject, GetRetainedNames) {
-            var _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames;
+            var _nameSummarySlideNumber , _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
             // webBaseUrl = 'http://localhost:64378/';
@@ -68,6 +68,9 @@ angular.module('nwApp')
                     };
 
             Reveal.addEventListener('overviewshown', function(event) {
+                if(_SlideNumber > 4){
+                    Reveal.slide(  0, _SlideNumber-2, 0 );
+                }else{ Reveal.slide(  0, _SlideNumber-1, 0 );}                    
                         $rootScope.$apply(function() {
                             self.isOverview = true;
                         });
@@ -89,12 +92,14 @@ angular.module('nwApp')
                         }
                     });
              self.selectSlide = function(index) {
-                        var slideModel = JSON.stringify( new slideInfoModel(projectId, index+1, '','','','', '' ));                 
+                    var slideModel = JSON.stringify( new slideInfoModel(projectId, index+1, '','','','', '' ));                 
                      getTestNamesObject(slideModel);
                    };
 
 // **********  Getting Slides URL Images and the description for over view  *************************************************************************************
     GetNamesAndSlides.getdata(projectId).then(function(result){
+                //_nameSummarySlideNumber = result[0].nameSummarySlideNumber
+                _nameSummarySlideNumber = 109;
                 self.slides = result;
                 // slide show configuration settings
                 $timeout(function() {
@@ -371,7 +376,6 @@ angular.module('nwApp')
         };
 
         self.positiveBackground = "images/BackGrounds/Summarycopy.jpg";
-
         self.positiveCount = 0;
         self.neutralCount = 0;
         self.negativeCount = 0;
@@ -396,20 +400,12 @@ angular.module('nwApp')
               alertify.alert("You are about to move to the Next Slide")
               .set('onok', function(closeEvent){
                 var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
-                getTestNamesObject(slideModel);
-              //  if(self.totalOfTestNames === (pageNumber - 1 )){
-              //    alert('Present Sumary Slides');
-              //    self.togglePresentation();
-              //      }
+                getTestNamesObject(slideModel);        
               }).set('title', 'Moving to next slide');
             }).set('title', 'Ranking Names');
           }else{
             var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
-            getTestNamesObject(slideModel);
-          //  if(self.totalOfTestNames === (pageNumber - 1 )){
-          //    alert('Present Sumary Slides');
-          //    self.togglePresentation();
-          //      }
+            getTestNamesObject(slideModel);    
           }
         };
 
@@ -491,14 +487,14 @@ angular.module('nwApp')
 
                             if(_SlideType === 'Image'){
                                  self.displayNameGroup = true;
-                                 self.controlsPosition = -286;
+                                 self.controlsPosition = -284;
                                  _SlideDescription='';
                                  self.displaySummary = false;
                             }else if (_SlideType === 'NameSummary') {
                                  _SlideDescription='';
                                 self.displaySummary = true;
                                 self.displayNameGroup = true;
-
+                                self.controlsPosition = -82;
 //piece of code in order to commit
                                 var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
                                 var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -762,41 +758,43 @@ angular.module('nwApp')
           });
         };
 
-         var getTestNamesObject = function(initialSlideModel){
-
-                     apiCall = 'api/NW_SaveAndReturnSlideData';
-                   $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
-                         if(slideObject.length>0){
-                           _TotalNames = slideObject[0].TotalNames;
-                           self.totalOfTestNames = parseInt(_TotalNames);
-                           self.progressBarUnit = 100/ self.totalOfTestNames;
-                           setUpTheSlideInfo(slideObject);
-                         }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
-                   }).error(function(err) {
-                       return err;
-                    })
-            }
-                   // INITIAL SETUP
+                 var getTestNamesObject = function(initialSlideModel){
+                             apiCall = 'api/NW_SaveAndReturnSlideData';
+                           $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
+                                 if(slideObject.length>0){
+                                   _TotalNames = slideObject[0].TotalNames;
+                                   self.totalOfTestNames = parseInt(_TotalNames);
+                                   self.progressBarUnit = 100/ self.totalOfTestNames;
+                                   setUpTheSlideInfo(slideObject);
+                                 }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
+                           }).error(function(err) {
+                               return err;
+                            })
+                    }
+                   // INITIAL SETUP                 
+                  self.goHome = function(){                       
                   var initialSlideModel = JSON.stringify( new slideInfoModel(projectId,0,'','','','', 'First'));
                   getTestNamesObject(initialSlideModel);
+                  }
 
-                  self.goNextSlide = function() {
+                  self.goHome();  
+
+                  self.goToSummarySlide = function(){                       
+                    self.selectSlide(_nameSummarySlideNumber-1);
+                  }
+
+                 self.goNextSlide = function() {
                    var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
                    if(_SlideType !== 'Image'){
                      self.mustRank();
                    }else{
-                     getTestNamesObject(slideModel);
-                    // if(self.totalOfTestNames === (pageNumber + 2 )){
-                    //   alert('Present Sumary Slides');
-                    //   self.togglePresentation();
-                    //     }
+                     getTestNamesObject(slideModel);                
                    }
                   }
 
                   self.goPrevSlide = function() {
                    var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
-                   getTestNamesObject(slideModel);
-                     //if(self.totalOfTestNames === (pageNumber - 1 )){ self.togglePresentation(); }
+                   getTestNamesObject(slideModel);                  
                  }
 
                  self.onSelect = function (slideName) {
@@ -835,7 +833,7 @@ angular.module('nwApp')
                         self.displayTally = true;
                         }
 
-                          hotkeys.add({
+                 hotkeys.add({
                             combo:'right',
                             description:'To go forward',
                             callback: function(e){
@@ -843,21 +841,21 @@ angular.module('nwApp')
                                  self.goNextSlide();
                             }});
 
-                        hotkeys.add({
+                 hotkeys.add({
                                     combo:'left',
                                     description:'To go Back',
                                     callback: function(){
                                              self.goPrevSlide();
                             }});
 
-                        hotkeys.add({
+                 hotkeys.add({
                                     combo:'up',
                                     description:'Display Menu',
                                     callback: function(){
                                                 self.displayMenu = true;
                             }});
 
-                        hotkeys.add({
+                 hotkeys.add({
                                     combo:'down',
                                     description:'Hide Menu',
                                     callback: function(){
