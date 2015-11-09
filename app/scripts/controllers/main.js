@@ -91,8 +91,9 @@ angular.module('nwApp')
                             });
                         }
                     });
+
              self.selectSlide = function(index) {
-                    var slideModel = JSON.stringify( new slideInfoModel(projectId, index+1, '','','','', '' ));                 
+                    var slideModel = JSON.stringify( new slideInfoModel(projectId, index+1, '','','','', '' ));
                      getTestNamesObject(slideModel);
                    };
 
@@ -231,7 +232,7 @@ angular.module('nwApp')
                 }, 300);
             });
 
-        
+
   // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
 
         self.backGroundChanged = function(){
@@ -380,13 +381,19 @@ angular.module('nwApp')
         self.neutralCount = 0;
         self.negativeCount = 0;
         self.newNameCount = 0;
+        self.retainedNameCount = 0;
         self.stacked = [];
         self.barOfType = ['success', 'primary'];
         var indexOfType = 0;
 
         self.addToBar = function(Count){
+          var percentageCount = 0;
+          self.retainedNameCount = self.positiveCount + self.neutralCount;
+
+          var percentageCount = ((Count * 100) / self.retainedNameCount).toFixed(1);
+
           self.stacked.push({
-            value: Count,
+            value: percentageCount,
             type: self.barOfType[indexOfType]
           });
           indexOfType = indexOfType + 1;
@@ -499,24 +506,23 @@ angular.module('nwApp')
                                 var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
                                 var apiCall = 'api/NW_GetSummary?instruccion=';
                                 var instructionCounter = 0;
-                                  
-                                  $http.get(webBaseUrl + apiCall + instruccion[0]).success(function(result){                                                                  
-                                      self.barType = 'success';
-                                      self.positiveCount = result.length;
-                                      self.addToBar(self.positiveCount);                                  
-                                  });
-                                  $http.get(webBaseUrl + apiCall + instruccion[1]).success(function(result){                                                                  
-                                      self.barType = 'primary';
-                                      self.neutralCount = result.length;
-                                      self.addToBar(self.neutralCount);                            
-                                  });
-                                  $http.get(webBaseUrl + apiCall + instruccion[2]).success(function(result){                                                                  
-                                       self.negativeCount = result.length;                               
-                                  });
-                                  $http.get(webBaseUrl + apiCall + instruccion[3]).success(function(result){                                                                  
-                                       self.newNameCount = result.length;                            
-                                  });
 
+                                $http.get(webBaseUrl + apiCall + instruccion[0]).success(function(result){
+                                  self.barType = 'success';
+                                  self.positiveCount = result.length;
+                                });
+                                $http.get(webBaseUrl + apiCall + instruccion[1]).success(function(result){
+                                  self.barType = 'primary';
+                                  self.neutralCount = result.length;
+                                });
+                                $http.get(webBaseUrl + apiCall + instruccion[2]).success(function(result){
+                                  self.negativeCount = result.length;
+                                  self.addToBar(self.positiveCount);
+                                  self.addToBar(self.neutralCount);
+                                });
+                                $http.get(webBaseUrl + apiCall + instruccion[3]).success(function(result){
+                                  self.newNameCount = result.length;
+                                });
                             }else{
                                 self.displayNameGroup = false;
                                 self.controlsPosition = -23;
@@ -729,12 +735,13 @@ angular.module('nwApp')
           self.displayNewName = false;
           self.displayRootExplore = true;
           self.displayRootAvoid = false;
+           self.rootsToExplore =[];
           GetRetainedNames.getRootsToExplore(projectId).then(function(rootExplore){
             for(var i = 0; i<rootExplore.length; i++){
-              var foundMatch = searchForAMatch(rootExplore[i].Name, self.rootsToExplore);
-              if(foundMatch === false){
+              // var foundMatch = searchForAMatch(rootExplore[i].Name, self.rootsToExplore);
+              // if(foundMatch === false){
                 self.rootsToExplore.push(rootExplore[i].Name.trim());
-              }
+              // }
             }
             selectColumnSize(rootExplore.length);
           });
