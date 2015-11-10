@@ -78,6 +78,12 @@ label {
 .progress-bar-purple{
   background-color: #4c0099;
 }
+.badge-purple{
+  background-color: #4c0099;
+  width: 50%;
+  font-weight: initial;
+  font-size: 14px;
+}
 .tooltip.customClass .tooltip-inner{
   width: 100px;
 }
@@ -269,39 +275,39 @@ label {
                 <div ng-show="main.displaySummary" style=" font-family: calibri; font-size: 21px; position: relative; bottom:{{ (main.displayMenu==true) ? 489 : 456}}px;">
                     <uib-tabset >
                         <uib-tab heading="Summary" class="tabs">
-                            <div class="row" style="margin-top: 10px;">
+                            <div class="row pointer" ng-click="main.getPositivesNames()" style="margin-top: 10px;">
                                 <div class="col-md-2">
-                                    <span class="label label-success" ng-click="main.getPositivesNames()" style=" font-weight: initial;">Retained</span>
+                                    <span class="label label-success"  style=" font-weight: initial;">Retained</span>
                                 </div>
                                 <div class="col-md-8 margin-progressbar">
-                                    <uib-progress>
+                                    <uib-progress style="height: 25px">
                                         <uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span>{{bar.value}}%</span></uib-bar>
                                     </uib-progress>
                                 </div>
-                                <div class="col-md-2 margin-badge">
-                                    <span class="badge pointer" ng-click="main.getPositivesNames()" style="background-color: #5cb85c;  width: 50%; font-weight: initial; font-size: 14px;">{{main.retainedNameCount}}</span>
+                                <div class="col-md-2 ">
+                                    <span class="badge margin-badge" style="background-color: #5cb85c;  width: 50%; font-weight: initial; font-size: 14px;">{{main.retainedNameCount}}</span>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row pointer" ng-click="main.getNegativesNames()">
                                 <div class="col-md-2">
-                                    <span class="label" ng-click="main.getNegativesNames()" style="font-weight: initial; background-color: #4c0099;">Reconsider</span>
+                                    <span class="label" style="font-weight: initial; background-color: #4c0099;">Reconsider</span>
                                 </div>
                                 <div class="col-md-8 margin-progressbar">
-                                    <uib-progressbar type="purple" ng-click="main.getNegativesNames()" style="background-color: #4c0099; height: 25px;" ng-style="{width: main.negativeCount + '%'}"></uib-progressbar>
+                                    <uib-progressbar type="purple" style="height: 25px;" ng-style="{width: main.negativeCount + '%'}"></uib-progressbar>
                                 </div>
-                                <div class="col-md-2 margin-badge">
-                                    <span class="badge pointer" ng-click="main.getNegativesNames()" style="background-color: #4c0099;  width: 50%; font-weight: initial; font-size: 14px;">{{main.negativeCount}}</span>
+                                <div class="col-md-2">
+                                    <span class="badge margin-badge badge-purple">{{main.negativeCount}}</span>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row pointer" ng-click="main.getNewsNames()">
                                 <div class="col-md-2">
-                                    <span class="label label-info" ng-click="main.getNewsNames()" style="font-weight: initial;">New Names</span>
+                                    <span class="label label-info" style="font-weight: initial;">New Names</span>
                                 </div>
                                 <div class="col-md-8 margin-progressbar">
-                                    <uib-progressbar type="info" ng-click="main.getNewsNames()" style="height: 25px" ng-style="{width: main.newNameCount + '%'}"></uib-progressbar>
+                                    <uib-progressbar type="info" style="height: 25px" ng-style="{width: main.newNameCount + '%'}"></uib-progressbar>
                                 </div>
-                                <div class="col-md-2 margin-badge">
-                                    <span class="badge pointer" ng-click="main.getNewsNames()" style="background-color: #5bc0de;  width: 50%; font-weight: initial; font-size: 14px;">{{main.newNameCount}}</span>
+                                <div class="col-md-2">
+                                    <span class="badge margin-badge" style="background-color: #5bc0de;  width: 50%; font-weight: initial; font-size: 14px;">{{main.newNameCount}}</span>
                                 </div>
                             </div>
                             <!-- CA- piece of code to display names-->
