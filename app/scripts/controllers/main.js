@@ -827,9 +827,7 @@ angular.module('nwApp')
                 };
 
                 self.logKey = function (event){
-                  var onPressEnter = event.keyCode;
-                  if(onPressEnter == 13){
-                    alert('key pressed');
+                 if(event.keyCode === 13){
                     self.onSelect(self.selectedName);
                   }
                 }
