@@ -100,7 +100,7 @@ angular.module('nwApp')
 // **********  Getting Slides URL Images and the description for over view  *************************************************************************************
     GetNamesAndSlides.getdata(projectId).then(function(result){
                 _nameSummarySlideNumber = result[0].SummarySlide;
-        
+
                 self.slides = result;
                 // slide show configuration settings
                 $timeout(function() {
@@ -443,12 +443,16 @@ angular.module('nwApp')
           }
        };
 
+
        self.showThemeOptions = function() {
-        alertify.prompt('Enter Password', '',function(evt, value){
-              if(value === 'admin1234'){
-                  self.displaySettings = !self.displaySettings;
-              }
-          }).set('title','Enter Your admin Password');
+
+        var password = prompt("Enter Password");
+
+        if(password === 'admin1234'){
+          self.displaySettings = !self.displaySettings;
+        }else{
+          alert("Please provide the correct password");
+        }
        };
        self.saveThemeSettings = function() {
                         if ( self.BackGround !== '') {
