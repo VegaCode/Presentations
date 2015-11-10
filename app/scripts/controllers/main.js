@@ -55,7 +55,6 @@ angular.module('nwApp')
                                      };
                          };
 
-
   // **********  Getting Slides REVEAL TEST  presentation  ****************************************************************************************************
     self.togglePresentation = function() {
                         if (self.isTesNameTime === false) {
@@ -403,7 +402,7 @@ angular.module('nwApp')
 
         // CA- requires users to rank each testName
         self.mustRank = function(){
-          if (self.nameRamking === "False"){
+          if (self.nameRamking === "False" || self.nameRamking === false){
             alertify.confirm("Please Rank the Name").set('onok', function(closeEvent){})
             .set('oncancel', function(closeEvent){
               alertify.alert("You are about to move to the Next Slide")
@@ -616,14 +615,22 @@ angular.module('nwApp')
         self.dataInput = "";
 
         self.saveExploreComments = function(note){
-            var apiCall = 'api/NW_SaveNotes'
-            var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Explore'");
-           $http.post(webBaseUrl + apiCall , projectIdAndNote)
+          var apiCall = 'api/NW_SaveNotes'
+          var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Explore'");
+          $http.post(webBaseUrl + apiCall , projectIdAndNote)
+          var savedInformation = confirm("You are about to save");
+          if (savedInformation == true){
+            alert("Saved");
+          }
         };
         self.saveAvoidComments = function(note){
           var apiCall = 'api/NW_SaveNotes'
           var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Avoid'");
-           $http.post(webBaseUrl + apiCall , projectIdAndNote)
+          $http.post(webBaseUrl + apiCall , projectIdAndNote)
+          var savedInformation = confirm("You are about to save");
+          if (savedInformation == true){
+            alert("Saved");
+          }
         };
 
         self.cancelComments = function(){
@@ -795,7 +802,9 @@ angular.module('nwApp')
                    getTestNamesObject(slideModel);
                  }
 
+                 self.selectedName = "";
                  self.onSelect = function (slideName) {
+                   self.selectedName = slideName;
                     var query = projectId+','+"'"+ slideName +"'";
                        apiCall = 'api/NW_NamesAndSlides?projectIdAndTestName=';
                             $http.get(webBaseUrl + apiCall + query).success(function(result){
@@ -808,6 +817,14 @@ angular.module('nwApp')
                       self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
                     }
                 };
+
+                self.logKey = function (event){
+                  var onPressEnter = event.keyCode;
+                  if(onPressEnter == 13){
+                    alert('key pressed');
+                    self.onSelect(self.selectedName);
+                  }
+                }
 
                  // CA- the following code will allow to search the candidate names and then display them
                 self.testName = [];
