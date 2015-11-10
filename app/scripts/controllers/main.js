@@ -235,9 +235,9 @@ angular.module('nwApp')
 
   // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
 
-        self.backGroundChanged = function(){
+        self.backGroundChanged = function(backGroundName){
             apiCall = 'api/NW_InsertTemplateConfiguration?templateName=';
-           $http.get(webBaseUrl + apiCall + self.BackGroundName).success(function(theme){
+           $http.get(webBaseUrl + apiCall + backGroundName).success(function(theme){
                 self.BackGround  = theme[0].TemplateFileName;
                 self.BackGroundName  = theme[0].TemplateName;
                 self.testNameFontFamily  = theme[0].TestNameFontFamily;
@@ -271,7 +271,7 @@ angular.module('nwApp')
                // CA- added function above to make sure if it is katakana or not when billboard or subwaystop is displayed
                         isItJapanese(self.isJapanese);
                         self.testNameWidth= '85';
-                        if (self.BackGround === 'images/BackGrounds/Billboard.jpg' || self.BackGround === 'images/BackGrounds/SubwayStop.jpg') {
+                    if(_TemplateName === 'Billboard' ||_TemplateName ==='SubwayStop'){
                             self.textAttribute = 'left';
 
                 // ************************ Column Off Set *************************************
@@ -364,19 +364,16 @@ angular.module('nwApp')
         //  CA- added function to toggle between on and off default
         var temporaryBackGround;
         self.changeToDefault = function(){
-          if (!(self.BackGroundName === 'Default' || self.BackGroundName === "images/BackGrounds/Default.jpg")){
-            temporaryBackGround = self.BackGround;
-            self.BackGroundName = 'Default';
-            self.backGroundChanged(self.BackGroundName);
+          if (!(self.BackGroundName === 'Default')){
+            temporaryBackGround = self.BackGroundName;
+            self.backGroundChanged('Default');
           }
           else{
-            self.BackGroundName = temporaryBackGround.replace('images/BackGrounds/', "");
-            self.BackGroundName = self.BackGroundName.replace('.jpg', "");
-            self.backGroundChanged(self.BackGroundName);
+            self.backGroundChanged(temporaryBackGround);
+            temporaryBackGround ='';
           }
         };
 
-        self.positiveBackground = "images/BackGrounds/Summarycopy.jpg";
         self.positiveCount = 0;
         self.neutralCount = 0;
         self.negativeCount = 0;
@@ -443,17 +440,20 @@ angular.module('nwApp')
           }
        };
 
-
        self.showThemeOptions = function() {
-
-        var password = prompt("Enter Password");
-
-        if(password === 'admin1234'){
-          self.displaySettings = !self.displaySettings;
-        }else{
-          alert("Please provide the correct password");
-        }
+        if(self.displaySettings === true)
+            {
+                self.displaySettings =false;
+            }else{
+           var password = prompt("Enter Password");
+                if(password === 'admin123'){
+                  self.displaySettings = true;
+                }else{
+                  alert("Please provide the correct password");
+                }
+            }
        };
+
        self.saveThemeSettings = function() {
                         if ( self.BackGround !== '') {
                             var configModel = themeConfigurationModel( self.BackGround,
@@ -497,17 +497,24 @@ angular.module('nwApp')
                               self.BackGround = slideObject[0].SlideBGFileName;
                             }
                             self.BackGroundName = _TemplateName;
+                            if(_TemplateName === 'Billboard' ||_TemplateName ==='SubwayStop'){
+                                 self.whatBackgroundIsIt =true;
+                             }else{
+                                 self.whatBackgroundIsIt = false;
+                             }
 
                             if(_SlideType === 'Image'){
                                  self.displayNameGroup = true;
-                                 self.controlsPosition = -284;
+                                 self.controlsPosition = -282;
                                  _SlideDescription='';
                                  self.displaySummary = false;
+                                 self.isTestNameButtons = false;
                             }else if (_SlideType === 'NameSummary') {
                                  _SlideDescription='';
                                 self.displaySummary = true;
                                 self.displayNameGroup = true;
                                 self.controlsPosition = -282;
+                                self.isTestNameButtons = false;
 //piece of code in order to commit
                                 var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
                                 var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -533,6 +540,7 @@ angular.module('nwApp')
                                 self.displayNameGroup = false;
                                 self.controlsPosition = -23;
                                 self.displaySummary = false;
+                                self.isTestNameButtons = true;
                             }
 
                             self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
@@ -543,7 +551,7 @@ angular.module('nwApp')
 
                             self.pageNumber = _SlideNumber;
                             //pageNumber =parseInt(_SlideNumber);
-                            self.logoPath = 'images/LogIcons/icon-1.png';
+                            self.logoPath = 'images/LogIcons/icon-1' + '.png';
 
                             self.showTemplate = false;
 
@@ -830,6 +838,12 @@ angular.module('nwApp')
                  self.tally = function() {
                         self.displayTally = true;
                         }
+
+                 hotkeys.add({
+                        combo:'O',
+                        description:'Overview',
+                        callback: function(){
+                }});
 
                  hotkeys.add({
                             combo:'right',

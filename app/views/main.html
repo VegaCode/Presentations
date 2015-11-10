@@ -85,6 +85,15 @@ label {
   width: 125px;
 }
 
+.tabs {
+    margin:  0;
+    padding: 0;
+    list-style: none;
+    display: table; /* [1] */
+    table-layout: fixed; /* [2] */
+    width: 33%; /* [3] */
+    text-align: center;
+}
 </style>
 
 <!-- Slide Show -->
@@ -167,7 +176,7 @@ label {
                     <div class="row" style="height: 270px;">
                         <div class="col-md-{{main.columnSet}} col-md-offset-{{main.columnOffSet}}">
                             <div class="col-md-1 ">
-                                <img ng-show="main.BackGround == 'images/BackGrounds/Billboard.jpg' || main.BackGround == 'images/BackGrounds/SubwayStop.jpg'" width='150' style="margin-top: 10px; margin-left: -{{main.marginLeftImage}}px;" ng-src="{{main.logoPath}}" />
+                                <img ng-show="main.whatBackgroundIsIt" ng-init="boxes=[ {src:'images/LogIcons/icon-1.png'}, {src:'images/box2.png'},  {src:'images/box3.png'}]" width='150' style="margin-top: 10px; margin-left: -{{main.marginLeftImage}}px;" ng-src="{{boxes[0].src}}" />
                             </div>
                             <div class="col-md-12 text-{{main.textAttribute}} "
                                   style="background-image:{{main.overlayStyle}};
@@ -224,16 +233,16 @@ label {
                                 <span class="input-group-btn">
                                   <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goHome()" uib-tooltip="Go to Start" tooltip-class="customClass">
                                   <span class="glyphicon glyphicon-home" aria-hidden="true"></button>
-                                  <button class="btn btn-default" type="button" uib-tooltip="Reset the Slide" tooltip-class="customClass" ng-click="main.resetSlide()">
+                                  <button class="btn btn-default" type="button" ng-show="main.isTestNameButtons"  uib-tooltip="Reset the Slide" tooltip-class="customClass" ng-click="main.resetSlide()">
                                     <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
                                   </button>
                                 </span>
                                 <div class="dropup">
-                                <input type="text" ng-model="main.selectedName" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" class="form-control text-primary" placeholder="Search name">
+                                <input type="text" ng-model="main.selectedName" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" style="height: 100%;" class="form-control text-primary" placeholder="Search name">
                               </div>
-                                <span class="input-group-btn">
-                                 <button class="btn btn-default" type="button" ng-click="main.changeToDefault()" uib-tooltip="Remove Image" tooltip-class="customClass">
-                                   <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                                <span class="input-group-btn" >
+                                 <button class="btn btn-default" type="button" ng-show="main.isTestNameButtons"  ng-click="main.changeToDefault()" uib-tooltip="Remove Image" tooltip-class="customClass">
+                                   <span class="glyphicon glyphicon-picture"  aria-hidden="true" ></span>
                                  </button>
                                 </span>
                             </div>
@@ -257,9 +266,9 @@ label {
                 </div>
              </div>
                 <!-- CA- added tabs to the summary Slide, needs to adjust the type of color will be used for the names-->
-                <div ng-show="main.displaySummary" style=" font-family: calibri; font-size: 21px; position: relative; bottom:{{ (main.displayMenu==true) ? 490 : 456}}px;">
-                    <uib-tabset>
-                        <uib-tab heading="Summary">
+                <div ng-show="main.displaySummary" style=" font-family: calibri; font-size: 21px; position: relative; bottom:{{ (main.displayMenu==true) ? 489 : 456}}px;">
+                    <uib-tabset >
+                        <uib-tab heading="Summary" class="tabs">
                             <div class="row" style="margin-top: 10px;">
                                 <div class="col-md-2">
                                     <span class="label label-success" ng-click="main.getPositivesNames()" style=" font-weight: initial;">Retained</span>
@@ -303,7 +312,7 @@ label {
                                 <div class="text-info col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames" ng-click="main.selectNameFromSummary(newname)">{{newname}}</div>
                             </div>
                         </uib-tab>
-                        <uib-tab heading="Explore" ng-click="main.getrootsToExplores()">
+                        <uib-tab heading="Explore" class="tabs" ng-click="main.getrootsToExplores()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
                                     <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
@@ -318,7 +327,7 @@ label {
                                 </div>
                             </div>
                         </uib-tab>
-                        <uib-tab heading="Avoid" ng-click="main.getrootsToAvoids()">
+                        <uib-tab heading="Avoid" class="tabs" ng-click="main.getrootsToAvoids()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
                                     <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
