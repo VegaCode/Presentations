@@ -400,14 +400,11 @@ angular.module('nwApp')
         // CA- requires users to rank each testName
         self.mustRank = function(){
           if (self.nameRamking === "False" || self.nameRamking === false){
-            alertify.confirm("Please Rank the Name").set('onok', function(closeEvent){})
-            .set('oncancel', function(closeEvent){
-              alertify.alert("You are about to move to the Next Slide")
-              .set('onok', function(closeEvent){
+            alertify.confirm("Please Rank the Name").set('onok', function(closeEvent){
                 var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
                 getTestNamesObject(slideModel);
-              }).set('title', 'Moving to next slide');
-            }).set('title', 'Ranking Names');
+              }).set('labels', {cancel:'Rank Name', ok:'Skip Name'})
+            .set('oncancel', function(closeEvent){}).set('title', 'Ranking Names');
           }else{
             var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
             getTestNamesObject(slideModel);
