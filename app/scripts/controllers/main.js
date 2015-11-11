@@ -399,11 +399,12 @@ angular.module('nwApp')
 
         // CA- requires users to rank each testName
         self.mustRank = function(){
-          if (self.nameRamking === "False" || self.nameRamking === false){
-            alertify.confirm("Please Rank the Name").set('onok', function(closeEvent){
-                var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
-                getTestNamesObject(slideModel);
-              }).set('labels', {cancel:'Rank Name', ok:'Skip Name'}).set('oncancel', function(closeEvent){}).set('title', 'Ranking Names');
+          if (self.nameRamking === "False" || self.nameRamking === false || self.nameRamking === ''){
+                 var isNotRanked = confirm("Do you want to skip the test name ? ");
+                    if (isNotRanked == true){                       
+                      var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
+                      getTestNamesObject(slideModel);
+                    }
           }else{
             var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
             getTestNamesObject(slideModel);
@@ -434,7 +435,7 @@ angular.module('nwApp')
           }
        };
 
-       
+
 
        self.showThemeOptions = function() {
         if(self.displaySettings === true)
@@ -624,6 +625,7 @@ angular.module('nwApp')
           var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Explore'");
           $http.post(webBaseUrl + apiCall , projectIdAndNote)
              alertify.confirm('You are about to save').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){                  
+
                   alertify.alert("Saved").set('title', 'Result');
                    }).set('oncancel', function(closeEvent){}).set('title', 'Saving Explore Notes')
               self.dataInput='';
@@ -633,6 +635,7 @@ angular.module('nwApp')
           var apiCall = 'api/NW_SaveNotes'
           var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Avoid'");
           $http.post(webBaseUrl + apiCall , projectIdAndNote)
+
            alertify.confirm('You are about to save').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){                  
                   alertify.alert("Saved").set('title', 'Result');
                    }).set('oncancel', function(closeEvent){}).set('title', 'Saving Avoid Notes')
