@@ -88,6 +88,8 @@ label {
 }
 .multi-color-bar-font-size{
   font-size: 14px;
+  text-align: center;
+  line-height: 25px;
 }
 .badge-purple{
   background-color: #4c0099;
@@ -342,7 +344,7 @@ label {
                         <uib-tab heading="Explore" class="tabs" ng-click="main.getrootsToExplores()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
-                                    <textarea class="text-primary textarea-style" ng-value="main.dataInput" ng-model="main.dataInput" placeholder="Please type additional comments ...">{{main.dataInput}}</textarea>
+                                    <textarea class="text-primary textarea-style" ng-value="main.dataInput" ng-model="main.dataInput" placeholder="Please type additional comments...">{{main.dataInput}}</textarea>
                                 </div>
                                 <div class="col-md-1">
                                     <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveExploreComments(main.dataInput)">Save</button>
@@ -357,7 +359,7 @@ label {
                         <uib-tab heading="Avoid" class="tabs" ng-click="main.getrootsToAvoids()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
-                                    <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="Please type additional comments ...">{{main.dataInput}}</textarea>
+                                    <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="Please type additional comments...">{{main.dataInput}}</textarea>
                                 </div>
                                 <div class="col-md-1">
                                     <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveAvoidComments(main.dataInput)">Save</button>
