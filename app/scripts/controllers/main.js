@@ -14,8 +14,8 @@ angular.module('nwApp')
             var _nameSummarySlideNumber , _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
-            // webBaseUrl = 'http://localhost:64378/';
-            webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
+           webBaseUrl = 'http://localhost:64378/';
+          //    webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
             var feedBackBox = [];
             projectId = queryStringCheck;
             self.displaySettings =false;
@@ -385,7 +385,7 @@ angular.module('nwApp')
         var percentageCount = 0;
         var isAddToBarAgain = 0;
 
-        self.addToBar = function(Count){
+        var addToBar = function(Count){
             self.retainedNameCount = self.positiveCount + self.neutralCount;
 
             var percentageCount = ((Count * 100) / self.retainedNameCount).toFixed(1);
@@ -436,8 +436,6 @@ angular.module('nwApp')
           }
        };
 
-
-
        self.showThemeOptions = function() {
         if(self.displaySettings === true)
             {
@@ -475,6 +473,29 @@ angular.module('nwApp')
                         };
                     };
 
+         var setProgressBarsSummary = function(){
+
+                    var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
+                    var apiCall = 'api/NW_GetSummary?instruccion=';                                
+
+                    $http.get(webBaseUrl + apiCall + instruccion[0]).success(function(result){
+                      self.barType = 'success';
+                      self.positiveCount = result.length;
+                    });
+                    $http.get(webBaseUrl + apiCall + instruccion[1]).success(function(result){
+                      self.barType = 'primary';
+                      self.neutralCount = result.length;
+                    });
+                    $http.get(webBaseUrl + apiCall + instruccion[2]).success(function(result){
+                      self.negativeCount = result.length;
+                      addToBar(self.positiveCount);
+                      addToBar(self.neutralCount);
+                    });
+                    $http.get(webBaseUrl + apiCall + instruccion[3]).success(function(result){
+                      self.newNameCount = result.length;
+                    });
+                
+                 }
         var setUpTheSlideInfo = function(slideObject){
                             _id = slideObject[0].$id;_DisplayName = slideObject[0].DisplayName;_StrokeRange  = slideObject[0].StrokeRange;
                             _StrokeColor = slideObject[0].StrokeColor; _Stroke = slideObject[0].Stroke;_HeaderFontColor = slideObject[0].HeaderFontColor;
@@ -516,24 +537,8 @@ angular.module('nwApp')
 //piece of code in order to commit
                                 var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
                                 var apiCall = 'api/NW_GetSummary?instruccion=';
-                                var instructionCounter = 0;
-
-                                $http.get(webBaseUrl + apiCall + instruccion[0]).success(function(result){
-                                  self.barType = 'success';
-                                  self.positiveCount = result.length;
-                                });
-                                $http.get(webBaseUrl + apiCall + instruccion[1]).success(function(result){
-                                  self.barType = 'primary';
-                                  self.neutralCount = result.length;
-                                });
-                                $http.get(webBaseUrl + apiCall + instruccion[2]).success(function(result){
-                                  self.negativeCount = result.length;
-                                  self.addToBar(self.positiveCount);
-                                  self.addToBar(self.neutralCount);
-                                });
-                                $http.get(webBaseUrl + apiCall + instruccion[3]).success(function(result){
-                                  self.newNameCount = result.length;
-                                });
+                                var instructionCounter = 0; 
+                                setProgressBarsSummary();
                             }else{
                                 self.displayNameGroup = false;
                                 self.controlsPosition = -23;
@@ -673,119 +678,108 @@ angular.module('nwApp')
                   })
         };
 
+        var resetBooleanSummarySlideVars = function(){
+                  self.displayPositive = false;
+                  self.displayNeutral = false;
+                  self.displayNegative = false;
+                  self.displayNewName = false;
+                  self.displayRootExplore = false;
+                  self.displayRootAvoid = false;
+                  self.positiveNames = [];
+                  self.neutralNames = [];
+                  self.negativeNames = [];
+                  self.newNames = [];
+                  self.rootsToExplore =[];
+                  self.rootsToAvoid = [];
+                 }
+
         self.getPositivesNames = function(){
-
-          self.displayPositive = true;
-          self.displayNeutral = false;
-          self.displayNegative = false;
-          self.displayNewName = false;
-          self.displayRootExplore = false;
-          self.displayRootAvoid = false;
-          self.positiveNames = [];
-
-          GetRetainedNames.getPositiveNames(projectId).then(function(positiveName){
-            for(var i = 0; i<positiveName.length; i++){
-                self.positiveNames.push(positiveName[i].Name);
-            }
-            selectColumnSize(positiveName.length);
-          });
+            resetBooleanSummarySlideVars();
+                 self.displayPositive = true;  
+                 var instruccion = projectId + ", 'Positive Retained Names'";
+                 var apiCall = 'api/NW_GetSummary?instruccion=';         
+                $http.get(webBaseUrl +  apiCall + instruccion ).success(function(positiveName){
+                for(var i = 0; i<positiveName.length; i++){
+                    self.positiveNames.push(positiveName[i].Name);
+                }
+                selectColumnSize(positiveName.length);
+              });
         };
-
-        self.getNeutralsNames = function(){
-          self.displayPositive = false;
-          self.displayNeutral = true;
-          self.displayNegative = false;
-          self.displayNewName = false;
-          self.displayRootExplore = false;
-          self.displayRootAvoid = false;
-          self.neutralNames = [];
-
-          GetRetainedNames.getNeutralNames(projectId).then(function(neutralName){
-            for(var i = 0; i<neutralName.length; i++){
-                self.neutralNames.push(neutralName[i].Name);
-            }
-            selectColumnSize(neutralName.length);
-          });
+        self.getNeutralsNames = function(){  
+              resetBooleanSummarySlideVars();      
+              self.displayNeutral = true;    
+              var apiCall = 'api/NW_GetSummary?instruccion=';
+                var instruccion = projectId + ",'Neutral Retained Names'"; 
+              $http.get(webBaseUrl +  apiCall + instruccion).success(function(neutralName){
+                for(var i = 0; i<neutralName.length; i++){
+                    self.neutralNames.push(neutralName[i].Name);
+                }
+                selectColumnSize(neutralName.length);
+              });
         };
-
         self.getNegativesNames = function(){
-          self.displayPositive = false;
-          self.displayNeutral = false;
-          self.displayNegative = true;
-          self.displayNewName = false;
-          self.displayRootExplore = false;
-          self.displayRootAvoid = false;
-          self.negativeNames = [];
-
-          GetRetainedNames.getNegativeNames(projectId).then(function(negativeName){
-            for(var i = 0; i<negativeName.length; i++){
-                self.negativeNames.push(negativeName[i].Name);
-            }
-            selectColumnSize(negativeName.length);
-          });
+                 resetBooleanSummarySlideVars();
+                 self.displayNegative = true;
+                 var apiCall = 'api/NW_GetSummary?instruccion=';
+                 var instruccion = projectId +  ",'Negative Names'";  
+                  $http.get(webBaseUrl +  apiCall + instruccion ).success(function(negativeName){                  
+                    for(var i = 0; i<negativeName.length; i++){
+                        self.negativeNames.push(negativeName[i].Name);
+                    }
+                    selectColumnSize(negativeName.length);
+                  });
         };
-
         self.getNewsNames = function(){
-          self.displayPositive = false;
-          self.displayNeutral = false;
-          self.displayNegative = false;
-          self.displayNewName = true;
-          self.displayRootExplore = false;
-          self.displayRootAvoid = false;
-          self.newNames = [];
-
-          GetRetainedNames.getNewNames(projectId).then(function(newName){
-            for(var i = 0; i<newName.length; i++){
-                self.newNames.push(newName[i].Name);
-            }
-            selectColumnSize(newName.length);
-          });
+             resetBooleanSummarySlideVars();
+              self.displayNewName = true;
+             var apiCall = 'api/NW_GetSummary?instruccion=';
+             var instruccion = projectId + ",'New Names'";
+             $http.get(webBaseUrl +  apiCall + instruccion ).success(function(newName){                        
+                for(var i = 0; i<newName.length; i++){
+                    self.newNames.push(newName[i].Name);
+                }
+                selectColumnSize(newName.length);
+              });
         };
         self.getrootsToExplores = function(){
-          self.displayPositive = false;
-          self.displayNeutral = false;
-          self.displayNegative = false;
-          self.displayNewName = false;
-          self.displayRootExplore = true;
-          self.displayRootAvoid = false;
-           self.rootsToExplore =[];
-          GetRetainedNames.getRootsToExplore(projectId).then(function(rootExplore){
-            for(var i = 0; i<rootExplore.length; i++){
-                self.rootsToExplore.push(rootExplore[i].Name.trim());
-            }
-            selectColumnSize(rootExplore.length);
-          });
-        };
-
-        self.getrootsToAvoids = function(){
-          self.displayPositive = false;
-          self.displayNeutral = false;
-          self.displayNegative = false;
-          self.displayNewName = false;
-          self.displayRootExplore = false;
-          self.displayRootAvoid = true;
-          self.rootsToAvoid = [];
-          GetRetainedNames.getRootsToAvoid(projectId).then(function(rootAvoid){
-            for(var i = 0; i<rootAvoid.length; i++){
-                self.rootsToAvoid.push(rootAvoid[i].Name);
-            }
-            selectColumnSize(rootAvoid.length);
-          });
-        };
-
-                 var getTestNamesObject = function(initialSlideModel){
-                             apiCall = 'api/NW_SaveAndReturnSlideData';
-                           $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
-                                 if(slideObject.length>0){
-                                   _TotalNames = slideObject[0].TotalNames;
-                                   self.totalOfTestNames = parseInt(_TotalNames);
-                                   self.progressBarUnit = 100/ self.totalOfTestNames;
-                                   setUpTheSlideInfo(slideObject);
-                                 }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
-                           }).error(function(err) {
-                               return err;
-                            })
+                  resetBooleanSummarySlideVars();
+                  self.displayRootExplore = true;
+                 var  apiCall = 'api/NW_GetSummary?instruccion=';
+                 var instruccion = projectId + ",'Roots to Explore'";
+                   $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootExplore){                            
+                    for(var i = 0; i<rootExplore.length; i++){
+                        self.rootsToExplore.push(rootExplore[i].Name.trim());
                     }
+                    selectColumnSize(rootExplore.length);
+                  });
+        };
+        self.getrootsToAvoids = function(){
+                resetBooleanSummarySlideVars();
+                self.displayRootAvoid = true;
+                var  apiCall = 'api/NW_GetSummary?instruccion=';
+                 var instruccion = projectId +  ", 'Roots to Avoid'";
+                 $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootAvoid){               
+                for(var i = 0; i<rootAvoid.length; i++){
+                    self.rootsToAvoid.push(rootAvoid[i].Name);
+                }
+                selectColumnSize(rootAvoid.length);
+              });
+        };
+
+
+         var getTestNamesObject = function(initialSlideModel){
+                     apiCall = 'api/NW_SaveAndReturnSlideData';
+                   $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
+                         if(slideObject.length>0){
+                           _TotalNames = slideObject[0].TotalNames;
+                           self.totalOfTestNames = parseInt(_TotalNames);
+                           self.progressBarUnit = 100/ self.totalOfTestNames;
+                           setUpTheSlideInfo(slideObject);
+                         }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
+                   }).error(function(err) {
+                       return err;
+                    })
+            }
                    // INITIAL SETUP
                   self.goHome = function(){
                   var initialSlideModel = JSON.stringify( new slideInfoModel(projectId,0,'','','','', 'First'));
@@ -795,6 +789,7 @@ angular.module('nwApp')
                   self.goHome();
 
                   self.goToSummarySlide = function(){
+                    setProgressBarsSummary();
                     self.selectSlide(_nameSummarySlideNumber-1);                    
                   }
 
@@ -835,17 +830,17 @@ angular.module('nwApp')
                 }
 
                  // CA- the following code will allow to search the candidate names and then display them
-                     apiCall = 'api/NW_Presentation?projectIdForData=';
+                 apiCall = 'api/NW_Presentation?projectIdForData=';
                             $http.get(webBaseUrl + apiCall + projectId).success(function(testnames){
                              testnames.map(function(obj){
                              self.testName.push(obj.Name);
                            });
                      });
 
-                 // CA- assume it works. (It doesn't work yet since we cannot delete the data from the current project)
+                 // CA- working
                  self.resetingProjects = function(){
                     var apiCall = 'api/ResetAllSlidesData/';
-                   alertify.confirm('Slides will be reset').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){
+                    alertify.confirm('Slides will be reset').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){
                      self.displayTally = false;
                       $http.get(webBaseUrl + apiCall + projectId);
                      alert('The slides are reset');
