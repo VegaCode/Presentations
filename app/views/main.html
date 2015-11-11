@@ -36,7 +36,6 @@ label {
     position: relative;
     top: 3px;
 }
-
 .tab-style span{
     font-family: calibri;
     margin-top: 10px;
@@ -87,6 +86,9 @@ label {
 .progress-bar-height{
   height: 25px;
 }
+.multi-color-bar-font-size{
+  font-size: 14px;
+}
 .badge-purple{
   background-color: #4c0099;
   width: 50%;
@@ -124,7 +126,7 @@ label {
 </style>
 
 <!-- Slide Show -->
-<div class="row" ng-show="main.isTesNameTime= main.isOverview " style="    position: fixed; top:-195px; left: 160px;">
+<div class="row" ng-show="main.isTesNameTime = main.isOverview" style="    position: fixed; top:-195px; left: 160px;">
     <div class="col-md-1">
         <div class="reveal">
             <div class="slides">
@@ -153,7 +155,7 @@ label {
                         </div>
                     </div>
                 </div>
-            </div>        
+            </div>
                  <div class="row" style="height: 175px;">
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}" ng-show="!main.displayNameGroup">
                             <form name="nameRamking" ng-click="main.blurEffect($event)">
@@ -299,8 +301,8 @@ label {
                                     <span class="label label-success label-style" ng-click="main.getPositivesNames()">Retained</span>
                                 </div>
                                 <div class="col-md-8 margin-progressbar">
-                                    <uib-progress style="height: 25px">
-                                        <uib-bar class="progress-bar-height" ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span>{{bar.value}}%</span></uib-bar>
+                                    <uib-progress class="progress-bar-height">
+                                        <uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.value}}%</span></uib-bar>
                                     </uib-progress>
                                 </div>
                                 <div class="col-md-2 ">
@@ -340,7 +342,7 @@ label {
                         <uib-tab heading="Explore" class="tabs" ng-click="main.getrootsToExplores()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
-                                    <textarea class="text-primary textarea-style" ng-value="main.dataInput" ng-model="main.dataInput" placeholder="Type additional comments">{{main.dataInput}}</textarea>
+                                    <textarea class="text-primary textarea-style" ng-value="main.dataInput" ng-model="main.dataInput" placeholder="Please type additional comments ...">{{main.dataInput}}</textarea>
                                 </div>
                                 <div class="col-md-1">
                                     <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveExploreComments(main.dataInput)">Save</button>
@@ -355,7 +357,7 @@ label {
                         <uib-tab heading="Avoid" class="tabs" ng-click="main.getrootsToAvoids()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
-                                    <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="You may write aditional comments">{{main.dataInput}}</textarea>
+                                    <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="Please type additional comments ...">{{main.dataInput}}</textarea>
                                 </div>
                                 <div class="col-md-1">
                                     <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveAvoidComments(main.dataInput)">Save</button>

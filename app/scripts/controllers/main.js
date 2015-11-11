@@ -25,6 +25,7 @@ angular.module('nwApp')
             self.isJapanese = false; // CA- Added variable to turn on the katakana input
             self.displayMenu = false;
             self.negativeKanaNames = '';
+
             self.testName = [];
             self.isOverview = false;
             self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
@@ -97,15 +98,13 @@ angular.module('nwApp')
                    };
 
 // **********  Getting Slides URL Images and the description for over view  *************************************************************************************
-                    var apicall = 'api/NW_NamesAndSlides?projectId=';
-                    $http.get(webBaseUrl + apicall + projectId).success(function(result){
-                      _nameSummarySlideNumber = result[0].SummarySlide;
-
-                    self.slides = result;
-                    // slide show configuration settings
-                    $timeout(function() {
-                        Reveal.initialize({
-
+             var apicall = 'api/NW_NamesAndSlides?projectId=';
+             $http.get(webBaseUrl + apicall + projectId).success(function(result){
+               _nameSummarySlideNumber = result[0].SummarySlide;
+               self.slides = result;
+               // slide show configuration settings
+               $timeout(function() {
+                 Reveal.initialize({
 
                         width: 960,
                         height: 680,
@@ -137,7 +136,7 @@ angular.module('nwApp')
                         overview: true,
 
                         // Vertical centering of slides
-                        center: false,
+                        center: true,
 
                         // Enables touch navigation on devices with touch input
                         touch: true,
@@ -400,17 +399,14 @@ angular.module('nwApp')
 
         // CA- requires users to rank each testName
         self.mustRank = function(){
-          if (self.nameRamking === "False" || self.nameRamking === false || self.nameRamking === ''){
-                 var isNotRanked = confirm("Do you want to skip the test name ? ");
-                    if (isNotRanked == true){
-                      var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
-                      getTestNamesObject(slideModel);
-                    }
+          if (self.nameRamking == false || self.nameRamking == ""){
+            alert("Please vote on the name");
           }else{
             var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
             getTestNamesObject(slideModel);
           }
         };
+
         // CA- added reset button per slide
         self.resetSlide = function(){
           self.nameRamking = false;
@@ -423,7 +419,7 @@ angular.module('nwApp')
           alertify.confirm('Slides will be reset').set('onok', function(closeEvent){
             self.displayTally = false;
             alert('The slides are reset');
-          }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Sides').set('labels', {cancel:'cancel', ok:'ok'});
+          }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Sides');
 
         };
 
@@ -453,15 +449,15 @@ angular.module('nwApp')
        };
 
        self.saveThemeSettings = function() {
-                        if ( self.BackGround !== '') {
-                            var configModel = themeConfigurationModel( self.BackGround,
-                                self.BackGround + '.jpg', self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
-                                 self.testNameFontColor, self.testNameFontFamily,  self.strokeColor,  self.strokeRange, self.isStrokeIt, self.isOverlayAvailable);
-                                 setSettings.postdata(configModel).then(function(result) {
-                                 alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
-                            });
-                        }
-                    };
+         if ( self.BackGround !== '') {
+           var configModel = themeConfigurationModel( self.BackGround,
+             self.BackGround + '.jpg', self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
+             self.testNameFontColor, self.testNameFontFamily,  self.strokeColor,  self.strokeRange, self.isStrokeIt, self.isOverlayAvailable);
+             setSettings.postdata(configModel).then(function(result) {
+               alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
+             });
+           }
+        };
 
         var slideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
                         return {
@@ -625,8 +621,7 @@ angular.module('nwApp')
           var apiCall = 'api/NW_SaveNotes'
           var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Explore'");
           $http.post(webBaseUrl + apiCall , projectIdAndNote)
-             alertify.confirm('You are about to save').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){                  
-
+             alertify.confirm('You are about to save').set('onok', function(closeEvent){
                   alertify.alert("Saved").set('title', 'Result');
                    }).set('oncancel', function(closeEvent){}).set('title', 'Saving Explore Notes')
               self.dataInput='';
@@ -636,8 +631,7 @@ angular.module('nwApp')
           var apiCall = 'api/NW_SaveNotes'
           var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Avoid'");
           $http.post(webBaseUrl + apiCall , projectIdAndNote)
-
-           alertify.confirm('You are about to save').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){                  
+           alertify.confirm('You are about to save').set('onok', function(closeEvent){
                   alertify.alert("Saved").set('title', 'Result');
                    }).set('oncancel', function(closeEvent){}).set('title', 'Saving Avoid Notes')
               self.dataInput='';
@@ -795,7 +789,7 @@ angular.module('nwApp')
                   self.goHome();
 
                   self.goToSummarySlide = function(){
-                    self.selectSlide(_nameSummarySlideNumber-1);                    
+                    self.selectSlide(_nameSummarySlideNumber-1);
                   }
 
                  self.goNextSlide = function() {
@@ -835,29 +829,31 @@ angular.module('nwApp')
                 }
 
                  // CA- the following code will allow to search the candidate names and then display them
-                     apiCall = 'api/NW_Presentation?projectIdForData=';
-                            $http.get(webBaseUrl + apiCall + projectId).success(function(testnames){
-                             testnames.map(function(obj){
-                             self.testName.push(obj.Name);
-                           });
-                     });
+                apiCall = 'api/NW_Presentation?projectIdForData=';
+                $http.get(webBaseUrl + apiCall + projectId).success(function(testnames){
+                  testnames.map(function(obj){
+                    self.testName.push(obj.Name);
+                  });
+                });
 
-                 // CA- assume it works. (It doesn't work yet since we cannot delete the data from the current project)
-                 self.resetingProjects = function(){
-                    var apiCall = 'api/ResetAllSlidesData/';
-                   alertify.confirm('Slides will be reset').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){
-                     self.displayTally = false;
-                      $http.get(webBaseUrl + apiCall + projectId);
-                     alert('The slides are reset');
-                     self.goHome();
-                   }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Slides');
-                 };
+                   // CA- assume it works. (It doesn't work yet since we cannot delete the data from the current project)
+                self.resetingProjects = function(){
+                  var apiCall = 'api/ResetAllSlidesData/';
+                  alertify.confirm('Slides will be reset').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){
+                    self.displayTally = false;
+                    ResetProject.resetProject(projectId);
+                    $http.get(webBaseUrl + apiCall + projectId);
+                    alert('The slides are reset');
+                    self.pageNumber = 1;
+                    self.goHome();
+                  }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Slides');
+                };
 
-                 self.tally = function() {
-                        self.displayTally = true;
-                        }
+                self.tally = function() {
+                  self.displayTally = true;
+                }
 
-                 hotkeys.add({
+                hotkeys.add({
                         combo:'O',
                         description:'Overview',
                         callback: function(){
@@ -891,8 +887,6 @@ angular.module('nwApp')
                                     callback: function(){
                                                self.displayMenu = false;
                             }});
-
-
                  hotkeys.add({
                                     combo:'Ctrl +',
                                     description:'Zoom in',
