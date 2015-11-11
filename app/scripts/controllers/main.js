@@ -439,6 +439,8 @@ angular.module('nwApp')
           }
        };
 
+
+
        self.showThemeOptions = function() {
         if(self.displaySettings === true)
             {
@@ -450,7 +452,7 @@ angular.module('nwApp')
                 }else{
                   alert("Please provide the correct password");
                 }
-            }
+             }
        };
 
        self.saveThemeSettings = function() {
@@ -626,19 +628,20 @@ angular.module('nwApp')
           var apiCall = 'api/NW_SaveNotes'
           var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Explore'");
           $http.post(webBaseUrl + apiCall , projectIdAndNote)
-          var savedInformation = confirm("You are about to save");
-          if (savedInformation == true){
-            alert("Saved");
-          }
+             alertify.confirm('You are about to save').set('onok', function(closeEvent){
+                  alertify.alert("Saved").set('title', 'Result');
+                   }).set('oncancel', function(closeEvent){}).set('title', 'Saving Explore Notes')
+              self.dataInput='';
         };
+
         self.saveAvoidComments = function(note){
           var apiCall = 'api/NW_SaveNotes'
           var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Avoid'");
           $http.post(webBaseUrl + apiCall , projectIdAndNote)
-          var savedInformation = confirm("You are about to save");
-          if (savedInformation == true){
-            alert("Saved");
-          }
+           alertify.confirm('You are about to save').set('onok', function(closeEvent){
+                  alertify.alert("Saved").set('title', 'Result');
+                   }).set('oncancel', function(closeEvent){}).set('title', 'Saving Avoid Notes')
+              self.dataInput='';
         };
 
         self.cancelComments = function(){

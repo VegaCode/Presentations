@@ -342,7 +342,7 @@ label {
                         <uib-tab heading="Explore" class="tabs" ng-click="main.getrootsToExplores()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
-                                    <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="Type additional comments">{{main.dataInput}}</textarea>
+                                    <textarea class="text-primary textarea-style" ng-value="main.dataInput" ng-model="main.dataInput" placeholder="Type additional comments">{{main.dataInput}}</textarea>
                                 </div>
                                 <div class="col-md-1">
                                     <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveExploreComments(main.dataInput)">Save</button>
