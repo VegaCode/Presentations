@@ -403,14 +403,12 @@ angular.module('nwApp')
             alertify.confirm("Please Rank the Name").set('onok', function(closeEvent){
                 var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
                 getTestNamesObject(slideModel);
-              }).set('labels', {cancel:'Rank Name', ok:'Skip Name'})
-            .set('oncancel', function(closeEvent){}).set('title', 'Ranking Names');
+              }).set('labels', {cancel:'Rank Name', ok:'Skip Name'}).set('oncancel', function(closeEvent){}).set('title', 'Ranking Names');
           }else{
             var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
             getTestNamesObject(slideModel);
           }
         };
-
         // CA- added reset button per slide
         self.resetSlide = function(){
           self.nameRamking = false;
@@ -423,7 +421,7 @@ angular.module('nwApp')
           alertify.confirm('Slides will be reset').set('onok', function(closeEvent){
             self.displayTally = false;
             alert('The slides are reset');
-          }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Sides');
+          }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Sides').set('labels', {cancel:'cancel', ok:'ok'});
 
         };
 
@@ -625,7 +623,7 @@ angular.module('nwApp')
           var apiCall = 'api/NW_SaveNotes'
           var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Explore'");
           $http.post(webBaseUrl + apiCall , projectIdAndNote)
-             alertify.confirm('You are about to save').set('onok', function(closeEvent){                  
+             alertify.confirm('You are about to save').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){                  
                   alertify.alert("Saved").set('title', 'Result');
                    }).set('oncancel', function(closeEvent){}).set('title', 'Saving Explore Notes')
               self.dataInput='';
@@ -635,7 +633,7 @@ angular.module('nwApp')
           var apiCall = 'api/NW_SaveNotes'
           var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Avoid'");
           $http.post(webBaseUrl + apiCall , projectIdAndNote)
-           alertify.confirm('You are about to save').set('onok', function(closeEvent){                  
+           alertify.confirm('You are about to save').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){                  
                   alertify.alert("Saved").set('title', 'Result');
                    }).set('oncancel', function(closeEvent){}).set('title', 'Saving Avoid Notes')
               self.dataInput='';
@@ -842,7 +840,7 @@ angular.module('nwApp')
 
                  // CA- assume it works. (It doesn't work yet since we cannot delete the data from the current project)
                  self.resetingProjects = function(){
-                   alertify.confirm('Slides will be reset').set('onok', function(closeEvent){
+                   alertify.confirm('Slides will be reset').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){
                      self.displayTally = false;
                      ResetProject.resetProject(projectId);
                      alert('The slides are reset');
