@@ -23,7 +23,7 @@
                 <!-- endbuild -->
         </head>
         <body ng-app="nwApp">
-            <div class="container">
+            <div class="container"  ng-keyup="main.logKey($event)">
                 <div ng-view=""></div>
             </div>
         </body>

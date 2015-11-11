@@ -142,7 +142,7 @@ label {
     </div>
 </div>
 <!-- NW -->
-<div class="container-fluid">
+<div class="container-fluid" >
     <div class="backGroundStyle">
         <div class="container-fluid" style="background-image: url({{main.BackGround}});
             !important;color:white; background-repeat: no-repeat; background-size: cover;height:800px;">
@@ -153,9 +153,7 @@ label {
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Summary Slide End -->
-
+            </div>        
                  <div class="row" style="height: 175px;">
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}" ng-show="!main.displayNameGroup">
                             <form name="nameRamking" ng-click="main.blurEffect($event)">
@@ -372,7 +370,6 @@ label {
                     </uib-tabset>
                 </div>
                 <!-- display of names ends here -->
-
         </div>
     </div>
 </div>
@@ -387,7 +384,7 @@ label {
     </div>
     <div class="row form-group">
         <div class="col-md-6">
-            <select class="btn btn-primary" ng-model="main.BackGroundName" ng-change="main.backGroundChanged()"  ng-options="BackGround for BackGround in main.changeBackground">
+            <select class="btn btn-primary" ng-model="main.BackGroundName" ng-change="main.backGroundChanged(main.BackGroundName)"  ng-options="BackGround for BackGround in main.changeBackground">
             </select>
         </div>
     </div>

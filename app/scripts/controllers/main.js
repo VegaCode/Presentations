@@ -25,7 +25,7 @@ angular.module('nwApp')
             self.isJapanese = false; // CA- Added variable to turn on the katakana input
             self.displayMenu = false;
             self.negativeKanaNames = '';
-
+            self.testName = [];
             self.isOverview = false;
             self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
                                                         'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',  'Cardiology','Cognition',
@@ -97,13 +97,14 @@ angular.module('nwApp')
                    };
 
 // **********  Getting Slides URL Images and the description for over view  *************************************************************************************
-    GetNamesAndSlides.getdata(projectId).then(function(result){
-                _nameSummarySlideNumber = result[0].SummarySlide;
+                    var apicall = 'api/NW_NamesAndSlides?projectId=';
+                    $http.get(webBaseUrl + apicall + projectId).success(function(result){
+                      _nameSummarySlideNumber = result[0].SummarySlide;
 
-                self.slides = result;
-                // slide show configuration settings
-                $timeout(function() {
-                    Reveal.initialize({
+                    self.slides = result;
+                    // slide show configuration settings
+                    $timeout(function() {
+                        Reveal.initialize({
 
 
                         width: 960,
@@ -136,7 +137,7 @@ angular.module('nwApp')
                         overview: true,
 
                         // Vertical centering of slides
-                        center: true,
+                        center: false,
 
                         // Enables touch navigation on devices with touch input
                         touch: true,
@@ -401,7 +402,7 @@ angular.module('nwApp')
         self.mustRank = function(){
           if (self.nameRamking === "False" || self.nameRamking === false || self.nameRamking === ''){
                  var isNotRanked = confirm("Do you want to skip the test name ? ");
-                    if (isNotRanked == true){                       
+                    if (isNotRanked == true){
                       var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
                       getTestNamesObject(slideModel);
                     }
@@ -561,7 +562,7 @@ angular.module('nwApp')
 
 
                             // inputs
-                           self.nameRamking  = _NameRanking;
+                           self.nameRamking  = (_SlideType !== 'NameSummary') ? _NameRanking : true;
                            self.newName  = _NewNames;
                            self.avoid  = _NamesToAvoid;
                            self.explore  = _NamesToExplore;
@@ -794,7 +795,7 @@ angular.module('nwApp')
                   self.goHome();
 
                   self.goToSummarySlide = function(){
-                    self.selectSlide(_nameSummarySlideNumber-1);
+                    self.selectSlide(_nameSummarySlideNumber-1);                    
                   }
 
                  self.goNextSlide = function() {
@@ -834,20 +835,21 @@ angular.module('nwApp')
                 }
 
                  // CA- the following code will allow to search the candidate names and then display them
-                self.testName = [];
-                 GetTestNames.getdata(projectId).then(function(testnames){
-                     testnames.map(function(obj){
-                     self.testName.push(obj.Name);
-                   });
-                 });
+                     apiCall = 'api/NW_Presentation?projectIdForData=';
+                            $http.get(webBaseUrl + apiCall + projectId).success(function(testnames){
+                             testnames.map(function(obj){
+                             self.testName.push(obj.Name);
+                           });
+                     });
 
                  // CA- assume it works. (It doesn't work yet since we cannot delete the data from the current project)
                  self.resetingProjects = function(){
+                    var apiCall = 'api/ResetAllSlidesData/';
                    alertify.confirm('Slides will be reset').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){
                      self.displayTally = false;
-                     ResetProject.resetProject(projectId);
+                      $http.get(webBaseUrl + apiCall + projectId);
                      alert('The slides are reset');
-                     self.pageNumber = 1;
+                     self.goHome();
                    }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Slides');
                  };
 
@@ -886,6 +888,21 @@ angular.module('nwApp')
                  hotkeys.add({
                                     combo:'down',
                                     description:'Hide Menu',
+                                    callback: function(){
+                                               self.displayMenu = false;
+                            }});
+
+
+                 hotkeys.add({
+                                    combo:'Ctrl +',
+                                    description:'Zoom in',
+                                    callback: function(){
+                                               self.displayMenu = false;
+                            }});
+
+                 hotkeys.add({
+                                    combo:'Ctrl -',
+                                    description:'Zoom out',
                                     callback: function(){
                                                self.displayMenu = false;
                             }});
