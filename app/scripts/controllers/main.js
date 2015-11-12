@@ -390,19 +390,14 @@ angular.module('nwApp')
         };
 
         // CA- added reset button per slide
-        self.resetSlide = function(){
-              self.nameRamking = false;
-              self.newName = "";
-              self.explore = "";
-              self.avoid = "";
-        };
+      
 
-        self.resetAll = function(){
-              alertify.confirm('Slides will be reset').set('onok', function(closeEvent){
-                self.displayTally = false;
-                alert('The slides are reset');
-              }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Sides');
-        };
+        // self.resetAll = function(){
+        //       alertify.confirm('Slides will be reset').set('onok', function(closeEvent){
+        //         self.displayTally = false;
+        //         alert('The slides are reset');
+        //       }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Sides');
+        // };
 
        self.setOverlay = function() {
 
@@ -451,7 +446,6 @@ angular.module('nwApp')
                     };
 
          var setProgressBarsSummary = function(){
-
                     var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
                     var apiCall = 'api/NW_GetSummary?instruccion=';                                                         
                           $http.get(webBaseUrl + apiCall + instruccion[0]).success(function(result){
@@ -460,10 +454,8 @@ angular.module('nwApp')
                                                     $http.get(webBaseUrl + apiCall + instruccion[1]).success(function(result){
                                                       self.barType = 'primary';
                                                       self.neutralCount = result.length;                                                      
-                                                            self.retainedNameCount = self.positiveCount + self.neutralCount;
-
+                                                           self.retainedNameCount = self.positiveCount + self.neutralCount;
                                                            var percentageRetainedCount = ((self.positiveCount * 100) / self.retainedNameCount).toFixed(1);
-
                                                            var percentageNeutralCount = ((self.neutralCount * 100) / self.retainedNameCount).toFixed(1);
                                                             self.stacked = [];
                                                             self.stacked.push({
@@ -836,7 +828,14 @@ angular.module('nwApp')
                      self.goHome();
                    }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Slides');
                  };
-
+                
+                 self.resetSlide = function(){
+                              self.nameRamking = false;
+                              self.newName = "";
+                              self.explore = "";
+                              self.avoid = "";
+                        };
+                        
                  self.tally = function() {
                         self.displayTally = true;
                         }
