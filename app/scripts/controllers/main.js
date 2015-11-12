@@ -453,13 +453,13 @@ angular.module('nwApp')
          var setProgressBarsSummary = function(){
 
                     var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
-                    var apiCall = 'api/NW_GetSummary?instruccion=';                                                         
+                    var apiCall = 'api/NW_GetSummary?instruccion=';
                           $http.get(webBaseUrl + apiCall + instruccion[0]).success(function(result){
                                                               self.barType = 'success';
                                                               self.positiveCount = result.length;
                                                     $http.get(webBaseUrl + apiCall + instruccion[1]).success(function(result){
                                                       self.barType = 'primary';
-                                                      self.neutralCount = result.length;                                                      
+                                                      self.neutralCount = result.length;
                                                             self.retainedNameCount = self.positiveCount + self.neutralCount;
 
                                                            var percentageRetainedCount = ((self.positiveCount * 100) / self.retainedNameCount).toFixed(1);
@@ -472,9 +472,9 @@ angular.module('nwApp')
                                                             });      self.stacked.push({
                                                           value: percentageNeutralCount,
                                                           type: 'primary'
-                                                        });                                                  
+                                                        });
                                         });// end of neutral
-                    
+
                     });//end of  positives
 
                     $http.get(webBaseUrl + apiCall + instruccion[2]).success(function(result){
@@ -484,8 +484,8 @@ angular.module('nwApp')
                     $http.get(webBaseUrl + apiCall + instruccion[3]).success(function(result){
                       self.newNameCount = result.length;
                     });
-                    
-                       
+
+
                  }
 
         var setUpTheSlideInfo = function(slideObject){
@@ -529,7 +529,7 @@ angular.module('nwApp')
 
                                 var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
                                 var apiCall = 'api/NW_GetSummary?instruccion=';
-                                var instructionCounter = 0; 
+                                var instructionCounter = 0;
                                 setProgressBarsSummary();
                             }else{
                                 self.displayNameGroup = false;
@@ -600,6 +600,7 @@ angular.module('nwApp')
         self.newNames = [];
         self.rootsToExplore = [];
         self.rootsToAvoid = [];
+        self.retainedNames = [];
 
         self.displayPositive = false;
         self.displayNeutral = false;
@@ -633,7 +634,7 @@ angular.module('nwApp')
           $http.post(webBaseUrl + apiCall , projectIdAndNote)
            alertify.confirm('You are about to save').set('onok', function(closeEvent){
                   alertify.alert("Saved").set('title', 'Result');
-                   }).set('oncancel', function(closeEvent){}).set('title', 'Saving Avoid Notes')              
+                   }).set('oncancel', function(closeEvent){}).set('title', 'Saving Avoid Notes')
         };
 
         self.cancelComments = function(){
@@ -673,19 +674,41 @@ angular.module('nwApp')
                   self.displayNewName = false;
                   self.displayRootExplore = false;
                   self.displayRootAvoid = false;
+                  self.displayRetained = false;
                   self.positiveNames = [];
                   self.neutralNames = [];
                   self.negativeNames = [];
                   self.newNames = [];
                   self.rootsToExplore =[];
                   self.rootsToAvoid = [];
+                  self.retainedNames = [];
                  }
+
+        self.getRetainedNames = function(){
+          resetBooleanSummarySlideVars();
+              self.displayRetained = true;
+              var apiCall = 'api/NW_GetSummary?instruccion=';
+              var instruccion = projectId + ", 'Positive Retained Names'";
+              $http.get(webBaseUrl +  apiCall + instruccion ).success(function(positiveName){
+              for(var i = 0; i<positiveName.length; i++){
+                  self.retainedNames.push(positiveName[i].Name);
+              }
+                    var apiCall = 'api/NW_GetSummary?instruccion=';
+                    var instruccion = projectId + ",'Neutral Retained Names'";
+                    $http.get(webBaseUrl +  apiCall + instruccion).success(function(neutralName){
+                      for(var i = 0; i<neutralName.length; i++){
+                        self.retainedNames.push(neutralName[i].Name);
+                      }
+                   });
+             });
+             selectColumnSize(self.retainedNames.length);
+        };
 
         self.getPositivesNames = function(){
             resetBooleanSummarySlideVars();
-                 self.displayPositive = true;  
+                 self.displayPositive = true;
                  var instruccion = projectId + ", 'Positive Retained Names'";
-                 var apiCall = 'api/NW_GetSummary?instruccion=';         
+                 var apiCall = 'api/NW_GetSummary?instruccion=';
                 $http.get(webBaseUrl +  apiCall + instruccion ).success(function(positiveName){
                 for(var i = 0; i<positiveName.length; i++){
                     self.positiveNames.push(positiveName[i].Name);
@@ -693,14 +716,15 @@ angular.module('nwApp')
                 selectColumnSize(positiveName.length);
               });
         };
-        self.getNeutralsNames = function(){  
-              resetBooleanSummarySlideVars();      
-              self.displayNeutral = true;    
+        self.getNeutralsNames = function(){
+              resetBooleanSummarySlideVars();
+              self.displayNeutral = true;
               var apiCall = 'api/NW_GetSummary?instruccion=';
-                var instruccion = projectId + ",'Neutral Retained Names'"; 
+                var instruccion = projectId + ",'Neutral Retained Names'";
               $http.get(webBaseUrl +  apiCall + instruccion).success(function(neutralName){
                 for(var i = 0; i<neutralName.length; i++){
                     self.neutralNames.push(neutralName[i].Name);
+                    self.retainedNames.push(neutralName[i].Name);
                 }
                 selectColumnSize(neutralName.length);
               });
@@ -709,8 +733,8 @@ angular.module('nwApp')
                  resetBooleanSummarySlideVars();
                  self.displayNegative = true;
                  var apiCall = 'api/NW_GetSummary?instruccion=';
-                 var instruccion = projectId +  ",'Negative Names'";  
-                  $http.get(webBaseUrl +  apiCall + instruccion ).success(function(negativeName){                  
+                 var instruccion = projectId +  ",'Negative Names'";
+                  $http.get(webBaseUrl +  apiCall + instruccion ).success(function(negativeName){
                     for(var i = 0; i<negativeName.length; i++){
                         self.negativeNames.push(negativeName[i].Name);
                     }
@@ -722,7 +746,7 @@ angular.module('nwApp')
               self.displayNewName = true;
              var apiCall = 'api/NW_GetSummary?instruccion=';
              var instruccion = projectId + ",'New Names'";
-             $http.get(webBaseUrl +  apiCall + instruccion ).success(function(newName){                        
+             $http.get(webBaseUrl +  apiCall + instruccion ).success(function(newName){
                 for(var i = 0; i<newName.length; i++){
                     self.newNames.push(newName[i].Name);
                 }
@@ -734,7 +758,7 @@ angular.module('nwApp')
                   self.displayRootExplore = true;
                  var  apiCall = 'api/NW_GetSummary?instruccion=';
                  var instruccion = projectId + ",'Roots to Explore'";
-                   $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootExplore){                            
+                   $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootExplore){
                     for(var i = 0; i<rootExplore.length; i++){
                         self.rootsToExplore.push(rootExplore[i].Name.trim());
                     }
@@ -746,7 +770,7 @@ angular.module('nwApp')
                 self.displayRootAvoid = true;
                 var  apiCall = 'api/NW_GetSummary?instruccion=';
                  var instruccion = projectId +  ", 'Roots to Avoid'";
-                 $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootAvoid){               
+                 $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootAvoid){
                 for(var i = 0; i<rootAvoid.length; i++){
                     self.rootsToAvoid.push(rootAvoid[i].Name);
                 }
@@ -778,7 +802,7 @@ angular.module('nwApp')
 
                   self.goToSummarySlide = function(){
                     setProgressBarsSummary();
-                    self.selectSlide(_nameSummarySlideNumber-1);                    
+                    self.selectSlide(_nameSummarySlideNumber-1);
                   }
 
                  self.goNextSlide = function() {

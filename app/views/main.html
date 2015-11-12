@@ -300,7 +300,7 @@ label {
                         <uib-tab heading="Summary" class="tabs">
                             <div class="row pointer" style="margin-top: 10px;">
                                 <div class="col-md-2">
-                                    <span class="label label-success label-style" ng-click="main.getPositivesNames()">Retained</span>
+                                    <span class="label label-success label-style" ng-click="main.getRetainedNames()">Retained</span>
                                 </div>
                                 <div class="col-md-8 margin-progressbar">
                                     <uib-progress class="progress-bar-height">
@@ -308,7 +308,7 @@ label {
                                     </uib-progress>
                                 </div>
                                 <div class="col-md-2 ">
-                                    <span class="badge margin-badge badge-success" ng-click="main.getPositivesNames()">{{main.retainedNameCount}}</span>
+                                    <span class="badge margin-badge badge-success" ng-click="main.getRetainedNames()">{{main.retainedNameCount}}</span>
                                 </div>
                             </div>
                             <div class="row pointer" ng-click="main.getNegativesNames()">
@@ -335,10 +335,11 @@ label {
                             </div>
                             <!-- CA- piece of code to display names-->
                             <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
-                                <div class="text-success col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
-                                <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
-                                <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
-                                <div class="text-info col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames">{{newname}}</div>
+                              <div class="text-success col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayRetained" ng-repeat="namesRetained in main.retainedNames" ng-click="main.selectNameFromSummary(namesRetained)">{{namesRetained}}</div>
+                              <div class="text-success col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
+                              <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
+                              <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
+                              <div class="text-info col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames">{{newname}}</div>
                             </div>
                         </uib-tab>
                         <uib-tab heading="Explore" class="tabs" ng-click="main.getrootsToExplores()">
