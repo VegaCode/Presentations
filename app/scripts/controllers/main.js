@@ -14,8 +14,8 @@ angular.module('nwApp')
             var _nameSummarySlideNumber , _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
-           webBaseUrl = 'http://localhost:64378/';
-          //    webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
+           //webBaseUrl = 'http://localhost:64378/';
+              webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
             var feedBackBox = [];
             projectId = queryStringCheck;
             self.displaySettings =false;
@@ -57,15 +57,15 @@ angular.module('nwApp')
                          };
 
   // **********  Getting Slides REVEAL TEST  presentation  ****************************************************************************************************
-    self.togglePresentation = function() {
-                        if (self.isTesNameTime === false) {
-                            self.isTesNameTime = true;
-                                   self.displaySettings = false;
-                        }else {
-                            self.isTesNameTime = false;
-                            self.displaySettings = true;
-                        }
-                    };
+            self.togglePresentation = function() {
+                                if (self.isTesNameTime === false) {
+                                    self.isTesNameTime = true;
+                                           self.displaySettings = false;
+                                }else {
+                                    self.isTesNameTime = false;
+                                    self.displaySettings = true;
+                                }
+                            };
 
             Reveal.addEventListener('overviewshown', function(event) {
                 if(_SlideNumber > 4){
@@ -378,49 +378,30 @@ angular.module('nwApp')
         self.negativeCount = 0;
         self.newNameCount = 0;
         self.retainedNameCount = 0;
-        self.stacked = [];
-        self.barOfType = ['success', 'primary'];
-        var indexOfType = 0;
-        var percentageCount = 0;
-        var isAddToBarAgain = 0;
-
-        var addToBar = function(Count){
-            self.retainedNameCount = self.positiveCount + self.neutralCount;
-
-            var percentageCount = ((Count * 100) / self.retainedNameCount).toFixed(1);
-
-            self.stacked.push({
-              value: percentageCount,
-              type: self.barOfType[indexOfType]
-            });
-            indexOfType = indexOfType + 1;
-            isAddToBarAgain += 1;
-        };
 
         // CA- requires users to rank each testName
         self.mustRank = function(){
-          if (self.nameRamking == false || self.nameRamking == ""){
-            alert("Please vote on the name");
-          }else{
-            var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
-            getTestNamesObject(slideModel);
-          }
+              if (self.nameRamking == false || self.nameRamking == ""){
+                alert("Please vote on the name");
+              }else{
+                var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
+                getTestNamesObject(slideModel);
+              }
         };
 
         // CA- added reset button per slide
         self.resetSlide = function(){
-          self.nameRamking = false;
-          self.newName = "";
-          self.explore = "";
-          self.avoid = "";
+              self.nameRamking = false;
+              self.newName = "";
+              self.explore = "";
+              self.avoid = "";
         };
 
         self.resetAll = function(){
-          alertify.confirm('Slides will be reset').set('onok', function(closeEvent){
-            self.displayTally = false;
-            alert('The slides are reset');
-          }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Sides');
-
+              alertify.confirm('Slides will be reset').set('onok', function(closeEvent){
+                self.displayTally = false;
+                alert('The slides are reset');
+              }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Sides');
         };
 
        self.setOverlay = function() {
@@ -472,26 +453,41 @@ angular.module('nwApp')
          var setProgressBarsSummary = function(){
 
                     var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
-                    var apiCall = 'api/NW_GetSummary?instruccion=';                                
+                    var apiCall = 'api/NW_GetSummary?instruccion=';                                                         
+                          $http.get(webBaseUrl + apiCall + instruccion[0]).success(function(result){
+                                                              self.barType = 'success';
+                                                              self.positiveCount = result.length;
+                                                    $http.get(webBaseUrl + apiCall + instruccion[1]).success(function(result){
+                                                      self.barType = 'primary';
+                                                      self.neutralCount = result.length;                                                      
+                                                            self.retainedNameCount = self.positiveCount + self.neutralCount;
 
-                    $http.get(webBaseUrl + apiCall + instruccion[0]).success(function(result){
-                      self.barType = 'success';
-                      self.positiveCount = result.length;
-                    });
-                    $http.get(webBaseUrl + apiCall + instruccion[1]).success(function(result){
-                      self.barType = 'primary';
-                      self.neutralCount = result.length;
-                    });
+                                                           var percentageRetainedCount = ((self.positiveCount * 100) / self.retainedNameCount).toFixed(1);
+
+                                                           var percentageNeutralCount = ((self.neutralCount * 100) / self.retainedNameCount).toFixed(1);
+                                                            self.stacked = [];
+                                                            self.stacked.push({
+                                                              value: percentageRetainedCount,
+                                                              type: 'success'
+                                                            });      self.stacked.push({
+                                                          value: percentageNeutralCount,
+                                                          type: 'primary'
+                                                        });                                                  
+                                        });// end of neutral
+                    
+                    });//end of  positives
+
                     $http.get(webBaseUrl + apiCall + instruccion[2]).success(function(result){
                       self.negativeCount = result.length;
-                      addToBar(self.positiveCount);
-                      addToBar(self.neutralCount);
-                    });
+                   });
+
                     $http.get(webBaseUrl + apiCall + instruccion[3]).success(function(result){
                       self.newNameCount = result.length;
                     });
-                
+                    
+                       
                  }
+
         var setUpTheSlideInfo = function(slideObject){
                             _id = slideObject[0].$id;_DisplayName = slideObject[0].DisplayName;_StrokeRange  = slideObject[0].StrokeRange;
                             _StrokeColor = slideObject[0].StrokeColor; _Stroke = slideObject[0].Stroke;_HeaderFontColor = slideObject[0].HeaderFontColor;
@@ -530,7 +526,7 @@ angular.module('nwApp')
                                 self.displayNameGroup = true;
                                 self.controlsPosition = -282;
                                 self.isTestNameButtons = false;
-//piece of code in order to commit
+
                                 var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
                                 var apiCall = 'api/NW_GetSummary?instruccion=';
                                 var instructionCounter = 0; 
@@ -588,13 +584,13 @@ angular.module('nwApp')
                             }else{
                               self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
                             }
-        }
+              }
 
-        self.jqueryScrollBarOptions = {
-          "onScroll": function(x,y){
-            if(y.scroll == y.maxScroll){
-              alert('Scrolled to bottom');
-            }
+                self.jqueryScrollBarOptions = {
+                  "onScroll": function(x,y){
+                    if(y.scroll == y.maxScroll){
+                      alert('Scrolled to bottom');
+                    }
           }
         }
 
@@ -613,11 +609,11 @@ angular.module('nwApp')
         var pushingNameFirstTime = 1;
 
         self.displaySummarys = function(index){
-          if(index === 0){
-            self.getPositivesNames();
-          }else if (index === 1){
-            self.getNeutralsNames();
-          }
+              if(index === 0){
+                self.getPositivesNames();
+              }else if (index === 1){
+                self.getNeutralsNames();
+              }
         };
 
         self.dataInput = "";
@@ -629,7 +625,6 @@ angular.module('nwApp')
              alertify.confirm('You are about to save').set('onok', function(closeEvent){
                   alertify.alert("Saved").set('title', 'Result');
                    }).set('oncancel', function(closeEvent){}).set('title', 'Saving Explore Notes')
-              self.dataInput='';
         };
 
         self.saveAvoidComments = function(note){
@@ -638,8 +633,7 @@ angular.module('nwApp')
           $http.post(webBaseUrl + apiCall , projectIdAndNote)
            alertify.confirm('You are about to save').set('onok', function(closeEvent){
                   alertify.alert("Saved").set('title', 'Result');
-                   }).set('oncancel', function(closeEvent){}).set('title', 'Saving Avoid Notes')
-              self.dataInput='';
+                   }).set('oncancel', function(closeEvent){}).set('title', 'Saving Avoid Notes')              
         };
 
         self.cancelComments = function(){
