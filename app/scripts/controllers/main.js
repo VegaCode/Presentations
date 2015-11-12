@@ -28,6 +28,37 @@ angular.module('nwApp')
 
             self.testName = [];
             self.isOverview = false;
+
+
+            self.positiveCount = 0;
+            self.neutralCount = 0;
+            self.negativeCount = 0;
+            self.newNameCount = 0;
+            self.retainedNameCount = 0;
+
+             self.positiveNames = [];
+             self.neutralNames = [];
+             self.negativeNames = [];
+             self.newNames = [];
+             self.rootsToExplore = [];
+             self.rootsToAvoid = [];
+             self.retainedNames = [];
+
+             self.displayPositive = false;
+             self.displayNeutral = false;
+             self.displayNegative = false;
+             self.displayNewName = false;
+             self.displayRootExplore = false;
+             self.displayRootAvoid = false;
+             self.displayRetained = false;
+
+
+// **********  Slides ADMIN back end  ****************************************************************************************************
+
+          self.selectSlide = function(index) {
+                    var slideModel = JSON.stringify( new slideInfoModel(projectId, index+1, '','','','', '' ));
+                     getTestNamesObject(slideModel);
+                   };
             self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
                                                         'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',  'Cardiology','Cognition',
                                                         'OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue' ];
@@ -56,17 +87,50 @@ angular.module('nwApp')
                                      };
                          };
 
-  // **********  Getting Slides REVEAL TEST  presentation  ****************************************************************************************************
-            self.togglePresentation = function() {
-                                if (self.isTesNameTime === false) {
-                                    self.isTesNameTime = true;
-                                           self.displaySettings = false;
-                                }else {
-                                    self.isTesNameTime = false;
-                                    self.displaySettings = true;
-                                }
-                            };
+            self.resetingProjects = function(){
+                    var apiCall = 'api/ResetAllSlidesData/';
+                    alertify.confirm('Slides will be reset').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){
+                     self.displayTally = false;
+                      $http.get(webBaseUrl + apiCall + projectId);                    
+                      self.goHome();
+                   }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Slides');
+                 };
 
+            self.setOverlay = function() {
+              if (self.isOverlayAvailable === true) {
+                  self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)';
+              } else {
+                  self.overlayStyle = '';
+              }
+            };
+
+            self.showThemeOptions = function() {
+                if(self.displaySettings === true)
+                    {
+                        self.displaySettings =false;
+                    }else{
+                   var password = prompt("Enter Password");
+                        if(password === 'admin123'){
+                          self.displaySettings = true;
+                        }else{
+                          alert("Please provide the correct password");
+                        }
+                     }
+            };
+
+            self.saveThemeSettings = function() {
+             if ( self.BackGround !== '') {
+               var configModel = themeConfigurationModel( self.BackGround,
+                 self.BackGround + '.jpg', self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
+                 self.testNameFontColor, self.testNameFontFamily,  self.strokeColor,  self.strokeRange, self.isStrokeIt, self.isOverlayAvailable);
+                 setSettings.postdata(configModel).then(function(result) {
+                   alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
+                 });
+               }
+            };                
+
+// **********  Event listeners for revealjs  ****************************************************************************************************
+           
             Reveal.addEventListener('overviewshown', function(event) {
                 if(_SlideNumber > 4){
                     Reveal.slide(  0, _SlideNumber-2, 0 );
@@ -82,17 +146,7 @@ angular.module('nwApp')
                         });
                     });
 
-              //Warning! DO NOT CHANGE  THE "==" for "==="
-            Reveal.addEventListener('slidechanged', function(event) {
-                    // if (startTestNamesAtPage == event.indexh + 1) {
-                        if (self.presentTestNamesAtSlide == event.indexh + 1) {
-                            $rootScope.$apply(function() {
-                                self.isTesNameTime = false;
-                            });
-                        }
-                    });
-
-             self.selectSlide = function(index) {
+          self.selectSlide = function(index) {
                     var slideModel = JSON.stringify( new slideInfoModel(projectId, index+1, '','','','', '' ));
                      getTestNamesObject(slideModel);
                    };
@@ -100,165 +154,167 @@ angular.module('nwApp')
 // **********  Getting Slides URL Images and the description for over view  *************************************************************************************
              var apicall = 'api/NW_NamesAndSlides?projectId=';
              $http.get(webBaseUrl + apicall + projectId).success(function(result){
-               _nameSummarySlideNumber = result[0].SummarySlide;
-               self.slides = result;
-               // slide show configuration settings
-               $timeout(function() {
-                 Reveal.initialize({
+                   _nameSummarySlideNumber = result[0].SummarySlide;
+                   self.slides = result;
+                   // slide show configuration settings
+                   $timeout(function() {
+                     Reveal.initialize({
 
-                        width: 960,
-                        height: 680,
+                            width: 960,
+                            height: 680,
 
-                        // Factor of the display size that should remain empty around the content
-                        margin: 0.1,
+                            // Factor of the display size that should remain empty around the content
+                            margin: 0.1,
 
-                        // Bounds for smallest/largest possible scale to apply to content
-                        minScale: 1.2,
-                        maxScale: 1.2,
-
-
-                        // Display controls in the bottom right corner
-                        controls: false,
-
-                        // Display a presentation progress bar
-                        progress: false,
-
-                        // Display the page number of the current slide
-                        slideNumber: false,
-
-                        // Push each slide change to the browser history
-                        history: false,
-
-                        // Enable keyboard shortcuts for navigation
-                        keyboard: true,
-
-                        // Enable the slide overview mode
-                        overview: true,
-
-                        // Vertical centering of slides
-                        center: true,
-
-                        // Enables touch navigation on devices with touch input
-                        touch: true,
-
-                        // Loop the presentation
-                        loop: false,
-
-                        // Change the presentation direction to be RTL
-                        rtl: false,
-
-                        // Turns fragments on and off globally
-                        fragments: true,
-
-                        // Flags if the presentation is running in an embedded mode,
-                        // i.e. contained within a limited portion of the screen
-                        embedded: false,
-
-                        // Flags if we should show a help overlay when the questionmark
-                        // key is pressed
-                        help: false,
-
-                        // Number of milliseconds between automatically proceeding to the
-                        // next slide, disabled when set to 0, this value can be overwritten
-                        // by using a data-autoslide attribute on your slides
-                        autoSlide: 0,
-
-                        // Stop auto-sliding after user input
-                        autoSlideStoppable: true,
-
-                        // Enable slide navigation via mouse wheel
-                        mouseWheel: true,
-
-                        // Hides the address bar on mobile devices
-                        hideAddressBar: true,
-
-                        // Opens links in an iframe preview overlay
-                        previewLinks: false,
-
-                        // Transition style
-                        transition: 'none', // none/fade/slide/convex/concave/zoom
-
-                        // Transition speed
-                        transitionSpeed: 'fast', // default/fast/slow
-
-                        // Transition style for full page slide backgrounds
-                        backgroundTransition: 'none', // none/fade/slide/convex/concave/zoom
-
-                        // Number of slides away from the current that are visible
-                        viewDistance: 1,
-
-                        // Parallax background image
-                        parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.png'"
-
-                        // Parallax background size
-                        parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
-
-                        // Amount to move parallax background (horizontal and vertical) on slide change
-                        // Number, e.g. 100
-                        parallaxBackgroundHorizontal: '',
-                        parallaxBackgroundVertical: '',
-
-                        dependencies: [{
-                            src: 'bower_components/reveal-js/lib/js/classList.js',
-                            condition: function() {
-                                return !document.body.classList;
-                            }
-                        }, {
-                            src: 'bower_components/reveal-js/plugin/markdown/marked.js',
-                            condition: function() {
-                                return !!document.querySelector('[data-markdown]');
-                            }
-                        }, {
-                            src: 'bower_components/reveal-js/plugin/markdown/markdown.js',
-                            condition: function() {
-                                return !!document.querySelector('[data-markdown]');
-                            }
-                        }, {
-                            src: 'bower_components/reveal-js/plugin/highlight/highlight.js',
-                            async: true,
-                            callback: function() {
-                                hljs.initHighlightingOnLoad();
-                            }
-                        }, {
-                            src: 'bower_components/reveal-js/plugin/notes/notes.js',
-                            async: true,
-                            condition: function() {
-                                return !!document.body.classList;
-                            }
-                        }]
-                    });
-                    Reveal.configure({});
-                }, 300);
-            });
+                            // Bounds for smallest/largest possible scale to apply to content
+                            minScale: 1.2,
+                            maxScale: 1.2,
 
 
-  // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
+                            // Display controls in the bottom right corner
+                            controls: false,
+
+                            // Display a presentation progress bar
+                            progress: false,
+
+                            // Display the page number of the current slide
+                            slideNumber: false,
+
+                            // Push each slide change to the browser history
+                            history: false,
+
+                            // Enable keyboard shortcuts for navigation
+                            keyboard: true,
+
+                            // Enable the slide overview mode
+                            overview: true,
+
+                            // Vertical centering of slides
+                            center: true,
+
+                            // Enables touch navigation on devices with touch input
+                            touch: true,
+
+                            // Loop the presentation
+                            loop: false,
+
+                            // Change the presentation direction to be RTL
+                            rtl: false,
+
+                            // Turns fragments on and off globally
+                            fragments: true,
+
+                            // Flags if the presentation is running in an embedded mode,
+                            // i.e. contained within a limited portion of the screen
+                            embedded: false,
+
+                            // Flags if we should show a help overlay when the questionmark
+                            // key is pressed
+                            help: false,
+
+                            // Number of milliseconds between automatically proceeding to the
+                            // next slide, disabled when set to 0, this value can be overwritten
+                            // by using a data-autoslide attribute on your slides
+                            autoSlide: 0,
+
+                            // Stop auto-sliding after user input
+                            autoSlideStoppable: true,
+
+                            // Enable slide navigation via mouse wheel
+                            mouseWheel: true,
+
+                            // Hides the address bar on mobile devices
+                            hideAddressBar: true,
+
+                            // Opens links in an iframe preview overlay
+                            previewLinks: false,
+
+                            // Transition style
+                            transition: 'none', // none/fade/slide/convex/concave/zoom
+
+                            // Transition speed
+                            transitionSpeed: 'fast', // default/fast/slow
+
+                            // Transition style for full page slide backgrounds
+                            backgroundTransition: 'none', // none/fade/slide/convex/concave/zoom
+
+                            // Number of slides away from the current that are visible
+                            viewDistance: 1,
+
+                            // Parallax background image
+                            parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.png'"
+
+                            // Parallax background size
+                            parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+                            // Amount to move parallax background (horizontal and vertical) on slide change
+                            // Number, e.g. 100
+                            parallaxBackgroundHorizontal: '',
+                            parallaxBackgroundVertical: '',
+
+                            dependencies: [{
+                                src: 'bower_components/reveal-js/lib/js/classList.js',
+                                condition: function() {
+                                    return !document.body.classList;
+                                }
+                            }, {
+                                src: 'bower_components/reveal-js/plugin/markdown/marked.js',
+                                condition: function() {
+                                    return !!document.querySelector('[data-markdown]');
+                                }
+                            }, {
+                                src: 'bower_components/reveal-js/plugin/markdown/markdown.js',
+                                condition: function() {
+                                    return !!document.querySelector('[data-markdown]');
+                                }
+                            }, {
+                                src: 'bower_components/reveal-js/plugin/highlight/highlight.js',
+                                async: true,
+                                callback: function() {
+                                    hljs.initHighlightingOnLoad();
+                                }
+                            }, {
+                                src: 'bower_components/reveal-js/plugin/notes/notes.js',
+                                async: true,
+                                condition: function() {
+                                    return !!document.body.classList;
+                                }
+                            }]
+                        });
+                        Reveal.configure({});
+                    }, 300);
+               });
+
+// **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
 
         self.backGroundChanged = function(backGroundName){
-            apiCall = 'api/NW_InsertTemplateConfiguration?templateName=';
-           $http.get(webBaseUrl + apiCall + backGroundName).success(function(theme){
-                self.BackGround  = theme[0].TemplateFileName;
-                self.BackGroundName  = theme[0].TemplateName;
-                self.testNameFontFamily  = theme[0].TestNameFontFamily;
-                self.testNameFontColor  = theme[0].TestNameFontColor;
-                self.rationaleFontFamily  = theme[0].RationaleFontFamily;
-                self.rationaleFontColor  = theme[0].RationaleFontColor;
-                self.headerFontColor  = theme[0].HeaderFontColor;
-                self.headerFontFamily = theme[0].HeaderFontFamily;
-                self.nameNotation = theme[0].NameNotation;
-                 (theme[0].Stroke === 'false')? self.isStrokeIt = false : self.isStrokeIt = true;
-                if(self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};
-                self.strokeRange =  theme[0].StrokeRange;
-                self.strokeColor=  theme[0].StrokeColor;
-                self.isOverlayAvailable = (theme[0].Overlay === 'False')? false : true ;
-                (self.isOverlayAvailable === true ) ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
-                centerTestNames(self.nameCandidate)
-              })
-             }; if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};
-                            self.strokeRange = _StrokeRange;
-                            self.strokeColor= _StrokeColor;
+                apiCall = 'api/NW_InsertTemplateConfiguration?templateName=';
+               $http.get(webBaseUrl + apiCall + backGroundName).success(function(theme){
+                    self.BackGround  = theme[0].TemplateFileName;
+                    self.BackGroundName  = theme[0].TemplateName;
+                    self.testNameFontFamily  = theme[0].TestNameFontFamily;
+                    self.testNameFontColor  = theme[0].TestNameFontColor;
+                    self.rationaleFontFamily  = theme[0].RationaleFontFamily;
+                    self.rationaleFontColor  = theme[0].RationaleFontColor;
+                    self.headerFontColor  = theme[0].HeaderFontColor;
+                    self.headerFontFamily = theme[0].HeaderFontFamily;
+                    self.nameNotation = theme[0].NameNotation;
+                     (theme[0].Stroke === 'false')? self.isStrokeIt = false : self.isStrokeIt = true;
+                    if(self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};
+                    self.strokeRange =  theme[0].StrokeRange;
+                    self.strokeColor=  theme[0].StrokeColor;
+                    self.isOverlayAvailable = (theme[0].Overlay === 'False')? false : true ;
+                    (self.isOverlayAvailable === true ) ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
+                    centerTestNames(self.nameCandidate)
+                  })
+             }; 
 
-// CA- this will test for japanese NW
+         if(  self.isStrokeIt === true){ 
+            self.isTextShadow = 'text-shadow';
+             }else{
+              self.isTextShadow = ''
+          };
+
         var isItJapanese = function(japanese){
                    if(japanese === true){
                      self.makeShorterNewNameInput = '6';
@@ -359,27 +415,19 @@ angular.module('nwApp')
                         }
 
                    };
-
-        //  CA- added function to toggle between on and off default
-        var temporaryBackGround;
+    
         self.changeToDefault = function(){
-          if (!(self.BackGroundName === 'Default')){
-            temporaryBackGround = self.BackGroundName;
-            self.backGroundChanged('Default');
-          }
-          else{
-            self.backGroundChanged(temporaryBackGround);
-            temporaryBackGround ='';
-          }
+                var temporaryBackGround;
+              if (!(self.BackGroundName === 'Default')){
+                temporaryBackGround = self.BackGroundName;
+                self.backGroundChanged('Default');
+              }
+              else{
+                self.backGroundChanged(temporaryBackGround);
+                temporaryBackGround ='';
+              }
         };
 
-        self.positiveCount = 0;
-        self.neutralCount = 0;
-        self.negativeCount = 0;
-        self.newNameCount = 0;
-        self.retainedNameCount = 0;
-
-        // CA- requires users to rank each testName
         self.mustRank = function(){
               if (self.nameRamking == false || self.nameRamking == ""){
                 alert("Please vote on the name");
@@ -388,51 +436,7 @@ angular.module('nwApp')
                 getTestNamesObject(slideModel);
               }
         };
-
-        // CA- added reset button per slide
-      
-
-        // self.resetAll = function(){
-        //       alertify.confirm('Slides will be reset').set('onok', function(closeEvent){
-        //         self.displayTally = false;
-        //         alert('The slides are reset');
-        //       }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Sides');
-        // };
-
-       self.setOverlay = function() {
-
-          if (self.isOverlayAvailable === true) {
-              self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)';
-          } else {
-              self.overlayStyle = '';
-          }
-       };
-
-       self.showThemeOptions = function() {
-        if(self.displaySettings === true)
-            {
-                self.displaySettings =false;
-            }else{
-           var password = prompt("Enter Password");
-                if(password === 'admin123'){
-                  self.displaySettings = true;
-                }else{
-                  alert("Please provide the correct password");
-                }
-             }
-       };
-
-       self.saveThemeSettings = function() {
-         if ( self.BackGround !== '') {
-           var configModel = themeConfigurationModel( self.BackGround,
-             self.BackGround + '.jpg', self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
-             self.testNameFontColor, self.testNameFontFamily,  self.strokeColor,  self.strokeRange, self.isStrokeIt, self.isOverlayAvailable);
-             setSettings.postdata(configModel).then(function(result) {
-               alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
-             });
-           }
-        };
-
+     
         var slideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
                         return {
                             "presentationid": presentationid,
@@ -445,12 +449,14 @@ angular.module('nwApp')
                         };
                     };
 
+
+// **********  To Set SUMMARY Slides  ****************************************************************************************************
          var setProgressBarsSummary = function(){
                     var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
-                    var apiCall = 'api/NW_GetSummary?instruccion=';                                                         
+                    var apiCall = 'api/NW_GetSummary?instruccion=';
                           $http.get(webBaseUrl + apiCall + instruccion[0]).success(function(result){
-                                                              self.barType = 'success';
-                                                              self.positiveCount = result.length;
+                                              self.barType = 'success';
+                                              self.positiveCount = result.length;
                                                     $http.get(webBaseUrl + apiCall + instruccion[1]).success(function(result){
                                                       self.barType = 'primary';
                                                       self.neutralCount = result.length;                                                      
@@ -464,9 +470,8 @@ angular.module('nwApp')
                                                             });      self.stacked.push({
                                                           value: percentageNeutralCount,
                                                           type: 'primary'
-                                                        });                                                  
+                                                        });
                                         });// end of neutral
-                    
                     });//end of  positives
 
                     $http.get(webBaseUrl + apiCall + instruccion[2]).success(function(result){
@@ -476,10 +481,11 @@ angular.module('nwApp')
                     $http.get(webBaseUrl + apiCall + instruccion[3]).success(function(result){
                       self.newNameCount = result.length;
                     });
-                    
-                       
+
+
                  }
 
+        // for review 
         var setUpTheSlideInfo = function(slideObject){
                             _id = slideObject[0].$id;_DisplayName = slideObject[0].DisplayName;_StrokeRange  = slideObject[0].StrokeRange;
                             _StrokeColor = slideObject[0].StrokeColor; _Stroke = slideObject[0].Stroke;_HeaderFontColor = slideObject[0].HeaderFontColor;
@@ -517,11 +523,7 @@ angular.module('nwApp')
                                 self.displaySummary = true;
                                 self.displayNameGroup = true;
                                 self.controlsPosition = -282;
-                                self.isTestNameButtons = false;
-
-                                var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
-                                var apiCall = 'api/NW_GetSummary?instruccion=';
-                                var instructionCounter = 0; 
+                                self.isTestNameButtons = false;                       
                                 setProgressBarsSummary();
                             }else{
                                 self.displayNameGroup = false;
@@ -537,7 +539,7 @@ angular.module('nwApp')
                            ( self.presentTestNamesAtSlide == '')? self.presentTestNamesAtSlide =_SlideNumber : self.presentTestNamesAtSlide = self.presentTestNamesAtSlide;
 
                             self.pageNumber = _SlideNumber;
-                            //pageNumber =parseInt(_SlideNumber);
+                           
                             self.logoPath = 'images/LogIcons/icon-1' + '.png';
 
                             self.showTemplate = false;
@@ -548,8 +550,6 @@ angular.module('nwApp')
                             self.nameCategory = _NameCategory;
                             self.nameNotation = _NameNotation;
                             self.Rationale = _NameRationale.split('$')[0];
-
-
                             // inputs
                            self.nameRamking  = (_SlideType !== 'NameSummary') ? _NameRanking : true;
                            self.newName  = _NewNames;
@@ -575,30 +575,8 @@ angular.module('nwApp')
                               self.progressBarValue = 0;
                             }else{
                               self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
-                            }
-              }
-
-                self.jqueryScrollBarOptions = {
-                  "onScroll": function(x,y){
-                    if(y.scroll == y.maxScroll){
-                      alert('Scrolled to bottom');
-                    }
-          }
-        }
-
-        self.positiveNames = [];
-        self.neutralNames = [];
-        self.negativeNames = [];
-        self.newNames = [];
-        self.rootsToExplore = [];
-        self.rootsToAvoid = [];
-
-        self.displayPositive = false;
-        self.displayNeutral = false;
-        self.displayNewName = false;
-        self.displayRootExplore = false;
-        self.displayRootAvoid = false;
-        var pushingNameFirstTime = 1;
+                            }             
+            }
 
         self.displaySummarys = function(index){
               if(index === 0){
@@ -608,46 +586,39 @@ angular.module('nwApp')
               }
         };
 
-        self.dataInput = "";
-
         self.saveExploreComments = function(note){
-          var apiCall = 'api/NW_SaveNotes'
-          var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Explore'");
-          $http.post(webBaseUrl + apiCall , projectIdAndNote)
-             alertify.confirm('You are about to save').set('onok', function(closeEvent){
-                  alertify.alert("Saved").set('title', 'Result');
-                   }).set('oncancel', function(closeEvent){}).set('title', 'Saving Explore Notes')
-        };
+              var apiCall = 'api/NW_SaveNotes'
+              var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Explore'");
+              $http.post(webBaseUrl + apiCall , projectIdAndNote)
+                 alertify.confirm('You are about to save').set('onok', function(closeEvent){
+                      alertify.alert("Thank you !").set('title', 'Comments are saved');
+                       }).set('oncancel', function(closeEvent){}).set('title', 'Saving Explore Notes')
+            };
 
         self.saveAvoidComments = function(note){
-          var apiCall = 'api/NW_SaveNotes'
-          var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Avoid'");
-          $http.post(webBaseUrl + apiCall , projectIdAndNote)
-           alertify.confirm('You are about to save').set('onok', function(closeEvent){
-                  alertify.alert("Saved").set('title', 'Result');
-                   }).set('oncancel', function(closeEvent){}).set('title', 'Saving Avoid Notes')              
-        };
+              var apiCall = 'api/NW_SaveNotes'
+              var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Avoid'");
+              $http.post(webBaseUrl + apiCall , projectIdAndNote)
+               alertify.confirm('You are about to save').set('onok', function(closeEvent){
+                      alertify.alert("Thank you !").set('title', 'Comments are saved');
+                       }).set('oncancel', function(closeEvent){}).set('title', 'Saving Avoid Notes')
+            };
 
-        self.cancelComments = function(){
-          self.dataInput = "";
-        };
-
-// CA- this is an example of what can be done depending on the amount of names
-        var selectColumnSize = function(totalNames){
-          if(totalNames <= 20){
-            self.columnSize = 4; //3 columns will be generated
-            self.sizeOfFont = '40px';
-          }else if(totalNames <= 50){
-            self.columnSize = 3; //4 columns will be generated
-            self.sizeOfFont = '35px';
-          }else if (totalNames <= 70) {
-            self.columnSize = 4; //3 columns will be generated
-            self.sizeOfFont = '35px';
-          }else if (totalNames <=100) {
-            self.columnSize = 3; //4 columns will be generated
-            self.sizeOfFont = '35px';
-          }
-        }
+            var selectColumnSize = function(totalNames){
+                      if(totalNames <= 20){
+                        self.columnSize = 4; //3 columns will be generated
+                        self.sizeOfFont = '40px';
+                      }else if(totalNames <= 50){
+                        self.columnSize = 3; //4 columns will be generated
+                        self.sizeOfFont = '35px';
+                      }else if (totalNames <= 70) {
+                        self.columnSize = 4; //3 columns will be generated
+                        self.sizeOfFont = '35px';
+                      }else if (totalNames <=100) {
+                        self.columnSize = 3; //4 columns will be generated
+                        self.sizeOfFont = '35px';
+                      }
+             }
 
         self.selectNameFromSummary = function(name){
             var query = projectId+','+"'"+ name +"'";
@@ -656,7 +627,7 @@ angular.module('nwApp')
                   $http.get(webBaseUrl + apiCall + query).success(function(result){
                       setUpTheSlideInfo(result);
                   })
-        };
+         };
 
         var resetBooleanSummarySlideVars = function(){
                   self.displayPositive = false;
@@ -665,185 +636,201 @@ angular.module('nwApp')
                   self.displayNewName = false;
                   self.displayRootExplore = false;
                   self.displayRootAvoid = false;
+                  self.displayRetained = false;
                   self.positiveNames = [];
                   self.neutralNames = [];
                   self.negativeNames = [];
                   self.newNames = [];
                   self.rootsToExplore =[];
                   self.rootsToAvoid = [];
+                  self.retainedNames = [];
                  }
 
-        self.getPositivesNames = function(){
-            resetBooleanSummarySlideVars();
-                 self.displayPositive = true;  
-                 var instruccion = projectId + ", 'Positive Retained Names'";
-                 var apiCall = 'api/NW_GetSummary?instruccion=';         
-                $http.get(webBaseUrl +  apiCall + instruccion ).success(function(positiveName){
-                for(var i = 0; i<positiveName.length; i++){
-                    self.positiveNames.push(positiveName[i].Name);
-                }
-                selectColumnSize(positiveName.length);
-              });
-        };
-        self.getNeutralsNames = function(){  
-              resetBooleanSummarySlideVars();      
-              self.displayNeutral = true;    
-              var apiCall = 'api/NW_GetSummary?instruccion=';
-                var instruccion = projectId + ",'Neutral Retained Names'"; 
-              $http.get(webBaseUrl +  apiCall + instruccion).success(function(neutralName){
-                for(var i = 0; i<neutralName.length; i++){
-                    self.neutralNames.push(neutralName[i].Name);
-                }
-                selectColumnSize(neutralName.length);
-              });
-        };
-        self.getNegativesNames = function(){
-                 resetBooleanSummarySlideVars();
-                 self.displayNegative = true;
-                 var apiCall = 'api/NW_GetSummary?instruccion=';
-                 var instruccion = projectId +  ",'Negative Names'";  
-                  $http.get(webBaseUrl +  apiCall + instruccion ).success(function(negativeName){                  
-                    for(var i = 0; i<negativeName.length; i++){
-                        self.negativeNames.push(negativeName[i].Name);
-                    }
-                    selectColumnSize(negativeName.length);
-                  });
-        };
-        self.getNewsNames = function(){
-             resetBooleanSummarySlideVars();
-              self.displayNewName = true;
-             var apiCall = 'api/NW_GetSummary?instruccion=';
-             var instruccion = projectId + ",'New Names'";
-             $http.get(webBaseUrl +  apiCall + instruccion ).success(function(newName){                        
-                for(var i = 0; i<newName.length; i++){
-                    self.newNames.push(newName[i].Name);
-                }
-                selectColumnSize(newName.length);
-              });
-        };
-        self.getrootsToExplores = function(){
-                  resetBooleanSummarySlideVars();
-                  self.displayRootExplore = true;
-                 var  apiCall = 'api/NW_GetSummary?instruccion=';
-                 var instruccion = projectId + ",'Roots to Explore'";
-                   $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootExplore){                            
-                    for(var i = 0; i<rootExplore.length; i++){
-                        self.rootsToExplore.push(rootExplore[i].Name.trim());
-                    }
-                    selectColumnSize(rootExplore.length);
-                  });
-        };
-        self.getrootsToAvoids = function(){
-                resetBooleanSummarySlideVars();
-                self.displayRootAvoid = true;
-                var  apiCall = 'api/NW_GetSummary?instruccion=';
-                 var instruccion = projectId +  ", 'Roots to Avoid'";
-                 $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootAvoid){               
-                for(var i = 0; i<rootAvoid.length; i++){
-                    self.rootsToAvoid.push(rootAvoid[i].Name);
-                }
-                selectColumnSize(rootAvoid.length);
-              });
-        };
-
-
-         var getTestNamesObject = function(initialSlideModel){
-                     apiCall = 'api/NW_SaveAndReturnSlideData';
-                   $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
-                         if(slideObject.length>0){
-                           _TotalNames = slideObject[0].TotalNames;
-                           self.totalOfTestNames = parseInt(_TotalNames);
-                           self.progressBarUnit = 100/ self.totalOfTestNames;
-                           setUpTheSlideInfo(slideObject);
-                         }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
-                   }).error(function(err) {
-                       return err;
-                    })
+         self.blurEffect= function(e){
+                $('input[type="radio"]').each(function( index ) {
+                          $(this).blur();
+                        });
             }
-                   // INITIAL SETUP
-                  self.goHome = function(){
-                  var initialSlideModel = JSON.stringify( new slideInfoModel(projectId,0,'','','','', 'First'));
-                  getTestNamesObject(initialSlideModel);
-                  }
-
-                  self.goHome();
-
-                  self.goToSummarySlide = function(){
-                    setProgressBarsSummary();
-                    self.selectSlide(_nameSummarySlideNumber-1);                    
-                  }
-
-                 self.goNextSlide = function() {
-                   var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
-                   if(_SlideType !== 'Image'){
-                     self.mustRank();
-                   }else{
-                     getTestNamesObject(slideModel);
-                   }
-                  }
-
-                  self.goPrevSlide = function() {
-                   var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
-                   getTestNamesObject(slideModel);
-                 }
-
-                 self.selectedName = "";
-                 self.onSelect = function (slideName) {
-                   self.selectedName = slideName;
-                    var query = projectId+','+"'"+ slideName +"'";
-                       apiCall = 'api/NW_NamesAndSlides?projectIdAndTestName=';
-                            $http.get(webBaseUrl + apiCall + query).success(function(result){
-                                setUpTheSlideInfo(result);
-                            })
-
-                    if(parseInt(self.pageNumber) === 1){
-                      self.progressBarValue = 0;
-                    }else{
-                      self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
-                    }
+        //************ Methods to get summary data ***********************************************************************************************************
+          
+            self.getRetainedNames = function(){
+                      resetBooleanSummarySlideVars();
+                          self.displayRetained = true;    
+                          var apiCall = 'api/NW_GetSummary?instruccion=';
+                          var instruccion = projectId + ", 'Positive Retained Names'";
+                          $http.get(webBaseUrl +  apiCall + instruccion ).success(function(positiveName){
+                          for(var i = 0; i<positiveName.length; i++){
+                              self.retainedNames.push(positiveName[i].Name);
+                          }                               
+                                var instruccion = projectId + ",'Neutral Retained Names'";
+                                $http.get(webBaseUrl +  apiCall + instruccion).success(function(neutralName){
+                                  for(var i = 0; i<neutralName.length; i++){
+                                    self.retainedNames.push(neutralName[i].Name);
+                                  }
+                               });
+                         });
+                         selectColumnSize(self.retainedNames.length);
                 };
 
-                self.logKey = function (event){
-                 if(event.keyCode === 13){
-                    self.onSelect(self.selectedName);
-                  }
-                }
-
-                 // CA- the following code will allow to search the candidate names and then display them
-
-                 apiCall = 'api/NW_Presentation?projectIdForData=';
-                            $http.get(webBaseUrl + apiCall + projectId).success(function(testnames){
-                             testnames.map(function(obj){
-                             self.testName.push(obj.Name);
-                           });
-                     });
-
-                 // CA- working
-                 self.resetingProjects = function(){
-                    var apiCall = 'api/ResetAllSlidesData/';
-                    alertify.confirm('Slides will be reset').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){
-                     self.displayTally = false;
-                      $http.get(webBaseUrl + apiCall + projectId);
-                     alert('The slides are reset');
-                     self.goHome();
-                   }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Slides');
-                 };
-                
-                 self.resetSlide = function(){
-                              self.nameRamking = false;
-                              self.newName = "";
-                              self.explore = "";
-                              self.avoid = "";
-                        };
-                        
-                 self.tally = function() {
-                        self.displayTally = true;
+                self.getPositivesNames = function(){
+                    resetBooleanSummarySlideVars();
+                         self.displayPositive = true;
+                         var apiCall = 'api/NW_GetSummary?instruccion=';
+                         var instruccion = projectId + ", 'Positive Retained Names'";                        
+                        $http.get(webBaseUrl +  apiCall + instruccion ).success(function(positiveName){
+                        for(var i = 0; i<positiveName.length; i++){
+                            self.positiveNames.push(positiveName[i].Name);
                         }
+                        selectColumnSize(positiveName.length);
+                      });
+                };
+                self.getNeutralsNames = function(){
+                      resetBooleanSummarySlideVars();
+                      self.displayNeutral = true;                     
+                      var apiCall = 'api/NW_GetSummary?instruccion=';
+                        var instruccion = projectId + ",'Neutral Retained Names'";
+                      $http.get(webBaseUrl +  apiCall + instruccion).success(function(neutralName){
+                        for(var i = 0; i<neutralName.length; i++){
+                            self.neutralNames.push(neutralName[i].Name);
+                            self.retainedNames.push(neutralName[i].Name);
+                        }
+                        selectColumnSize(neutralName.length);
+                      });
+                };
+                self.getNegativesNames = function(){
+                         resetBooleanSummarySlideVars();
+                         self.displayNegative = true;                        
+                         var apiCall = 'api/NW_GetSummary?instruccion=';
+                         var instruccion = projectId +  ",'Negative Names'";
+                          $http.get(webBaseUrl +  apiCall + instruccion ).success(function(negativeName){
+                            for(var i = 0; i<negativeName.length; i++){
+                                self.negativeNames.push(negativeName[i].Name);
+                            }
+                            selectColumnSize(negativeName.length);
+                          });
+                };
+                self.getNewsNames = function(){
+                     resetBooleanSummarySlideVars();
+                      self.displayNewName = true;                    
+                      var apiCall = 'api/NW_GetSummary?instruccion=';
+                     var instruccion = projectId + ",'New Names'";
+                     $http.get(webBaseUrl +  apiCall + instruccion ).success(function(newName){
+                        for(var i = 0; i<newName.length; i++){
+                            self.newNames.push(newName[i].Name);
+                        }
+                        selectColumnSize(newName.length);
+                      });
+                };
+                self.getrootsToExplores = function(){
+                          resetBooleanSummarySlideVars();
+                          self.displayRootExplore = true;                       
+                          var apiCall = 'api/NW_GetSummary?instruccion=';
+                         var instruccion = projectId + ",'Roots to Explore'";
+                           $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootExplore){
+                            for(var i = 0; i<rootExplore.length; i++){
+                                self.rootsToExplore.push(rootExplore[i].Name.trim());
+                            }
+                            selectColumnSize(rootExplore.length);
+                          });
+                };
 
-                self.tally = function() {
-                  self.displayTally = true;
-                }
+                self.getrootsToAvoids = function(){
+                        resetBooleanSummarySlideVars();
+                        self.displayRootAvoid = true;                      
+                        var apiCall = 'api/NW_GetSummary?instruccion=';
+                         var instruccion = projectId +  ", 'Roots to Avoid'";
+                         $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootAvoid){
+                        for(var i = 0; i<rootAvoid.length; i++){
+                            self.rootsToAvoid.push(rootAvoid[i].Name);
+                        }
+                        selectColumnSize(rootAvoid.length);
+                      });
+                };
 
+
+                 var getTestNamesObject = function(initialSlideModel){
+                                      var apiCall = 'api/NW_SaveAndReturnSlideData';
+                                       $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
+                                             if(slideObject.length>0){
+                                               _TotalNames = slideObject[0].TotalNames;
+                                               self.totalOfTestNames = parseInt(_TotalNames);
+                                               self.progressBarUnit = 100/ self.totalOfTestNames;
+                                               setUpTheSlideInfo(slideObject);
+                                             }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
+                                       }).error(function(err) {
+                                           return err;
+                                        })
+                            }
+
+ //************ Navigation Methods ***********************************************************************************************************
+        self.goHome = function() {
+            var initialSlideModel = JSON.stringify(new slideInfoModel(projectId, 0, '', '', '', '', 'First'));
+            getTestNamesObject(initialSlideModel);
+        }
+
+        self.goHome();
+
+        self.goToSummarySlide = function() {
+            setProgressBarsSummary();
+            self.selectSlide(_nameSummarySlideNumber - 1);
+        }
+
+        self.goNextSlide = function() {
+            var slideModel = JSON.stringify(new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next'));
+            if (_SlideType !== 'Image') {
+                self.mustRank();
+            } else {
+                getTestNamesObject(slideModel);
+            }
+        }
+
+        self.goPrevSlide = function() {
+            var slideModel = JSON.stringify(new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
+            getTestNamesObject(slideModel);
+        }
+
+        self.selectedName = "";
+        self.onSelect = function(slideName) {
+            self.selectedName = slideName;
+            var query = projectId + ',' + "'" + slideName + "'";
+            apiCall = 'api/NW_NamesAndSlides?projectIdAndTestName=';
+            $http.get(webBaseUrl + apiCall + query).success(function(result) {
+                setUpTheSlideInfo(result);
+            })
+
+            if (parseInt(self.pageNumber) === 1) {
+                self.progressBarValue = 0;
+            } else {
+                self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
+            }
+        };
+
+        self.logKey = function(event) {
+            if (event.keyCode === 13) {
+                self.onSelect(self.selectedName);
+            }
+        }
+
+        // getting the list of test names for the typeahead
+        apiCall = 'api/NW_Presentation?projectIdForData=';
+        $http.get(webBaseUrl + apiCall + projectId).success(function(testnames) {
+            testnames.map(function(obj) {
+                self.testName.push(obj.Name);
+            });
+        });
+
+        self.resetSlide = function() {
+            self.nameRamking = false;
+            self.newName = "";
+            self.explore = "";
+            self.avoid = "";
+        };
+
+        self.tally = function() {
+            self.displayTally = true;
+        }
+
+ //************ Cheat Sheet  ***********************************************************************************************************
                 hotkeys.add({
                         combo:'O',
                         description:'Overview',
@@ -892,11 +879,7 @@ angular.module('nwApp')
                                                self.displayMenu = false;
                             }});
 
-                        self.blurEffect= function(e){
-                            $('input[type="radio"]').each(function( index ) {
-                                      $(this).blur();
-                                    });
-                        }
+                   
         }// end of controller
 
     ]);

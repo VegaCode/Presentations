@@ -133,11 +133,10 @@ label {
         <div class="reveal">
             <div class="slides">
              <section class="pull-right">
-                <section ng-repeat="slide in  main.slides" style="top: -46px !important; display: block;" data-index="{{$index}}" ng-click="main.selectSlide({{$index}})">
-                <button type="button" class="btn btn-default glyphicon glyphicon-question-sign pull-right btn-question-style" ng-show="main.isTesNameTime" ng-click="main.help()"></button>
+                <section ng-repeat="slide in  main.slides" style="top: -46px !important; display: block;" data-index="{{$index}}" ng-click="main.selectSlide({{$index}})">          
                     <img ng-src="{{slide.SlideBGFileName}}">
                     <br>
-                    <h3 ng-show="main.isOverview" style="color:black" >{{slide.SlideDescription +' '}} {{$index + 1}}
+                    <h3 ng-show="main.isOveorview" style="color:black" >{{slide.SlideDescription +' '}} {{$index + 1}}
                     </h3>
                 </section>
                 </section>
@@ -267,7 +266,7 @@ label {
                                   </button>
                                 </span>
                                 <div class="dropup">
-                                <input type="text" ng-model="selectedName" style="height: 100%;" ng-keyup="main.logKey($event)" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" class="form-control text-primary" placeholder="Search name">
+                                <input type="text" ng-model="main.selectedName" style="height: 100%;" ng-keyup="main.logKey($event)" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" class="form-control text-primary" placeholder="Search name">
                               </div>
                                 <span class="input-group-btn" >
                                  <button class="btn btn-default" type="button" ng-show="main.isTestNameButtons"  ng-click="main.changeToDefault()" uib-tooltip="Remove Image" tooltip-class="customClass">
@@ -300,7 +299,7 @@ label {
                         <uib-tab heading="Summary" class="tabs">
                             <div class="row pointer" style="margin-top: 10px;">
                                 <div class="col-md-2">
-                                    <span class="label label-success label-style" ng-click="main.getPositivesNames()">Retained</span>
+                                    <span class="label label-success label-style" ng-click="main.getRetainedNames()">Retained</span>
                                 </div>
                                 <div class="col-md-8 margin-progressbar">
                                     <uib-progress class="progress-bar-height">
@@ -308,7 +307,7 @@ label {
                                     </uib-progress>
                                 </div>
                                 <div class="col-md-2 ">
-                                    <span class="badge margin-badge badge-success" ng-click="main.getPositivesNames()">{{main.retainedNameCount}}</span>
+                                    <span class="badge margin-badge badge-success" ng-click="main.getRetainedNames()">{{main.retainedNameCount}}</span>
                                 </div>
                             </div>
                             <div class="row pointer" ng-click="main.getNegativesNames()">
@@ -335,19 +334,20 @@ label {
                             </div>
                             <!-- CA- piece of code to display names-->
                             <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
-                                <div class="text-success col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
-                                <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
-                                <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
-                                <div class="text-info col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames">{{newname}}</div>
+                              <div class="text-success col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayRetained" ng-repeat="namesRetained in main.retainedNames" ng-click="main.selectNameFromSummary(namesRetained)">{{namesRetained}}</div>
+                              <div class="text-success col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
+                              <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
+                              <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
+                              <div class="text-info col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames">{{newname}}</div>
                             </div>
                         </uib-tab>
                         <uib-tab heading="Explore" class="tabs" ng-click="main.getrootsToExplores()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
-                                    <textarea class="text-primary textarea-style" ng-value="main.dataInput" ng-model="main.dataInput" placeholder="Please type additional comments...">{{main.dataInput}}</textarea>
+                                    <textarea class="text-primary textarea-style" ng-value="main.dataExploreInput" ng-model="main.dataExploreInput" placeholder="Please type additional comments...">{{main.dataExploreInput}}</textarea>
                                 </div>
                                 <div class="col-md-1">
-                                    <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveExploreComments(main.dataInput)">Save</button>
+                                    <button class="btn btn-success pull-right button-save" ng-click="main.saveExploreComments(main.dataExploreInput)">Save</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -359,10 +359,10 @@ label {
                         <uib-tab heading="Avoid" class="tabs" ng-click="main.getrootsToAvoids()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
-                                    <textarea class="text-primary textarea-style" ng-model="main.dataInput" placeholder="Please type additional comments...">{{main.dataInput}}</textarea>
+                                    <textarea class="text-primary textarea-style" ng-value="main.dataAvoidInput"   ng-model="main.dataAvoidInput" placeholder="Please type additional comments...">{{main.dataAvoidInput}}</textarea>
                                 </div>
                                 <div class="col-md-1">
-                                    <button class="btn btn-success pull-right button-save" ng-model="main.dataInput" ng-click="main.saveAvoidComments(main.dataInput)">Save</button>
+                                    <button class="btn btn-success pull-right button-save"  ng-click="main.saveAvoidComments(main.dataAvoidInput)">Save</button>
                                 </div>
                             </div>
                             <div class="row">
