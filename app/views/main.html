@@ -47,7 +47,7 @@ label {
     margin-top: -7px;
 }
 .scrollbar-dynamic {
-    max-height: 500px;
+    max-height: 490px;
     max-width: 100%;
     overflow: auto;
 }
@@ -77,37 +77,56 @@ label {
   font-weight: initial;
 }
 /*this functionality is for the type. meaning an extre color such as warning, info, success*/
-.label-purple{
-  background-color: #4c0099;
+.color-purple{
+  color: #4c0099;
+}
+.color-green{
+  color: #5cb85c;
+}
+.color-light-blue{
+  color: #5bc0de;
+}
+.color-dark-blue{
+ color: #337ab7;
+}
+.label-and-badge-purple{
+ background-color: #4c0099;
+}
+
+.label-and-badge-green{
+ background-color: #5cb85c;
+}
+.label-and-badge-light-blue{
+ background-color: #5bc0de;
+}
+.label-and-badge-dark-blue{
+ background-color: #337ab7;
 }
 .progress-bar-purple{
   background-color: #4c0099;
 }
 .progress-bar-height{
-  height: 25px;
+  height: 30px;
 }
 .multi-color-bar-font-size{
-  font-size: 14px;
+  font-size: 20px;
   text-align: center;
-  line-height: 25px;
+  line-height: 30px;
 }
-.badge-purple{
-  background-color: #4c0099;
+.success-style{
+  font-size: 20px;
   width: 50%;
   font-weight: initial;
-  font-size: 14px;
 }
-.badge-success{
-  background-color: #5cb85c;
+.purple-style{
+  font-size: 20px;
   width: 50%;
   font-weight: initial;
-  font-size: 14px;
 }
-.badge-info{
-  background-color: #5bc0de;
+.info-style{
+  font-size: 20px;
   width: 50%;
   font-weight: initial;
-  font-size: 14px;
 }
 .tooltip.customClass .tooltip-inner{
   width: 100px;
@@ -124,6 +143,7 @@ label {
     table-layout: fixed; /* [2] */
     width: 33%; /* [3] */
     text-align: center;
+    font-size: 25px;
 }
 </style>
 
@@ -133,7 +153,7 @@ label {
         <div class="reveal">
             <div class="slides">
              <section class="pull-right">
-                <section ng-repeat="slide in  main.slides" style="top: -46px !important; display: block;" data-index="{{$index}}" ng-click="main.selectSlide({{$index}})">          
+                <section ng-repeat="slide in  main.slides" style="top: -46px !important; display: block;" data-index="{{$index}}" ng-click="main.selectSlide({{$index}})">
                     <img ng-src="{{slide.SlideBGFileName}}">
                     <br>
                     <h3 ng-show="main.isOveorview" style="color:black" >{{slide.SlideDescription +' '}} {{$index + 1}}
@@ -299,7 +319,7 @@ label {
                         <uib-tab heading="Summary" class="tabs">
                             <div class="row pointer" style="margin-top: 10px;">
                                 <div class="col-md-2">
-                                    <span class="label label-success label-style" ng-click="main.getRetainedNames()">Retained</span>
+                                    <span class="label label-style label-and-badge-green success-style" ng-click="main.getRetainedNames()">Retained</span>
                                 </div>
                                 <div class="col-md-8 margin-progressbar">
                                     <uib-progress class="progress-bar-height">
@@ -307,44 +327,44 @@ label {
                                     </uib-progress>
                                 </div>
                                 <div class="col-md-2 ">
-                                    <span class="badge margin-badge badge-success" ng-click="main.getRetainedNames()">{{main.retainedNameCount}}</span>
+                                    <span class="badge margin-badge label-and-badge-green success-style" ng-click="main.getRetainedNames()">{{main.retainedNameCount}}</span>
                                 </div>
                             </div>
                             <div class="row pointer" ng-click="main.getNegativesNames()">
                                 <div class="col-md-2">
-                                    <span class="label label-purple label-style">Reconsider</span>
+                                    <span class="label purple-style label-and-badge-purple label-style">Reconsider</span>
                                 </div>
                                 <div class="col-md-8 margin-progressbar">
                                     <uib-progressbar class="progress-bar-height" type="purple" ng-style="{width: main.negativeCount + '%'}"></uib-progressbar>
                                 </div>
                                 <div class="col-md-2">
-                                    <span class="badge margin-badge badge-purple">{{main.negativeCount}}</span>
+                                    <span class="badge margin-badge purple-style label-and-badge-purple">{{main.negativeCount}}</span>
                                 </div>
                             </div>
                             <div class="row pointer" ng-click="main.getNewsNames()">
                                 <div class="col-md-2">
-                                    <span class="label label-info label-style">New Names</span>
+                                    <span class="label label-style info-style label-and-badge-light-blue label-and-badge-light-blue">New Names</span>
                                 </div>
                                 <div class="col-md-8 margin-progressbar">
                                     <uib-progressbar class="progress-bar-height" type="info" ng-style="{width: main.newNameCount + '%'}"></uib-progressbar>
                                 </div>
                                 <div class="col-md-2">
-                                    <span class="badge margin-badge badge-info">{{main.newNameCount}}</span>
+                                    <span class="badge margin-badge info-style label-and-badge-light-blue">{{main.newNameCount}}</span>
                                 </div>
                             </div>
                             <!-- CA- piece of code to display names-->
                             <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
-                              <div class="text-success col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayRetained" ng-repeat="namesRetained in main.retainedNames" ng-click="main.selectNameFromSummary(namesRetained)">{{namesRetained}}</div>
-                              <div class="text-success col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
-                              <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
-                              <div class="text-primary col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
-                              <div class="text-info col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames">{{newname}}</div>
+                              <div class="color-green col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayRetained" ng-repeat="namesRetained in main.retainedNames" ng-click="main.selectNameFromSummary(namesRetained)">{{namesRetained}}</div>
+                              <div class="color-green col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
+                              <div class="color-dark-blue col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
+                              <div class="color-purple col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
+                              <div class="color-light-blue col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames">{{newname}}</div>
                             </div>
                         </uib-tab>
                         <uib-tab heading="Explore" class="tabs" ng-click="main.getrootsToExplores()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
-                                    <textarea class="text-primary textarea-style" ng-value="main.dataExploreInput" ng-model="main.dataExploreInput" placeholder="Please type additional comments...">{{main.dataExploreInput}}</textarea>
+                                    <textarea class="color-dark-blue textarea-style" ng-value="main.dataExploreInput" ng-model="main.dataExploreInput" placeholder="Please type additional comments...">{{main.dataExploreInput}}</textarea>
                                 </div>
                                 <div class="col-md-1">
                                     <button class="btn btn-success pull-right button-save" ng-click="main.saveExploreComments(main.dataExploreInput)">Save</button>
@@ -359,7 +379,7 @@ label {
                         <uib-tab heading="Avoid" class="tabs" ng-click="main.getrootsToAvoids()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
-                                    <textarea class="text-primary textarea-style" ng-value="main.dataAvoidInput"   ng-model="main.dataAvoidInput" placeholder="Please type additional comments...">{{main.dataAvoidInput}}</textarea>
+                                    <textarea class="color-dark-blue textarea-style" ng-value="main.dataAvoidInput"   ng-model="main.dataAvoidInput" placeholder="Please type additional comments...">{{main.dataAvoidInput}}</textarea>
                                 </div>
                                 <div class="col-md-1">
                                     <button class="btn btn-success pull-right button-save"  ng-click="main.saveAvoidComments(main.dataAvoidInput)">Save</button>
