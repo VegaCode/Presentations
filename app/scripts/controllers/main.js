@@ -91,7 +91,7 @@ angular.module('nwApp')
                     var apiCall = 'api/ResetAllSlidesData/';
                     alertify.confirm('Slides will be reset').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(closeEvent){
                      self.displayTally = false;
-                      $http.get(webBaseUrl + apiCall + projectId);                    
+                      $http.get(webBaseUrl + apiCall + projectId);
                       self.goHome();
                    }).set('oncancel', function(closeEvent){}).set('title', 'Resetting Slides');
                  };
@@ -127,10 +127,10 @@ angular.module('nwApp')
                    alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
                  });
                }
-            };                
+            };
 
 // **********  Event listeners for revealjs  ****************************************************************************************************
-           
+
             Reveal.addEventListener('overviewshown', function(event) {
                 if(_SlideNumber > 4){
                     Reveal.slide(  0, _SlideNumber-2, 0 );
@@ -307,9 +307,9 @@ angular.module('nwApp')
                     (self.isOverlayAvailable === true ) ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
                     centerTestNames(self.nameCandidate)
                   })
-             }; 
+             };
 
-         if(  self.isStrokeIt === true){ 
+         if(  self.isStrokeIt === true){
             self.isTextShadow = 'text-shadow';
              }else{
               self.isTextShadow = ''
@@ -415,7 +415,7 @@ angular.module('nwApp')
                         }
 
                    };
-    
+
         self.changeToDefault = function(){
                 var temporaryBackGround;
               if (!(self.BackGroundName === 'Default')){
@@ -436,7 +436,7 @@ angular.module('nwApp')
                 getTestNamesObject(slideModel);
               }
         };
-     
+
         var slideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
                         return {
                             "presentationid": presentationid,
@@ -459,15 +459,18 @@ angular.module('nwApp')
                                               self.positiveCount = result.length;
                                                     $http.get(webBaseUrl + apiCall + instruccion[1]).success(function(result){
                                                       self.barType = 'primary';
-                                                      self.neutralCount = result.length;                                                      
+                                                      self.neutralCount = result.length;
                                                            self.retainedNameCount = self.positiveCount + self.neutralCount;
-                                                           var percentageRetainedCount = ((self.positiveCount * 100) / self.retainedNameCount).toFixed(1);
-                                                           var percentageNeutralCount = ((self.neutralCount * 100) / self.retainedNameCount).toFixed(1);
+                                                           var percentageRetainedCount = ((self.positiveCount * 100) / self.retainedNameCount).toFixed(0);
+                                                           var percentageNeutralCount = ((self.neutralCount * 100) / self.retainedNameCount).toFixed(0);
                                                             self.stacked = [];
                                                             self.stacked.push({
+                                                              description: "Positive ",
                                                               value: percentageRetainedCount,
                                                               type: 'success'
-                                                            });      self.stacked.push({
+                                                            });
+                                                          self.stacked.push({
+                                                          description: "Neutral ",
                                                           value: percentageNeutralCount,
                                                           type: 'primary'
                                                         });
@@ -485,7 +488,7 @@ angular.module('nwApp')
 
                  }
 
-        // for review 
+        // for review
         var setUpTheSlideInfo = function(slideObject){
                             _id = slideObject[0].$id;_DisplayName = slideObject[0].DisplayName;_StrokeRange  = slideObject[0].StrokeRange;
                             _StrokeColor = slideObject[0].StrokeColor; _Stroke = slideObject[0].Stroke;_HeaderFontColor = slideObject[0].HeaderFontColor;
@@ -523,7 +526,7 @@ angular.module('nwApp')
                                 self.displaySummary = true;
                                 self.displayNameGroup = true;
                                 self.controlsPosition = -282;
-                                self.isTestNameButtons = false;                       
+                                self.isTestNameButtons = false;
                                 setProgressBarsSummary();
                             }else{
                                 self.displayNameGroup = false;
@@ -539,7 +542,7 @@ angular.module('nwApp')
                            ( self.presentTestNamesAtSlide == '')? self.presentTestNamesAtSlide =_SlideNumber : self.presentTestNamesAtSlide = self.presentTestNamesAtSlide;
 
                             self.pageNumber = _SlideNumber;
-                           
+
                             self.logoPath = 'images/LogIcons/icon-1' + '.png';
 
                             self.showTemplate = false;
@@ -575,7 +578,7 @@ angular.module('nwApp')
                               self.progressBarValue = 0;
                             }else{
                               self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
-                            }             
+                            }
             }
 
         self.displaySummarys = function(index){
@@ -652,16 +655,16 @@ angular.module('nwApp')
                         });
             }
         //************ Methods to get summary data ***********************************************************************************************************
-          
+
             self.getRetainedNames = function(){
                       resetBooleanSummarySlideVars();
-                          self.displayRetained = true;    
+                          self.displayRetained = true;
                           var apiCall = 'api/NW_GetSummary?instruccion=';
                           var instruccion = projectId + ", 'Positive Retained Names'";
                           $http.get(webBaseUrl +  apiCall + instruccion ).success(function(positiveName){
                           for(var i = 0; i<positiveName.length; i++){
                               self.retainedNames.push(positiveName[i].Name);
-                          }                               
+                          }
                                 var instruccion = projectId + ",'Neutral Retained Names'";
                                 $http.get(webBaseUrl +  apiCall + instruccion).success(function(neutralName){
                                   for(var i = 0; i<neutralName.length; i++){
@@ -676,7 +679,7 @@ angular.module('nwApp')
                     resetBooleanSummarySlideVars();
                          self.displayPositive = true;
                          var apiCall = 'api/NW_GetSummary?instruccion=';
-                         var instruccion = projectId + ", 'Positive Retained Names'";                        
+                         var instruccion = projectId + ", 'Positive Retained Names'";
                         $http.get(webBaseUrl +  apiCall + instruccion ).success(function(positiveName){
                         for(var i = 0; i<positiveName.length; i++){
                             self.positiveNames.push(positiveName[i].Name);
@@ -686,7 +689,7 @@ angular.module('nwApp')
                 };
                 self.getNeutralsNames = function(){
                       resetBooleanSummarySlideVars();
-                      self.displayNeutral = true;                     
+                      self.displayNeutral = true;
                       var apiCall = 'api/NW_GetSummary?instruccion=';
                         var instruccion = projectId + ",'Neutral Retained Names'";
                       $http.get(webBaseUrl +  apiCall + instruccion).success(function(neutralName){
@@ -699,7 +702,7 @@ angular.module('nwApp')
                 };
                 self.getNegativesNames = function(){
                          resetBooleanSummarySlideVars();
-                         self.displayNegative = true;                        
+                         self.displayNegative = true;
                          var apiCall = 'api/NW_GetSummary?instruccion=';
                          var instruccion = projectId +  ",'Negative Names'";
                           $http.get(webBaseUrl +  apiCall + instruccion ).success(function(negativeName){
@@ -711,7 +714,7 @@ angular.module('nwApp')
                 };
                 self.getNewsNames = function(){
                      resetBooleanSummarySlideVars();
-                      self.displayNewName = true;                    
+                      self.displayNewName = true;
                       var apiCall = 'api/NW_GetSummary?instruccion=';
                      var instruccion = projectId + ",'New Names'";
                      $http.get(webBaseUrl +  apiCall + instruccion ).success(function(newName){
@@ -723,7 +726,7 @@ angular.module('nwApp')
                 };
                 self.getrootsToExplores = function(){
                           resetBooleanSummarySlideVars();
-                          self.displayRootExplore = true;                       
+                          self.displayRootExplore = true;
                           var apiCall = 'api/NW_GetSummary?instruccion=';
                          var instruccion = projectId + ",'Roots to Explore'";
                            $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootExplore){
@@ -736,7 +739,7 @@ angular.module('nwApp')
 
                 self.getrootsToAvoids = function(){
                         resetBooleanSummarySlideVars();
-                        self.displayRootAvoid = true;                      
+                        self.displayRootAvoid = true;
                         var apiCall = 'api/NW_GetSummary?instruccion=';
                          var instruccion = projectId +  ", 'Roots to Avoid'";
                          $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootAvoid){
@@ -879,7 +882,7 @@ angular.module('nwApp')
                                                self.displayMenu = false;
                             }});
 
-                   
+
         }// end of controller
 
     ]);
