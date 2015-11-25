@@ -29,7 +29,7 @@ angular.module('nwApp')
             self.testName = [];
             self.isOverview = false;
 
-
+self.greeting = 'Hello World!';
             self.positiveCount = 0;
             self.neutralCount = 0;
             self.negativeCount = 0;
@@ -793,6 +793,7 @@ angular.module('nwApp')
         }
 
         self.selectedName = "";
+
         self.onSelect = function(slideName) {
             self.selectedName = slideName;
             var query = projectId + ',' + "'" + slideName + "'";
@@ -878,6 +879,13 @@ angular.module('nwApp')
                  hotkeys.add({
                                     combo:'Ctrl -',
                                     description:'Zoom out',
+                                    callback: function(){
+                                               self.displayMenu = false;
+                            }});
+                 
+                 hotkeys.add({
+                                    combo:'F11',
+                                    description:'Enter and exit Full Screen Mode',
                                     callback: function(){
                                                self.displayMenu = false;
                             }});

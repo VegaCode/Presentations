@@ -6,16 +6,24 @@ describe('Controller: MainCtrl', function () {
   beforeEach(module('nwApp'));
 
   var MainCtrl,
-    scope;
+    scope,greeting,mockqueryStringCheck;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
-      // place here mocked dependencies
+  beforeEach(inject(function ($controller) {
+    MainCtrl = $controller('MainCtrl', function(){
+      this.queryStringCheck: jasmine.createSpy('queryStringCheck');
+      this.greeting = jasmine.createSpy('greeting');
     });
   }));
+
+  beforeEach(inject(function($window, queryStringCheck){
+  mockWindow=$window;
+  mockqueryStringCheck=queryStringCheck;
+}));
+
+it('says hello world!', function () {
+expect(this.greeting).toEqual("Hello world!");
+});
 
   it('should attach a list of awesomeThings to the scope', function () {
     expect(MainCtrl.awesomeThings.length).toBe(3);
