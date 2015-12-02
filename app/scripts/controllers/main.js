@@ -776,6 +776,8 @@ self.greeting = 'Hello World!';
         self.goToSummarySlide = function() {
             setProgressBarsSummary();
             self.selectSlide(_nameSummarySlideNumber - 1);
+            var slideModel = JSON.stringify(new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Last'));
+            getTestNamesObject(slideModel);
         }
 
         self.goNextSlide = function() {
@@ -882,7 +884,7 @@ self.greeting = 'Hello World!';
                                     callback: function(){
                                                self.displayMenu = false;
                             }});
-                 
+
                  hotkeys.add({
                                     combo:'F11',
                                     description:'Enter and exit Full Screen Mode',
