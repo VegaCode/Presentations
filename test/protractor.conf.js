@@ -2,17 +2,14 @@
 exports.config = {
   framework: 'jasmine',
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['spec.js'],
-  //  capabilities: {
-  //   browserName: 'firefox',
-  //   //browserName: 'chrome'
-  // },
-  onPrepare:function(){
-  	browser.driver.manage().window().maximize();
+
+  specs: ['./e2e/**/*.spec.js'],
+   capabilities: {
+    browserName: 'firefox'
   },
-  suites:{
-  	basics: 'specs.js',
-  	fromSumarized: 'specs.js'
+
+  onPrepare: function() {
+    browser.driver.manage().window().maximize();
   }
   //  multiCapabilities: [{
   //   browserName: 'firefox'

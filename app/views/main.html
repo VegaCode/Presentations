@@ -166,15 +166,15 @@ label {
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}" ng-show="!main.displayNameGroup">
                             <form name="nameRamking" ng-click="main.blurEffect($event)">
                                 <label>
-                                    <input class="feedBack" type="radio" name="nameRamking" value="Positive" ng-model="main.nameRamking"> Positive
+                                    <input id="positiveRank" class="feedBack" type="radio" name="nameRamking" value="Positive" ng-model="main.nameRamking"> Positive
                                 </label>
                                 <br/>
                                 <label>
-                                    <input class="feedBack" type="radio" name="nameRamking" value="Neutral" ng-model="main.nameRamking"> Neutral
+                                    <input id="neutralRank" class="feedBack" type="radio" name="nameRamking" value="Neutral" ng-model="main.nameRamking"> Neutral
                                 </label>
                                 <br/>
                                 <label>
-                                    <input class="feedBack" type="radio" name="nameRamking" value="Negative" ng-model="main.nameRamking"> Negative
+                                    <input id="negativeRank" class="feedBack" type="radio" name="nameRamking" value="Negative" ng-model="main.nameRamking"> Negative
                                 </label>
                             </form>
                         </div>
@@ -183,9 +183,9 @@ label {
                         </div>
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}"  ng-show="!main.displayNameGroup">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default glyphicon " ng-click="main.tally()" style="font-family:arial">Tally
+                                <button id="buttonTally" type="button" class="btn btn-default glyphicon " ng-click="main.tally()" style="font-family:arial">Tally
                                 </button>
-                                <button type="button" class="btn btn-default glyphicon glyphicon-cog" data-toggle="dropdown" ng-click="main.showThemeOptions()"></button>
+                                <button id="cogSettings" type="button" class="btn btn-default glyphicon glyphicon-cog" data-toggle="dropdown" ng-click="main.showThemeOptions()"></button>
                             </div>
                             <div class="row" ng-show="main.displayTally">
                                 <div class="col-md-8">
@@ -235,7 +235,7 @@ label {
                     <div ng-show="!main.displayNameGroup">
                         <div class="row" style="height: 110px; padding:20px 0 0 0;">
                             <div class="col-md-{{main.makeShorterNewNameInput}}">
-                                <input type="text" placeholder="New Names" class="roundCorners" ng-model="main.newName" style="font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black" />
+                                <input id="newNameBox" type="text" placeholder="New Names" class="roundCorners" ng-model="main.newName" style="font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black" />
                             </div>
                             <div class="col-md-6" ng-show="main.isJapanese === true">
                                 <input type="text" class="center-block; roundCorners" ng-model="main.negativeKanaNames" placeholder="Negative Katakana Names" style="font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black" />
@@ -243,10 +243,10 @@ label {
                         </div>
                         <div class="row" style="height: 50px;">
                             <div class="col-md-6">
-                                <input type="text" class="center-block; roundCorners" ng-model="main.explore" placeholder="EXPLORE" style="font-size: x-large; text-align: center; width: 500px; height: 39px; border: solid 2px green;color:black" />
+                                <input id="exploreBox" type="text" class="center-block; roundCorners" ng-model="main.explore" placeholder="EXPLORE" style="font-size: x-large; text-align: center; width: 500px; height: 39px; border: solid 2px green;color:black" />
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="center-block; roundCorners" ng-model="main.avoid" placeholder="AVOID" style="font-size: x-large; text-align: center; width: 500px; height: 39px;border: solid 2px red;color:black" />
+                                <input id="avoidBox" type="text" class="center-block; roundCorners" ng-model="main.avoid" placeholder="AVOID" style="font-size: x-large; text-align: center; width: 500px; height: 39px;border: solid 2px red;color:black" />
                             </div>
                         </div>
                     </div>
@@ -266,7 +266,7 @@ label {
                                 <span class="input-group-btn">
                                   <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goHome()" uib-tooltip="Go to Start" tooltip-class="customClass">
                                   <span class="glyphicon glyphicon-home" aria-hidden="true"></button>
-                                  <button class="btn btn-default" type="button" ng-show="main.isTestNameButtons"  uib-tooltip="Reset the Slide" tooltip-class="customClass" ng-click="main.resetSlide()">
+                                  <button id="reset" class="btn btn-default" type="button" ng-show="main.isTestNameButtons"  uib-tooltip="Reset the Slide" tooltip-class="customClass" ng-click="main.resetSlide()">
                                     <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
                                   </button>
                                 </span>
@@ -290,7 +290,7 @@ label {
                                 <span id="navright" class="glyphicon glyphicon-chevron-right" aria-hidden="true">
                     </span>
                             </button>
-                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goToSummarySlide()"  uib-tooltip="Go to Summary" tooltip-class="customClassForBiggerTool">
+                            <button id="goesToSummary" type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goToSummarySlide()"  uib-tooltip="Go to Summary" tooltip-class="customClassForBiggerTool">
                                 <span>{{main.pageNumber}} / {{main.totalOfTestNames}}
                     </span>
                             </button>
@@ -316,7 +316,7 @@ label {
                                     <span class="badge label-and-badge-green font-style-for-label-badges" ng-click="main.getRetainedNames()">{{main.retainedNameCount}}</span>
                                 </div>
                             </div>
-                            <div class="row pointer" ng-click="main.getNegativesNames()">
+                            <div id="showNegativeNames" class="row pointer" ng-click="main.getNegativesNames()">
                                 <div class="col-md-2">
                                     <span class="label font-style-for-label-badges label-and-badge-purple label-style">Reconsider</span>
                                 </div>
@@ -342,7 +342,7 @@ label {
                               <div class="color-green col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayRetained" ng-repeat="namesRetained in main.retainedNames" ng-click="main.selectNameFromSummary(namesRetained)">{{namesRetained}}</div>
                               <div class="color-green col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
                               <div class="color-dark-blue col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
-                              <div class="color-purple col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
+                              <div id="clickNegativeName" class="color-purple col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
                               <div class="color-light-blue col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames">{{newname}}</div>
                             </div>
                         </uib-tab>
