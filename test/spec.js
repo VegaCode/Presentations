@@ -24,7 +24,7 @@ describe('Protractor Demo App', function() {
 //     });
     
 //   });
-
+// browser.debugger() ****************  LOOK INTO  THIS
 
  var el;
   it('should have a title and then displays menu', function() {

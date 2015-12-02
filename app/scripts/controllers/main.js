@@ -724,11 +724,22 @@ self.greeting = 'Hello World!';
                         selectColumnSize(newName.length);
                       });
                 };
+
+                var getNotesFromServer = function (){
+                            var apiCall = 'api/NW_GetNotes?projectid=';
+                           $http.get(webBaseUrl +  apiCall + projectId ).success(function(rootExplore){
+                            self.dataExploreInput = rootExplore[0].NotesExplore;
+                            self.dataAvoidInput = rootExplore[0].NotesAvoid;
+                          });
+
+                };
+
                 self.getrootsToExplores = function(){
-                          resetBooleanSummarySlideVars();
-                          self.displayRootExplore = true;
-                          var apiCall = 'api/NW_GetSummary?instruccion=';
-                         var instruccion = projectId + ",'Roots to Explore'";
+                           getNotesFromServer();
+                           resetBooleanSummarySlideVars();
+                           self.displayRootExplore = true;
+                           var apiCall = 'api/NW_GetSummary?instruccion=';
+                           var  instruccion = projectId + ",'Roots to Explore'";
                            $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootExplore){
                             for(var i = 0; i<rootExplore.length; i++){
                                 self.rootsToExplore.push(rootExplore[i].Name.trim());
@@ -737,7 +748,9 @@ self.greeting = 'Hello World!';
                           });
                 };
 
+
                 self.getrootsToAvoids = function(){
+                    getNotesFromServer();
                         resetBooleanSummarySlideVars();
                         self.displayRootAvoid = true;
                         var apiCall = 'api/NW_GetSummary?instruccion=';
