@@ -774,6 +774,7 @@ self.greeting = 'Hello World!';
         self.goHome();
 
         self.goToSummarySlide = function() {
+            self.goNextSlide();
             setProgressBarsSummary();
             self.selectSlide(_nameSummarySlideNumber - 1);
         }

@@ -36,5 +36,6 @@
   },
   "scripts": {
     "test": "grunt test"
+    "test-e2e" " protractor test/config.js --chrome"
   }
 }
