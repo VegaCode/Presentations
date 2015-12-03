@@ -417,7 +417,7 @@ self.greeting = 'Hello World!';
                    };
 
         self.changeToDefault = function(){
-                var temporaryBackGround;
+              var temporaryBackGround;
               if (!(self.BackGroundName === 'Default')){
                 temporaryBackGround = self.BackGroundName;
                 self.backGroundChanged('Default');
@@ -777,8 +777,6 @@ self.greeting = 'Hello World!';
             self.goNextSlide();
             setProgressBarsSummary();
             self.selectSlide(_nameSummarySlideNumber - 1);
-            var slideModel = JSON.stringify(new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Last'));
-            getTestNamesObject(slideModel);
         }
 
         self.goNextSlide = function() {
