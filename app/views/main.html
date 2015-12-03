@@ -271,7 +271,7 @@ label {
                                   </button>
                                 </span>
                                 <div class="dropup">
-                                <input type="text" ng-model="main.selectedName" style="height: 100%;" ng-keyup="main.logKey($event)" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" class="form-control text-primary" placeholder="Search name">
+                                <input type="text" ng-model="main.selectedName" style="height: 100%;" ng-keyup="main.logKey($event)" typeahead="name for name in main.slidesNames | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" class="form-control text-primary" placeholder="Search name">
                               </div>
                                 <span class="input-group-btn" >
                                  <button class="btn btn-default" type="button" ng-show="main.isTestNameButtons"  ng-click="main.changeToDefault()" uib-tooltip="Remove Image" tooltip-class="customClass">
