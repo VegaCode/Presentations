@@ -11,7 +11,13 @@
 angular.module('nwApp')
 .controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides', 'GetTestNames', 'ResetProject', 'GetRetainedNames',
     function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides,GetTestNames, ResetProject, GetRetainedNames) {
-            var _nameSummarySlideNumber , _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo, _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames, _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames;
+            var    _nameSummarySlideNumber , _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, 
+                    _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo,
+                    _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames,
+                     _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, 
+                     _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, 
+                     _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames, _IsTheAppStarted , 
+                     _IsBackgroundDefault, _TemporaryBackGround;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
            //webBaseUrl = 'http://localhost:64378/';
@@ -25,11 +31,13 @@ angular.module('nwApp')
             self.isJapanese = false; // CA- Added variable to turn on the katakana input trying to push
             self.displayMenu = false;
             self.negativeKanaNames = '';
+            _IsTheAppStarted = false;
+            _IsBackgroundDefault = false;
 
             self.testName = [];
             self.isOverview = false;
 
-self.greeting = 'Hello World!';
+            self.greeting = 'Hello World!';//****************************** test Karma variable 
             self.positiveCount = 0;
             self.neutralCount = 0;
             self.negativeCount = 0;
@@ -61,7 +69,7 @@ self.greeting = 'Hello World!';
                    };
             self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
                                                         'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',  'Cardiology','Cognition',
-                                                        'OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue' ];
+                                                        'OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue', 'Molecules' ];
 
             self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore','Calibri'];
 
@@ -416,16 +424,18 @@ self.greeting = 'Hello World!';
 
                    };
 
-        self.changeToDefault = function(){
-              var temporaryBackGround;
+
+
+        self.changeToDefault = function(){                         
               if (!(self.BackGroundName === 'Default')){
-                temporaryBackGround = self.BackGroundName;
+                _TemporaryBackGround = self.BackGroundName;
                 self.backGroundChanged('Default');
               }
               else{
-                self.backGroundChanged(temporaryBackGround);
-                temporaryBackGround ='';
+                self.backGroundChanged(_TemporaryBackGround);
+                _TemporaryBackGround ='';
               }
+              (_IsBackgroundDefault === true) ? _IsBackgroundDefault =false: _IsBackgroundDefault=true;
         };
 
         self.mustRank = function(){
@@ -503,17 +513,43 @@ self.greeting = 'Hello World!';
                             _TestNameFontColor = slideObject[0].TestNameFontColor;_TestNameFontFamily = slideObject[0].TestNameFontFamily;
                             _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive;
 
-                            if(slideObject[0].SlideBGFileName === ""){
-                              self.BackGround = slideObject[0].TemplateFileName;
-                            }else {
-                              self.BackGround = slideObject[0].SlideBGFileName;
+                            // check if the _IsBackgroundDefault is false or true to  add/remove the default background
+                            if(_IsBackgroundDefault === false){
+                                    if(slideObject[0].SlideBGFileName === ""){
+                                      self.BackGround = slideObject[0].TemplateFileName;
+                                    }else {
+                                      self.BackGround = slideObject[0].SlideBGFileName;
+                                    }
+                                    self.BackGroundName = _TemplateName;
+                                    if(_TemplateName === 'Billboard' ||_TemplateName ==='SubwayStop'){
+                                         self.whatBackgroundIsIt =true;
+                                     }else{
+                                         self.whatBackgroundIsIt = false;
+                                     }
+
+
+
+                           // color and font settings
+                            self.headerFontFamily= _HeaderFontFamily;
+                            self.headerFontColor= _HeaderFontColor;
+                            self.testNameFontFamily= _TestNameFontFamily;
+                            self.testNameFontColor= _TestNameFontColor;
+                            self.rationaleFontFamily= _RationaleFontFamily;
+                            self.rationaleFontColor=  _RationaleFontColor;
+                            (_Stroke === 'false')?  self.isStrokeIt = false:  self.isStrokeIt = true;
+                            if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};
+                            self.strokeRange = _StrokeRange;
+                            self.strokeColor= _StrokeColor;
+                            self.subRationale = ( _NameRationale.split('$')[1] !== undefined) ? _NameRationale.split('$')[1] : '';
+                            centerTestNames(_SlideDescription);
+                            if(parseInt(self.pageNumber) === 1){
+                              self.progressBarValue = 0;
+                            }else{
+                              self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
                             }
-                            self.BackGroundName = _TemplateName;
-                            if(_TemplateName === 'Billboard' ||_TemplateName ==='SubwayStop'){
-                                 self.whatBackgroundIsIt =true;
-                             }else{
-                                 self.whatBackgroundIsIt = false;
-                             }
+
+
+                                }else{self.BackGround = 'default'};
 
                             if(_SlideType === 'Image'){
                                  self.displayNameGroup = true;
@@ -538,7 +574,6 @@ self.greeting = 'Hello World!';
                             self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
                            (self.isOverlayAvailable === true && _SlideType !== 'Image') ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
 
-
                            ( self.presentTestNamesAtSlide == '')? self.presentTestNamesAtSlide =_SlideNumber : self.presentTestNamesAtSlide = self.presentTestNamesAtSlide;
 
                             self.pageNumber = _SlideNumber;
@@ -561,24 +596,6 @@ self.greeting = 'Hello World!';
                            self.positiveScore = _ToPositive;
                            self.neutralScore = _ToNeutral;
 
-                           // color and font settings
-                            self.headerFontFamily= _HeaderFontFamily;
-                            self.headerFontColor= _HeaderFontColor;
-                            self.testNameFontFamily= _TestNameFontFamily;
-                            self.testNameFontColor= _TestNameFontColor;
-                            self.rationaleFontFamily= _RationaleFontFamily;
-                            self.rationaleFontColor=  _RationaleFontColor;
-                            (_Stroke === 'false')?  self.isStrokeIt = false:  self.isStrokeIt = true;
-                            if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};
-                            self.strokeRange = _StrokeRange;
-                            self.strokeColor= _StrokeColor;
-                            self.subRationale = ( _NameRationale.split('$')[1] !== undefined) ? _NameRationale.split('$')[1] : '';
-                            centerTestNames(_SlideDescription);
-                            if(parseInt(self.pageNumber) === 1){
-                              self.progressBarValue = 0;
-                            }else{
-                              self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
-                            }
             }
 
         self.displaySummarys = function(index){
@@ -625,7 +642,6 @@ self.greeting = 'Hello World!';
 
         self.selectNameFromSummary = function(name){
             var query = projectId+','+"'"+ name +"'";
-
              apiCall = 'api/NW_NamesAndSlides?projectIdAndTestName=';
                   $http.get(webBaseUrl + apiCall + query).success(function(result){
                       setUpTheSlideInfo(result);
@@ -780,11 +796,10 @@ self.greeting = 'Hello World!';
 
  //************ Navigation Methods ***********************************************************************************************************
         self.goHome = function() {
+            if(_IsTheAppStarted)self.goNextSlide();
             var initialSlideModel = JSON.stringify(new slideInfoModel(projectId, 0, '', '', '', '', 'First'));
             getTestNamesObject(initialSlideModel);
         }
-
-        self.goHome();
 
         self.goToSummarySlide = function() {
             self.goNextSlide();
@@ -801,6 +816,9 @@ self.greeting = 'Hello World!';
             }
         }
 
+        // leave the code in this position
+         self.goHome();
+        _IsTheAppStarted =true
         self.goPrevSlide = function() {
             var slideModel = JSON.stringify(new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
             getTestNamesObject(slideModel);
@@ -809,6 +827,7 @@ self.greeting = 'Hello World!';
         self.selectedName = "";
 
         self.onSelect = function(slideName) {
+
             self.selectedName = slideName;
             var query = projectId + ',' + "'" + slideName + "'";
             apiCall = 'api/NW_NamesAndSlides?projectIdAndTestName=';

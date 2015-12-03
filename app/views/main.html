@@ -183,9 +183,9 @@ label {
                         </div>
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}"  ng-show="!main.displayNameGroup">
                             <div class="btn-group" role="group">
-                                <button id="buttonTally" type="button" class="btn btn-default glyphicon " ng-click="main.tally()" style="font-family:arial">Tally
+                                <button blur-me id="buttonTally" type="button" class="btn btn-default glyphicon " ng-click="main.tally()" style="font-family:arial">Tally
                                 </button>
-                                <button id="cogSettings" type="button" class="btn btn-default glyphicon glyphicon-cog" data-toggle="dropdown" ng-click="main.showThemeOptions()"></button>
+                                <button blur-me id="cogSettings" type="button" class="btn btn-default glyphicon glyphicon-cog" data-toggle="dropdown" ng-click="main.showThemeOptions()"></button>
                             </div>
                             <div class="row" ng-show="main.displayTally">
                                 <div class="col-md-8">
@@ -255,18 +255,18 @@ label {
                 <div class="col-md-12" style="position: relative; bottom: {{main.controlsPosition}}px;">
                     <div class="col-md-4">
                         <div class="btn-group"  ng-show="!main.displayNameGroup">
-                            <button type="button" class="btn btn-default" aria-label="Left Align">
+                            <button blur-me type="button" class="btn btn-default" aria-label="Left Align">
                                 <span aria-hidden="true"></span>Propietary & Confidential</button>
-                            <button type="button" class="btn btn-default" aria-label="Center Align" ng-show="main.nameNotation.length > 0">
+                            <button blur-me type="button" class="btn btn-default" aria-label="Center Align" ng-show="main.nameNotation.length > 0">
                                 <span aria-hidden="true"></span>{{main.nameNotation}}</button>
                         </div>
                     </div>
                  <div class="col-md-4 text-center" ng-show="main.displayMenu">
                             <div class="input-group">
                                 <span class="input-group-btn">
-                                  <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goHome()" uib-tooltip="Go to Start" tooltip-class="customClass">
+                                  <button blur-me type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goHome()" uib-tooltip="Go to Start" tooltip-class="customClass">
                                   <span class="glyphicon glyphicon-home" aria-hidden="true"></button>
-                                  <button id="reset" class="btn btn-default" type="button" ng-show="main.isTestNameButtons"  uib-tooltip="Reset the Slide" tooltip-class="customClass" ng-click="main.resetSlide()">
+                                  <button blur-me id="reset" class="btn btn-default" type="button" ng-show="main.isTestNameButtons"  uib-tooltip="Reset the Slide" tooltip-class="customClass" ng-click="main.resetSlide()">
                                     <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
                                   </button>
                                 </span>
@@ -274,7 +274,7 @@ label {
                                 <input type="text" ng-model="main.selectedName" style="height: 100%;" ng-keyup="main.logKey($event)" typeahead="name for name in main.testName | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" class="form-control text-primary" placeholder="Search name">
                               </div>
                                 <span class="input-group-btn" >
-                                 <button class="btn btn-default" type="button" ng-show="main.isTestNameButtons"  ng-click="main.changeToDefault()" uib-tooltip="Remove Image" tooltip-class="customClass">
+                                 <button blur-me class="btn btn-default" type="button" ng-show="main.isTestNameButtons"  ng-click="main.changeToDefault()" uib-tooltip="Remove Image" tooltip-class="customClass">
                                    <span class="glyphicon glyphicon-picture"  aria-hidden="true" ></span>
                                  </button>
                                 </span>
@@ -282,15 +282,15 @@ label {
                     </div>
                     <div class="col-md-4" ng-show="main.displayMenu">
                         <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goPrevSlide()" uib-tooltip="Move Left" tooltip-class="customClass">
+                            <button blur-me type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goPrevSlide()" uib-tooltip="Move Left" tooltip-class="customClass">
                                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">
                     </span>
                             </button>
-                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goNextSlide()" uib-tooltip="Move Right" tooltip-class="customClass">
-                                <span id="navright" class="glyphicon glyphicon-chevron-right" aria-hidden="true">
+                            <button blur-me type="button" class="btn btn-default" aria-label="Left Align"  ng-click="main.goNextSlide()" uib-tooltip="Move Right" tooltip-class="customClass">
+                                <span id="navright" class="glyphicon glyphicon-chevron-right"  aria-hidden="true">
                     </span>
                             </button>
-                            <button id="goesToSummary" type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goToSummarySlide()"  uib-tooltip="Go to Summary" tooltip-class="customClassForBiggerTool">
+                            <button blur-me id="goesToSummary" type="button" class="btn btn-default"  aria-label="Left Align" ng-click="main.goToSummarySlide()"  uib-tooltip="Go to Summary" tooltip-class="customClassForBiggerTool">
                                 <span>{{main.pageNumber}} / {{main.totalOfTestNames}}
                     </span>
                             </button>
@@ -352,7 +352,7 @@ label {
                                     <textarea class="color-dark-blue textarea-style" ng-value="main.dataExploreInput" ng-model="main.dataExploreInput" placeholder="Please type additional comments...">{{main.dataExploreInput}}</textarea>
                                 </div>
                                 <div class="col-md-1">
-                                    <button class="btn btn-success pull-right button-save" ng-click="main.saveExploreComments(main.dataExploreInput)">Save</button>
+                                    <button blur-me class="btn btn-success pull-right button-save" ng-click="main.saveExploreComments(main.dataExploreInput)">Save</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -367,7 +367,7 @@ label {
                                     <textarea class="color-dark-blue textarea-style" ng-value="main.dataAvoidInput"   ng-model="main.dataAvoidInput" placeholder="Please type additional comments...">{{main.dataAvoidInput}}</textarea>
                                 </div>
                                 <div class="col-md-1">
-                                    <button class="btn btn-success pull-right button-save"  ng-click="main.saveAvoidComments(main.dataAvoidInput)">Save</button>
+                                    <button blur-me class="btn btn-success pull-right button-save"  ng-click="main.saveAvoidComments(main.dataAvoidInput)">Save</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -473,10 +473,10 @@ label {
     <hr>
     <div class="row">
         <div class="col-md-6 ">
-            <button class="btn btn-success pull-left" ng-click="main.resetingProjects()">Reset All</button>
+            <button blur-me class="btn btn-success pull-left" ng-click="main.resetingProjects()">Reset All</button>
         </div>
         <div class="col-md-6 ">
-            <button class="btn btn-success pull-right" ng-click="main.saveThemeSettings()">Save</button>
+            <button blur-me class="btn btn-success pull-right" ng-click="main.saveThemeSettings()">Save</button>
         </div>
     </div>
     <hr>
