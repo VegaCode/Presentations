@@ -22,7 +22,7 @@ angular.module('nwApp')
             self.slides = [];
             self.progressBarValue = 0;
             self.presentTestNamesAtSlide = '';
-            self.isJapanese = false; // CA- Added variable to turn on the katakana input
+            self.isJapanese = false; // CA- Added variable to turn on the katakana input trying to push
             self.displayMenu = false;
             self.negativeKanaNames = '';
 
