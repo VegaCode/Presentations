@@ -34,6 +34,7 @@ angular.module('nwApp')
             _IsTheAppStarted = false;
             _IsBackgroundDefault = false;
 
+            self.slidesNames = [];
             self.testName = [];
             self.isOverview = false;
 
@@ -164,6 +165,11 @@ angular.module('nwApp')
              $http.get(webBaseUrl + apicall + projectId).success(function(result){
                    _nameSummarySlideNumber = result[0].SummarySlide;
                    self.slides = result;
+
+                   result.map(function(obj){
+                     self.slidesNames.push(obj.SlideDescription);
+                   });
+
                    // slide show configuration settings
                    $timeout(function() {
                      Reveal.initialize({
@@ -828,6 +834,21 @@ angular.module('nwApp')
 
         self.onSelect = function(slideName) {
 
+          var foundMatch = false;
+          var amount = 0;
+          if(self.testName.indexOf(slideName) < 0){
+            while(foundMatch == false){
+              if(slideName == self.slides[amount].SlideDescription){
+                var numberOfPage = self.slides[amount].$id;
+                self.selectSlide(parseInt(numberOfPage)-1);
+                foundMatch = true;
+              }else {
+                amount += 1;
+                foundMatch = false;
+              }
+            }
+          }else{
+
             self.selectedName = slideName;
             var query = projectId + ',' + "'" + slideName + "'";
             apiCall = 'api/NW_NamesAndSlides?projectIdAndTestName=';
@@ -840,6 +861,7 @@ angular.module('nwApp')
             } else {
                 self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
             }
+          }
         };
 
         self.logKey = function(event) {
@@ -848,7 +870,7 @@ angular.module('nwApp')
             }
         }
 
-        // getting the list of test names for the typeahead
+        // this list is to compare with displayable names for typeahead
         apiCall = 'api/NW_Presentation?projectIdForData=';
         $http.get(webBaseUrl + apiCall + projectId).success(function(testnames) {
             testnames.map(function(obj) {
