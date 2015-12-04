@@ -464,6 +464,12 @@ angular.module('nwApp')
                         };
                     };
 
+        var isKatakanaModel = function(name, color){
+          return{
+            "name": name,
+            "color": color
+          };
+        };
 
 // **********  To Set SUMMARY Slides  ****************************************************************************************************
          var setProgressBarsSummary = function(){
@@ -804,7 +810,7 @@ angular.module('nwApp')
 
         self.isKatakanaNegative = function(phonetic,  index){
           if(self.storedKatakana[index] == phonetic){
-            self.storedKatakana.splice(index, 1);
+            self.storedKatakana = ""
           }else{
             self.storedKatakana[index] = phonetic;
           }
