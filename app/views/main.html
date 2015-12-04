@@ -129,10 +129,13 @@ label {
     width: 33%; /* [3] */
     text-align: center;
     font-size: 35px;
+
 }
-.japanese-font-family{
-  font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+.red {
+    color: red;
 }
+
+
 </style>
 
 <!-- Slide Show -->
@@ -227,26 +230,12 @@ label {
                                 {{main.nameCandidate}}
                             </div>
                         </div>
-                        <div class="row pointer" style="font-size: 35px;" ng-show="!main.displayNameGroup">
-                      		<div class="col-md-1">
-                      		</div>
-                      		<div class="col-md-2" ng-model="main.katakanaName" ng-click="main.isKatakanaNegative()">
-                      			 <span class="label" style="color: #{{main.katakanaColor1}};">カタカナ</span>
-                      		</div>
-                      		<div class="col-md-2" ng-model="main.katakanaName2" ng-click="main.isKatakanaNegative2()">
-                      			 <span class="label" style="color: #{{main.katakanaColor2}};">カタカナ</span>
-                      		</div>
-                      		<div class="col-md-2" ng-model="main.katakanaName3" ng-click="main.isKatakanaNegative3()">
-                      			 <span class="label" style="color: #{{main.katakanaColor3}};">カタカナ</span>
-                      		</div>
-                      		<div class="col-md-2" ng-model="main.katakanaName4" ng-click="main.isKatakanaNegative4()">
-                      			 <span class="label" style="color: #{{main.katakanaColor4}};">カタカナ</span>
-                      		</div>
-                      		<div class="col-md-2" ng-model="main.katakanaName5" ng-click="main.isKatakanaNegative5()">
-                      			 <span class="label" style="color: #{{main.katakanaColor5}};">カタカナ</span>
-                      		</div>
-                      		<div class="col-md-1">
-                      		</div>
+                    <!-- CA- This is to display the phonetics-->
+                        <div class="row pointer" style="font-size: 35px;  display: table; margin: 0 auto;" ng-show="!main.displayNameGroup" >		
+                      		<ul class="col-md-2"   style="list-style-type: none;margin: 0;padding: 0;min-width: 100%; padding-top: 20px;">
+                      	             <li  ng-repeat="phonetic in main.phonetics"   ng-click="main.isKatakanaNegative($event, phonetic, $index)"  
+                                              ng-model="main.katakanaName" red-me ng-class="{'red' : main.toggle}; " class="label" style="display:inline;">{{phonetic}}</li>
+                      		</ul>                      		
                       	</div>
                     </div>
                     <div class="row bg-primary context-center" style="height:100px; border-radius: 5px; margin:0px;" ng-show="!main.displayNameGroup">
