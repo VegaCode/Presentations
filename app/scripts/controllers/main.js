@@ -11,12 +11,12 @@
 angular.module('nwApp')
 .controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','GetNamesAndSlides', 'GetTestNames', 'ResetProject', 'GetRetainedNames',
     function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, GetNamesAndSlides,GetTestNames, ResetProject, GetRetainedNames) {
-            var    _nameSummarySlideNumber , _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke, 
+            var    _nameSummarySlideNumber , _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke,
                     _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo,
                     _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames,
-                     _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName, 
-                     _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName, 
-                     _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames, _IsTheAppStarted , 
+                     _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName,
+                     _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName,
+                     _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames, _IsTheAppStarted ,
                      _IsBackgroundDefault, _TemporaryBackGround;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
@@ -30,6 +30,10 @@ angular.module('nwApp')
             self.presentTestNamesAtSlide = '';
             self.isJapanese = false; // CA- Added variable to turn on the katakana input trying to push
 
+            self.storedKatakana =[];
+            self.phonetics = ['カタカナ', '片仮名, チャ, チャーシューーシュー' ,'焼賣', '麻將' , 'シューマイ', 'testessssssssss'];
+            self.katakanaColor = '#000000';
+
             self.displayMenu = false;
 
             self.negativeKanaNames = '';
@@ -40,7 +44,7 @@ angular.module('nwApp')
             self.testName = [];
             self.isOverview = false;
 
-            self.greeting = 'Hello World!';//****************************** test Karma variable 
+            self.greeting = 'Hello World!';//****************************** test Karma variable
             self.positiveCount = 0;
             self.neutralCount = 0;
             self.negativeCount = 0;
@@ -427,7 +431,7 @@ angular.module('nwApp')
 
 
 
-        self.changeToDefault = function(){                         
+        self.changeToDefault = function(){
               if (!(self.BackGroundName === 'Default')){
                 _TemporaryBackGround = self.BackGroundName;
                 self.backGroundChanged('Default');
@@ -796,17 +800,16 @@ angular.module('nwApp')
                             }
 
  //************ Navigation Methods ***********************************************************************************************************
-        self.storedKatakana =[];
-        self.toggle =false;
-        self.phonetics = ['カタカナ', '片仮名, チャ, チャーシューーシュー' ,'焼賣', '麻將' , 'シューマイ', 'testessssssssss'];
-        self.katakanaColor1 = self.katakanaColor2 = self.katakanaColor3 = self.katakanaColor4 = self.katakanaColor5 = '#000000';
-        self.katakanaNegative = self.katakanaNegative2 = self.katakanaNegative3 = self.katakanaNegative4 = self.katakanaNegative5 = false;
-        self.isKatakanaNegative = function(element, phonetic,  index){
-            self.toggle =true;
-            var eve = element.target.id;
-            self.storedKatakana.push(self.katakanaName);
+
+
+        self.isKatakanaNegative = function(phonetic,  index){
+          if(self.storedKatakana[index] == phonetic){
+            self.storedKatakana.splice(index, 1);
+          }else{
+            self.storedKatakana[index] = phonetic;
+          }
         }
-    
+
         self.goHome = function() {
             if(_IsTheAppStarted)self.goNextSlide();
             var initialSlideModel = JSON.stringify(new slideInfoModel(projectId, 13, '', '', '', '', 'Next'));
