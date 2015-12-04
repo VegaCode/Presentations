@@ -23,8 +23,8 @@ angular.module('nwApp')
             self.progressBarValue = 0;
             self.presentTestNamesAtSlide = '';
             self.isJapanese = false; // CA- Added variable to turn on the katakana input trying to push
+
             self.displayMenu = false;
-            self.negativeKanaNames = '';
 
             self.slidesNames = [];
             self.testName = [];
@@ -321,16 +321,9 @@ self.greeting = 'Hello World!';
               self.isTextShadow = ''
           };
 
-        var isItJapanese = function(japanese){
-                   if(japanese === true){
-                     self.makeShorterNewNameInput = '6';
-                   }else{
-                     self.makeShorterNewNameInput = '12';
-                   }};
 
         var centerTestNames = function(nameCandidate) {
                // CA- added function above to make sure if it is katakana or not when billboard or subwaystop is displayed
-                        isItJapanese(self.isJapanese);
                         self.testNameWidth= '85';
                     if(_TemplateName === 'Billboard' ||_TemplateName ==='SubwayStop'){
                             self.textAttribute = 'left';
@@ -785,6 +778,62 @@ self.greeting = 'Hello World!';
                             }
 
  //************ Navigation Methods ***********************************************************************************************************
+        self.storedKatakana = [];
+        self.katakanaColor1 = self.katakanaColor2 = self.katakanaColor3 = self.katakanaColor4 = self.katakanaColor5 = '000000';
+        self.katakanaNegative = self.katakanaNegative2 = self.katakanaNegative3 = self.katakanaNegative4 = self.katakanaNegative5 = false;
+        self.katakanaName = self.katakanaName2 = self.katakanaName3 = self.katakanaName4 = self.katakanaName5 = "";
+
+        self.isKatakanaNegative = function(){
+          if(self.katakanaNegative == false){
+            self.katakanaColor1 = 'FF0000';
+            self.katakanaNegative = true;
+            self.storedKatakana.push(self.katakanaName);
+          }else{
+            self.katakanaColor1 = '000000';
+            self.katakanaNegative = false;
+          }
+        }
+        self.isKatakanaNegative2 = function(){
+          if(self.katakanaNegative2 == false){
+            self.katakanaColor2 = 'FF0000';
+            self.katakanaNegative2 = true;
+            self.storedKatakana.push(self.katakanaName2);
+          }else{
+            self.katakanaColor2 = '000000';
+            self.katakanaNegative2 = false;
+          }
+        }
+        self.isKatakanaNegative3 = function(){
+          if(self.katakanaNegative3 == false){
+            self.katakanaColor3 = 'FF0000';
+            self.katakanaNegative3 = true;
+            self.storedKatakana.push(self.katakanaName3);
+          }else{
+            self.katakanaColor3 = '000000';
+            self.katakanaNegative3 = false;
+          }
+        }
+        self.isKatakanaNegative4 = function(){
+          if(self.katakanaNegative4 == false){
+            self.katakanaColor4 = 'FF0000';
+            self.katakanaNegative4 = true;
+            self.storedKatakana.push(self.katakanaName4);
+          }else{
+            self.katakanaColor4 = '000000';
+            self.katakanaNegative4 = false;
+          }
+        }
+        self.isKatakanaNegative5 = function(){
+          if(self.katakanaNegative5 == false){
+            self.katakanaColor5 = 'FF0000';
+            self.katakanaNegative5 = true;
+            self.storedKatakana.push(self.katakanaName5);
+          }else{
+            self.katakanaColor5 = '000000';
+            self.katakanaNegative5 = false;
+          }
+        }
+
         self.goHome = function() {
             var initialSlideModel = JSON.stringify(new slideInfoModel(projectId, 0, '', '', '', '', 'First'));
             getTestNamesObject(initialSlideModel);

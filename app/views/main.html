@@ -130,6 +130,9 @@ label {
     text-align: center;
     font-size: 35px;
 }
+.japanese-font-family{
+  font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
 </style>
 
 <!-- Slide Show -->
@@ -224,6 +227,27 @@ label {
                                 {{main.nameCandidate}}
                             </div>
                         </div>
+                        <div class="row pointer" style="font-size: 35px;" ng-show="!main.displayNameGroup">
+                      		<div class="col-md-1">
+                      		</div>
+                      		<div class="col-md-2" ng-model="main.katakanaName" ng-click="main.isKatakanaNegative()">
+                      			 <span class="label" style="color: #{{main.katakanaColor1}};">カタカナ</span>
+                      		</div>
+                      		<div class="col-md-2" ng-model="main.katakanaName2" ng-click="main.isKatakanaNegative2()">
+                      			 <span class="label" style="color: #{{main.katakanaColor2}};">カタカナ</span>
+                      		</div>
+                      		<div class="col-md-2" ng-model="main.katakanaName3" ng-click="main.isKatakanaNegative3()">
+                      			 <span class="label" style="color: #{{main.katakanaColor3}};">カタカナ</span>
+                      		</div>
+                      		<div class="col-md-2" ng-model="main.katakanaName4" ng-click="main.isKatakanaNegative4()">
+                      			 <span class="label" style="color: #{{main.katakanaColor4}};">カタカナ</span>
+                      		</div>
+                      		<div class="col-md-2" ng-model="main.katakanaName5" ng-click="main.isKatakanaNegative5()">
+                      			 <span class="label" style="color: #{{main.katakanaColor5}};">カタカナ</span>
+                      		</div>
+                      		<div class="col-md-1">
+                      		</div>
+                      	</div>
                     </div>
                     <div class="row bg-primary context-center" style="height:100px; border-radius: 5px; margin:0px;" ng-show="!main.displayNameGroup">
                         <div class="col-md-12 text-default text-center" id="rationale" style="font-family:{{main.rationaleFontFamily}}; color:{{main.rationaleFontColor}};padding-top: 18px;" auto-font-size noSelection>
@@ -234,7 +258,7 @@ label {
                     <!-- CA- This ng-show will work for both regular NW and JP NW -->
                     <div ng-show="!main.displayNameGroup">
                         <div class="row" style="height: 110px; padding:20px 0 0 0;">
-                            <div class="col-md-{{main.makeShorterNewNameInput}}">
+                            <div class="col-md-12">
                                 <input id="newNameBox" type="text" placeholder="New Names" class="roundCorners" ng-model="main.newName" style="font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black" />
                             </div>
                             <div class="col-md-6" ng-show="main.isJapanese === true">
