@@ -554,6 +554,8 @@ angular.module('nwApp')
                             self.strokeColor= _StrokeColor;
                             self.subRationale = ( _NameRationale.split('$')[1] !== undefined) ? _NameRationale.split('$')[1] : '';
                             centerTestNames(_SlideDescription);
+                            self.pageNumber = _SlideNumber;
+
                             if(parseInt(self.pageNumber) === 1){
                               self.progressBarValue = 0;
                             }else{
@@ -587,8 +589,6 @@ angular.module('nwApp')
                            (self.isOverlayAvailable === true && _SlideType !== 'Image') ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
 
                            ( self.presentTestNamesAtSlide == '')? self.presentTestNamesAtSlide =_SlideNumber : self.presentTestNamesAtSlide = self.presentTestNamesAtSlide;
-
-                            self.pageNumber = _SlideNumber;
 
                             self.logoPath = 'images/LogIcons/icon-1' + '.png';
 
@@ -822,7 +822,7 @@ angular.module('nwApp')
 
         self.goHome = function() {
             if(_IsTheAppStarted)self.goNextSlide();
-            var initialSlideModel = JSON.stringify(new slideInfoModel(projectId, 13, '', '', '', '', 'Next'));
+            var initialSlideModel = JSON.stringify(new slideInfoModel(projectId, 0, '', '', '', '', 'Next'));
             getTestNamesObject(initialSlideModel);
         }
 
