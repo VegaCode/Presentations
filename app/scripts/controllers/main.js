@@ -30,10 +30,7 @@ angular.module('nwApp')
             self.presentTestNamesAtSlide = '';
             self.isJapanese = false; // CA- Added variable to turn on the katakana input trying to push
 
-            self.storedKatakana =[];
-            self.KatakanaNegativeFromDB =['カタカナ', '片仮名, チャ, チャーシューーシュー'];
-            self.phonetics = ['カタカナ', '片仮名, チャ, チャーシューーシュー' ,'焼賣', '麻將' , 'シューマイ', 'testessssssssss'];
-            self.katakanaColor = '#000000';
+
 
             self.displayMenu = false;
 
@@ -68,7 +65,6 @@ angular.module('nwApp')
              self.displayRootExplore = false;
              self.displayRootAvoid = false;
              self.displayRetained = false;
-
 
 // **********  Slides ADMIN back end  ****************************************************************************************************
 
@@ -466,13 +462,6 @@ angular.module('nwApp')
                         };
                     };
 
-        var isKatakanaModel = function(name, color){
-          return{
-            "name": name,
-            "katakanaColor": color
-          };
-        };
-
 // **********  To Set SUMMARY Slides  ****************************************************************************************************
          var setProgressBarsSummary = function(){
                     var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
@@ -610,8 +599,12 @@ angular.module('nwApp')
                            self.neutralScore = _ToNeutral;
 
                            //testing for information coming back from DB
-                           self.katakana = isKatakanaModel('カタカナ', 'red');
-                           self.storedKatakana[1] = self.katakana.name;
+                           for(var l = 0; l<self.KatakanaNegativeFromDB.length;l=l+1){
+                             self.katakana = isKatakanaModel(self.KatakanaNegativeFromDB[l], 'red');
+                             self.storedKatakana[l] = self.katakana.name;
+                           }
+
+
             }
 
         self.displaySummarys = function(index){
@@ -812,11 +805,27 @@ angular.module('nwApp')
 
  //************ Navigation Methods ***********************************************************************************************************
 
+        // The information shown below up to the function isKatakanaNegative can be moved to their respective places after review
+
+        self.storedKatakana =[];
+        self.KatakanaNegativeFromDB =['カタカナ', '片仮名, チャ, チャーシューーシュー'];
+        self.phonetics = ['カタカナ', '片仮名, チャ, チャーシューーシュー' ,'焼賣', '麻將' , 'シューマイ', 'testessssssssss'];
+        self.katakanaColor = '#000000';
+
+        var isKatakanaModel = function(name, color){
+         return{
+           "name": name,
+           "katakanaColor": color
+         };
+        };
 
         self.isKatakanaNegative = function(phonetic,  index){
           if(self.storedKatakana[index] == phonetic){
-            self.storedKatakana[index] ="";
-            self.storedKatakana[index] = "";
+            if(self.phonetics[index]==self.KatakanaNegativeFromDB[index]){
+              self.storedKatakana[index] = "";
+            }else{
+              self.storedKatakana[index] = "";
+            }
           }else{
               self.storedKatakana[index] = phonetic;
           }
