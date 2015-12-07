@@ -31,6 +31,7 @@ angular.module('nwApp')
             self.isJapanese = false; // CA- Added variable to turn on the katakana input trying to push
 
             self.storedKatakana =[];
+            self.KatakanaNegativeFromDB =['カタカナ', '片仮名, チャ, チャーシューーシュー'];
             self.phonetics = ['カタカナ', '片仮名, チャ, チャーシューーシュー' ,'焼賣', '麻將' , 'シューマイ', 'testessssssssss'];
             self.katakanaColor = '#000000';
 
@@ -804,7 +805,7 @@ angular.module('nwApp')
 
         self.isKatakanaNegative = function(phonetic,  index){
           if(self.storedKatakana[index] == phonetic){
-            self.storedKatakana.splice(index, 1);
+            self.storedKatakana[index] ="";
           }else{
             self.storedKatakana[index] = phonetic;
           }
