@@ -207,7 +207,8 @@ label {
                                     <label>Neutral
                                     </label>
                                 </div>
-                                <div style="font-size:22px;" class="col-md-4"> <span class="">{{main.neutralScore}}</span>
+                                <div class="col-md-4">
+                                  <span style="font-size:22px;">{{main.neutralScore}}</span>
                                 </div>
                             </div>
                         </div>
@@ -230,19 +231,12 @@ label {
                                 {{main.nameCandidate}}
                             </div>
                         </div>
-                        <!-- <div class="row pointer" style="font-size: 35px;  display: table; margin: 0 auto;" ng-show="!main.displayNameGroup" >
-                              <ul class="col-md-2"   style="list-style-type: none;margin: 0;padding: 0;min-width: 100%; padding-top: 20px;">
+                        <div class="row pointer" style="font-size: 35px;  display: table; margin: 0 auto;" ng-show="!main.displayNameGroup" >
+                              <ul class="col-md-2" style="list-style-type: none;margin: 0;padding: 0;min-width: 100%; padding-top: 20px;">
                                     <li  ng-repeat="phonetic in main.phonetics" ng-click="main.isKatakanaNegative(phonetic, $index)"
-                                          ng-model="main.katakanaName" red-me style="color: {{main.katakanaColor}};" class="label" style="display:inline;">{{phonetic}}
+                                          ng-model="main.katakanaName" red-me style="color: {{(main.KatakanaNegativeFromDB[$index] === main.phonetics[$index]) ? main.katakana.katakanaColor : main.katakanaColor}};" class="label" style="display:inline;">{{phonetic}}
                                     </li>
                               </ul>
-                         </div> -->
-                         <div class="row pointer" style="font-size: 35px;  display: table; margin: 0 auto;" ng-show="!main.displayNameGroup" >
-                               <ul class="col-md-2"   style="list-style-type: none;margin: 0;padding: 0;min-width: 100%; padding-top: 20px;">
-                                     <li  ng-repeat="phonetic in main.phonetics" ng-click="main.isKatakanaNegative(main.katakana.name, $index)"
-                                           ng-model="phonetic"  red-me style="color: {{main.katakana.katakanaColor}};" class="label" style="display:inline;">{{main.katakana.name}}
-                                     </li>
-                               </ul>
                          </div>
                     </div>
                     <div class="row bg-primary context-center" style="height:100px; border-radius: 5px; margin:0px;" ng-show="!main.displayNameGroup">
