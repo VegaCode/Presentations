@@ -37,6 +37,7 @@ angular.module('nwApp')
 
             self.displayMenu = false;
 
+            self.isItRed = false;
             self.negativeKanaNames = '';
             _IsTheAppStarted = false;
             _IsBackgroundDefault = false;
@@ -465,6 +466,12 @@ angular.module('nwApp')
                         };
                     };
 
+        var isKatakanaModel = function(name, color){
+          return{
+            "name": name,
+            "katakanaColor": color
+          };
+        };
 
 // **********  To Set SUMMARY Slides  ****************************************************************************************************
          var setProgressBarsSummary = function(){
@@ -602,6 +609,9 @@ angular.module('nwApp')
                            self.positiveScore = _ToPositive;
                            self.neutralScore = _ToNeutral;
 
+                           //testing for information coming back from DB
+                           self.katakana = isKatakanaModel('カタカナ', 'red');
+                           self.storedKatakana[1] = self.katakana.name;
             }
 
         self.displaySummarys = function(index){
@@ -806,8 +816,9 @@ angular.module('nwApp')
         self.isKatakanaNegative = function(phonetic,  index){
           if(self.storedKatakana[index] == phonetic){
             self.storedKatakana[index] ="";
+            self.storedKatakana[index] = "";
           }else{
-            self.storedKatakana[index] = phonetic;
+              self.storedKatakana[index] = phonetic;
           }
         }
 
