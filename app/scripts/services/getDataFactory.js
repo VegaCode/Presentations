@@ -29,7 +29,7 @@ angular.module('nwApp')
         return factory;
     }]).
     factory('GetTestNames',  [ '$q' , '$http', function GetSlidesFactory($q, $http) {
- var apiCall, deferred, factory,  _getdata, _postdata, _getSumaryNames, _getTestNameByName ;
+ var apiCall, deferred, factory,  _getdata, _getSumaryNames ;
         factory = {};
         deferred = $q.defer();
         _getdata = function(projectid) {
@@ -55,8 +55,7 @@ angular.module('nwApp')
         return factory;
     }]).
 factory('setSettings',  [ '$q' , '$http', function ($q, $http) {
-    var factory, apiCall, deferred, _postdata, _getTemplateConfiguration ;
-      var  self= this;
+    var factory, apiCall, deferred, _postdata;
        factory = {};
        deferred = $q.defer();
       _postdata = function(TemplateObject) {
@@ -88,7 +87,7 @@ factory('setSettings',  [ '$q' , '$http', function ($q, $http) {
           return factory;
       }]).
       factory('GetRetainedNames',  [ '$q' , '$http', function GetRetainedNameFactory($q, $http) {
-        var apiCall, instruccion, deferred, factory,  _getPositiveNames, _postdata, _getNeutralNames, _getNegativeNames, _getNewNames, _getRootsToAvoid, _getRootsToExplore;
+        var apiCall, instruccion, deferred, factory,  _getPositiveNames, _getNeutralNames, _getNegativeNames, _getNewNames, _getRootsToAvoid, _getRootsToExplore;
         //var apiCall, instruccion, deferred, factory,  _getPositiveNames, _postdata, _getNeutralNames, _getNegativeNames, _getNewNames, _getRootsToAvoid, _getRootsToExplore;
           factory = {};
           //deferred = $q.defer();
