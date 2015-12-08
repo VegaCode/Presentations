@@ -323,15 +323,15 @@ angular.module('nwApp')
                     self.strokeColor=  theme[0].StrokeColor;
                     self.isOverlayAvailable = (theme[0].Overlay === 'False')? false : true ;
                     (self.isOverlayAvailable === true ) ? self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' :  self.overlayStyle = '';
-                    centerTestNames(self.nameCandidate);
-                  });
+                    centerTestNames(self.nameCandidate)
+                  })
              };
 
          if(  self.isStrokeIt === true){
             self.isTextShadow = 'text-shadow';
              }else{
-              self.isTextShadow = '';
-          }
+              self.isTextShadow = ''
+          };
 
 
         var centerTestNames = function(nameCandidate) {
@@ -381,7 +381,7 @@ angular.module('nwApp')
                                     break;
                                 case 9:
                                     self.marginLeftTestName = '150';
-                                    break;
+                                    break
                                 case 10:
                                     self.marginLeftTestName = '100';
                                     break;
@@ -498,7 +498,7 @@ angular.module('nwApp')
                     });
 
 
-                 };
+                 }
 
         // for review
         var setUpTheSlideInfo = function(slideObject){
@@ -529,6 +529,8 @@ angular.module('nwApp')
                                          self.whatBackgroundIsIt = false;
                                      }
 
+
+
                            // color and font settings
                             self.headerFontFamily= _HeaderFontFamily;
                             self.headerFontColor= _HeaderFontColor;
@@ -551,7 +553,7 @@ angular.module('nwApp')
                             }
 
 
-                          }else{self.BackGround = 'default';}
+                                }else{self.BackGround = 'default'};
 
                             if(_SlideType === 'Image'){
                                  self.displayNameGroup = true;
@@ -596,9 +598,14 @@ angular.module('nwApp')
                            self.positiveScore = _ToPositive;
                            self.neutralScore = _ToNeutral;
 
-                           self.katakanaObjToDisplay = [];
-                           self.displayKatakana();
-            };
+                           //testing for information coming back from DB
+                           for(var l = 0; l<self.KatakanaNegativeFromDB.length;l=l+1){
+                             self.katakana = isKatakanaModel(self.KatakanaNegativeFromDB[l], 'red');
+                             self.storedKatakana[l] = self.katakana.name;
+                           }
+
+
+            }
 
         self.displaySummarys = function(index){
               if(index === 0){
@@ -609,21 +616,21 @@ angular.module('nwApp')
         };
 
         self.saveExploreComments = function(note){
-              var apiCall = 'api/NW_SaveNotes';
+              var apiCall = 'api/NW_SaveNotes'
               var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Explore'");
-              $http.post(webBaseUrl + apiCall , projectIdAndNote);
+              $http.post(webBaseUrl + apiCall , projectIdAndNote)
                  alertify.confirm('You are about to save').set('onok', function(closeEvent){
                       alertify.alert("Thank you !").set('title', 'Comments are saved');
-                    }).set('oncancel', function(closeEvent){}).set('title', 'Saving Explore Notes');
+                       }).set('oncancel', function(closeEvent){}).set('title', 'Saving Explore Notes')
             };
 
         self.saveAvoidComments = function(note){
-              var apiCall = 'api/NW_SaveNotes';
+              var apiCall = 'api/NW_SaveNotes'
               var projectIdAndNote = JSON.stringify(projectId + ", N'"+ note + "', 'Avoid'");
-              $http.post(webBaseUrl + apiCall , projectIdAndNote);
+              $http.post(webBaseUrl + apiCall , projectIdAndNote)
                alertify.confirm('You are about to save').set('onok', function(closeEvent){
-                      alertify.alert("Thank you !").set('title', 'Comments are saved');
-                    }).set('oncancel', function(closeEvent){}).set('title', 'Saving Avoid Notes');
+                      alertify.alert('Thank you !').set('title', 'Comments are saved');
+                  }).set('oncancel', function(closeEvent){}).set('title', 'Saving Avoid Notes');
             };
 
             var selectColumnSize = function(totalNames){
@@ -640,14 +647,14 @@ angular.module('nwApp')
                         self.columnSize = 3; //4 columns will be generated
                         self.sizeOfFont = '35px';
                       }
-             };
+             }
 
         self.selectNameFromSummary = function(name){
             var query = projectId+','+"'"+ name +"'";
              apiCall = 'api/NW_NamesAndSlides?projectIdAndTestName=';
                   $http.get(webBaseUrl + apiCall + query).success(function(result){
                       setUpTheSlideInfo(result);
-                  });
+                  })
          };
 
         var resetBooleanSummarySlideVars = function(){
@@ -665,13 +672,13 @@ angular.module('nwApp')
                   self.rootsToExplore =[];
                   self.rootsToAvoid = [];
                   self.retainedNames = [];
-                };
+                 }
 
          self.blurEffect= function(e){
                 $('input[type="radio"]').each(function( index ) {
                           $(this).blur();
                         });
-            };
+            }
         //************ Methods to get summary data ***********************************************************************************************************
 
             self.getRetainedNames = function(){
@@ -793,21 +800,19 @@ angular.module('nwApp')
                                              }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
                                        }).error(function(err) {
                                            return err;
-                                        });
-                            };
+                                        })
+                            }
 
  //************ Navigation Methods ***********************************************************************************************************
 
         // The information shown below up to the function isKatakanaNegative can be moved to their respective places after review
 
-        self.sendStoredKatakana =[];
-        self.katakanaObjToDisplay = [];
-        self.katakanaColor = '#000000';
+        self.storedKatakana =[];
         self.KatakanaNegativeFromDB =['カタカナ', '片仮名, チャ, チャーシューーシュー'];
         self.phonetics = ['カタカナ', '片仮名, チャ, チャーシューーシュー' ,'焼賣', '麻將' , 'シューマイ', 'testessssssssss'];
+        self.katakanaColor = '#000000';
 
-
-        var katakanaModel = function(name, color){
+        var isKatakanaModel = function(name, color){
          return{
            "name": name,
            "katakanaColor": color
@@ -815,41 +820,28 @@ angular.module('nwApp')
         };
 
         self.isKatakanaNegative = function(phonetic,  index){
-          if(self.sendStoredKatakana[index] == phonetic){
+          if(self.storedKatakana[index] == phonetic){
             if(self.phonetics[index]==self.KatakanaNegativeFromDB[index]){
-              self.sendStoredKatakana[index] = "";
+              self.storedKatakana[index] = "";
             }else{
-              self.sendStoredKatakana[index] = "";
+              self.storedKatakana[index] = "";
             }
           }else{
-            self.sendStoredKatakana[index] = phonetic;
+              self.storedKatakana[index] = phonetic;
           }
-        };
-
-        self.displayKatakana = function(){
-          self.phonetics.map(function(obj){
-            var isKatakanaEqual = self.KatakanaNegativeFromDB.indexOf(obj);
-            if(isKatakanaEqual >= 0){
-              var newKatakanaObj = new katakanaModel(obj, 'red');
-              self.katakanaObjToDisplay.push(newKatakanaObj);
-            }else{
-              var newKatakanaObj = new katakanaModel(obj, 'black');
-              self.katakanaObjToDisplay.push(newKatakanaObj);
-            }
-          });
-        };
+        }
 
         self.goHome = function() {
             if(_IsTheAppStarted)self.goNextSlide();
             var initialSlideModel = JSON.stringify(new slideInfoModel(projectId, 0, '', '', '', '', 'Next'));
             getTestNamesObject(initialSlideModel);
-        };
+        }
 
         self.goToSummarySlide = function() {
             self.goNextSlide();
             setProgressBarsSummary();
             self.selectSlide(_nameSummarySlideNumber - 1);
-        };
+        }
 
         self.goNextSlide = function() {
             var slideModel = JSON.stringify(new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next'));
@@ -858,15 +850,15 @@ angular.module('nwApp')
             } else {
                 getTestNamesObject(slideModel);
             }
-        };
+        }
 
         // leave the code in this position
          self.goHome();
-        _IsTheAppStarted =true;
+        _IsTheAppStarted =true
         self.goPrevSlide = function() {
             var slideModel = JSON.stringify(new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
             getTestNamesObject(slideModel);
-        };
+        }
 
         self.selectedName = "";
 
@@ -892,7 +884,7 @@ angular.module('nwApp')
             apiCall = 'api/NW_NamesAndSlides?projectIdAndTestName=';
             $http.get(webBaseUrl + apiCall + query).success(function(result) {
                 setUpTheSlideInfo(result);
-            });
+            })
 
             if (parseInt(self.pageNumber) === 1) {
                 self.progressBarValue = 0;
@@ -906,7 +898,7 @@ angular.module('nwApp')
             if (event.keyCode === 13) {
                 self.onSelect(self.selectedName);
             }
-        };
+        }
 
         // this list is to compare with displayable names for typeahead
         apiCall = 'api/NW_Presentation?projectIdForData=';
@@ -925,7 +917,7 @@ angular.module('nwApp')
 
         self.tally = function() {
             self.displayTally = true;
-        };
+        }
 
  //************ Cheat Sheet  ***********************************************************************************************************
                 hotkeys.add({
