@@ -233,8 +233,8 @@ label {
                         </div>
                         <div class="row pointer" style="font-size: 35px;  display: table; margin: 0 auto;" ng-show="!main.displayNameGroup" >
                               <ul class="col-md-2" style="list-style-type: none;margin: 0;padding: 0;min-width: 100%; padding-top: 20px;">
-                                    <li  ng-repeat="phonetic in main.phonetics" ng-click="main.isKatakanaNegative(phonetic, $index)"
-                                          ng-model="main.katakanaName" red-me style="color: {{(main.KatakanaNegativeFromDB[$index] === main.phonetics[$index]) ? main.katakana.katakanaColor : main.katakanaColor}};" class="label" style="display:inline;">{{phonetic}}
+                                    <li  ng-repeat="phoneticObj in main.katakanaObjToDisplay" ng-click="main.isKatakanaNegative(phoneticObj.name, $index)"
+                                          ng-model="phoneticObj.name" red-me style="display:inline; color: {{(main.KatakanaNegativeFromDB[$index] === main.phonetics[$index]) ? phoneticObj.katakanaColor : main.katakanaColor = '#000000'}};" class="label">{{phoneticObj.name}}
                                     </li>
                               </ul>
                          </div>
