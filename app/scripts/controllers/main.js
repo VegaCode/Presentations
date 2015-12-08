@@ -452,13 +452,13 @@ angular.module('nwApp')
 
         var slideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
                         return {
-                            "presentationid": presentationid,
-                            "slideNumber": slideNumber,
-                            "NameRanking": NameRanking,
-                            "NewNames": NewNames,
-                            "NamesToExplore": NamesToExplore,
-                            "NamesToAvoid": NamesToAvoid,
-                            "Direction": Direction
+                            'presentationid': presentationid,
+                            'slideNumber': slideNumber,
+                            'NameRanking': NameRanking,
+                            'NewNames': NewNames,
+                            'NamesToExplore': NamesToExplore,
+                            'NamesToAvoid': NamesToAvoid,
+                            'Direction': Direction
                         };
                     };
 
