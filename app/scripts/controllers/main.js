@@ -17,7 +17,7 @@ angular.module('nwApp')
                      _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName,
                      _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName,
                      _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames, _IsTheAppStarted ,
-                     _IsBackgroundDefault, _TemporaryBackGround;
+                     _IsBackgroundDefault, _TemporaryBackGround, _KanaNames, _KanaNamesNegative, _PresentationType;
             var candidateNames, projectIdPrefixed, storeKey, projectId,pageNumber, apiCall, webBaseUrl;
             var self = this;
            //webBaseUrl = 'http://localhost:64378/';
@@ -28,9 +28,16 @@ angular.module('nwApp')
             self.slides = [];
             self.progressBarValue = 0;
             self.presentTestNamesAtSlide = '';
-            self.isJapanese = false; // CA- Added variable to turn on the katakana input trying to push
 
-
+             // CA- Added variable to turn on the katakana input trying to push
+            self.isJapanese = false;
+            self.sendStoredKatakana =[];
+            self.katakanaObjToDisplay = [];
+            self.katakanaColor = '#000000';
+            // self.KatakanaNegativeFromDB =['カタカナ', 'チャーシューー'];
+            self.KatakanaNegativeFromDB =[];
+            // self.phonetics = ['カタカナ', 'チャーシューー' ,'いいえ', '麻將' , 'シューマイ', 'こんにちは'];
+            self.phonetics = [];
 
             self.displayMenu = false;
 
@@ -169,7 +176,6 @@ angular.module('nwApp')
              $http.get(webBaseUrl + apicall + projectId).success(function(result){
                    _nameSummarySlideNumber = result[0].SummarySlide;
                    self.slides = result;
-
                    result.map(function(obj){
                      self.slidesNames.push(obj.SlideDescription);
                    });
@@ -317,8 +323,8 @@ angular.module('nwApp')
                     self.headerFontColor  = theme[0].HeaderFontColor;
                     self.headerFontFamily = theme[0].HeaderFontFamily;
                     self.nameNotation = theme[0].NameNotation;
-                    (theme[0].Stroke === 'false')? self.isStrokeIt = false : self.isStrokeIt = true;
-                    if(self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''}
+                     (theme[0].Stroke === 'false')? self.isStrokeIt = false : self.isStrokeIt = true;
+                    if(self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};
                     self.strokeRange =  theme[0].StrokeRange;
                     self.strokeColor=  theme[0].StrokeColor;
                     self.isOverlayAvailable = (theme[0].Overlay === 'False')? false : true ;
@@ -451,16 +457,24 @@ angular.module('nwApp')
         };
 
         var slideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
-                        return {
-                            "presentationid": presentationid,
-                            "slideNumber": slideNumber,
-                            "NameRanking": NameRanking,
-                            "NewNames": NewNames,
-                            "NamesToExplore": NamesToExplore,
-                            "NamesToAvoid": NamesToAvoid,
-                            "Direction": Direction
-                        };
-                    };
+          return {
+              'presentationid': presentationid,
+              'slideNumber': slideNumber,
+              'NameRanking': NameRanking,
+              'NewNames': NewNames,
+              'NamesToExplore': NamesToExplore,
+              'NamesToAvoid': NamesToAvoid,
+              'Direction': Direction
+          };
+        };
+
+        //made K start as caps since program recommends constructors to be initialized with a cap letter
+        var KatakanaModel = function(name, color){
+         return{
+           'name': name,
+           'katakanaColor': color
+         };
+        };
 
 // **********  To Set SUMMARY Slides  ****************************************************************************************************
          var setProgressBarsSummary = function(){
@@ -513,7 +527,7 @@ angular.module('nwApp')
                             _SlideDescription = slideObject[0].SlideDescription;_SlideNumber = slideObject[0].SlideNumber;_SlideType = slideObject[0].SlideType;
                             _TemplateFileName = slideObject[0].TemplateFileName;_TemplateId = slideObject[0].TemplateId;_TemplateName = slideObject[0].TemplateName;
                             _TestNameFontColor = slideObject[0].TestNameFontColor;_TestNameFontFamily = slideObject[0].TestNameFontFamily;
-                            _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive;
+                            _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive; _KanaNames = slideObject[0].KanaNames; _KanaNamesNegative = slideObject[0].KanaNamesNegative; _PresentationType = slideObject[0].PresentationType;
 
                             // check if the _IsBackgroundDefault is false or true to  add/remove the default background
                             if(_IsBackgroundDefault === false){
@@ -543,6 +557,11 @@ angular.module('nwApp')
                             self.subRationale = ( _NameRationale.split('$')[1] !== undefined) ? _NameRationale.split('$')[1] : '';
                             centerTestNames(_SlideDescription);
                             self.pageNumber = _SlideNumber;
+
+                            if(_PresentationType === "Normal"){
+                              self.KatakanaNegativeFromDB = _KanaNamesNegative.split(",");
+                              self.phonetics = _KanaNames.split(",");
+                            }
 
                             if(parseInt(self.pageNumber) === 1){
                               self.progressBarValue = 0;
@@ -596,6 +615,7 @@ angular.module('nwApp')
                            self.positiveScore = _ToPositive;
                            self.neutralScore = _ToNeutral;
 
+                           self.sendStoredKatakana = [];
                            self.katakanaObjToDisplay = [];
                            self.displayKatakana();
             };
@@ -736,9 +756,9 @@ angular.module('nwApp')
                       var apiCall = 'api/NW_GetSummary?instruccion=';
                      var instruccion = projectId + ",'New Names'";
                      $http.get(webBaseUrl +  apiCall + instruccion ).success(function(newName){
-                        for(var i = 0; i<newName.length; i++){
-                            self.newNames.push(newName[i].Name);
-                        }
+                        newName.map(function(obj) {
+                            self.newNames.push(obj);
+                        });
                         selectColumnSize(newName.length);
                       });
                 };
@@ -759,9 +779,9 @@ angular.module('nwApp')
                            var apiCall = 'api/NW_GetSummary?instruccion=';
                            var  instruccion = projectId + ",'Roots to Explore'";
                            $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootExplore){
-                            for(var i = 0; i<rootExplore.length; i++){
-                                self.rootsToExplore.push(rootExplore[i].Name.trim());
-                            }
+                            rootExplore.map(function(obj) {
+                                self.rootsToExplore.push(obj);
+                            });
                             selectColumnSize(rootExplore.length);
                           });
                 };
@@ -769,16 +789,16 @@ angular.module('nwApp')
 
                 self.getrootsToAvoids = function(){
                     getNotesFromServer();
-                        resetBooleanSummarySlideVars();
-                        self.displayRootAvoid = true;
-                        var apiCall = 'api/NW_GetSummary?instruccion=';
-                         var instruccion = projectId +  ", 'Roots to Avoid'";
-                         $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootAvoid){
-                        for(var i = 0; i<rootAvoid.length; i++){
-                            self.rootsToAvoid.push(rootAvoid[i].Name);
-                        }
-                        selectColumnSize(rootAvoid.length);
+                    resetBooleanSummarySlideVars();
+                    self.displayRootAvoid = true;
+                    var apiCall = 'api/NW_GetSummary?instruccion=';
+                    var instruccion = projectId +  ", 'Roots to Avoid'";
+                    $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootAvoid){
+                      rootAvoid.map(function(obj) {
+                      self.rootsToAvoid.push(obj);
                       });
+                      selectColumnSize(rootAvoid.length);
+                    });
                 };
 
 
@@ -797,23 +817,6 @@ angular.module('nwApp')
                             };
 
  //************ Navigation Methods ***********************************************************************************************************
-
-        // The information shown below up to the function isKatakanaNegative can be moved to their respective places after review
-
-        self.sendStoredKatakana =[];
-        self.katakanaObjToDisplay = [];
-        self.katakanaColor = '#000000';
-        self.KatakanaNegativeFromDB =['カタカナ', '焼賣'];
-        self.phonetics = ['カタカナ', '片仮名チャーシューーシュー' ,'焼賣', '麻將' , 'シューマイ', 'testes'];
-
-
-        var katakanaModel = function(name, color){
-         return{
-           'name': name,
-           'katakanaColor': color
-         };
-        };
-
         self.isKatakanaNegative = function(phonetic,  index){
           if(self.sendStoredKatakana[index] == phonetic){
             if(self.phonetics[index]==self.KatakanaNegativeFromDB[index]){
@@ -830,11 +833,14 @@ angular.module('nwApp')
           self.phonetics.map(function(obj){
             var isKatakanaEqual = self.KatakanaNegativeFromDB.indexOf(obj);
             if(isKatakanaEqual >= 0){
-              var newKatakanaObj = new katakanaModel(obj, 'red');
+              var newKatakanaObj = new KatakanaModel(obj, 'red');
               self.katakanaObjToDisplay.push(newKatakanaObj);
+              if(self.sendStoredKatakana.indexOf(obj) < 0){
+                self.sendStoredKatakana.push(obj);
+              }
             }else{
-              var newKatakanaObj = new katakanaModel(obj, 'black');
-              self.katakanaObjToDisplay.push(newKatakanaObj);
+              var newKatakanaObj2 = new KatakanaModel(obj, 'black');
+              self.katakanaObjToDisplay.push(newKatakanaObj2);
             }
           });
         };
