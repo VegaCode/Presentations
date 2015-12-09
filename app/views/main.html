@@ -1,0 +1,495 @@
+<style type="text/css">
+.backGroundStyle {
+  border: solid 5px #93A1A1;
+}
+label {
+    font-size: 22px !important;
+    font-weight: 100;
+}
+.roundCorners {
+    border-radius: 5px;
+}
+.noSelection {
+    -webkit-user-select: none;
+    /* webkit (safari, chrome) browsers */
+    -moz-user-select: none;
+    /* mozilla browsers */
+    -khtml-user-select: none;
+    /* webkit (konqueror) browsers */
+    -ms-user-select: none;
+    /* IE10+ */
+}
+.btn-question-style {
+    position: fixed;
+    top: 35px;
+    left: 1075px;
+}
+.settings {
+    float: right;
+    top: 12px;
+    right: 0px;
+    position: fixed;
+}
+.feedBack {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 3px;
+}
+.tab-style span{
+    font-family: calibri;
+    margin-top: 15px;
+}
+.scrollbar-dynamic {
+    max-height: 460px;
+    max-width: 100%;
+    overflow: auto;
+}
+.summary-size-font{
+  font-size: {{main.sizeOfFont}};
+}
+.pointer{
+  cursor: pointer;
+}
+.comment-style-forRow{
+  margin-top: 10px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.textarea-style{
+  width: 100%;
+  height: 40px;
+}
+.button-save{
+  height:40px;
+}
+.dropup ul{
+    bottom:100% !important;
+    top:auto !important;
+}
+.label-style{
+  font-weight: initial;
+}
+/*********** color style STARTS here ************/
+.color-purple{
+  color: #4c0099;
+}
+.color-green{
+  color: #5cb85c;
+}
+.color-light-blue{
+  color: #5bc0de;
+}
+.color-dark-blue{
+ color: #337ab7;
+}
+.label-and-badge-purple{
+ background-color: #4c0099;
+}
+.label-and-badge-green{
+ background-color: #5cb85c;
+}
+.label-and-badge-light-blue{
+ background-color: #5bc0de;
+}
+.label-and-badge-dark-blue{
+ background-color: #337ab7;
+}
+.progress-bar-purple{
+  background-color: #4c0099;
+}
+/************* Color style ENDS here ****************/
+.progress-bar-height{
+  height: 35px;
+}
+.multi-color-bar-font-size{
+  font-size: 25px;
+  text-align: center;
+  line-height: 35px;
+}
+
+.font-style-for-label-badges{
+  font-size: 25px;
+  width: 50%;
+  font-weight: initial;
+}
+.tooltip.customClass .tooltip-inner{
+  width: 100px;
+}
+.tooltip.customClassForBiggerTool .tooltip-inner{
+  width: 125px;
+}
+
+.tabs {
+    margin:  0;
+    padding: 0;
+    list-style: none;
+    display: table; /* [1] */
+    table-layout: fixed; /* [2] */
+    width: 33%; /* [3] */
+    text-align: center;
+    font-size: 35px;
+
+}
+.red {
+    color: red;
+}
+</style>
+
+<!-- Slide Show -->
+<div class="row" ng-show="main.isTesNameTime = main.isOverview" style="    position: fixed; top:-195px; left: 160px;">
+    <div class="col-md-1">
+        <div class="reveal">
+            <div class="slides">
+             <section class="pull-right">
+                <section ng-repeat="slide in  main.slides" style="top: -46px !important; display: block;" data-index="{{$index}}" ng-click="main.selectSlide({{$index}})">
+                    <img ng-src="{{slide.SlideBGFileName}}">
+                    <br>
+                    <h3 ng-show="main.isOveorview" style="color:black" >{{slide.SlideDescription +' '}} {{$index + 1}}
+                    </h3>
+                </section>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- NW -->
+<div class="container-fluid" >
+    <div class="backGroundStyle">
+        <div class="container-fluid" style="background-image: url({{main.BackGround}});
+            !important;color:white; background-repeat: no-repeat; background-size: cover;height:800px;">
+            <div class="row" style="height: 30px;">
+                <div class="col-md-12">
+                    <div class="progress" style="height: 5px;" max="max" value="dynamic">
+                        <div class="progress-bar" role="progressbar" ng-style="{width: main.progressBarValue + '%'}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+                 <div class="row" style="height: 175px;">
+                        <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}" ng-show="!main.displayNameGroup">
+                            <form name="nameRamking" ng-click="main.blurEffect($event)">
+                                <label>
+                                    <input id="positiveRank" class="feedBack" type="radio" name="nameRamking" value="Positive" ng-model="main.nameRamking"> Positive
+                                </label>
+                                <br/>
+                                <label>
+                                    <input id="neutralRank" class="feedBack" type="radio" name="nameRamking" value="Neutral" ng-model="main.nameRamking"> Neutral
+                                </label>
+                                <br/>
+                                <label>
+                                    <input id="negativeRank" class="feedBack" type="radio" name="nameRamking" value="Negative" ng-model="main.nameRamking"> Negative
+                                </label>
+                            </form>
+                        </div>
+                        <div class="col-md-8 text-center" auto-font-size id="category" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}">
+                            {{main.nameCategory}}
+                        </div>
+                        <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}"  ng-show="!main.displayNameGroup">
+                            <div class="btn-group" role="group">
+                                <button id="buttonTally" type="button" class="btn btn-default glyphicon " ng-click="main.tally()" style="font-family:arial">Tally
+                                </button>
+                                <button id="cogSettings" type="button" class="btn btn-default glyphicon glyphicon-cog" data-toggle="dropdown" ng-click="main.showThemeOptions()"></button>
+                            </div>
+                            <div class="row" ng-show="main.displayTally">
+                                <div class="col-md-8">
+                                    <label>Positive
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <span style="font-size:22px;">{{main.positiveScore}}</span>
+                                </div>
+                            </div>
+                            <div class="row" ng-show="main.displayTally">
+                                <div class="col-md-8">
+                                    <label>Neutral
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                  <span style="font-size:22px;">{{main.neutralScore}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="height: 270px;">
+                        <div class="col-md-{{main.columnSet}} col-md-offset-{{main.columnOffSet}}">
+                            <div class="col-md-1 ">
+                                <img ng-show="main.whatBackgroundIsIt" ng-init="boxes=[ {src:'images/LogIcons/icon-1.png'}, {src:'images/box2.png'},  {src:'images/box3.png'}]" width='150' style="margin-top: 10px; margin-left: -{{main.marginLeftImage}}px;" ng-src="{{boxes[0].src}}" />
+                            </div>
+                            <div class="col-md-12 text-{{main.textAttribute}} "
+                                  style="background-image:{{main.overlayStyle}};
+                                  font-family:{{main.testNameFontFamily}};
+                                  {{main.isStrokeIt === true ? 'text-shadow': '' }}:   -{{main.strokeRange}}px  -{{main.strokeRange}}px  0 {{main.strokeColor}},
+                                                        {{main.strokeRange}}px   -{{main.strokeRange}}px  0 {{main.strokeColor}},
+                                                        -{{main.strokeRange}}px  {{main.strokeRange}}px  0 {{main.strokeColor}},
+                                                         {{main.strokeRange}}px  {{main.strokeRange}}px   0 {{main.strokeColor}};
+                                  margin-left: -{{main.marginLeftTestName}}px;
+                                  color:{{main.testNameFontColor}};
+                                  border-radius: 5px; width:{{main.testNameWidth}}%;" id="testName" auto-font-size noSelection>
+                                {{main.nameCandidate}}
+                            </div>
+                        </div>
+                        <div class="row pointer" style="font-size: 35px;  display: table; margin: 0 auto;" ng-show="!main.displayNameGroup" >
+                              <ul class="col-md-2" style="list-style-type: none;margin: 0;padding: 0;min-width: 100%; padding-top: 20px;">
+                                    <li  ng-repeat="phoneticObj in main.katakanaObjToDisplay" ng-click="main.isKatakanaNegative(phoneticObj.name, $index)"
+                                          ng-model="phoneticObj.name" red-me style="display:inline; color: {{(main.KatakanaNegativeFromDB[$index] === main.phonetics[$index]) ? phoneticObj.katakanaColor : main.katakanaColor = '#000000'}};" class="label">{{phoneticObj.name}}
+                                    </li>
+                              </ul>
+                         </div>
+                    </div>
+                    <div class="row bg-primary context-center" style="height:100px; border-radius: 5px; margin:0px;" ng-show="!main.displayNameGroup">
+                        <div class="col-md-12 text-default text-center" id="rationale" style="font-family:{{main.rationaleFontFamily}}; color:{{main.rationaleFontColor}};padding-top: 18px;" auto-font-size noSelection>
+                            {{main.Rationale}}
+                        </div>
+                        <p class="text-center" style="font-size:25px;">{{main.subRationale}}</p>
+                    </div>
+                    <!-- CA- This ng-show will work for both regular NW and JP NW -->
+                    <div ng-show="!main.displayNameGroup">
+                        <div class="row" style="height: 110px; padding:20px 0 0 0;">
+                            <div class="col-md-12">
+                                <input id="newNameBox" type="text" placeholder="New Names" class="roundCorners" ng-model="main.newName" style="font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black" />
+                            </div>
+                            <div class="col-md-6" ng-show="main.isJapanese === true">
+                                <input type="text" class="center-block; roundCorners" ng-model="main.negativeKanaNames" placeholder="Negative Katakana Names" style="font-size: xx-large; text-align: center; width: 100%; height: 49px; border: solid 2px grey; color:black" />
+                            </div>
+                        </div>
+                        <div class="row" style="height: 50px;">
+                            <div class="col-md-6">
+                                <input id="exploreBox" type="text" class="center-block; roundCorners" ng-model="main.explore" placeholder="EXPLORE" style="font-size: x-large; text-align: center; width: 500px; height: 39px; border: solid 2px green;color:black" />
+                            </div>
+                            <div class="col-md-6">
+                                <input id="avoidBox" type="text" class="center-block; roundCorners" ng-model="main.avoid" placeholder="AVOID" style="font-size: x-large; text-align: center; width: 500px; height: 39px;border: solid 2px red;color:black" />
+                            </div>
+                        </div>
+                    </div>
+
+            <div class="row">
+                <div class="col-md-12" style="position: relative; bottom: {{main.controlsPosition}}px;">
+                    <div class="col-md-4">
+                        <div class="btn-group"  ng-show="!main.displayNameGroup">
+                            <button type="button" class="btn btn-default" aria-label="Left Align">
+                                <span aria-hidden="true"></span>Propietary & Confidential</button>
+                            <button type="button" class="btn btn-default" aria-label="Center Align" ng-show="main.nameNotation.length > 0">
+                                <span aria-hidden="true"></span>{{main.nameNotation}}</button>
+                        </div>
+                    </div>
+                 <div class="col-md-4 text-center" ng-show="main.displayMenu">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                  <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goHome()" uib-tooltip="Go to Start" tooltip-class="customClass">
+                                  <span class="glyphicon glyphicon-home" aria-hidden="true"></button>
+                                  <button id="reset" class="btn btn-default" type="button" ng-show="main.isTestNameButtons"  uib-tooltip="Reset the Slide" tooltip-class="customClass" ng-click="main.resetSlide()">
+                                    <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+                                  </button>
+                                </span>
+                                <div class="dropup">
+                                <input type="text" ng-model="main.selectedName" style="height: 100%;" ng-keyup="main.logKey($event)" typeahead="name for name in main.slidesNames | filter:$viewValue | limitTo:8" typeahead-on-select="main.onSelect($item, $model, $label)" class="form-control text-primary" placeholder="Search name">
+                              </div>
+                                <span class="input-group-btn" >
+                                 <button class="btn btn-default" type="button" ng-show="main.isTestNameButtons"  ng-click="main.changeToDefault()" uib-tooltip="Remove Image" tooltip-class="customClass">
+                                   <span class="glyphicon glyphicon-picture"  aria-hidden="true" ></span>
+                                 </button>
+                                </span>
+                            </div>
+                    </div>
+                    <div class="col-md-4" ng-show="main.displayMenu">
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goPrevSlide()" uib-tooltip="Move Left" tooltip-class="customClass">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">
+                    </span>
+                            </button>
+                            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goNextSlide()" uib-tooltip="Move Right" tooltip-class="customClass">
+                                <span id="navright" class="glyphicon glyphicon-chevron-right" aria-hidden="true">
+                    </span>
+                            </button>
+                            <button id="goesToSummary" type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goToSummarySlide()"  uib-tooltip="Go to Summary" tooltip-class="customClassForBiggerTool">
+                                <span>{{main.pageNumber}} / {{main.totalOfTestNames}}
+                    </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+             </div>
+             <!-- Display Summary Slide START -->
+                <div ng-show="main.displaySummary" style=" font-family: calibri; font-size: 21px; position: relative; bottom:{{ (main.displayMenu==true) ? 489 : 456}}px;">
+                    <uib-tabset >
+                        <uib-tab heading="Summary" class="tabs">
+                            <div class="row pointer" style="margin-top: 10px;">
+                                <div class="col-md-2">
+                                    <span class="label label-style label-and-badge-green font-style-for-label-badges" ng-click="main.getRetainedNames()">Retained</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <uib-progress class="progress-bar-height">
+                                      <uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.value}}%</span></uib-bar>
+                                      <!-- <uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.description}}{{bar.value}}%</span></uib-bar> -->
+                                    </uib-progress>
+                                </div>
+                                <div class="col-md-2 ">
+                                    <span class="badge label-and-badge-green font-style-for-label-badges" ng-click="main.getRetainedNames()">{{main.retainedNameCount}}</span>
+                                </div>
+                            </div>
+                            <div id="showNegativeNames" class="row pointer" ng-click="main.getNegativesNames()">
+                                <div class="col-md-2">
+                                    <span class="label font-style-for-label-badges label-and-badge-purple label-style">Reconsider</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <uib-progressbar class="progress-bar-height" type="purple" ng-style="{width: main.negativeCount + '%'}"></uib-progressbar>
+                                </div>
+                                <div class="col-md-2">
+                                    <span class="badge font-style-for-label-badges label-and-badge-purple">{{main.negativeCount}}</span>
+                                </div>
+                            </div>
+                            <div class="row pointer" ng-click="main.getNewsNames()">
+                                <div class="col-md-2">
+                                    <span class="label label-style font-style-for-label-badges label-and-badge-light-blue label-and-badge-light-blue">New Names</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <uib-progressbar class="progress-bar-height" type="info" ng-style="{width: main.newNameCount + '%'}"></uib-progressbar>
+                                </div>
+                                <div class="col-md-2">
+                                    <span class="badge font-style-for-label-badges label-and-badge-light-blue">{{main.newNameCount}}</span>
+                                </div>
+                            </div>
+                            <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions">
+                              <div class="color-green col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayRetained" ng-repeat="namesRetained in main.retainedNames" ng-click="main.selectNameFromSummary(namesRetained)">{{namesRetained}}</div>
+                              <div class="color-green col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
+                              <div class="color-dark-blue col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
+                              <div id="clickNegativeName" class="color-purple col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
+                              <div class="color-light-blue col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames">{{newname}}</div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="Explore" class="tabs" ng-click="main.getrootsToExplores()">
+                            <div class="row comment-style-forRow">
+                                <div class="col-md-11">
+                                    <textarea class="color-dark-blue textarea-style" ng-value="main.dataExploreInput" ng-model="main.dataExploreInput" placeholder="Please type additional comments...">{{main.dataExploreInput}}</textarea>
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn btn-success pull-right button-save" ng-click="main.saveExploreComments(main.dataExploreInput)">Save</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootExplore" style="margin-top: 10px;">
+                                    <div class="col-md-{{main.columnSize}} summary-size-font text-info" ng-repeat="roottoexplore in main.rootsToExplore ">{{roottoexplore}}</div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="Avoid" class="tabs" ng-click="main.getrootsToAvoids()">
+                            <div class="row comment-style-forRow">
+                                <div class="col-md-11">
+                                    <textarea class="color-dark-blue textarea-style" ng-value="main.dataAvoidInput"   ng-model="main.dataAvoidInput" placeholder="Please type additional comments...">{{main.dataAvoidInput}}</textarea>
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn btn-success pull-right button-save"  ng-click="main.saveAvoidComments(main.dataAvoidInput)">Save</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootAvoid" style="margin-top: 10px;">
+                                    <div class="col-md-{{main.columnSize}} text-info summary-size-font" ng-repeat="rootstoavoid in main.rootsToAvoid">{{rootstoavoid}}</div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+                <!-- Display summary slide ENDS here -->
+        </div>
+    </div>
+</div>
+<!-- End if NW -->
+
+<!-- Side menu Settings-->
+<div class="container-fluid settings slide" ng-show="main.displaySettings">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="text ">Header & Background Settings</h4>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            <select class="btn btn-primary" ng-model="main.BackGroundName" ng-change="main.backGroundChanged(main.BackGroundName)"  ng-options="BackGround for BackGround in main.changeBackground">
+            </select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            <select class="btn btn-primary" ng-model="main.headerFontFamily" id="bgselection" ng-options="header for header in main.typeOfFont"></select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            <input type="color" class="bg-primary" ng-model="main.headerFontColor" />
+        </div>
+    </div>
+    <hr>
+    <div class="row ">
+        <div class="col-md-12">
+            <h4 class="text">Test-Name Settings</h4>
+        </div>
+    </div>
+    <div class="row form-group ">
+        <div class="col-md-6">
+            <select class="btn btn-primary" ng-model="main.testNameFontFamily" id="bgselection" ng-options="font for font in main.typeOfFont"></select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            <input type="color" class="bg-primary" ng-model="main.testNameFontColor" />
+        </div>
+    </div>
+    <hr>
+    <div class="row form-group">
+        <div class="col-md-12">
+            <h4 class="text ">Stroke Settings</h4>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            <input type="color" class="bg-primary" ng-model="main.strokeColor">
+            </select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            <input type="range" min="0" max="5"class="bg-primary" ng-model="main.strokeRange">
+            </select>
+        </div>
+    </div>
+    <div class="row form-group">
+          <div class="col-md-6 ">
+            <p class="text ">
+                <input type="checkbox" style="margin-right: 5px;" ng-model="main.isStrokeIt" ng value="main.isStrokeIt"/>Stroke</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row form-group">
+        <div class="col-md-12">
+            <h4 class="text ">Rationale Settings</h4>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            <select class="btn btn-primary" ng-model="main.rationaleFontFamily" id="bgselection" ng-change="main.rationaleFontTypeChanged(main.rationaleFontFamily)" ng-options="rationale for rationale in main.typeOfFont"></select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            <input type="color" class="bg-primary" ng-model="main.rationaleFontColor" ng-change="main.rationaleFontColorChanged(main.rationaleFontColor)">
+            </select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6 ">
+            <p class="text ">
+                <input type="checkbox" style="margin-right: 5px;" ng-model="main.isOverlayAvailable" ng-change="main.setOverlay()" value="main.isOverlayAvailable"/>Overlay</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 ">
+            <button class="btn btn-success pull-left" ng-click="main.resetingProjects()">Reset All</button>
+        </div>
+        <div class="col-md-6 ">
+            <button class="btn btn-success pull-right" ng-click="main.saveThemeSettings()">Save</button>
+        </div>
+    </div>
+    <hr>
+</div>
