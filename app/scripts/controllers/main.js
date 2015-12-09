@@ -76,7 +76,7 @@ angular.module('nwApp')
 // **********  Slides ADMIN back end  ****************************************************************************************************
 
           self.selectSlide = function(index) {
-                    var slideModel = JSON.stringify( new slideInfoModel(projectId, index+1, '','','','', '' ));
+                    var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '' ));
                      getTestNamesObject(slideModel);
                    };
             self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
@@ -86,7 +86,7 @@ angular.module('nwApp')
             self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore','Calibri'];
 
             self.help = function() {
-                     alertify.alert(document.getElementById("help").innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
+                     alertify.alert(document.getElementById('help').innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
                 };
 
             // Model for theme configuration
@@ -129,11 +129,11 @@ angular.module('nwApp')
                     {
                         self.displaySettings =false;
                     }else{
-                   var password = prompt("Enter Password");
+                   var password = prompt('Enter Password');
                         if(password === 'admin123'){
                           self.displaySettings = true;
                         }else{
-                          alert("Please provide the correct password");
+                          alert('Please provide the correct password');
                         }
                      }
             };
@@ -167,7 +167,7 @@ angular.module('nwApp')
                     });
 
           self.selectSlide = function(index) {
-                    var slideModel = JSON.stringify( new slideInfoModel(projectId, index+1, '','','','', '' ));
+                    var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '' ));
                      getTestNamesObject(slideModel);
                    };
 
@@ -324,7 +324,7 @@ angular.module('nwApp')
                     self.headerFontFamily = theme[0].HeaderFontFamily;
                     self.nameNotation = theme[0].NameNotation;
                      (theme[0].Stroke === 'false')? self.isStrokeIt = false : self.isStrokeIt = true;
-                    if(self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = ''};
+                    if(self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = '';}
                     self.strokeRange =  theme[0].StrokeRange;
                     self.strokeColor=  theme[0].StrokeColor;
                     self.isOverlayAvailable = (theme[0].Overlay === 'False')? false : true ;
@@ -436,7 +436,7 @@ angular.module('nwApp')
 
 
         self.changeToDefault = function(){
-              if (!(self.BackGroundName === 'Default')){
+              if (self.BackGroundName !== 'Default'){
                 _TemporaryBackGround = self.BackGroundName;
                 self.backGroundChanged('Default');
               }
@@ -444,19 +444,19 @@ angular.module('nwApp')
                 self.backGroundChanged(_TemporaryBackGround);
                 _TemporaryBackGround ='';
               }
-              (_IsBackgroundDefault === true) ? _IsBackgroundDefault =false: _IsBackgroundDefault=true;
+              (_IsBackgroundDefault === true) ? _IsBackgroundDefault =false: _IsBackgroundDefault = true ;
         };
 
         self.mustRank = function(){
-              if (self.nameRamking == false || self.nameRamking == ""){
-                alert("Please vote on the name");
+              if (self.nameRamking === false || self.nameRamking ===''){
+                alert('Please vote on the name');
               }else{
-                var slideModel = JSON.stringify( new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
+                var slideModel = JSON.stringify( new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
                 getTestNamesObject(slideModel);
               }
         };
 
-        var slideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
+        var SlideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
           return {
               'presentationid': presentationid,
               'slideNumber': slideNumber,
@@ -558,8 +558,8 @@ angular.module('nwApp')
                             centerTestNames(_SlideDescription);
                             self.pageNumber = _SlideNumber;
 
-                            if(_PresentationType === "Normal"){
-                              self.KatakanaNegativeFromDB = _KanaNamesNegative.split(",");
+                            if(_PresentationType === 'Normal'){
+                              self.KatakanaNegativeFromDB = _KanaNamesNegative.split(',');
                               self.phonetics = _KanaNames.split(",");
                             }
 
@@ -818,11 +818,11 @@ angular.module('nwApp')
 
  //************ Navigation Methods ***********************************************************************************************************
         self.isKatakanaNegative = function(phonetic,  index){
-          if(self.sendStoredKatakana[index] == phonetic){
-            if(self.phonetics[index]==self.KatakanaNegativeFromDB[index]){
-              self.sendStoredKatakana[index] = "";
+          if(self.sendStoredKatakana[index] === phonetic){
+            if(self.phonetics[index]=== self.KatakanaNegativeFromDB[index]){
+              self.sendStoredKatakana[index] = '';
             }else{
-              self.sendStoredKatakana[index] = "";
+              self.sendStoredKatakana[index] = '';
             }
           }else{
             self.sendStoredKatakana[index] = phonetic;
@@ -846,8 +846,8 @@ angular.module('nwApp')
         };
 
         self.goHome = function() {
-            if(_IsTheAppStarted)self.goNextSlide();
-            var initialSlideModel = JSON.stringify(new slideInfoModel(projectId, 0, '', '', '', '', 'Next'));
+            if(_IsTheAppStarted){self.goNextSlide();}
+            var initialSlideModel = JSON.stringify(new SlideInfoModel(projectId, 0, '', '', '', '', 'Next'));
             getTestNamesObject(initialSlideModel);
         };
 
@@ -858,7 +858,7 @@ angular.module('nwApp')
         };
 
         self.goNextSlide = function() {
-            var slideModel = JSON.stringify(new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next'));
+            var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next'));
             if (_SlideType !== 'Image') {
                 self.mustRank();
             } else {
@@ -870,7 +870,7 @@ angular.module('nwApp')
          self.goHome();
         _IsTheAppStarted =true;
         self.goPrevSlide = function() {
-            var slideModel = JSON.stringify(new slideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
+            var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
             getTestNamesObject(slideModel);
         };
 
@@ -924,9 +924,9 @@ angular.module('nwApp')
 
         self.resetSlide = function() {
             self.nameRamking = false;
-            self.newName = "";
-            self.explore = "";
-            self.avoid = "";
+            self.newName = '';
+            self.explore = '';
+            self.avoid = '';
         };
 
         self.tally = function() {
