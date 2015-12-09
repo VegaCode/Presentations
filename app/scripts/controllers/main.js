@@ -34,8 +34,10 @@ angular.module('nwApp')
             self.sendStoredKatakana =[];
             self.katakanaObjToDisplay = [];
             self.katakanaColor = '#000000';
-            self.KatakanaNegativeFromDB =['カタカナ', 'チャーシューー'];
-            self.phonetics = ['カタカナ', 'チャーシューー' ,'いいえ', '麻將' , 'シューマイ', 'こんにちは'];
+            // self.KatakanaNegativeFromDB =['カタカナ', 'チャーシューー'];
+            self.KatakanaNegativeFromDB =[];
+            // self.phonetics = ['カタカナ', 'チャーシューー' ,'いいえ', '麻將' , 'シューマイ', 'こんにちは'];
+            self.phonetics = [];
 
             self.displayMenu = false;
 
@@ -555,6 +557,11 @@ angular.module('nwApp')
                             self.subRationale = ( _NameRationale.split('$')[1] !== undefined) ? _NameRationale.split('$')[1] : '';
                             centerTestNames(_SlideDescription);
                             self.pageNumber = _SlideNumber;
+
+                            if(_PresentationType === "Normal"){
+                              self.KatakanaNegativeFromDB = _KanaNamesNegative.split(",");
+                              self.phonetics = _KanaNames.split(",");
+                            }
 
                             if(parseInt(self.pageNumber) === 1){
                               self.progressBarValue = 0;
