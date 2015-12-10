@@ -26,7 +26,6 @@ angular.module('nwApp')
             self.slides = [];
             self.progressBarValue = 0;
             self.presentTestNamesAtSlide = '';
-
             // CA- Added variable to turn on the katakana input trying to push
             // self.phonetics = ['カタカナ', 'チャーシューー' ,'いいえ', '麻將' , 'シューマイ', 'こんにちは'];
             // self.KatakanaNegativeFromDB =['カタカナ', 'チャーシューー'];
@@ -867,7 +866,9 @@ angular.module('nwApp')
 
         // leave the code in this position
          self.goHome();
+
         _IsTheAppStarted =true;
+
         self.goPrevSlide = function() {
             var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
             getTestNamesObject(slideModel);
@@ -915,6 +916,7 @@ angular.module('nwApp')
 
         // this list is to compare with displayable names for typeahead
         apiCall = 'api/NW_Presentation?projectIdForData=';
+
         $http.get(webBaseUrl + apiCall + projectId).success(function(testnames) {
             testnames.map(function(obj) {
                 self.testName.push(obj.Name);
