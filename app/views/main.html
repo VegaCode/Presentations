@@ -358,7 +358,7 @@ label {
                               <div class="color-green col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
                               <div class="color-dark-blue col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
                               <div id="clickNegativeName" class="color-purple col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
-                              <div class="color-light-blue col-md-{{main.columnSize}}  summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames track by $index" ng-click="main.selectNameFromSummary(newname.Name)">{{newname.NameToDisplay}}</div>
+                              <div class="color-light-blue col-md-{{main.columnSize}} {{main.centerText}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames track by $index" ng-click="main.selectNameFromSummary(newname.Name)">{{newname.NameToDisplay}}</div>
                             </div>
                         </uib-tab>
                         <uib-tab heading="Explore" class="tabs" ng-click="main.getrootsToExplores()">

@@ -30,7 +30,6 @@ angular.module('nwApp')
             // CA- Added variable to turn on the katakana input trying to push
             // self.phonetics = ['カタカナ', 'チャーシューー' ,'いいえ', '麻將' , 'シューマイ', 'こんにちは'];
             // self.KatakanaNegativeFromDB =['カタカナ', 'チャーシューー'];
-            self.isJapanese = false;
             self.sendStoredKatakana =[];
             self.katakanaObjToDisplay = [];
             self.katakanaColor = '#000000';
@@ -555,8 +554,9 @@ angular.module('nwApp')
                             self.subRationale = ( _NameRationale.split('$')[1] !== undefined) ? _NameRationale.split('$')[1] : '';
                             centerTestNames(_SlideDescription);
                             self.pageNumber = _SlideNumber;
+                            self.typeOfPresentation = _PresentationType;
 
-                            if(true){
+                            if(self.typeOfPresentation === 'Katakana'){
                               self.KatakanaNegativeFromDB = _KanaNamesNegative.split(',');
                               self.phonetics = _KanaNames.split(',');
                             }
@@ -646,19 +646,28 @@ angular.module('nwApp')
             };
 
             var selectColumnSize = function(totalNames){
-                      if(totalNames <= 20){
-                        self.columnSize = 4; //3 columns will be generated
-                        self.sizeOfFont = '40px';
-                      }else if(totalNames <= 50){
-                        self.columnSize = 3; //4 columns will be generated
-                        self.sizeOfFont = '35px';
-                      }else if (totalNames <= 70) {
-                        self.columnSize = 4; //3 columns will be generated
-                        self.sizeOfFont = '35px';
-                      }else if (totalNames <=100) {
-                        self.columnSize = 3; //4 columns will be generated
-                        self.sizeOfFont = '35px';
-                      }
+              if (self.typeOfPresentation === 'Nonproprietary'){
+                if(totalNames <= 20){
+                  self.columnSize = 4; //3 columns will be generated
+                  self.sizeOfFont = '40px';
+                }else if(totalNames <= 50){
+                  self.columnSize = 3; //4 columns will be generated
+                  self.sizeOfFont = '35px';
+                }else if (totalNames <= 70) {
+                  self.columnSize = 4; //3 columns will be generated
+                  self.sizeOfFont = '35px';
+                }else if (totalNames <=100) {
+                  self.columnSize = 3; //4 columns will be generated
+                  self.sizeOfFont = '35px';
+                }
+              }else if (self.typeOfPresentation === 'Nonproprietary') {
+                self.columnSize = 12;
+                self.centerText = 'text-center';
+              }else if (self.typeOfPresentation === 'Katakana') {
+                self.columnSize = 12;
+                self.sizeOfFont = '40px';
+                self.centerText = 'text-center';
+              }
              };
 
         self.selectNameFromSummary = function(name){
