@@ -121,17 +121,16 @@ angular.module('nwApp')
             };
 
             self.showThemeOptions = function() {
-                if(self.displaySettings === true)
-                    {
+                if(self.displaySettings === true){
                         self.displaySettings =false;
-                    }else{
-                   var password = prompt('Enter Password');
-                        if(password === 'admin123'){
-                          self.displaySettings = true;
-                        }else{
-                          alert('Please provide the correct password');
-                        }
-                     }
+                }else{
+                  var password = prompt('Enter Password');
+                  if(password != 'admin123'){
+                    alert('Please provide the correct password');
+                  }else{
+                    self.displaySettings = true;
+                  }
+               }
             };
 
             self.saveThemeSettings = function() {
@@ -645,7 +644,7 @@ angular.module('nwApp')
             };
 
             var selectColumnSize = function(totalNames){
-              if (self.typeOfPresentation === 'Nonproprietary'){
+              if (self.typeOfPresentation === 'Normal'){
                 if(totalNames <= 20){
                   self.columnSize = 4; //3 columns will be generated
                   self.sizeOfFont = '40px';
@@ -661,6 +660,7 @@ angular.module('nwApp')
                 }
               }else if (self.typeOfPresentation === 'Nonproprietary') {
                 self.columnSize = 12;
+                self.sizeOfFont = '40px';
                 self.centerText = 'text-center';
               }else if (self.typeOfPresentation === 'Katakana') {
                 self.columnSize = 12;
@@ -799,7 +799,7 @@ angular.module('nwApp')
                     resetBooleanSummarySlideVars();
                     self.displayRootAvoid = true;
                     var apiCall = 'api/NW_GetSummary?instruccion=';
-                    var instruccion = projectId +  ', " to Avoid"';
+                    var instruccion = projectId +  ', "Roots to Avoid"';
                     $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootAvoid){
                       rootAvoid.map(function(obj) {
                       self.rootsToAvoid.push(obj);

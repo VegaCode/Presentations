@@ -372,7 +372,7 @@ label {
                             </div>
                             <div class="row">
                                 <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootExplore" style="margin-top: 10px;">
-                                    <div class="col-md-{{main.columnSize}} {{main.centerText}} summary-size-font text-info" ng-repeat="roottoexplore in main.rootsToExplore track by $index">{{roottoexplore.NameToDisplay}}</div>
+                                    <div class="col-md-{{main.columnSize}} {{main.centerText}} summary-size-font text-info pointer" ng-repeat="roottoexplore in main.rootsToExplore track by $index" ng-click="main.selectNameFromSummary(roottoexplore.Name)">{{roottoexplore.NameToDisplay}}</div>
                                 </div>
                             </div>
                         </uib-tab>
@@ -387,7 +387,7 @@ label {
                             </div>
                             <div class="row">
                                 <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootAvoid" style="margin-top: 10px;">
-                                    <div class="col-md-{{main.columnSize}} text-info summary-size-font {{main.centerText}}" ng-repeat="rootstoavoid in main.rootsToAvoid track by $index">{{rootstoavoid.NameToDisplay}}</div>
+                                    <div class="col-md-{{main.columnSize}} {{main.centerText}} summary-size-font text-info pointer" ng-repeat="rootstoavoid in main.rootsToAvoid track by $index" ng-click="main.selectNameFromSummary(rootstoavoid.Name)">{{rootstoavoid.NameToDisplay}}</div>
                                 </div>
                             </div>
                         </uib-tab>
