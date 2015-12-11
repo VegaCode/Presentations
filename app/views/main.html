@@ -235,7 +235,7 @@ label {
                         <div class="row pointer" style="font-size: 60px;  display: table; margin: 0 auto;" ng-show="!main.displayNameGroup" >
                               <ul class="col-md-2" style="list-style-type: none;margin: 0;padding: 0;min-width: 100%; padding-top: 20px;">
                                     <li  ng-repeat="phoneticObj in main.katakanaObjToDisplay" ng-click="main.isKatakanaNegative(phoneticObj.name, $index)"
-                                          ng-model="phoneticObj.name" red-me style="display:inline; color: {{(main.KatakanaNegativeFromDB[$index] === main.phonetics[$index]) ? phoneticObj.katakanaColor : main.katakanaColor = '#000000'}};" class="label">{{phoneticObj.name}}
+                                          ng-model="phoneticObj.name"  red-me style="display:inline; color: {{(main.KatakanaNegativeFromDB[$index] === main.phonetics[$index]) ? phoneticObj.katakanaColor : main.katakanaColor = '#000000'}};" class="label {{main.centerText}}">{{phoneticObj.name}}
                                     </li>
                               </ul>
                          </div>
@@ -354,10 +354,10 @@ label {
                                 </div>
                             </div>
                             <div class="scrollbar-dynamic pointer" data-jquery-scrollbar="main.jqueryScrollBarOptions">
-                              <div class="color-green col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayRetained" ng-repeat="namesRetained in main.retainedNames" ng-click="main.selectNameFromSummary(namesRetained)">{{namesRetained}}</div>
-                              <div class="color-green col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
-                              <div class="color-dark-blue col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
-                              <div id="clickNegativeName" class="color-purple col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
+                              <div class="color-green col-md-{{main.columnSize}} {{main.centerText}} summary-size-font" ng-show="main.displayRetained" ng-repeat="namesRetained in main.retainedNames" ng-click="main.selectNameFromSummary(namesRetained)">{{namesRetained}}</div>
+                              <div class="color-green col-md-{{main.columnSize}} {{main.centerText}} summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename)">{{positivename}}</div>
+                              <div class="color-dark-blue col-md-{{main.columnSize}} {{main.centerText}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname)">{{neutralname}}</div>
+                              <div id="clickNegativeName" class="color-purple col-md-{{main.columnSize}} {{main.centerText}} summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename)">{{negativename}}</div>
                               <div class="color-light-blue col-md-{{main.columnSize}} {{main.centerText}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames track by $index" ng-click="main.selectNameFromSummary(newname.Name)">{{newname.NameToDisplay}}</div>
                             </div>
                         </uib-tab>
@@ -372,7 +372,7 @@ label {
                             </div>
                             <div class="row">
                                 <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootExplore" style="margin-top: 10px;">
-                                    <div class="col-md-{{main.columnSize}} summary-size-font text-info" ng-repeat="roottoexplore in main.rootsToExplore track by $index">{{roottoexplore.NameToDisplay}}</div>
+                                    <div class="col-md-{{main.columnSize}} {{main.centerText}} summary-size-font text-info" ng-repeat="roottoexplore in main.rootsToExplore track by $index">{{roottoexplore.NameToDisplay}}</div>
                                 </div>
                             </div>
                         </uib-tab>
@@ -387,7 +387,7 @@ label {
                             </div>
                             <div class="row">
                                 <div class="scrollbar-dynamic" data-jquery-scrollbar="main.jqueryScrollBarOptions" ng-show="main.displayRootAvoid" style="margin-top: 10px;">
-                                    <div class="col-md-{{main.columnSize}} text-info summary-size-font" ng-repeat="rootstoavoid in main.rootsToAvoid track by $index">{{rootstoavoid.NameToDisplay}}</div>
+                                    <div class="col-md-{{main.columnSize}} text-info summary-size-font {{main.centerText}}" ng-repeat="rootstoavoid in main.rootsToAvoid track by $index">{{rootstoavoid.NameToDisplay}}</div>
                                 </div>
                             </div>
                         </uib-tab>
