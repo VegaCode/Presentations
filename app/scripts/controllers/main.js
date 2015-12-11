@@ -455,7 +455,7 @@ angular.module('nwApp')
               'NamesToExplore': NamesToExplore,
               'NamesToAvoid': NamesToAvoid,
               'Direction': Direction,
-              'KanaNamesNegative':KanaNamesNegative.join(',')
+              'KanaNamesNegative':(KanaNamesNegative.length>0)?KanaNamesNegative.join(','):''
           };
         };
 
