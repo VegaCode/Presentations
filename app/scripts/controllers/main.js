@@ -838,6 +838,10 @@ angular.module('nwApp')
 
         self.displayKatakana = function(){
           self.phonetics.map(function(obj){
+              var a = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+
+              var b = a.splice(0,10);
+
             var isKatakanaEqual = self.KatakanaNegativeFromDB.indexOf(obj);
             if(isKatakanaEqual >= 0){
               var newKatakanaObj = new KatakanaModel(obj, 'red');
