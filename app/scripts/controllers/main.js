@@ -19,7 +19,7 @@ angular.module('nwApp')
                      _IsBackgroundDefault, _TemporaryBackGround, _KanaNames, _KanaNamesNegative, _PresentationType;
             var projectId, apiCall, webBaseUrl;
             var self = this;
-           //webBaseUrl = 'http://localhost:64378/';
+            //webBaseUrl = 'http://localhost:64378/';
             webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
             projectId = queryStringCheck;
             self.displaySettings =false;
@@ -34,6 +34,7 @@ angular.module('nwApp')
             self.katakanaColor = '#000000';
             self.KatakanaNegativeFromDB =[];
             self.phonetics = [];
+            self.kanaNegativeString = '';
 
             self.displayMenu = false;
 
@@ -70,11 +71,6 @@ angular.module('nwApp')
              self.displayRetained = false;
 
 // **********  Slides ADMIN back end  ****************************************************************************************************
-
-          self.selectSlide = function(index) {
-                    var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '' ));
-                     getTestNamesObject(slideModel);
-                   };
             self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
                                                         'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',  'Cardiology','Cognition',
                                                         'OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue', 'Molecules' ];
@@ -162,7 +158,7 @@ angular.module('nwApp')
                     });
 
           self.selectSlide = function(index) {
-                    var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '' ));
+                    var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '', '' ));
                      getTestNamesObject(slideModel);
                    };
 
@@ -429,7 +425,6 @@ angular.module('nwApp')
                    };
 
 
-
         self.changeToDefault = function(){
               if (self.BackGroundName !== 'Default'){
                 _TemporaryBackGround = self.BackGroundName;
@@ -446,12 +441,12 @@ angular.module('nwApp')
               if (self.nameRamking === false || self.nameRamking ===''){
                 alert('Please vote on the name');
               }else{
-                var slideModel = JSON.stringify( new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next'));
+                var slideModel = JSON.stringify( new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next', self.sendStoredKatakana));
                 getTestNamesObject(slideModel);
               }
         };
 
-        var SlideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction) {
+        var SlideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction, KanaNamesNegative) {
           return {
               'presentationid': presentationid,
               'slideNumber': slideNumber,
@@ -459,7 +454,8 @@ angular.module('nwApp')
               'NewNames': NewNames,
               'NamesToExplore': NamesToExplore,
               'NamesToAvoid': NamesToAvoid,
-              'Direction': Direction
+              'Direction': Direction,
+              'KanaNamesNegative':KanaNamesNegative.join(',')
           };
         };
 
@@ -824,24 +820,34 @@ angular.module('nwApp')
                             };
 
  //************ Navigation Methods ***********************************************************************************************************
-        self.isKatakanaNegative = function(phonetic,  index){
-          if(self.sendStoredKatakana[index] === phonetic){
-            if(self.phonetics[index]=== self.KatakanaNegativeFromDB[index]){
-              self.sendStoredKatakana[index] = '';
+        self.isKatakanaNegative = function(phonetic){
+            var idx = self.sendStoredKatakana.indexOf(phonetic);
+            if( idx < 0){
+                self.sendStoredKatakana.push(phonetic);
             }else{
-              self.sendStoredKatakana[index] = '';
+                if (idx > -1) {
+                          self.sendStoredKatakana.splice(idx, 1);
+                    }
             }
-          }else{
-            self.sendStoredKatakana[index] = phonetic;
-          }
+            // self.kanaNegativeString = self.sendStoredKatakana.join(',');
+
+        //   if(self.sendStoredKatakana[index] === phonetic){
+        //     if(self.phonetics[index]=== self.KatakanaNegativeFromDB[index]){
+        //       self.sendStoredKatakana[index] = '';
+        //     }else{
+        //       self.sendStoredKatakana[index] = '';
+        //     }
+        //   }else{
+        //     self.sendStoredKatakana[index] = phonetic;
+        //   }
+        //   var temp = self.sendStoredKatakana;
+        //   while (temp.length > 0) {
+        //       self.NegativeKatakana2 += temp.splice(0,1);
+        //   }
         };
 
         self.displayKatakana = function(){
           self.phonetics.map(function(obj){
-              var a = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-
-              var b = a.splice(0,10);
-
             var isKatakanaEqual = self.KatakanaNegativeFromDB.indexOf(obj);
             if(isKatakanaEqual >= 0){
               var newKatakanaObj = new KatakanaModel(obj, 'red');
@@ -854,11 +860,19 @@ angular.module('nwApp')
               self.katakanaObjToDisplay.push(newKatakanaObj2);
             }
           });
+
+          var names = self.katakanaObjToDisplay;
+          self.test = [];
+          while (names.length > 0){
+              self.test.push(names.splice(0, 4));
+          }
+          console.log(self.test);
+
         };
 
         self.goHome = function() {
             if(_IsTheAppStarted){self.goNextSlide();}
-            var initialSlideModel = JSON.stringify(new SlideInfoModel(projectId, 0, '', '', '', '', 'Next'));
+            var initialSlideModel = JSON.stringify(new SlideInfoModel(projectId, 12, '', '', '', '', 'Next', self.sendStoredKatakana));
             getTestNamesObject(initialSlideModel);
         };
 
@@ -869,7 +883,7 @@ angular.module('nwApp')
         };
 
         self.goNextSlide = function() {
-            var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next'));
+            var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',self.sendStoredKatakana));
             if (_SlideType !== 'Image') {
                 self.mustRank();
             } else {
@@ -883,7 +897,7 @@ angular.module('nwApp')
         _IsTheAppStarted =true;
 
         self.goPrevSlide = function() {
-            var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev'));
+            var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev',self.sendStoredKatakana));
             getTestNamesObject(slideModel);
         };
 
