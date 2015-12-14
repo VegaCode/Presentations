@@ -315,7 +315,7 @@ label {
                                 <span id="navright" class="glyphicon glyphicon-chevron-right" aria-hidden="true">
                     </span>
                             </button>
-                            <button blur-me id="goesToSummary" type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goToSummarySlide()"  uib-tooltip="Go to Summary" tooltip-class="customClassForBiggerTool">
+                            <button value="{{main.totalOfTestNames}}" blur-me id="goesToSummary" type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goToSummarySlide()"  uib-tooltip="Go to Summary" tooltip-class="customClassForBiggerTool">
                                 <span>{{main.pageNumber}} / {{main.totalOfTestNames}}
                     </span>
                             </button>
