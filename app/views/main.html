@@ -235,14 +235,14 @@ label {
                         </div>
                         <div class="row pointer" style="font-size: 40px;  display: table; margin: 0 auto;" ng-show="!main.displayNameGroup" >
                               <ul class="col-md-2" style="list-style-type: none;margin: 0;padding: 0;min-width: 100%; padding-top: 20px;">
-                                  <li ng-repeat="img in main.test" class="text-center">
-                                  <ul>
-                                    <li  ng-repeat="phoneticObj in img"  ng-click="main.isKatakanaNegative(phoneticObj.name)"
-                                         ng-model="phoneticObj.name"  red-me
-                                         style=" color: {{(main.KatakanaNegativeFromDB[$index] === main.phonetics[$index]) ? phoneticObj.katakanaColor : main.katakanaColor = '#000000'}};"
-                                         class="label {{main.centerText}}">{{phoneticObj.name}}
-                                   </li>
-                                  </ul>
+                                  <li ng-repeat="kana in main.kanaNamestoDisplay" class="text-center">
+                                    <ul>
+                                        <li  ng-repeat="phoneticObj in kana"  ng-click="main.isKatakanaNegative(phoneticObj.name)"
+                                             ng-model="phoneticObj.name"  red-me
+                                             style="color:{{phoneticObj.katakanaColor}};"
+                                             class="label {{main.centerText}}">{{phoneticObj.name}}
+                                       </li>
+                                    </ul>
                                 </li>
                               </ul>
                          </div>

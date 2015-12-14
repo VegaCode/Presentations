@@ -19,7 +19,7 @@ angular.module('nwApp')
                      _IsBackgroundDefault, _TemporaryBackGround, _KanaNames, _KanaNamesNegative, _PresentationType;
             var projectId, apiCall, webBaseUrl;
             var self = this;
-            //webBaseUrl = 'http://localhost:64378/';
+            webBaseUrl = 'http://localhost:64378/';
             webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
             projectId = queryStringCheck;
             self.displaySettings =false;
@@ -71,234 +71,235 @@ angular.module('nwApp')
              self.displayRetained = false;
 
 // **********  Slides ADMIN back end  ****************************************************************************************************
-            self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
-                                                        'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',  'Cardiology','Cognition',
-                                                        'OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue', 'Molecules' ];
+        self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
+                                                    'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',  'Cardiology','Cognition',
+                                                    'OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue', 'Molecules' ];
 
-            self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore','Calibri'];
+        self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore','Calibri'];
 
-            self.help = function() {
-                     alertify.alert(document.getElementById('help').innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
-                };
+        self.help = function() {
+                 alertify.alert(document.getElementById('help').innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
+            };
 
-            // Model for theme configuration
-            var themeConfigurationModel = function(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily, RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,StrokeColor,StrokeRange,Stroke,Overlay){
-                          return{
-                                         'TemplateName': TemplateName,
-                                         'TemplateFileName': TemplateFileName,
-                                         'HeaderFontColor': HeaderFontColor,
-                                         'HeaderFontFamily': HeaderFontFamily,
-                                         'RationaleFontColor': RationaleFontColor,
-                                         'RationaleFontFamily': RationaleFontFamily,
-                                         'TestNameFontColor': TestNameFontColor,
-                                         'TestNameFontFamily': TestNameFontFamily,
-                                         'StrokeColor': StrokeColor,
-                                         'StrokeRange': StrokeRange,
-                                         'Stroke': Stroke,
-                                         'Overlay': Overlay
-                                     };
-                         };
+        // Model for theme configuration
+        var themeConfigurationModel = function(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily, RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,StrokeColor,StrokeRange,Stroke,Overlay){
+                      return{
+                                     'TemplateName': TemplateName,
+                                     'TemplateFileName': TemplateFileName,
+                                     'HeaderFontColor': HeaderFontColor,
+                                     'HeaderFontFamily': HeaderFontFamily,
+                                     'RationaleFontColor': RationaleFontColor,
+                                     'RationaleFontFamily': RationaleFontFamily,
+                                     'TestNameFontColor': TestNameFontColor,
+                                     'TestNameFontFamily': TestNameFontFamily,
+                                     'StrokeColor': StrokeColor,
+                                     'StrokeRange': StrokeRange,
+                                     'Stroke': Stroke,
+                                     'Overlay': Overlay
+                                 };
+                     };
 
-            self.resetingProjects = function(){
-                    var apiCall = 'api/ResetAllSlidesData/';
-                    alertify.confirm('Slides will be reset').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(){
-                     self.displayTally = false;
-                      $http.get(webBaseUrl + apiCall + projectId);
-                      self.goHome();
-                   }).set('oncancel', function(){}).set('title', 'Resetting Slides');
-                 };
+        self.resetingProjects = function(){
+                var apiCall = 'api/ResetAllSlidesData/';
+                alertify.confirm('Slides will be reset').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(){
+                 self.displayTally = false;
+                  $http.get(webBaseUrl + apiCall + projectId);
+                  self.goHome();
+               }).set('oncancel', function(){}).set('title', 'Resetting Slides');
+             };
 
-            self.setOverlay = function() {
-              if (self.isOverlayAvailable === true) {
-                  self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)';
-              } else {
-                  self.overlayStyle = '';
+        self.setOverlay = function() {
+          if (self.isOverlayAvailable === true) {
+              self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)';
+          } else {
+              self.overlayStyle = '';
+          }
+        };
+
+        self.showThemeOptions = function() {
+            if(self.displaySettings === true){
+                    self.displaySettings =false;
+            }else{
+              var password = prompt('Enter Password');
+              if(password !== 'admin123'){
+                alert('Please provide the correct password');
+              }else{
+                self.displaySettings = true;
               }
-            };
+           }
+        };
 
-            self.showThemeOptions = function() {
-                if(self.displaySettings === true){
-                        self.displaySettings =false;
-                }else{
-                  var password = prompt('Enter Password');
-                  if(password !== 'admin123'){
-                    alert('Please provide the correct password');
-                  }else{
-                    self.displaySettings = true;
-                  }
-               }
-            };
-
-            self.saveThemeSettings = function() {
-             if ( self.BackGround !== '') {
-               var configModel = themeConfigurationModel( self.BackGround,
-                 self.BackGround + '.jpg', self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
-                 self.testNameFontColor, self.testNameFontFamily,  self.strokeColor,  self.strokeRange, self.isStrokeIt, self.isOverlayAvailable);
-                 setSettings.postdata(configModel).then(function(result) {
-                   alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
-                 });
-               }
-            };
+        self.saveThemeSettings = function() {
+         if ( self.BackGroundName !== '') {
+           var configModel = themeConfigurationModel( self.BackGroundName,
+             self.BackGround, self.headerFontColor,  self.headerFontFamily, self.rationaleFontColor,  self.rationaleFontFamily,
+             self.testNameFontColor, self.testNameFontFamily,  self.strokeColor,  self.strokeRange, self.isStrokeIt, self.isOverlayAvailable);
+             configModel = JSON.stringify(configModel);
+             setSettings.postdata(configModel).then(function(result) {
+               alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
+             });
+           }
+        };
 
 // **********  Event listeners for revealjs  ****************************************************************************************************
 
-            Reveal.addEventListener('overviewshown', function() {
-                if(_SlideNumber > 4){
-                    Reveal.slide(  0, _SlideNumber-2, 0 );
-                }else{ Reveal.slide(  0, _SlideNumber-1, 0 );}
-                        $rootScope.$apply(function() {
-                            self.isOverview = true;
-                        });
+        Reveal.addEventListener('overviewshown', function() {
+            if(_SlideNumber > 4){
+                Reveal.slide(  0, _SlideNumber-2, 0 );
+            }else{ Reveal.slide(  0, _SlideNumber-1, 0 );}
+                    $rootScope.$apply(function() {
+                        self.isOverview = true;
                     });
+                });
 
-            Reveal.addEventListener('overviewhidden', function() {
-                        $rootScope.$apply(function() {
-                            self.isOverview = false;
-                        });
+        Reveal.addEventListener('overviewhidden', function() {
+                    $rootScope.$apply(function() {
+                        self.isOverview = false;
                     });
+                });
 
-          self.selectSlide = function(index) {
-                    var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '', '' ));
-                     getTestNamesObject(slideModel);
-                   };
+        self.selectSlide = function(index) {
+                var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '', '' ));
+                 getTestNamesObject(slideModel);
+               };
 
 // **********  Getting Slides URL Images and the description for over view  *************************************************************************************
-             var apicall = 'api/NW_NamesAndSlides?projectId=';
-             $http.get(webBaseUrl + apicall + projectId).success(function(result){
-                   _nameSummarySlideNumber = result[0].SummarySlide;
-                   self.slides = result;
-                   result.map(function(obj){
-                     self.slidesNames.push(obj.SlideDescription);
-                   });
-
-                   // slide show configuration settings
-                   $timeout(function() {
-                     Reveal.initialize({
-
-                            width: 960,
-                            height: 680,
-
-                            // Factor of the display size that should remain empty around the content
-                            margin: 0.1,
-
-                            // Bounds for smallest/largest possible scale to apply to content
-                            minScale: 1.2,
-                            maxScale: 1.2,
-
-
-                            // Display controls in the bottom right corner
-                            controls: false,
-
-                            // Display a presentation progress bar
-                            progress: false,
-
-                            // Display the page number of the current slide
-                            slideNumber: false,
-
-                            // Push each slide change to the browser history
-                            history: false,
-
-                            // Enable keyboard shortcuts for navigation
-                            keyboard: true,
-
-                            // Enable the slide overview mode
-                            overview: true,
-
-                            // Vertical centering of slides
-                            center: true,
-
-                            // Enables touch navigation on devices with touch input
-                            touch: true,
-
-                            // Loop the presentation
-                            loop: false,
-
-                            // Change the presentation direction to be RTL
-                            rtl: false,
-
-                            // Turns fragments on and off globally
-                            fragments: true,
-
-                            // Flags if the presentation is running in an embedded mode,
-                            // i.e. contained within a limited portion of the screen
-                            embedded: false,
-
-                            // Flags if we should show a help overlay when the questionmark
-                            // key is pressed
-                            help: false,
-
-                            // Number of milliseconds between automatically proceeding to the
-                            // next slide, disabled when set to 0, this value can be overwritten
-                            // by using a data-autoslide attribute on your slides
-                            autoSlide: 0,
-
-                            // Stop auto-sliding after user input
-                            autoSlideStoppable: true,
-
-                            // Enable slide navigation via mouse wheel
-                            mouseWheel: true,
-
-                            // Hides the address bar on mobile devices
-                            hideAddressBar: true,
-
-                            // Opens links in an iframe preview overlay
-                            previewLinks: false,
-
-                            // Transition style
-                            transition: 'none', // none/fade/slide/convex/concave/zoom
-
-                            // Transition speed
-                            transitionSpeed: 'fast', // default/fast/slow
-
-                            // Transition style for full page slide backgrounds
-                            backgroundTransition: 'none', // none/fade/slide/convex/concave/zoom
-
-                            // Number of slides away from the current that are visible
-                            viewDistance: 1,
-
-                            // Parallax background image
-                            parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.png'"
-
-                            // Parallax background size
-                            parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
-
-                            // Amount to move parallax background (horizontal and vertical) on slide change
-                            // Number, e.g. 100
-                            parallaxBackgroundHorizontal: '',
-                            parallaxBackgroundVertical: '',
-
-                            dependencies: [{
-                                src: 'bower_components/reveal-js/lib/js/classList.js',
-                                condition: function() {
-                                    return !document.body.classList;
-                                }
-                            }, {
-                                src: 'bower_components/reveal-js/plugin/markdown/marked.js',
-                                condition: function() {
-                                    return !!document.querySelector('[data-markdown]');
-                                }
-                            }, {
-                                src: 'bower_components/reveal-js/plugin/markdown/markdown.js',
-                                condition: function() {
-                                    return !!document.querySelector('[data-markdown]');
-                                }
-                            }, {
-                                src: 'bower_components/reveal-js/plugin/highlight/highlight.js',
-                                async: true,
-                                callback: function() {
-                                    hljs.initHighlightingOnLoad();
-                                }
-                            }, {
-                                src: 'bower_components/reveal-js/plugin/notes/notes.js',
-                                async: true,
-                                condition: function() {
-                                    return !!document.body.classList;
-                                }
-                            }]
-                        });
-                        Reveal.configure({});
-                    }, 300);
+         var apicall = 'api/NW_NamesAndSlides?projectId=';
+         $http.get(webBaseUrl + apicall + projectId).success(function(result){
+               _nameSummarySlideNumber = result[0].SummarySlide;
+               self.slides = result;
+               result.map(function(obj){
+                 self.slidesNames.push(obj.SlideDescription);
                });
+
+               // slide show configuration settings
+               $timeout(function() {
+                 Reveal.initialize({
+
+                        width: 960,
+                        height: 680,
+
+                        // Factor of the display size that should remain empty around the content
+                        margin: 0.1,
+
+                        // Bounds for smallest/largest possible scale to apply to content
+                        minScale: 1.2,
+                        maxScale: 1.2,
+
+
+                        // Display controls in the bottom right corner
+                        controls: false,
+
+                        // Display a presentation progress bar
+                        progress: false,
+
+                        // Display the page number of the current slide
+                        slideNumber: false,
+
+                        // Push each slide change to the browser history
+                        history: false,
+
+                        // Enable keyboard shortcuts for navigation
+                        keyboard: true,
+
+                        // Enable the slide overview mode
+                        overview: true,
+
+                        // Vertical centering of slides
+                        center: true,
+
+                        // Enables touch navigation on devices with touch input
+                        touch: true,
+
+                        // Loop the presentation
+                        loop: false,
+
+                        // Change the presentation direction to be RTL
+                        rtl: false,
+
+                        // Turns fragments on and off globally
+                        fragments: true,
+
+                        // Flags if the presentation is running in an embedded mode,
+                        // i.e. contained within a limited portion of the screen
+                        embedded: false,
+
+                        // Flags if we should show a help overlay when the questionmark
+                        // key is pressed
+                        help: false,
+
+                        // Number of milliseconds between automatically proceeding to the
+                        // next slide, disabled when set to 0, this value can be overwritten
+                        // by using a data-autoslide attribute on your slides
+                        autoSlide: 0,
+
+                        // Stop auto-sliding after user input
+                        autoSlideStoppable: true,
+
+                        // Enable slide navigation via mouse wheel
+                        mouseWheel: true,
+
+                        // Hides the address bar on mobile devices
+                        hideAddressBar: true,
+
+                        // Opens links in an iframe preview overlay
+                        previewLinks: false,
+
+                        // Transition style
+                        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+                        // Transition speed
+                        transitionSpeed: 'fast', // default/fast/slow
+
+                        // Transition style for full page slide backgrounds
+                        backgroundTransition: 'none', // none/fade/slide/convex/concave/zoom
+
+                        // Number of slides away from the current that are visible
+                        viewDistance: 1,
+
+                        // Parallax background image
+                        parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.png'"
+
+                        // Parallax background size
+                        parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+                        // Amount to move parallax background (horizontal and vertical) on slide change
+                        // Number, e.g. 100
+                        parallaxBackgroundHorizontal: '',
+                        parallaxBackgroundVertical: '',
+
+                        dependencies: [{
+                            src: 'bower_components/reveal-js/lib/js/classList.js',
+                            condition: function() {
+                                return !document.body.classList;
+                            }
+                        }, {
+                            src: 'bower_components/reveal-js/plugin/markdown/marked.js',
+                            condition: function() {
+                                return !!document.querySelector('[data-markdown]');
+                            }
+                        }, {
+                            src: 'bower_components/reveal-js/plugin/markdown/markdown.js',
+                            condition: function() {
+                                return !!document.querySelector('[data-markdown]');
+                            }
+                        }, {
+                            src: 'bower_components/reveal-js/plugin/highlight/highlight.js',
+                            async: true,
+                            callback: function() {
+                                hljs.initHighlightingOnLoad();
+                            }
+                        }, {
+                            src: 'bower_components/reveal-js/plugin/notes/notes.js',
+                            async: true,
+                            condition: function() {
+                                return !!document.body.classList;
+                            }
+                        }]
+                    });
+                    Reveal.configure({});
+                }, 300);
+           });
 
 // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
 
@@ -455,7 +456,7 @@ angular.module('nwApp')
               'NamesToExplore': NamesToExplore,
               'NamesToAvoid': NamesToAvoid,
               'Direction': Direction,
-              'KanaNamesNegative':(KanaNamesNegative.length>0)?KanaNamesNegative.join(','):''
+              'KanaNamesNegative':KanaNamesNegative,
           };
         };
 
@@ -467,7 +468,7 @@ angular.module('nwApp')
          };
         };
 
-// **********  To Set SUMMARY Slides  ****************************************************************************************************
+   // **********  To Set SUMMARY Slides  ****************************************************************************************************
          var setProgressBarsSummary = function(){
                     var instruccion = [projectId + ', "Positive Retained Names"', projectId + ', "Neutral Retained Names"', projectId + ', "Negative Names"', projectId + ', "New Names"'];
                     var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -585,7 +586,7 @@ angular.module('nwApp')
                             }
 
                             self.isOverlayAvailable = (_Overlay === 'False') ? false : true;
-                            self.overlayStyle = (self.isOverlayAvailable === true && _SlideType !== 'Image') ? 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' : '';
+                            self.overlayStyle = (self.isOverlayAvailable === true && _SlideType !== 'Image') ? 'url(https://tools.brandinstitute.com/nw/images/BackGrounds/overlay.png)' : '';
 
                             self.presentTestNamesAtSlide = (self.presentTestNamesAtSlide === '') ? _SlideNumber : '';
 
@@ -708,7 +709,7 @@ angular.module('nwApp')
                           $(this).blur();
                         });
             };
-        //************ Methods to get summary data ***********************************************************************************************************
+ //************ Methods to get summary data ***********************************************************************************************************
 
             self.getRetainedNames = function(){
                       resetBooleanSummarySlideVars();
@@ -848,28 +849,29 @@ angular.module('nwApp')
           self.phonetics.map(function(obj){
             var isKatakanaEqual = self.KatakanaNegativeFromDB.indexOf(obj);
             if(isKatakanaEqual === -1){
-              var newKatakanaObj = new KatakanaModel(obj, 'black');
+              var newKatakanaObj = new KatakanaModel(obj, 'rgb(0, 0, 0)');
               self.katakanaObjToDisplay.push(newKatakanaObj);
 
             }else{
-              var newKatakanaObj2 = new KatakanaModel(obj, 'red');
+              var newKatakanaObj2 = new KatakanaModel(obj, 'rgb(255, 0, 0)');
               self.sendStoredKatakana.push(obj);
               self.katakanaObjToDisplay.push(newKatakanaObj2);
             }
           });
 
-          var names = self.katakanaObjToDisplay;
-          self.test = [];
-          while (names.length > 0){
-              self.test.push(names.splice(0, 4));
+          var kanaToDisplay = self.katakanaObjToDisplay;
+          self.kanaNamestoDisplay = [];
+          while (kanaToDisplay.length > 0){
+              self.kanaNamestoDisplay.push(kanaToDisplay.splice(0, 4));
           }
-          console.log(self.test);
+          console.log(self.kanaNamestoDisplay);
 
         };
 
         self.goHome = function() {
             if(_IsTheAppStarted){self.goNextSlide();}
-            var initialSlideModel = JSON.stringify(new SlideInfoModel(projectId, 0, '', '', '', '', 'Next', self.sendStoredKatakana));
+            var negativeNames = self.sendStoredKatakana.join(',');
+            var initialSlideModel = JSON.stringify(new SlideInfoModel(projectId, 0, '', '', '', '', 'Next', negativeNames));
             getTestNamesObject(initialSlideModel);
         };
 
@@ -880,21 +882,23 @@ angular.module('nwApp')
         };
 
         self.goNextSlide = function() {
-            var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',self.sendStoredKatakana));
-            if (_SlideType !== 'Image') {
+            var negativeNames = self.sendStoredKatakana.join(',');
+            var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
+            if (_SlideType === 'NameSummary') {
                 self.mustRank();
             } else {
                 getTestNamesObject(slideModel);
             }
         };
 
-        // leave the code in this position
+        // WARNING leave the code in this position
          self.goHome();
 
         _IsTheAppStarted =true;
 
         self.goPrevSlide = function() {
-            var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev',self.sendStoredKatakana));
+            var negativeNames = self.sendStoredKatakana.join(',');
+            var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev',negativeNames));
             getTestNamesObject(slideModel);
         };
 

@@ -8,7 +8,7 @@
  * Factory of the nwApp
  */
  var  webBaseUrl;
-//webBaseUrl = 'http://localhost:64378/';
+ webBaseUrl = 'http://localhost:64388/';
  webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
 
 angular.module('nwApp')
