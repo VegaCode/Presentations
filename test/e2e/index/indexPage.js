@@ -2,9 +2,11 @@ function indexPage(){
   var _minimumRank = 1;
   var _maximumRank = 3;
   var totalNumber;
-  var arrayOfNewNames = [''];
-  var arrayOfExploreRoots = ['AP-'.'ARC-'.'ARK'.'AV-'.'FU'.'-LA-'.'OMP'.'NEO'.'PAN'.'SA'.'ADA'.'RE'.'GAN'.'TO'.'ALM'.'AMUR'.'CAD'.'BRI'.'DA'.'FOR'.'GLE'.'HUV'.'I'.'ZATO'.'AQA'.'ORB'.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''];
-  var arrayOfAvoidRoots = ['APT-'.'-TEC-'.'-ZEL'.'AVE-'.'FUT-'.'KLA-'.'-RIEN-'.'ORY'.'BYX'.'PER-'.'PLYK-'.'-BUTRA'.'SOV'.'TRI'.'-MYN-'.'-RYS'.'BAR-'.'OTA'.'ANT'.'-FENS-'.'PEUS'.'-VAR'.'-BATYS'.'LYG'.'QADE','BICTA'.'SNE'.''.''.''.''.''.''.''.''.''.''.''.''.''];
+  // var arrayOfNewNames = [''];
+
+  var arrayOfExploreRoots = ['AP-','ARC-','ARK','AV-','FU','-LA-','OMP','NEO','PAN','SA','ADA','RE','GAN','TO','ALM','AMUR','CAD','BRI','DA','FOR','GLE','HUV','I','ZATO','AQA','ORB','PRI','TIN','ADE','VIO','PAT','VAL','VER','GIT','RYN','ZIG','ON','PATHS','SMO','LOR','MO','GAL','MOD','DO','EX','LANCE','NATY','ALO','ZYL','LAD'];
+
+  var arrayOfAvoidRoots = ['APT-','-TEC-','-ZEL','AVE-','FUT-','KLA-','-RIEN-','ORY','BYX','PER-','PLYK-','-BUTRA','SOV','TRI','-MYN-','-RYS','BAR-','OTA','-ANT','-FENS-','PEUS','-VAR','-BATYS','LYG','QADE','BICTA','SNE','STR','KADE','ALE','DEP','ENV','GLAV','HED','GOR','OF','PLET','THE','RED','MOL','TAR','LIR','TUVO','ANT-','-IMP-','CER','SOM','ORP','QUP-','STRA'];
   var _startTesting = 19;
   var _finishTesting = 69;
   var _alreadyPositive = true;
@@ -68,22 +70,31 @@ function indexPage(){
   };
   this.testNames = function(){
     var index;
-      for (index = 19; index< _finishTesting; index++){
+      for (index = 19; index<= _finishTesting; index++){
         if(_alreadyPositive === true && _alreadyNeutral === true){
           this.clickRadioButtonNegative();
-          expect(this.radioButtonNegative).toBeTruthy();
+          // expect(this.radioButtonNegative).toBeTruthy();
           _alreadyNegative = true;
           _alreadyNeutral = false;
+          // this.sendKeysOfInputNewName(index - 19);
+          this.sendKeysOfInputExplore(index - 19);
+          this.sendKeysOfInputAvoid(index - 19);
         }else if (_alreadyNeutral === true && _alreadyNegative === true) {
           this.clickRadioButtonPositive();
-          expect(this.radioButtonPositive).toBeTruthy();
+          // expect(this.radioButtonPositive).toBeTruthy();
           _alreadyPositive = true;
           _alreadyNegative = false;
+          // this.sendKeysOfInputNewName(index - 19);
+          this.sendKeysOfInputExplore(index - 19);
+          this.sendKeysOfInputAvoid(index - 19);
         }else if (_alreadyNegative === true && _alreadyPositive === true){
           this.clickRadioButtonNeutral();
-          expect(this.radioButtonNeutral).toBeTruthy();
+          // expect(this.radioButtonNeutral).toBeTruthy();
           _alreadyNeutral = true;
           _alreadyPositive = false;
+          // this.sendKeysOfInputNewName(index - 19);
+          this.sendKeysOfInputExplore(index - 19);
+          this.sendKeysOfInputAvoid(index - 19);
         }
         this.clickButtonNextSlide();
       }
@@ -108,20 +119,20 @@ function indexPage(){
     this.selectNameModel.sendKeys('ARCTECA');
   };
 
-  this.sendKeysOfInputNewName = function(){
-    this.inputNewName.sendKeys('New Name Test');
+  this.sendKeysOfInputNewName = function(arrayIndex){
+    this.inputNewName.sendKeys(arrayOfNewNames[arrayIndex]);
   };
 
-  this.sendKeysOfInputExplore = function(){
-    this.inputExplore.sendKeys('Explore Input Test');
+  this.sendKeysOfInputExplore = function(arrayIndex){
+    this.inputExplore.sendKeys(arrayOfExploreRoots[arrayIndex]);
   };
 
-  this.sendKeysOfInputAvoid = function(){
-    this.inputAvoid.sendKeys('Avoid Input Test');
+  this.sendKeysOfInputAvoid = function(arrayIndex){
+    this.inputAvoid.sendKeys(arrayOfAvoidRoots[arrayIndex]);
   };
 
 // *************************  Click Button Functions ****************************************************************************************************
-  this.clickButtonNextSlide = function(){
+  this.clickButtonNextSlide = function(arrayIndex){
     this.buttonNextSlide.click();
   };
 

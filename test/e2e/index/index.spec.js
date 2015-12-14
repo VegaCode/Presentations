@@ -7,23 +7,21 @@ describe('Protractor Demo App', function() {
   page.get('http://localhost:9001/#/main/1013');
 
   it("should show correct title and displays menu", function(){
-    page.sleep(5000);
     page.pressKeyArrowUp();
     expect(page.getTitle()).toEqual('NW');
   });
 
   it('should go through slides', function(){
     page.continueMoving();
-    page.sleep(5000);
   });
 
   it('should start ranking Names and providing input information', function(){
     page.testNames();
   });
 
-  it('should display positive names', function(){
-
-  });
+  // it('should display positive names', function(){
+  //
+  // });
 
   // it('should input a name in Search Bar and go to slide name', function(){
   //   // page.sleep(5000);
