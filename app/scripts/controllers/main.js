@@ -883,6 +883,7 @@ angular.module('nwApp')
 
 
         self.goNextSlide = function() {
+            debugger;
             var negativeNames = self.sendStoredKatakana.join(',');
             var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
             if (_SlideType === 'NameEvaluation') {
