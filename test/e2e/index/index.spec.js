@@ -12,21 +12,23 @@ describe('Protractor Demo App', function() {
   });
 
   it('should go to next slide twice', function(){
-    page.sleep(5000);
+    // page.sleep(5000);
     page.clickButtonNextSlide();
     page.clickButtonNextSlide();
   });
 
   it('should go to next slide using right arrow key', function(){
-    page.sleep(5000);
+    // page.sleep(5000);
     page.pressKeyArrowRight();
   });
 
   it('should input a name in Search Bar and go to slide name', function(){
-    page.sleep(5000);
+    // page.sleep(5000);
     page.sendKeysOfSelectedName();
     page.pressKeyEnter();
     expect(page.getTextOfSelectedName()).toBe('ANAPNEO');
+    page.clickButtonAdminLogin();
+    page.sleep(50000);
   });
 
   it('should reset current slide', function(){

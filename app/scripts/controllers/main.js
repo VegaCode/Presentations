@@ -6,7 +6,7 @@
  * # MainCtrl
  * Controller of the nwApp
  */
-var angular, Reveal, alertify, hljs, alert, prompt;
+var angular, Reveal, alertify, hljs;
 angular.module('nwApp')
 .controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings',
     function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings) {
@@ -522,6 +522,9 @@ angular.module('nwApp')
                             _TestNameFontColor = slideObject[0].TestNameFontColor;_TestNameFontFamily = slideObject[0].TestNameFontFamily;
                             _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive; _KanaNames = slideObject[0].KanaNames; _KanaNamesNegative = slideObject[0].KanaNamesNegative; _PresentationType = slideObject[0].PresentationType;
 
+                            //Cannot move this variable because it must receive information before passing the value to the progressbar since it will cause issues when updating
+                            self.pageNumber = _SlideNumber;
+
                               if (slideObject[0].SlideBGFileName === '') {
                                 self.BackGround = slideObject[0].TemplateFileName;
                               } else {
@@ -545,6 +548,7 @@ angular.module('nwApp')
                                 self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
                               }
 
+
                               // color and font settings
                               self.headerFontFamily = _HeaderFontFamily;
                               self.headerFontColor = _HeaderFontColor;
@@ -563,7 +567,7 @@ angular.module('nwApp')
 
                             self.subRationale = (_NameRationale.split('$')[1] !== undefined) ? _NameRationale.split('$')[1] : '';
                             centerTestNames(_SlideDescription);
-                            self.pageNumber = _SlideNumber;
+
                             self.typeOfPresentation = _PresentationType;
 
                             if (_SlideType === 'Image') {
@@ -611,6 +615,7 @@ angular.module('nwApp')
                             self.sendStoredKatakana = [];
                             self.katakanaObjToDisplay = [];
                             self.displayKatakana();
+
                             // check if the _IsBackgroundDefault is false or true to  add/remove the default background = _TemplateName;
                              if((_IsBackgroundDefault === true) && (_SlideType === 'NameEvaluation')){
                                  self.BackGround ='mages/BackGrounds/Default.jpg';

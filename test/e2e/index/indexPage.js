@@ -2,7 +2,7 @@ function indexPage(){
 // ************** Menu Bar Declaration ****************************************************************************************************
   this.buttonNextSlide = element(by.id('navright'));
   this.selectNameModel = element(by.model('main.selectedName'));
-  this.selectNameBinding = element(by.binding('main.nameCandidate'))
+  this.selectNameBinding = element(by.binding('main.nameCandidate'));
 
 // ************** Declaration For Display Names Section ****************************************************************************************************
   this.buttonResetSlide = element(by.id('reset'));
@@ -12,6 +12,8 @@ function indexPage(){
   this.inputNewName = element(by.id('newNameBox'));
   this.inputExplore = element(by.id('exploreBox'));
   this.inputAvoid = element(by.id('avoidBox'));
+
+  this.buttonAdminLogin = element(by.id('cogSettings'));
 
 // ************** Declaration For Summary Slides ****************************************************************************************************
   this.buttonGoToSummary = element(by.id('goesToSummary'));
@@ -24,7 +26,7 @@ function indexPage(){
 
   this.sleep = function(time){
     browser.sleep(time);
-  }
+  };
 
   this.getTitle = function(){
     return browser.getTitle();
@@ -95,6 +97,10 @@ function indexPage(){
 
   this.clickButtonGoToSummary = function(){
     this.buttonGoToSummary.click();
+  };
+
+  this.clickButtonAdminLogin = function(){
+    this.buttonAdminLogin.click();
   };
 }
 
