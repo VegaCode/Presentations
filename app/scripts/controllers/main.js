@@ -121,7 +121,7 @@ angular.module('nwApp')
                         self.displaySettings =false;
                 }else{
                   var password = prompt('Enter Password');
-                  if(password != 'admin123'){
+                  if(password !== 'admin123'){
                     alert('Please provide the correct password');
                   }else{
                     self.displaySettings = true;
@@ -520,79 +520,78 @@ angular.module('nwApp')
                             _TestNameFontColor = slideObject[0].TestNameFontColor;_TestNameFontFamily = slideObject[0].TestNameFontFamily;
                             _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive; _KanaNames = slideObject[0].KanaNames; _KanaNamesNegative = slideObject[0].KanaNamesNegative; _PresentationType = slideObject[0].PresentationType;
 
-                            // check if the _IsBackgroundDefault is false or true to  add/remove the default background
-                            if(_IsBackgroundDefault === false){
-                                    if(slideObject[0].SlideBGFileName === ''){
-                                      self.BackGround = slideObject[0].TemplateFileName;
-                                    }else {
-                                      self.BackGround = slideObject[0].SlideBGFileName;
-                                    }
-                                    self.BackGroundName = _TemplateName;
-                                    if(_TemplateName === 'Billboard' ||_TemplateName ==='SubwayStop'){
-                                         self.whatBackgroundIsIt =true;
-                                     }else{
-                                         self.whatBackgroundIsIt = false;
-                                     }
+                              if (slideObject[0].SlideBGFileName === '') {
+                                self.BackGround = slideObject[0].TemplateFileName;
+                              } else {
+                                self.BackGround = slideObject[0].SlideBGFileName;
+                              }
+                              self.BackGroundName = _TemplateName;
+                              if (_TemplateName === 'Billboard' || _TemplateName === 'SubwayStop') {
+                                self.whatBackgroundIsIt = true;
+                              } else {
+                                self.whatBackgroundIsIt = false;
+                              }
 
-                           // color and font settings
-                            self.headerFontFamily= _HeaderFontFamily;
-                            self.headerFontColor= _HeaderFontColor;
-                            self.testNameFontFamily= _TestNameFontFamily;
-                            self.testNameFontColor= _TestNameFontColor;
-                            self.rationaleFontFamily= _RationaleFontFamily;
-                            self.rationaleFontColor=  _RationaleFontColor;
-                            self.isStrokeIt = (_Stroke === 'false')? false: true;
-                            if(  self.isStrokeIt === true){ self.isTextShadow = 'text-shadow';}else{ self.isTextShadow = '';}
-                            self.strokeRange = _StrokeRange;
-                            self.strokeColor= _StrokeColor;
-                            self.subRationale = ( _NameRationale.split('$')[1] !== undefined) ? _NameRationale.split('$')[1] : '';
+                              if (self.typeOfPresentation === 'Katakana') {
+                                self.KatakanaNegativeFromDB = _KanaNamesNegative.split(',');
+                                self.phonetics = _KanaNames.split(',');
+                              }
+
+                              if (parseInt(self.pageNumber) === 1) {
+                                self.progressBarValue = 0;
+                              } else {
+                                self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
+                              }
+
+                              // color and font settings
+                              self.headerFontFamily = _HeaderFontFamily;
+                              self.headerFontColor = _HeaderFontColor;
+                              self.testNameFontFamily = _TestNameFontFamily;
+                              self.testNameFontColor = _TestNameFontColor;
+                              self.rationaleFontFamily = _RationaleFontFamily;
+                              self.rationaleFontColor = _RationaleFontColor;
+                              self.isStrokeIt = (_Stroke === 'false') ? false : true;
+                              if (self.isStrokeIt === true) {
+                                self.isTextShadow = 'text-shadow';
+                              } else {
+                                self.isTextShadow = '';
+                              }
+                              self.strokeRange = _StrokeRange;
+                              self.strokeColor = _StrokeColor;
+
+                            self.subRationale = (_NameRationale.split('$')[1] !== undefined) ? _NameRationale.split('$')[1] : '';
                             centerTestNames(_SlideDescription);
                             self.pageNumber = _SlideNumber;
                             self.typeOfPresentation = _PresentationType;
 
-                            if(self.typeOfPresentation === 'Katakana'){
-                              self.KatakanaNegativeFromDB = _KanaNamesNegative.split(',');
-                              self.phonetics = _KanaNames.split(',');
+                            if (_SlideType === 'Image') {
+                              self.displayNameGroup = true;
+                              self.controlsPosition = -282;
+                              _SlideDescription = '';
+                              self.displaySummary = false;
+                              self.isTestNameButtons = false;
+                            } else if (_SlideType === 'NameSummary') {
+                              _SlideDescription = '';
+                              self.displaySummary = true;
+                              self.displayNameGroup = true;
+                              self.controlsPosition = -282;
+                              self.isTestNameButtons = false;
+                              setProgressBarsSummary();
+                            } else {
+                              self.displayNameGroup = false;
+                              self.controlsPosition = -23;
+                              self.displaySummary = false;
+                              self.isTestNameButtons = true;
                             }
 
-                            if(parseInt(self.pageNumber) === 1){
-                              self.progressBarValue = 0;
-                            }else{
-                              self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
-                            }
+                            self.isOverlayAvailable = (_Overlay === 'False') ? false : true;
+                            self.overlayStyle = (self.isOverlayAvailable === true && _SlideType !== 'Image') ? 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' : '';
 
-
-                          }else{self.BackGround = 'default';}
-
-                            if(_SlideType === 'Image'){
-                                 self.displayNameGroup = true;
-                                 self.controlsPosition = -282;
-                                 _SlideDescription='';
-                                 self.displaySummary = false;
-                                 self.isTestNameButtons = false;
-                            }else if (_SlideType === 'NameSummary') {
-                                 _SlideDescription='';
-                                self.displaySummary = true;
-                                self.displayNameGroup = true;
-                                self.controlsPosition = -282;
-                                self.isTestNameButtons = false;
-                                setProgressBarsSummary();
-                            }else{
-                                self.displayNameGroup = false;
-                                self.controlsPosition = -23;
-                                self.displaySummary = false;
-                                self.isTestNameButtons = true;
-                            }
-
-                            self.isOverlayAvailable = (_Overlay === 'False')? false : true ;
-                            self.overlayStyle = (self.isOverlayAvailable === true && _SlideType !== 'Image') ?'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' : '';
-
-                            self.presentTestNamesAtSlide = ( self.presentTestNamesAtSlide === '')?_SlideNumber : '';
+                            self.presentTestNamesAtSlide = (self.presentTestNamesAtSlide === '') ? _SlideNumber : '';
 
                             self.logoPath = 'images/LogIcons/icon-1' + '.png';
 
                             self.showTemplate = false;
-
                             self.displayTally = false;
                             self.nameCandidate = _SlideDescription;
 
@@ -600,16 +599,30 @@ angular.module('nwApp')
                             self.nameNotation = _NameNotation;
                             self.Rationale = _NameRationale.split('$')[0];
                             // inputs
-                           self.nameRamking  = (_SlideType !== 'NameSummary') ? _NameRanking : true;
-                           self.newName  = _NewNames;
-                           self.avoid  = _NamesToAvoid;
-                           self.explore  = _NamesToExplore;
-                           self.positiveScore = _ToPositive;
-                           self.neutralScore = _ToNeutral;
+                            self.nameRamking = (_SlideType !== 'NameSummary') ? _NameRanking : true;
+                            self.newName = _NewNames;
+                            self.avoid = _NamesToAvoid;
+                            self.explore = _NamesToExplore;
+                            self.positiveScore = _ToPositive;
+                            self.neutralScore = _ToNeutral;
 
-                           self.sendStoredKatakana = [];
-                           self.katakanaObjToDisplay = [];
-                           self.displayKatakana();
+                            self.sendStoredKatakana = [];
+                            self.katakanaObjToDisplay = [];
+                            self.displayKatakana();
+                            // check if the _IsBackgroundDefault is false or true to  add/remove the default background = _TemplateName;
+                             if((_IsBackgroundDefault === true) && (_SlideType === 'NameEvaluation')){
+                                 self.BackGround ='mages/BackGrounds/Default.jpg';
+                                 // color and font settings
+                                 self.headerFontFamily = 'Calibri';
+                                 self.headerFontColor = '#000000';
+                                 self.testNameFontFamily = 'Roboto';
+                                 self.testNameFontColor = '#000000';
+                                 self.rationaleFontFamily = 'Calibri';
+                                 self.rationaleFontColor = '#FFFFFF';
+                                 self.isStrokeIt = false;
+                                 self.BackGroundName = 'Default'
+                                 self.whatBackgroundIsIt= false;
+                             }
             };
 
         self.displaySummarys = function(index){
@@ -819,7 +832,7 @@ angular.module('nwApp')
                                         });
                             };
 
- //************ Navigation Methods ***********************************************************************************************************
+ //************ Navigation Methods KATKANA ***********************************************************************************************************
         self.isKatakanaNegative = function(phonetic){
             var idx = self.sendStoredKatakana.indexOf(phonetic);
             if( idx < 0){
@@ -829,34 +842,18 @@ angular.module('nwApp')
                           self.sendStoredKatakana.splice(idx, 1);
                     }
             }
-            // self.kanaNegativeString = self.sendStoredKatakana.join(',');
-
-        //   if(self.sendStoredKatakana[index] === phonetic){
-        //     if(self.phonetics[index]=== self.KatakanaNegativeFromDB[index]){
-        //       self.sendStoredKatakana[index] = '';
-        //     }else{
-        //       self.sendStoredKatakana[index] = '';
-        //     }
-        //   }else{
-        //     self.sendStoredKatakana[index] = phonetic;
-        //   }
-        //   var temp = self.sendStoredKatakana;
-        //   while (temp.length > 0) {
-        //       self.NegativeKatakana2 += temp.splice(0,1);
-        //   }
         };
 
         self.displayKatakana = function(){
           self.phonetics.map(function(obj){
             var isKatakanaEqual = self.KatakanaNegativeFromDB.indexOf(obj);
-            if(isKatakanaEqual >= 0){
-              var newKatakanaObj = new KatakanaModel(obj, 'red');
+            if(isKatakanaEqual === -1){
+              var newKatakanaObj = new KatakanaModel(obj, 'black');
               self.katakanaObjToDisplay.push(newKatakanaObj);
-              if(self.sendStoredKatakana.indexOf(obj) < 0){
-                self.sendStoredKatakana.push(obj);
-              }
+
             }else{
-              var newKatakanaObj2 = new KatakanaModel(obj, 'black');
+              var newKatakanaObj2 = new KatakanaModel(obj, 'red');
+              self.sendStoredKatakana.push(obj);
               self.katakanaObjToDisplay.push(newKatakanaObj2);
             }
           });
@@ -872,7 +869,7 @@ angular.module('nwApp')
 
         self.goHome = function() {
             if(_IsTheAppStarted){self.goNextSlide();}
-            var initialSlideModel = JSON.stringify(new SlideInfoModel(projectId, 12, '', '', '', '', 'Next', self.sendStoredKatakana));
+            var initialSlideModel = JSON.stringify(new SlideInfoModel(projectId, 0, '', '', '', '', 'Next', self.sendStoredKatakana));
             getTestNamesObject(initialSlideModel);
         };
 
