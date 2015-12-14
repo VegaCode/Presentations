@@ -442,8 +442,9 @@ angular.module('nwApp')
               if (self.nameRamking === false || self.nameRamking ===''){
                 alert('Please vote on the name');
               }else{
-                var slideModel = JSON.stringify( new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore,self.avoid, 'Next', self.sendStoredKatakana));
-                getTestNamesObject(slideModel);
+                  var negativeNames = self.sendStoredKatakana.join(',');
+                  var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
+                  getTestNamesObject(slideModel);
               }
         };
 
@@ -864,8 +865,7 @@ angular.module('nwApp')
           while (kanaToDisplay.length > 0){
               self.kanaNamestoDisplay.push(kanaToDisplay.splice(0, 4));
           }
-          console.log(self.kanaNamestoDisplay);
-
+          //console.log(self.kanaNamestoDisplay);
         };
 
         self.goHome = function() {
@@ -881,26 +881,28 @@ angular.module('nwApp')
             self.selectSlide(_nameSummarySlideNumber - 1);
         };
 
+
         self.goNextSlide = function() {
             var negativeNames = self.sendStoredKatakana.join(',');
             var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
-            if (_SlideType === 'NameSummary') {
+            if (_SlideType === 'NameEvaluation') {
                 self.mustRank();
-            } else {
+            }
+            else {
                 getTestNamesObject(slideModel);
             }
         };
-
-        // WARNING leave the code in this position
-         self.goHome();
-
-        _IsTheAppStarted =true;
 
         self.goPrevSlide = function() {
             var negativeNames = self.sendStoredKatakana.join(',');
             var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Prev',negativeNames));
             getTestNamesObject(slideModel);
         };
+
+        // WARNING leave the code in this position
+         self.goHome();
+
+        _IsTheAppStarted =true;
 
         self.selectedName = '';
 
