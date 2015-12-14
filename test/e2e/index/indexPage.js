@@ -1,17 +1,35 @@
 function indexPage(){
+  var _minimumRank = 1;
+  var _maximumRank = 3;
+  var totalNumber;
+  var arrayOfNewNames = [''];
+  var arrayOfExploreRoots = ['AP-'.'ARC-'.'ARK'.'AV-'.'FU'.'-LA-'.'OMP'.'NEO'.'PAN'.'SA'.'ADA'.'RE'.'GAN'.'TO'.'ALM'.'AMUR'.'CAD'.'BRI'.'DA'.'FOR'.'GLE'.'HUV'.'I'.'ZATO'.'AQA'.'ORB'.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''];
+  var arrayOfAvoidRoots = ['APT-'.'-TEC-'.'-ZEL'.'AVE-'.'FUT-'.'KLA-'.'-RIEN-'.'ORY'.'BYX'.'PER-'.'PLYK-'.'-BUTRA'.'SOV'.'TRI'.'-MYN-'.'-RYS'.'BAR-'.'OTA'.'ANT'.'-FENS-'.'PEUS'.'-VAR'.'-BATYS'.'LYG'.'QADE','BICTA'.'SNE'.''.''.''.''.''.''.''.''.''.''.''.''.''];
+  var _startTesting = 19;
+  var _finishTesting = 69;
+  var _alreadyPositive = true;
+  var _alreadyNegative = true;
+  var _alreadyNeutral = false;
+
 // ************** Menu Bar Declaration ****************************************************************************************************
   this.buttonNextSlide = element(by.id('navright'));
   this.selectNameModel = element(by.model('main.selectedName'));
-  this.selectNameBinding = element(by.binding('main.nameCandidate'))
+  this.selectNameBinding = element(by.binding('main.nameCandidate'));
+  this.totalPageNumbers = element(by.binding('main.totalOfTestNames'));
 
 // ************** Declaration For Display Names Section ****************************************************************************************************
+  this.testName = element(by.id('testName'));
   this.buttonResetSlide = element(by.id('reset'));
+  this.radioButtonPositive = element(by.id('positiveRank'));
+  this.radioButtonNeutral = element(by.id('neutralRank'));
   this.radioButtonNegative = element(by.id('negativeRank'));
   this.buttonTally = element(by.id('buttonTally'));
 
   this.inputNewName = element(by.id('newNameBox'));
   this.inputExplore = element(by.id('exploreBox'));
   this.inputAvoid = element(by.id('avoidBox'));
+
+  this.buttonAdminLogin = element(by.id('cogSettings'));
 
 // ************** Declaration For Summary Slides ****************************************************************************************************
   this.buttonGoToSummary = element(by.id('goesToSummary'));
@@ -24,7 +42,7 @@ function indexPage(){
 
   this.sleep = function(time){
     browser.sleep(time);
-  }
+  };
 
   this.getTitle = function(){
     return browser.getTitle();
@@ -42,6 +60,36 @@ function indexPage(){
     return this.displayNegativeNames.isDisplayed();
   };
 
+  this.continueMoving = function(){
+    var index;
+    for (index = 0; index< _startTesting; index++){
+      this.clickButtonNextSlide();
+    }
+  };
+  this.testNames = function(){
+    var index;
+      for (index = 19; index< _finishTesting; index++){
+        if(_alreadyPositive === true && _alreadyNeutral === true){
+          this.clickRadioButtonNegative();
+          expect(this.radioButtonNegative).toBeTruthy();
+          _alreadyNegative = true;
+          _alreadyNeutral = false;
+        }else if (_alreadyNeutral === true && _alreadyNegative === true) {
+          this.clickRadioButtonPositive();
+          expect(this.radioButtonPositive).toBeTruthy();
+          _alreadyPositive = true;
+          _alreadyNegative = false;
+        }else if (_alreadyNegative === true && _alreadyPositive === true){
+          this.clickRadioButtonNeutral();
+          expect(this.radioButtonNeutral).toBeTruthy();
+          _alreadyNeutral = true;
+          _alreadyPositive = false;
+        }
+        this.clickButtonNextSlide();
+      }
+  };
+
+
 // ************** Pressing Arrow Key Functions ****************************************************************************************************
   this.pressKeyArrowUp = function(){
     browser.actions().sendKeys(protractor.Key.ARROW_UP).perform();
@@ -57,7 +105,7 @@ function indexPage(){
 
 // ************** sendKeys Functions ****************************************************************************************************
   this.sendKeysOfSelectedName = function(){
-    this.selectNameModel.sendKeys('ANAPNEO');
+    this.selectNameModel.sendKeys('ARCTECA');
   };
 
   this.sendKeysOfInputNewName = function(){
@@ -81,6 +129,12 @@ function indexPage(){
     this.buttonResetSlide.click();
   };
 
+  this.clickRadioButtonPositive = function(){
+    this.radioButtonPositive.click();
+  };
+  this.clickRadioButtonNeutral = function(){
+    this.radioButtonNeutral.click();
+  };
   this.clickRadioButtonNegative = function(){
     this.radioButtonNegative.click();
   };
@@ -93,8 +147,13 @@ function indexPage(){
     this.displayNegativeNames.click();
   };
 
+
   this.clickButtonGoToSummary = function(){
     this.buttonGoToSummary.click();
+  };
+
+  this.clickButtonAdminLogin = function(){
+    this.buttonAdminLogin.click();
   };
 }
 
