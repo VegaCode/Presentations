@@ -1,11 +1,11 @@
 // Karma configuration
-// Generated on Wed Dec 02 2015 14:43:42 GMT-0500 (Eastern Standard Time)
+// Generated on Tue Dec 15 2015 14:50:51 GMT-0500 (Eastern Standard Time)
 
 module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '../',
+    basePath: '',
 
 
     // frameworks to use
@@ -14,30 +14,7 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [
-      'bower_components/angular/angular.js',
-      'bower_components/jquery/dist/jquery.js',
-      'bower_components/angular-route/angular-route.js',
-      'bower_components/angular-bootstrap/ui-bootstrap.js',
-      'bower_components/angular-animate/angular-animate.js',
-      'bower_components/angular-cookies/angular-cookies.js',
-      'bower_components/alertifyjs/alertify.js',
-      'bower_components/angular-filter/dist/angular-filter.js',
-      'bower_components/angular-hotkeys/build/hotkeys.js',
-      'bower_components/angular-local-storage/dist/angular-local-storage.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      'bower_components/angular-resource/angular-resource.js',
-      'bower_components/angular-sanitize/angular-sanitize.js',
-      'bower_components/angular-screenfull/dist/angular-screenfull.js',
-      'bower_components/angular-touch/angular-touch.js',
-      'bower_components/auto-font-size/dist/auto_font_size.js',
-      'bower_components/bootstrap/dist/js/bootstrap.js',
-      'bower_components/reveal-js/js/reveal.js',
-      'bower_components/screenfull/dist/screenfull.js',
-      'app/scripts/app.js',
-      'app/scripts/controllers/main.js',
-      'app/scripts/services/getDataFactory.js',
-      'test/spec/*.js'
+    files: ['spec/index/main.spec.js'
     ],
 
 
@@ -72,7 +49,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // start these browsers
