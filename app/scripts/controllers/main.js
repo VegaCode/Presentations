@@ -719,12 +719,12 @@ angular.module('nwApp')
           var instruccion = projectId + ', "Positive Retained Names"';
           $http.get(webBaseUrl + apiCall + instruccion).success(function(positiveName) {
             for (var i = 0; i < positiveName.length; i++) {
-              self.retainedNames.push(positiveName[i].Name);
+              self.retainedNames.push(positiveName[i]);
             }
             var instruccion = projectId + ',"Neutral Retained Names"';
             $http.get(webBaseUrl + apiCall + instruccion).success(function(neutralName) {
               for (var i = 0; i < neutralName.length; i++) {
-                self.retainedNames.push(neutralName[i].Name);
+                self.retainedNames.push(neutralName[i]);
               }
             });
           });
@@ -738,7 +738,7 @@ angular.module('nwApp')
           var instruccion = projectId + ', "Positive Retained Names"';
           $http.get(webBaseUrl + apiCall + instruccion).success(function(positiveName) {
             for (var i = 0; i < positiveName.length; i++) {
-              self.positiveNames.push(positiveName[i].Name);
+              self.positiveNames.push(positiveName[i]);
             }
             selectColumnSize(positiveName.length);
           });
@@ -751,8 +751,8 @@ angular.module('nwApp')
           var instruccion = projectId + ', "Neutral Retained Names"';
           $http.get(webBaseUrl + apiCall + instruccion).success(function(neutralName) {
             for (var i = 0; i < neutralName.length; i++) {
-              self.neutralNames.push(neutralName[i].Name);
-              self.retainedNames.push(neutralName[i].Name);
+              self.neutralNames.push(neutralName[i]);
+              self.retainedNames.push(neutralName[i]);
             }
             selectColumnSize(neutralName.length);
           });
@@ -765,7 +765,7 @@ angular.module('nwApp')
           var instruccion = projectId + ', "Negative Names"';
           $http.get(webBaseUrl + apiCall + instruccion).success(function(negativeName) {
             for (var i = 0; i < negativeName.length; i++) {
-              self.negativeNames.push(negativeName[i].Name);
+              self.negativeNames.push(negativeName[i]);
             }
             selectColumnSize(negativeName.length);
           });
