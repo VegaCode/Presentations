@@ -34,13 +34,11 @@ function indexPage(){
   var _alreadyNegative = true;
   var _alreadyNeutral = false;
   var _SleepyTime = 2000;
-
 // ************** Menu Bar Declaration ****************************************************************************************************
   this.buttonNextSlide = element(by.id('navright'));
   this.selectNameModel = element(by.model('main.selectedName'));
   this.selectNameBinding = element(by.binding('main.nameCandidate'));
   this.totalPageNumbers = element(by.binding('main.totalOfTestNames'));
-
 // ************** Declaration For Display Names Section ****************************************************************************************************
   this.testName = element(by.id('testName'));
   this.buttonResetSlide = element(by.id('reset'));
@@ -57,7 +55,6 @@ function indexPage(){
 // ************** Declaration For Summary Slides ****************************************************************************************************
   this.buttonGoToSummary = element(by.id('goesToSummary'));
   this.displayNegativeNames = element(by.id('showNegativeNames'));
-
 // ************** General functions ****************************************************************************************************
   this.get = function(url){
     browser.get(url);
@@ -93,14 +90,14 @@ function indexPage(){
     var index;
       for (index = 19; index< _finishTesting; index++){
         //debugger;
-        if(_alreadyPositive === true || _alreadyNeutral === true){
+        if(_alreadyPositive === true && _alreadyNeutral === true){
           this.clickRadioButtonNegative();
           _alreadyNegative = true;
           _alreadyNeutral = false;
           this.sendKeysOfInputNewName(index - 19);
           this.sendKeysOfInputExplore(index - 19);
           this.sendKeysOfInputAvoid(index - 19);
-        }else if (_alreadyNeutral === true || _alreadyNegative === true) {
+        }else if (_alreadyNeutral === true && _alreadyNegative === true) {
           this.clickRadioButtonPositive();
 
           _alreadyPositive = true;
@@ -108,7 +105,7 @@ function indexPage(){
           this.sendKeysOfInputNewName(index - 19);
           this.sendKeysOfInputExplore(index - 19);
           this.sendKeysOfInputAvoid(index - 19);
-        }else if (_alreadyNegative === true || _alreadyPositive === true){
+        }else if (_alreadyNegative === true && _alreadyPositive === true){
           this.clickRadioButtonNeutral();
 
           _alreadyNeutral = true;
