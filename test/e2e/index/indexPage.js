@@ -1,7 +1,5 @@
 function indexPage(){
-  var _minimumRank = 1;
-  var _maximumRank = 3;
-  var totalNumber;
+
   var arrayOfNewNames = ['APTIERA', 'ARCTECA', 'ARKIZEL', 'AVENSIVE', 'ELATHERA', 'FIRLYNSA', 'FUTROZEL', 'FYNHESS', 'KLAUSTRA',
                   'LONVALTA', 'NYTARGA', 'OMPRIENCE', 'ORYNEO', 'PANHIBYX', 'PERHENSA', 'PLYKADA', 'REBUTRA', 'REMYNO', 'REPRONA',
                   'SCEPTUVA', 'SOVRIGAN', 'SPECITOL', 'SUHAVA', 'TOLEORA', 'TRIETTO', 'ULEXTA', 'VARIZERA', 'ALMYNDRA', 'ALTYLARI',
@@ -28,12 +26,14 @@ function indexPage(){
                 'BAR-','OTA','-ANT','-FENS-','PEUS','-VAR','-BATYS','LYG','QADE','BICTA','SNE','STR','KADE','ALE','DEP','ENV','GLAV','HED',
                 'GOR','OF','PLET','THE','RED','MOL','TAR','LIR','TUVO','ANT-','-IMP-','CER','SOM','ORP','QUP-','STRA'];
 
-  var _startTesting = 12;
-  var _finishTesting = 112;
+  var _minimumRank = 1;
+  var _maximumRank = 3;
+  var _startTesting = 19;
+  var _finishTesting = 69;
   var _alreadyPositive = true;
   var _alreadyNegative = true;
   var _alreadyNeutral = false;
-  var _SleepyTime = 2000;
+  var _SleepyTime = 1000;
 
 // ************** Menu Bar Declaration ****************************************************************************************************
   this.buttonNextSlide = element(by.id('navright'));
@@ -56,7 +56,12 @@ function indexPage(){
 
 // ************** Declaration For Summary Slides ****************************************************************************************************
   this.buttonGoToSummary = element(by.id('goesToSummary'));
+  this.displayRetainedNames = element(by.id('showRetainedNames'));
+  // this.displayNegativeNames = element(by.id('showNeutralNames'));
   this.displayNegativeNames = element(by.id('showNegativeNames'));
+  this.displayNewNames = element(by.id('showNewNames'));
+  this.displayExploreRoots = element(by.id('showExploreRoots'));
+  this.displayAvoidRoots = element(by.id('showAvoidRoots'));
 
 // ************** General functions ****************************************************************************************************
   this.get = function(url){
@@ -79,8 +84,20 @@ function indexPage(){
     return this.buttonTally.isDisplayed();
   };
 
+  this.retainedNamesAreDisplayed = function(){
+    return this.displayRetainedNames.isPresent();
+  };
   this.negativeNamesAreDisplayed = function(){
-    return this.displayNegativeNames.isDisplayed();
+    return this.displayNegativeNames.isPresent();
+  };
+  this.newNamesAreDisplayed = function(){
+    return this.displayNewNames.isPresent();
+  };
+  this.exploreRootsAreDisplayed = function(){
+    return this.displayExploreRoots.isPresent();
+  };
+  this.avoidRootsAreDisplayed = function(){
+    return this.displayAvoidRoots.isPresent();
   };
 
   this.continueMoving = function(){
@@ -93,24 +110,22 @@ function indexPage(){
     var index;
       for (index = 19; index< _finishTesting; index++){
         //debugger;
-        if(_alreadyPositive === true || _alreadyNeutral === true){
+        if(_alreadyPositive === true && _alreadyNeutral === true){
           this.clickRadioButtonNegative();
           _alreadyNegative = true;
           _alreadyNeutral = false;
           this.sendKeysOfInputNewName(index - 19);
           this.sendKeysOfInputExplore(index - 19);
           this.sendKeysOfInputAvoid(index - 19);
-        }else if (_alreadyNeutral === true || _alreadyNegative === true) {
+        }else if (_alreadyNeutral === true && _alreadyNegative === true) {
           this.clickRadioButtonPositive();
-
           _alreadyPositive = true;
           _alreadyNegative = false;
           this.sendKeysOfInputNewName(index - 19);
           this.sendKeysOfInputExplore(index - 19);
           this.sendKeysOfInputAvoid(index - 19);
-        }else if (_alreadyNegative === true || _alreadyPositive === true){
+        }else if (_alreadyNegative === true && _alreadyPositive === true){
           this.clickRadioButtonNeutral();
-
           _alreadyNeutral = true;
           _alreadyPositive = false;
           this.sendKeysOfInputNewName(index - 19);
@@ -119,7 +134,6 @@ function indexPage(){
         }
         this.sleep(_SleepyTime);
         this.clickButtonNextSlide();
-
       }
   };
 
@@ -176,8 +190,20 @@ function indexPage(){
     this.buttonTally.click();
   };
 
+  this.clickDisplayRetainedNames = function(){
+    this.displayRetainedNames.click();
+  };
   this.clickDisplayNegativeNames = function(){
     this.displayNegativeNames.click();
+  };
+  this.clickDisplayNewNames = function(){
+    this.displayNewNames.click();
+  };
+  this.clickDisplayExploreRoots = function(){
+    this.displayExploreRoots.click();
+  };
+  this.clickDisplayAvoidRoots = function(){
+    this.displayAvoidRoots.click();
   };
 
   this.clickButtonGoToSummary = function(){
