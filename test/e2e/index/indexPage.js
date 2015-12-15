@@ -33,14 +33,12 @@ function indexPage(){
   var _alreadyPositive = true;
   var _alreadyNegative = true;
   var _alreadyNeutral = false;
-  var _SleepyTime = 1000;
-
+  var _SleepyTime = 2000;
 // ************** Menu Bar Declaration ****************************************************************************************************
   this.buttonNextSlide = element(by.id('navright'));
   this.selectNameModel = element(by.model('main.selectedName'));
   this.selectNameBinding = element(by.binding('main.nameCandidate'));
   this.totalPageNumbers = element(by.binding('main.totalOfTestNames'));
-
 // ************** Declaration For Display Names Section ****************************************************************************************************
   this.testName = element(by.id('testName'));
   this.buttonResetSlide = element(by.id('reset'));
@@ -57,12 +55,10 @@ function indexPage(){
 // ************** Declaration For Summary Slides ****************************************************************************************************
   this.buttonGoToSummary = element(by.id('goesToSummary'));
   this.displayRetainedNames = element(by.id('showRetainedNames'));
-  // this.displayNegativeNames = element(by.id('showNeutralNames'));
   this.displayNegativeNames = element(by.id('showNegativeNames'));
   this.displayNewNames = element(by.id('showNewNames'));
   this.displayExploreRoots = element(by.id('showExploreRoots'));
   this.displayAvoidRoots = element(by.id('showAvoidRoots'));
-
 // ************** General functions ****************************************************************************************************
   this.get = function(url){
     browser.get(url);

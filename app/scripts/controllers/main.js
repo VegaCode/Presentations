@@ -505,7 +505,6 @@ angular.module('nwApp')
 
 
                  };
-
         // for review
         var setUpTheSlideInfo = function(slideObject){
                             _id = slideObject[0].$id;_DisplayName = slideObject[0].DisplayName;_StrokeRange  = slideObject[0].StrokeRange;
@@ -713,128 +712,132 @@ angular.module('nwApp')
                         });
             };
  //************ Methods to get summary data ***********************************************************************************************************
+        self.getRetainedNames = function() {
+          resetBooleanSummarySlideVars();
+          self.displayRetained = true;
+          var apiCall = 'api/NW_GetSummary?instruccion=';
+          var instruccion = projectId + ', "Positive Retained Names"';
+          $http.get(webBaseUrl + apiCall + instruccion).success(function(positiveName) {
+            for (var i = 0; i < positiveName.length; i++) {
+              self.retainedNames.push(positiveName[i].Name);
+            }
+            var instruccion = projectId + ',"Neutral Retained Names"';
+            $http.get(webBaseUrl + apiCall + instruccion).success(function(neutralName) {
+              for (var i = 0; i < neutralName.length; i++) {
+                self.retainedNames.push(neutralName[i].Name);
+              }
+            });
+          });
+          selectColumnSize(self.retainedNames.length);
+        };
 
-            self.getRetainedNames = function(){
-                      resetBooleanSummarySlideVars();
-                          self.displayRetained = true;
-                          var apiCall = 'api/NW_GetSummary?instruccion=';
-                          var instruccion = projectId + ', "Positive Retained Names"';
-                          $http.get(webBaseUrl +  apiCall + instruccion ).success(function(positiveName){
-                          for(var i = 0; i<positiveName.length; i++){
-                              self.retainedNames.push(positiveName[i].Name);
-                          }
-                                var instruccion = projectId + ',"Neutral Retained Names"';
-                                $http.get(webBaseUrl +  apiCall + instruccion).success(function(neutralName){
-                                  for(var i = 0; i<neutralName.length; i++){
-                                    self.retainedNames.push(neutralName[i].Name);
-                                  }
-                               });
-                         });
-                         selectColumnSize(self.retainedNames.length);
-                };
+        self.getPositivesNames = function() {
+          resetBooleanSummarySlideVars();
+          self.displayPositive = true;
+          var apiCall = 'api/NW_GetSummary?instruccion=';
+          var instruccion = projectId + ', "Positive Retained Names"';
+          $http.get(webBaseUrl + apiCall + instruccion).success(function(positiveName) {
+            for (var i = 0; i < positiveName.length; i++) {
+              self.positiveNames.push(positiveName[i].Name);
+            }
+            selectColumnSize(positiveName.length);
+          });
+        };
 
-                self.getPositivesNames = function(){
-                    resetBooleanSummarySlideVars();
-                         self.displayPositive = true;
-                         var apiCall = 'api/NW_GetSummary?instruccion=';
-                         var instruccion = projectId + ', "Positive Retained Names"';
-                        $http.get(webBaseUrl +  apiCall + instruccion ).success(function(positiveName){
-                        for(var i = 0; i<positiveName.length; i++){
-                            self.positiveNames.push(positiveName[i].Name);
-                        }
-                        selectColumnSize(positiveName.length);
-                      });
-                };
-                self.getNeutralsNames = function(){
-                      resetBooleanSummarySlideVars();
-                      self.displayNeutral = true;
-                      var apiCall = 'api/NW_GetSummary?instruccion=';
-                        var instruccion = projectId + ', "Neutral Retained Names"';
-                      $http.get(webBaseUrl +  apiCall + instruccion).success(function(neutralName){
-                        for(var i = 0; i<neutralName.length; i++){
-                            self.neutralNames.push(neutralName[i].Name);
-                            self.retainedNames.push(neutralName[i].Name);
-                        }
-                        selectColumnSize(neutralName.length);
-                      });
-                };
-                self.getNegativesNames = function(){
-                         resetBooleanSummarySlideVars();
-                         self.displayNegative = true;
-                         var apiCall = 'api/NW_GetSummary?instruccion=';
-                         var instruccion = projectId +  ', "Negative Names"';
-                          $http.get(webBaseUrl +  apiCall + instruccion ).success(function(negativeName){
-                            for(var i = 0; i<negativeName.length; i++){
-                                self.negativeNames.push(negativeName[i].Name);
-                            }
-                            selectColumnSize(negativeName.length);
-                          });
-                };
-                self.getNewsNames = function(){
-                     resetBooleanSummarySlideVars();
-                      self.displayNewName = true;
-                      var apiCall = 'api/NW_GetSummary?instruccion=';
-                     var instruccion = projectId + ',"New Names"';
-                     $http.get(webBaseUrl +  apiCall + instruccion ).success(function(newName){
-                        newName.map(function(obj) {
-                            self.newNames.push(obj);
-                        });
-                        selectColumnSize(newName.length);
-                      });
-                };
+        self.getNeutralsNames = function() {
+          resetBooleanSummarySlideVars();
+          self.displayNeutral = true;
+          var apiCall = 'api/NW_GetSummary?instruccion=';
+          var instruccion = projectId + ', "Neutral Retained Names"';
+          $http.get(webBaseUrl + apiCall + instruccion).success(function(neutralName) {
+            for (var i = 0; i < neutralName.length; i++) {
+              self.neutralNames.push(neutralName[i].Name);
+              self.retainedNames.push(neutralName[i].Name);
+            }
+            selectColumnSize(neutralName.length);
+          });
+        };
 
-                var getNotesFromServer = function (){
-                            var apiCall = 'api/NW_GetNotes?projectid=';
-                           $http.get(webBaseUrl +  apiCall + projectId ).success(function(rootExplore){
-                            self.dataExploreInput = rootExplore[0].NotesExplore;
-                            self.dataAvoidInput = rootExplore[0].NotesAvoid;
-                          });
+        self.getNegativesNames = function() {
+          resetBooleanSummarySlideVars();
+          self.displayNegative = true;
+          var apiCall = 'api/NW_GetSummary?instruccion=';
+          var instruccion = projectId + ', "Negative Names"';
+          $http.get(webBaseUrl + apiCall + instruccion).success(function(negativeName) {
+            for (var i = 0; i < negativeName.length; i++) {
+              self.negativeNames.push(negativeName[i].Name);
+            }
+            selectColumnSize(negativeName.length);
+          });
+        };
 
-                };
+        self.getNewsNames = function() {
+          resetBooleanSummarySlideVars();
+          self.displayNewName = true;
+          var apiCall = 'api/NW_GetSummary?instruccion=';
+          var instruccion = projectId + ',"New Names"';
+          $http.get(webBaseUrl + apiCall + instruccion).success(function(newName) {
+            newName.map(function(obj) {
+              self.newNames.push(obj);
+            });
+            selectColumnSize(newName.length);
+          });
+        };
 
-                self.getrootsToExplores = function(){
-                           getNotesFromServer();
-                           resetBooleanSummarySlideVars();
-                           self.displayRootExplore = true;
-                           var apiCall = 'api/NW_GetSummary?instruccion=';
-                           var  instruccion = projectId + ', "Roots to Explore"';
-                           $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootExplore){
-                            rootExplore.map(function(obj) {
-                                self.rootsToExplore.push(obj);
-                            });
-                            selectColumnSize(rootExplore.length);
-                          });
-                };
+        var getNotesFromServer = function() {
+          var apiCall = 'api/NW_GetNotes?projectid=';
+          $http.get(webBaseUrl + apiCall + projectId).success(function(rootExplore) {
+            self.dataExploreInput = rootExplore[0].NotesExplore;
+            self.dataAvoidInput = rootExplore[0].NotesAvoid;
+          });
 
+        };
 
-                self.getrootsToAvoids = function(){
-                    getNotesFromServer();
-                    resetBooleanSummarySlideVars();
-                    self.displayRootAvoid = true;
-                    var apiCall = 'api/NW_GetSummary?instruccion=';
-                    var instruccion = projectId +  ', "Roots to Avoid"';
-                    $http.get(webBaseUrl +  apiCall + instruccion ).success(function(rootAvoid){
-                      rootAvoid.map(function(obj) {
-                      self.rootsToAvoid.push(obj);
-                      });
-                      selectColumnSize(rootAvoid.length);
-                    });
-                };
+        self.getrootsToExplores = function() {
+          getNotesFromServer();
+          resetBooleanSummarySlideVars();
+          self.displayRootExplore = true;
+          var apiCall = 'api/NW_GetSummary?instruccion=';
+          var instruccion = projectId + ', "Roots to Explore"';
+          $http.get(webBaseUrl + apiCall + instruccion).success(function(rootExplore) {
+            rootExplore.map(function(obj) {
+              self.rootsToExplore.push(obj);
+            });
+            selectColumnSize(rootExplore.length);
+          });
+        };
 
 
-                 var getTestNamesObject = function(initialSlideModel){
-                                      var apiCall = 'api/NW_SaveAndReturnSlideData';
-                                       $http.post(webBaseUrl + apiCall , initialSlideModel ).success(function(slideObject){
-                                             if(slideObject.length>0){
-                                               _TotalNames = slideObject[0].TotalNames;
-                                               self.totalOfTestNames = parseInt(_TotalNames);
-                                               self.progressBarUnit = 100/ self.totalOfTestNames;
-                                               setUpTheSlideInfo(slideObject);
-                                             }else{   alertify.alert('The test names for the  project: '+ projectId +' is not available plese contact IS for further support').set('title', 'Help info');}
-                                       }).error(function(err) {
-                                           return err;
-                                        });
-                            };
+        self.getrootsToAvoids = function() {
+          getNotesFromServer();
+          resetBooleanSummarySlideVars();
+          self.displayRootAvoid = true;
+          var apiCall = 'api/NW_GetSummary?instruccion=';
+          var instruccion = projectId + ', "Roots to Avoid"';
+          $http.get(webBaseUrl + apiCall + instruccion).success(function(rootAvoid) {
+            rootAvoid.map(function(obj) {
+              self.rootsToAvoid.push(obj);
+            });
+            selectColumnSize(rootAvoid.length);
+          });
+        };
+
+
+        var getTestNamesObject = function(initialSlideModel) {
+          var apiCall = 'api/NW_SaveAndReturnSlideData';
+          $http.post(webBaseUrl + apiCall, initialSlideModel).success(function(slideObject) {
+            if (slideObject.length > 0) {
+              _TotalNames = slideObject[0].TotalNames;
+              self.totalOfTestNames = parseInt(_TotalNames);
+              self.progressBarUnit = 100 / self.totalOfTestNames;
+              setUpTheSlideInfo(slideObject);
+            } else {
+              alertify.alert('The test names for the  project: ' + projectId + ' is not available plese contact IS for further support').set('title', 'Help info');
+            }
+          }).error(function(err) {
+            return err;
+          });
+        };
 
  //************ Navigation Methods KATKANA ***********************************************************************************************************
         self.isKatakanaNegative = function(phonetic){
@@ -880,7 +883,6 @@ angular.module('nwApp')
             setProgressBarsSummary();
             self.selectSlide(_nameSummarySlideNumber - 1);
         };
-
 
         self.goNextSlide = function() {
             var negativeNames = self.sendStoredKatakana.join(',');
@@ -1019,8 +1021,6 @@ angular.module('nwApp')
                                     callback: function(){
                                                self.displayMenu = false;
                             }});
-
-
-        }// end of controller
+      }// end of controller
 
     ]);
