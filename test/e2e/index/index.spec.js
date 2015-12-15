@@ -3,8 +3,8 @@ var indexPage = require('./indexPage');
 
 describe('Protractor Demo App', function() {
   var page = new indexPage();
-
-  page.get('http://localhost:9001/#/main/1013');
+  jasmine.DEFAULT_TIMEOUT_INTERVAL =2000000;
+  page.get('https://tools.brandinstitute.com/NW/#/main/1012');
 
   it("should show correct title and displays menu", function(){
     page.pressKeyArrowUp();

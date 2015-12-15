@@ -2,16 +2,38 @@ function indexPage(){
   var _minimumRank = 1;
   var _maximumRank = 3;
   var totalNumber;
-  // var arrayOfNewNames = [''];
+  var arrayOfNewNames = ['APTIERA', 'ARCTECA', 'ARKIZEL', 'AVENSIVE', 'ELATHERA', 'FIRLYNSA', 'FUTROZEL', 'FYNHESS', 'KLAUSTRA',
+                  'LONVALTA', 'NYTARGA', 'OMPRIENCE', 'ORYNEO', 'PANHIBYX', 'PERHENSA', 'PLYKADA', 'REBUTRA', 'REMYNO', 'REPRONA',
+                  'SCEPTUVA', 'SOVRIGAN', 'SPECITOL', 'SUHAVA', 'TOLEORA', 'TRIETTO', 'ULEXTA', 'VARIZERA', 'ALMYNDRA', 'ALTYLARI',
+                  'AMURYS', 'BARCADO', 'BRIKOTA', 'DAURIANT', 'ENARUM', 'FORFENSA', 'GALKEPTA', 'GLANYON', 'GLEPEUS', 'HUVAR',
+                  'IBATYS', 'LYGZATO', 'MIRAQADE', 'NAISENTA', 'ORBICTA', 'RYSLIS', 'SNEPRI', 'SNYPONA', 'SNYPRAD', 'SNYPREL', 'STELTHYN',
+                  'STRYTIN', 'VARIKADE', 'ALENVIO', 'ALMIVO', 'DEPATCHA', 'ENRIVOD', 'ENVALTRO', 'GLAVERSA', 'HEDGEOR',
+                  'HEDGITA', 'HEDGORIN', 'HEDGYX', 'HIBHYX', 'HIGNAHL', 'IBSYMON', 'INHEDGIA', 'OFZIG', 'ONGLORIN', 'ONPLET', 'ONPLEVO',
+                  'ORHIGE', 'PATHEDGEREDESMO', 'REHGPATH', 'SMIBYXO', 'SMOBIX', 'SMOFEX', 'SMOLECTRA', 'SMOLORA', 'SMOLORIN',
+                  'STROMODIC', 'TARISMO', 'TREGALIR', 'TUVOMOD', 'ANTHEDO', 'ATINZYA', 'AVTANO', 'EXIMPTA', 'LANCERIN', 'MEGLAVIA',
+                  'MEPAVLI', 'NATYMOS', 'ONZEDO', 'ORPALO', 'QUPRAZIL', 'RINFEDA', 'STRALADA', 'SYTARIA', 'TALMIVO', 'TAVYON',
+                  'TEKACYO', 'XYFEENA', 'YIREZO', 'ZARTRI'];
 
-  var arrayOfExploreRoots = ['AP-','ARC-','ARK','AV-','FU','-LA-','OMP','NEO','PAN','SA','ADA','RE','GAN','TO','ALM','AMUR','CAD','BRI','DA','FOR','GLE','HUV','I','ZATO','AQA','ORB','PRI','TIN','ADE','VIO','PAT','VAL','VER','GIT','RYN','ZIG','ON','PATHS','SMO','LOR','MO','GAL','MOD','DO','EX','LANCE','NATY','ALO','ZYL','LAD'];
+  var arrayOfExploreRoots = ['AP-','ARC-','ARK','AV-','FU','-LA-','OMP','NEO','PAN','SA','ADA','RE','GAN','TO',
+                'ALM','AMUR','CAD','BRI','DA','FOR','GLE','HUV','I','ZATO','AQA','ORB','PRI','TIN','ADE','VIO','PAT','VAL',
+                'VER','GIT','RYN','ZIG','ON','PATHS','SMO','LOR','MO','GAL','MOD','DO','EX','LANCE','NATY','ALO','ZYL','LAD',
+                'AP-','ARC-','ARK','AV-','FU','-LA-','OMP','NEO','PAN','SA','ADA','RE','GAN','TO','ALM','AMUR','CAD','BRI',
+                'DA','FOR','GLE','HUV','I','ZATO','AQA','ORB','PRI','TIN','ADE','VIO','PAT','VAL','VER','GIT','RYN','ZIG',
+                'ON','PATHS','SMO','LOR','MO','GAL','MOD','DO','EX','LANCE','NATY','ALO','ZYL','LAD'];
 
-  var arrayOfAvoidRoots = ['APT-','-TEC-','-ZEL','AVE-','FUT-','KLA-','-RIEN-','ORY','BYX','PER-','PLYK-','-BUTRA','SOV','TRI','-MYN-','-RYS','BAR-','OTA','-ANT','-FENS-','PEUS','-VAR','-BATYS','LYG','QADE','BICTA','SNE','STR','KADE','ALE','DEP','ENV','GLAV','HED','GOR','OF','PLET','THE','RED','MOL','TAR','LIR','TUVO','ANT-','-IMP-','CER','SOM','ORP','QUP-','STRA'];
-  var _startTesting = 19;
-  var _finishTesting = 69;
+  var arrayOfAvoidRoots = ['APT-','-TEC-','-ZEL','AVE-','FUT-','KLA-','-RIEN-','ORY','BYX','PER-','PLYK-','-BUTRA','SOV',
+                'TRI','-MYN-','-RYS','BAR-','OTA','-ANT','-FENS-','PEUS','-VAR','-BATYS','LYG','QADE','BICTA','SNE','STR','KADE','ALE',
+                'DEP','ENV','GLAV','HED','GOR','OF','PLET','THE','RED','MOL','TAR','LIR','TUVO','ANT-','-IMP-','CER','SOM','ORP','QUP-'
+                ,'STRA','APT-','-TEC-','-ZEL','AVE-','FUT-','KLA-','-RIEN-','ORY','BYX','PER-','PLYK-','-BUTRA','SOV','TRI','-MYN-','-RYS',
+                'BAR-','OTA','-ANT','-FENS-','PEUS','-VAR','-BATYS','LYG','QADE','BICTA','SNE','STR','KADE','ALE','DEP','ENV','GLAV','HED',
+                'GOR','OF','PLET','THE','RED','MOL','TAR','LIR','TUVO','ANT-','-IMP-','CER','SOM','ORP','QUP-','STRA'];
+
+  var _startTesting = 12;
+  var _finishTesting = 112;
   var _alreadyPositive = true;
   var _alreadyNegative = true;
   var _alreadyNeutral = false;
+  var _SleepyTime = 2000;
 
 // ************** Menu Bar Declaration ****************************************************************************************************
   this.buttonNextSlide = element(by.id('navright'));
@@ -26,7 +48,6 @@ function indexPage(){
   this.radioButtonNeutral = element(by.id('neutralRank'));
   this.radioButtonNegative = element(by.id('negativeRank'));
   this.buttonTally = element(by.id('buttonTally'));
-
   this.inputNewName = element(by.id('newNameBox'));
   this.inputExplore = element(by.id('exploreBox'));
   this.inputAvoid = element(by.id('avoidBox'));
@@ -70,36 +91,37 @@ function indexPage(){
   };
   this.testNames = function(){
     var index;
-      for (index = 19; index<= _finishTesting; index++){
-        if(_alreadyPositive === true && _alreadyNeutral === true){
+      for (index = 19; index< _finishTesting; index++){
+        //debugger;
+        if(_alreadyPositive === true || _alreadyNeutral === true){
           this.clickRadioButtonNegative();
-          // expect(this.radioButtonNegative).toBeTruthy();
           _alreadyNegative = true;
           _alreadyNeutral = false;
-          // this.sendKeysOfInputNewName(index - 19);
+          this.sendKeysOfInputNewName(index - 19);
           this.sendKeysOfInputExplore(index - 19);
           this.sendKeysOfInputAvoid(index - 19);
-        }else if (_alreadyNeutral === true && _alreadyNegative === true) {
+        }else if (_alreadyNeutral === true || _alreadyNegative === true) {
           this.clickRadioButtonPositive();
-          // expect(this.radioButtonPositive).toBeTruthy();
+
           _alreadyPositive = true;
           _alreadyNegative = false;
-          // this.sendKeysOfInputNewName(index - 19);
+          this.sendKeysOfInputNewName(index - 19);
           this.sendKeysOfInputExplore(index - 19);
           this.sendKeysOfInputAvoid(index - 19);
-        }else if (_alreadyNegative === true && _alreadyPositive === true){
+        }else if (_alreadyNegative === true || _alreadyPositive === true){
           this.clickRadioButtonNeutral();
-          // expect(this.radioButtonNeutral).toBeTruthy();
+
           _alreadyNeutral = true;
           _alreadyPositive = false;
-          // this.sendKeysOfInputNewName(index - 19);
+          this.sendKeysOfInputNewName(index - 19);
           this.sendKeysOfInputExplore(index - 19);
           this.sendKeysOfInputAvoid(index - 19);
         }
+        this.sleep(_SleepyTime);
         this.clickButtonNextSlide();
+
       }
   };
-
 
 // ************** Pressing Arrow Key Functions ****************************************************************************************************
   this.pressKeyArrowUp = function(){
@@ -132,7 +154,7 @@ function indexPage(){
   };
 
 // *************************  Click Button Functions ****************************************************************************************************
-  this.clickButtonNextSlide = function(arrayIndex){
+  this.clickButtonNextSlide = function(){
     this.buttonNextSlide.click();
   };
 
@@ -157,7 +179,6 @@ function indexPage(){
   this.clickDisplayNegativeNames = function(){
     this.displayNegativeNames.click();
   };
-
 
   this.clickButtonGoToSummary = function(){
     this.buttonGoToSummary.click();

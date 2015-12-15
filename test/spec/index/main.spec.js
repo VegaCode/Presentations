@@ -1,7 +1,7 @@
 // spec.js
 describe('Protractor Demo App', function() {
   it('should have a title', function() {
-browser.get('http://localhost:9001/#/main/1012')
+browser.get('http://localhost:9001/#/main/1013')
 	.then(function(){
 	browser.actions().sendKeys(protractor.Key.ARROW_UP).perform()
 		.then(function(){
@@ -19,8 +19,8 @@ browser.get('http://localhost:9001/#/main/1012')
 			    expect(element(by.binding('main.nameCandidate')).getText()).toEqual('LOXARESC');
 			    expect(browser.getTitle()).toEqual('NW');
 		           });
- 
+
     });
-    
+
   });
   });

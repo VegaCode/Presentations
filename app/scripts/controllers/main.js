@@ -103,8 +103,9 @@ angular.module('nwApp')
                 var apiCall = 'api/ResetAllSlidesData/';
                 alertify.confirm('Slides will be reset').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(){
                  self.displayTally = false;
-                  $http.get(webBaseUrl + apiCall + projectId);
-                  self.goHome();
+                  $http.get(webBaseUrl + apiCall + projectId).success(function (result) {
+                      self.goHome();
+                  });
                }).set('oncancel', function(){}).set('title', 'Resetting Slides');
              };
 
@@ -331,7 +332,6 @@ angular.module('nwApp')
               self.isTextShadow = '';
           }
 
-
         var centerTestNames = function(nameCandidate) {
                // CA- added function above to make sure if it is katakana or not when billboard or subwaystop is displayed
                         self.testNameWidth= '85';
@@ -424,7 +424,6 @@ angular.module('nwApp')
                         }
 
                    };
-
 
         self.changeToDefault = function(){
               if (self.BackGroundName !== 'Default'){
@@ -864,13 +863,11 @@ angular.module('nwApp')
               self.katakanaObjToDisplay.push(newKatakanaObj2);
             }
           });
-
           var kanaToDisplay = self.katakanaObjToDisplay;
           self.kanaNamestoDisplay = [];
           while (kanaToDisplay.length > 0){
               self.kanaNamestoDisplay.push(kanaToDisplay.splice(0, 4));
           }
-          //console.log(self.kanaNamestoDisplay);
         };
 
         self.goHome = function() {
