@@ -23,8 +23,8 @@ function indexPage(){
 
   var arrayOfAvoidRoots = ['APT-','-TEC-','-ZEL','AVE-','FUT-','KLA-','-RIEN-','ORY','BYX','PER-','PLYK-','-BUTRA','SOV',
                 'TRI','-MYN-','-RYS','BAR-','OTA','-ANT','-FENS-','PEUS','-VAR','-BATYS','LYG','QADE','BICTA','SNE','STR','KADE','ALE',
-                'DEP','ENV','GLAV','HED','GOR','OF','PLET','THE','RED','MOL','TAR','LIR','TUVO','ANT-','-IMP-','CER','SOM','ORP','QUP-'
-                ,'STRA','APT-','-TEC-','-ZEL','AVE-','FUT-','KLA-','-RIEN-','ORY','BYX','PER-','PLYK-','-BUTRA','SOV','TRI','-MYN-','-RYS',
+                'DEP','ENV','GLAV','HED','GOR','OF','PLET','THE','RED','MOL','TAR','LIR','TUVO','ANT-','-IMP-','CER','SOM','ORP','QUP-',
+                'STRA','APT-','-TEC-','-ZEL','AVE-','FUT-','KLA-','-RIEN-','ORY','BYX','PER-','PLYK-','-BUTRA','SOV','TRI','-MYN-','-RYS',
                 'BAR-','OTA','-ANT','-FENS-','PEUS','-VAR','-BATYS','LYG','QADE','BICTA','SNE','STR','KADE','ALE','DEP','ENV','GLAV','HED',
                 'GOR','OF','PLET','THE','RED','MOL','TAR','LIR','TUVO','ANT-','-IMP-','CER','SOM','ORP','QUP-','STRA'];
 
