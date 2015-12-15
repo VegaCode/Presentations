@@ -675,11 +675,9 @@ angular.module('nwApp')
               }else if (self.typeOfPresentation === 'Nonproprietary') {
                 self.columnSize = 12;
                 self.sizeOfFont = '40px';
-                self.centerText = 'text-center';
               }else if (self.typeOfPresentation === 'Katakana') {
                 self.columnSize = 12;
                 self.sizeOfFont = '40px';
-                self.centerText = 'text-center';
               }
              };
 
@@ -869,7 +867,7 @@ angular.module('nwApp')
           var kanaToDisplay = self.katakanaObjToDisplay;
           self.kanaNamestoDisplay = [];
           while (kanaToDisplay.length > 0){
-              self.kanaNamestoDisplay.push(kanaToDisplay.splice(0, 4));
+              self.kanaNamestoDisplay.push(kanaToDisplay.splice(0, 3));
           }
         };
 
