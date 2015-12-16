@@ -42,6 +42,7 @@ function indexPage(){
   this.buttonGoHome = element(by.id('goHome'));
 // ************** Declaration For Display Names Section ****************************************************************************************************
   this.testName = element(by.id('testName'));
+  this.buttonResetSlide = element(by.id('resetSlide'));
   this.buttonResetProject = element(by.id('resetProject'));
   this.radioButtonPositive = element(by.id('positiveRank'));
   this.radioButtonNeutral = element(by.id('neutralRank'));
@@ -150,7 +151,13 @@ function indexPage(){
     browser.wait(EC.alertIsPresent(), 5000);
     //sends string to prompt window
     this.sendKeys(string);
+    this.alertAccept();
+  };
 
+  this.alertAccept = function(){
+    var EC = protractor.ExpectedConditions;
+    //waits to find the alert in the browser for 5sec
+    browser.wait(EC.alertIsPresent(), 5000);
     this.browserSwitchToAlert().accept();
   };
 
@@ -195,6 +202,9 @@ function indexPage(){
 
   this.clickButtonResetProject = function(){
     this.buttonResetProject.click();
+  };
+  this.clickButtonResetSlide = function(){
+    this.buttonResetSlide.click();
   };
 
   this.clickRadioButtonPositive = function(){

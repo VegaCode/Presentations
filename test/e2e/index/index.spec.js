@@ -4,7 +4,7 @@ var indexPage = require('./indexPage');
 describe('Protractor Demo App', function() {
   var page = new indexPage();
   jasmine.DEFAULT_TIMEOUT_INTERVAL =2000000;
-  page.get('https://tools.brandinstitute.com/nw_development/#/main/1013');
+  page.get('http://localhost:9001/#/main/1013');
 
   it("should show correct title and displays menu", function(){
     page.pressKeyArrowUp();
@@ -20,27 +20,18 @@ describe('Protractor Demo App', function() {
     page.sleep(8000);
   });
 
-  it('should input a name in Search Bar and go to slide of the name', function(){
-    page.sendKeysOfSelectedName('ARCTECA');
-    page.pressKeyEnter();
-    expect(page.getTextOfSelectedName()).toBe('ARCTECA');
-    page.sleep(2000);
-  });
-
   it('should reset the whole project', function(){
     page.clickButtonResetProject();
-  });
-
-  it('should no longer display the settings for the admin by clicking the cog button', function(){
-    page.clickButtonAdminLogin();
-  });
-
-  it('should go to the Beginning of the presentation after reseting the whole presentation', function(){
-    page.clickButtonGoHome();
+    page.alertAccept();
   });
 
   it('should go through slides', function(){
     page.continueMoving();
+  });
+
+  it('should no longer display the settings for the admin by clicking the cog button', function(){
+    page.clickButtonAdminLogin();
+    page.sleep(1000);
   });
 
   it('should start ranking Names and providing input information', function(){
@@ -81,10 +72,15 @@ describe('Protractor Demo App', function() {
   });
 
   it('should input a name in Search Bar and go to slide of the name', function(){
-    page.sendKeysOfSelectedName('ARCTECA');
+    page.sendKeysOfSelectedName('ARKIZEL');
     page.pressKeyEnter();
-    expect(page.getTextOfSelectedName()).toBe('ARCTECA');
+    expect(page.getTextOfSelectedName()).toBe('ARKIZEL');
     page.sleep(2000);
+  });
+
+  it('should reset the slide and then change the rank', function(){
+    page.clickButtonResetSlide();
+    page.clickRadioButtonPositive();
   });
 
   it('should display Tally', function(){
