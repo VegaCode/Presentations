@@ -815,7 +815,6 @@ angular.module('nwApp')
           });
         };
 
-
         self.getrootsToAvoids = function() {
             growl.error('About to display Roots to Avoid', {title: 'Info for Roots to Avoid'});
           getNotesFromServer();
@@ -830,7 +829,6 @@ angular.module('nwApp')
             selectColumnSize(rootAvoid.length);
           });
         };
-
 
         var getTestNamesObject = function(initialSlideModel) {
           var apiCall = 'api/NW_SaveAndReturnSlideData';

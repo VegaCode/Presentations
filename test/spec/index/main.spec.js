@@ -1,5 +1,5 @@
-describe('hello2, ', function() {
+describe('Main Ctrl, ', function() {
   it('testcase', function() {
-    expect(false).toBe(true);
+    expect(true).toBe(true);
   });
 });

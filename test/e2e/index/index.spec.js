@@ -44,6 +44,11 @@ describe('Protractor Demo App', function() {
     page.sleep(2000);
   });
 
+  it('should show Retained names', function(){
+    page.stackedProgressBarClick();
+    page.sleep(8000);
+  });
+
   it('should show negative names', function(){
     page.clickDisplayNegativeNames();
     expect(page.negativeNamesAreDisplayed()).toBeTruthy();

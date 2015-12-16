@@ -14,7 +14,34 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: ['spec/index/main.spec.js'
+    files: [
+    '../bower_components/jquery/dist/jquery.js',
+    '../bower_components/angular/angular.js',
+    '../bower_components/angular-route/angular-route.js',
+    '../bower_components/angular-bootstrap/ui-bootstrap.js',
+    '../bower_components/angular-animate/angular-animate.js',
+    '../bower_components/angular-cookies/angular-cookies.js',
+    '../bower_components/alertifyjs/alertify.js',
+    '../bower_components/angular-filter/dist/angular-filter.js',
+    '../bower_components/angular-hotkeys/build/hotkeys.js',
+    '../bower_components/angular-local-storage/dist/angular-local-storage.js',
+    '../bower_components/angular-mocks/angular-mocks.js',
+    '../bower_components/angular-resource/angular-resource.js',
+    '../bower_components/angular-sanitize/angular-sanitize.js',
+    '../bower_components/angular-screenfull/dist/angular-screenfull.js',
+    '../bower_components/angular-touch/angular-touch.js',
+    '../bower_components/auto-font-size/dist/auto_font_size.js',
+    '../bower_components/bootstrap/dist/js/bootstrap.js',
+    '../bower_components/reveal-js/js/reveal.js',
+    '../bower_components/screenfull/dist/screenfull.js',
+    '../app/scripts/**/*.js',
+    '../test/spec/**/*.js',
+    '../bower_components/reveal-js/css/reveal.css',
+    '../bower_components/reveal-js/css/theme/moon.css',
+    '../bower_components/bootstrap/dist/css/bootstrap.css',
+    '../bower_components/alertifyjs/css/alertify.css',
+    '../bower_components/alertifyjs/css/themes/default.css',
+    '../bower_components/angular-hotkeys/build/hotkeys.css    ',
     ],
 
 
@@ -49,7 +76,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // start these browsers
