@@ -1,16 +1,21 @@
 
-describe('Blur-me directive, ', function() {
+describe('Blur-Me Directive, ', function() {
   var element;
   var $scope;
-  beforeEach(module('nwApp'))
+  beforeEach(module('nwApp'));
   beforeEach(inject(function($compile, $rootScope) {
     $scope = $rootScope;
-    element = angular.element('<div>{{2+2}}</div>');
-    $compile(element)($rootScope)
+    element = angular.element('<div Blur-Me>{{2+2}}</div>');
+    $compile(element)($rootScope);
   }));
 
   it('it should be equal to 4', function() {
     $scope.$digest();
     expect(element.html()).toBe('4');
   });
+
+  it('it should have class "color"', function () {
+    expect(element.hasClass('color')).toBe(true);
+  });
+
 });

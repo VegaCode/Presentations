@@ -6,6 +6,7 @@ angular.module('nwApp')
   return {
     restrict: 'A',
     link: function (scope, element) {
+      element.addClass('color');
       element.bind('click', function () {
         element.blur();
       });

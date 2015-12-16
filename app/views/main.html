@@ -189,13 +189,13 @@ label {
                             {{main.nameCategory}}
                         </div>
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}"  ng-show="!main.displayNameGroup">
-                          <button blur-me id="buttonTally" type="button" class="btn btn-default glyphicon " ng-click="main.tally()" style="font-family:arial;margin-left:50px;">Tally
-                          </button>
-                            <!-- <div class="btn-group" role="group">
+                          <!-- <button blur-me id="buttonTally" type="button" class="btn btn-default glyphicon " ng-click="main.tally()" style="font-family:arial;margin-left:50px;">Tally
+                          </button> -->
+                            <div class="btn-group" role="group">
                                 <button blur-me id="buttonTally" type="button" class="btn btn-default glyphicon " ng-click="main.tally()" style="font-family:arial">Tally
                                 </button>
                                 <button blur-me id="cogSettings" type="button" class="btn btn-default glyphicon glyphicon-cog" data-toggle="dropdown" ng-click="main.showThemeOptions()"></button>
-                            </div> -->
+                            </div>
                             <div class="row" ng-show="main.displayTally">
                                 <div class="col-md-8">
                                     <label>Positive
@@ -333,11 +333,7 @@ label {
                                 </div>
                                 <div class="col-md-8">
                                     <uib-progress class="progress-bar-height">
-<<<<<<< HEAD
-                                      <uib-bar ng-repeat="bar in main.stacked track by $index" id="stackedProgressBar" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.value}}%</span></uib-bar>
-=======
                                       <uib-bar id="stackedProgressBar" ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.value}}%</span></uib-bar>
->>>>>>> fca0984e88d6bd2036903f74e319ed0d4ac3b69d
                                       <!-- <uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.description}}{{bar.value}}%</span></uib-bar> -->
                                     </uib-progress>
                                 </div>

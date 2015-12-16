@@ -38,5 +38,7 @@
   "scripts": {
     "test": "grunt test"
   },
-  "dependencies": {}
+  "dependencies": {
+    "karma-jasmine-jquery": "^0.1.1"
+  }
 }

@@ -142,27 +142,6 @@ angular.module('nwApp')
            }
         };
 
-// **********  Event listeners for revealjs  ****************************************************************************************************
-
-        Reveal.addEventListener('overviewshown', function() {
-            if(_SlideNumber > 4){
-                Reveal.slide(  0, _SlideNumber-2, 0 );
-            }else{ Reveal.slide(  0, _SlideNumber-1, 0 );}
-                    $rootScope.$apply(function() {
-                        self.isOverview = true;
-                    });
-                });
-
-        Reveal.addEventListener('overviewhidden', function() {
-                    $rootScope.$apply(function() {
-                        self.isOverview = false;
-                    });
-                });
-
-        self.selectSlide = function(index) {
-                var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '', '' ));
-                 getTestNamesObject(slideModel);
-               };
 
 // **********  Getting Slides URL Images and the description for over view  *************************************************************************************
          var apicall = 'api/NW_NamesAndSlides?projectId=';
@@ -301,7 +280,26 @@ angular.module('nwApp')
                     Reveal.configure({});
                 }, 300);
            });
+// **********  Event listeners for revealjs  ****************************************************************************************************
+                //    Reveal.addEventListener('overviewshown', function() {
+                //        if(_SlideNumber > 4){
+                //            Reveal.slide(  0, _SlideNumber-2, 0 );
+                //        }else{ Reveal.slide(  0, _SlideNumber-1, 0 );}
+                //                $rootScope.$apply(function() {
+                //                    self.isOverview = true;
+                //                });
+                //            });
+                   //
+                //    Reveal.addEventListener('overviewhidden', function() {
+                //                $rootScope.$apply(function() {
+                //                    self.isOverview = false;
+                //                });
+                //            });
 
+                   self.selectSlide = function(index) {
+                           var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '', '' ));
+                            getTestNamesObject(slideModel);
+                          };
 // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
 
         self.backGroundChanged = function(backGroundName){
