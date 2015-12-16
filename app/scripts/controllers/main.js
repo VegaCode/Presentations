@@ -807,7 +807,6 @@ angular.module('nwApp')
           });
         };
 
-
         self.getrootsToAvoids = function() {
           getNotesFromServer();
           resetBooleanSummarySlideVars();
@@ -821,7 +820,6 @@ angular.module('nwApp')
             selectColumnSize(rootAvoid.length);
           });
         };
-
 
         var getTestNamesObject = function(initialSlideModel) {
           var apiCall = 'api/NW_SaveAndReturnSlideData';

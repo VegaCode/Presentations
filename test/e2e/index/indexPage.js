@@ -28,12 +28,12 @@ function indexPage(){
 
   var _minimumRank = 1;
   var _maximumRank = 3;
-  var _startTesting = 19;
+  var _startTesting = 70;
   var _finishTesting = 69;
   var _alreadyPositive = true;
   var _alreadyNegative = true;
   var _alreadyNeutral = false;
-  var _SleepyTime = 2000;
+  var _SleepyTime = 0000;
 // ************** Menu Bar Declaration ****************************************************************************************************
   this.buttonNextSlide = element(by.id('navright'));
   this.selectNameModel = element(by.model('main.selectedName'));
@@ -57,6 +57,7 @@ function indexPage(){
   this.displayRetainedNames = element(by.id('showRetainedNames'));
   this.displayNegativeNames = element(by.id('showNegativeNames'));
   this.displayNewNames = element(by.id('showNewNames'));
+  this.stackedProgressBar = element(by.id('stackedProgressBar'));
   this.displayExploreRoots = element(by.id('showExploreRoots'));
   this.displayAvoidRoots = element(by.id('showAvoidRoots'));
 // ************** General functions ****************************************************************************************************
@@ -110,23 +111,23 @@ function indexPage(){
           this.clickRadioButtonNegative();
           _alreadyNegative = true;
           _alreadyNeutral = false;
-          this.sendKeysOfInputNewName(index - 19);
-          this.sendKeysOfInputExplore(index - 19);
-          this.sendKeysOfInputAvoid(index - 19);
+          // this.sendKeysOfInputNewName(index - 19);
+          // this.sendKeysOfInputExplore(index - 19);
+          // this.sendKeysOfInputAvoid(index - 19);
         }else if (_alreadyNeutral === true && _alreadyNegative === true) {
           this.clickRadioButtonPositive();
           _alreadyPositive = true;
           _alreadyNegative = false;
-          this.sendKeysOfInputNewName(index - 19);
-          this.sendKeysOfInputExplore(index - 19);
-          this.sendKeysOfInputAvoid(index - 19);
+          // this.sendKeysOfInputNewName(index - 19);
+          // this.sendKeysOfInputExplore(index - 19);
+          // this.sendKeysOfInputAvoid(index - 19);
         }else if (_alreadyNegative === true && _alreadyPositive === true){
           this.clickRadioButtonNeutral();
           _alreadyNeutral = true;
           _alreadyPositive = false;
-          this.sendKeysOfInputNewName(index - 19);
-          this.sendKeysOfInputExplore(index - 19);
-          this.sendKeysOfInputAvoid(index - 19);
+          // this.sendKeysOfInputNewName(index - 19);
+          // this.sendKeysOfInputExplore(index - 19);
+          // this.sendKeysOfInputAvoid(index - 19);
         }
         this.sleep(_SleepyTime);
         this.clickButtonNextSlide();
@@ -209,6 +210,9 @@ function indexPage(){
   this.clickButtonAdminLogin = function(){
     this.buttonAdminLogin.click();
   };
-}
+  this.stackedProgressBarClick = function(){
+    this.stackedProgressBar.click();
+  };
+}// end of the function
 
 module.exports = indexPage;
