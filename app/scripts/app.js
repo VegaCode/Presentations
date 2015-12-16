@@ -19,7 +19,8 @@ angular.module('nwApp', [
     'angularScreenfull',
     'AutoFontSize',
     'ui.bootstrap',
-    'cfp.hotkeys'
+    'cfp.hotkeys',
+    'angular-growl'
   ])
   .config(function ($routeProvider) {
     $routeProvider

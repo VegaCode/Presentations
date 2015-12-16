@@ -289,7 +289,7 @@ label {
                  <div class="col-md-4 text-center" ng-show="main.displayMenu">
                             <div class="input-group">
                                 <span class="input-group-btn">
-                                  <button blur-me type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goHome()" uib-tooltip="Go to Start" tooltip-class="customClass">
+                                  <button id="goHome" blur-me type="button" class="btn btn-default" aria-label="Left Align" ng-click="main.goHome()" uib-tooltip="Go to Start" tooltip-class="customClass">
                                   <span class="glyphicon glyphicon-home" aria-hidden="true"></span></button>
                                   <button blur-me id="reset" class="btn btn-default" type="button" ng-show="main.isTestNameButtons"  uib-tooltip="Reset the Slide" tooltip-class="customClass" ng-click="main.resetSlide()">
                                     <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
@@ -333,7 +333,7 @@ label {
                                 </div>
                                 <div class="col-md-8">
                                     <uib-progress class="progress-bar-height">
-                                      <uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.value}}%</span></uib-bar>
+                                      <uib-bar id="stackedProgressBar" ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.value}}%</span></uib-bar>
                                       <!-- <uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.description}}{{bar.value}}%</span></uib-bar> -->
                                     </uib-progress>
                                 </div>
@@ -495,7 +495,7 @@ label {
     <hr>
     <div class="row">
         <div class="col-md-6 ">
-            <button blur-me class="btn btn-success pull-left" ng-click="main.resetingProjects()">Reset All</button>
+            <button id="resetProject" blur-me class="btn btn-success pull-left" ng-click="main.resetingProjects()">Reset All</button>
         </div>
         <div class="col-md-6 ">
             <button blur-me class="btn btn-success pull-right" ng-click="main.saveThemeSettings()">Save</button>

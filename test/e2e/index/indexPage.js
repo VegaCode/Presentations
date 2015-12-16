@@ -39,9 +39,10 @@ function indexPage(){
   this.selectNameModel = element(by.model('main.selectedName'));
   this.selectNameBinding = element(by.binding('main.nameCandidate'));
   this.totalPageNumbers = element(by.binding('main.totalOfTestNames'));
+  this.buttonGoHome = element(by.id('goHome'));
 // ************** Declaration For Display Names Section ****************************************************************************************************
   this.testName = element(by.id('testName'));
-  this.buttonResetSlide = element(by.id('reset'));
+  this.buttonResetProject = element(by.id('resetProject'));
   this.radioButtonPositive = element(by.id('positiveRank'));
   this.radioButtonNeutral = element(by.id('neutralRank'));
   this.radioButtonNegative = element(by.id('negativeRank'));
@@ -70,6 +71,14 @@ function indexPage(){
 
   this.getTitle = function(){
     return browser.getTitle();
+  };
+
+  this.browserSwitchToAlert = function(){
+    return browser.switchTo().alert();
+  };
+
+  this.sendKeys = function(string){
+    browser.switchTo().alert().sendKeys(string);
   };
 
   this.getTextOfSelectedName = function(){
@@ -133,6 +142,17 @@ function indexPage(){
       }
   };
 
+  this.switchToAlert = function(string){
+    var EC = protractor.ExpectedConditions;
+    this.clickButtonAdminLogin();
+    //waits to find the alert in the browser for 5sec
+    browser.wait(EC.alertIsPresent(), 5000);
+    //sends string to prompt window
+    this.sendKeys(string);
+
+    this.browserSwitchToAlert().accept();
+  };
+
 // ************** Pressing Arrow Key Functions ****************************************************************************************************
   this.pressKeyArrowUp = function(){
     browser.actions().sendKeys(protractor.Key.ARROW_UP).perform();
@@ -147,8 +167,8 @@ function indexPage(){
   };
 
 // ************** sendKeys Functions ****************************************************************************************************
-  this.sendKeysOfSelectedName = function(){
-    this.selectNameModel.sendKeys('ARCTECA');
+  this.sendKeysOfSelectedName = function(name){
+    this.selectNameModel.sendKeys(name);
   };
 
   this.sendKeysOfInputNewName = function(arrayIndex){
@@ -168,8 +188,12 @@ function indexPage(){
     this.buttonNextSlide.click();
   };
 
-  this.clickButtonResetSlide = function(){
-    this.buttonResetSlide.click();
+  this.clickButtonGoHome = function(){
+    this.buttonGoHome.click();
+  };
+
+  this.clickButtonResetProject = function(){
+    this.buttonResetProject.click();
   };
 
   this.clickRadioButtonPositive = function(){
