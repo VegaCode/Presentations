@@ -656,7 +656,7 @@ angular.module('nwApp')
                  alertify.confirm('You are about to save').set('onok', function(){
                       alertify.alert('Thank you !').set('title', 'Comments are saved');
                     }).set('oncancel', function(){}).set('title', 'Saving Explore Notes');
-            };
+                };
 
         self.saveAvoidComments = function(note){
               var apiCall = 'api/NW_SaveNotes';
@@ -716,13 +716,13 @@ angular.module('nwApp')
                   self.retainedNames = [];
                 };
 
-         self.blurEffect= function(){             
+         self.blurEffect= function(){
                 $('input[type="radio"]').each(function( ) {
                           $(this).blur();
                         });
             };
  //************ Methods to get summary data ***********************************************************************************************************
-        self.getRetainedNames = function() {            
+        self.getRetainedNames = function() {
           resetBooleanSummarySlideVars();
           self.displayRetained = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -768,7 +768,7 @@ angular.module('nwApp')
           });
         };
 
-        self.getNegativesNames = function() {            
+        self.getNegativesNames = function() {
           resetBooleanSummarySlideVars();
           self.displayNegative = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -781,7 +781,7 @@ angular.module('nwApp')
           });
         };
 
-        self.getNewsNames = function() {            
+        self.getNewsNames = function() {
           resetBooleanSummarySlideVars();
           self.displayNewName = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -803,7 +803,7 @@ angular.module('nwApp')
 
         };
 
-        self.getrootsToExplores = function() {            
+        self.getrootsToExplores = function() {
           getNotesFromServer();
           resetBooleanSummarySlideVars();
           self.displayRootExplore = true;
@@ -817,7 +817,7 @@ angular.module('nwApp')
           });
         };
 
-        self.getrootsToAvoids = function() {            
+        self.getrootsToAvoids = function() {
           getNotesFromServer();
           resetBooleanSummarySlideVars();
           self.displayRootAvoid = true;
@@ -898,7 +898,7 @@ angular.module('nwApp')
 
         };
 
-        self.goNextSlide = function() {            
+        self.goNextSlide = function() {
             var negativeNames = self.sendStoredKatakana.join(',');
             var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
             if (_SlideType === 'NameEvaluation') {
@@ -922,7 +922,7 @@ angular.module('nwApp')
 
         self.selectedName = '';
 
-        self.onSelect = function(slideName) {            
+        self.onSelect = function(slideName) {
           var foundMatch = false;
           var amount = 0;
           if(self.testName.indexOf(slideName) < 0){
@@ -968,14 +968,14 @@ angular.module('nwApp')
             });
         });
 
-        self.resetSlide = function() {            
+        self.resetSlide = function() {
             self.nameRamking = false;
             self.newName = '';
             self.explore = '';
             self.avoid = '';
         };
 
-        self.tally = function() {            
+        self.tally = function() {
             self.displayTally = true;
         };
 
