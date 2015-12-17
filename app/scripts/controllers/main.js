@@ -113,8 +113,7 @@ angular.module('nwApp')
           } else {
             self.displaySettings = true;
           }
-        }
-      };
+        };
 
       self.saveThemeSettings = function() {
         if (self.BackGroundName !== '') {
@@ -222,7 +221,7 @@ angular.module('nwApp')
                  alertify.confirm('You are about to save').set('onok', function(){
                       alertify.alert('Thank you !').set('title', 'Comments are saved');
                     }).set('oncancel', function(){}).set('title', 'Saving Explore Notes');
-            };
+                };
 
         self.saveAvoidComments = function(note){
               var apiCall = 'api/NW_SaveNotes';
