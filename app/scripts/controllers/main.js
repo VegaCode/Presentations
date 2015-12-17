@@ -153,7 +153,7 @@ angular.module('nwApp')
             growl.info(message, {title: titleForMessage, ttl: timeOutLimit});
         }
       };
-
+//test
       // **********  Event listeners for revealjs  ****************************************************************************************************
       if (self.greeting === 't') {
         Reveal.addEventListener('overviewshown', function() {
