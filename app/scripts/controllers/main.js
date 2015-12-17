@@ -19,8 +19,8 @@ angular.module('nwApp')
                      _IsBackgroundDefault, _TemporaryBackGround, _KanaNames, _KanaNamesNegative, _PresentationType;
             var projectId, apiCall, webBaseUrl;
             var self = this;
-            webBaseUrl = 'http://localhost:64378/';
             webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
+            webBaseUrl = 'http://localhost:64378/';
             projectId = queryStringCheck;
             self.displaySettings =false;
             self.slides = [];
@@ -649,7 +649,7 @@ if(self.greeting ==='t'){
 
         self.saveAvoidComments = function(note){
               var apiCall = 'api/NW_SaveNotes';
-              var projectIdAndNote = JSON.stringify(projectId + ', N"' + note + ',"Avoid"');
+              var projectIdAndNote = JSON.stringify(projectId + ", N'" + note + "', 'Avoid'");
               $http.post(webBaseUrl + apiCall , projectIdAndNote);
                alertify.confirm('You are about to save').set('onok', function(){
                       alertify.alert('Thank you !').set('title', 'Comments are saved');
@@ -706,14 +706,14 @@ if(self.greeting ==='t'){
                 };
 
          self.blurEffect= function(){
-             growl.info('Selecting a Rank', {ttl: -1, title:'hello'});
+             //growl.info('Selecting a Rank', {ttl: -1, title:'hello'});
                 $('input[type="radio"]').each(function( ) {
                           $(this).blur();
                         });
             };
  //************ Methods to get summary data ***********************************************************************************************************
         self.getRetainedNames = function() {
-            growl.success('Displaying Retained Names', {ttl: 2000});
+            //growl.success('Displaying Retained Names', {ttl: 2000});
           resetBooleanSummarySlideVars();
           self.displayRetained = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -760,7 +760,7 @@ if(self.greeting ==='t'){
         };
 
         self.getNegativesNames = function() {
-            growl.warning('Displaying Negative Names', {ttl: 2000});
+            //growl.warning('Displaying Negative Names', {ttl: 2000});
           resetBooleanSummarySlideVars();
           self.displayNegative = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -774,7 +774,7 @@ if(self.greeting ==='t'){
         };
 
         self.getNewsNames = function() {
-            growl.info('Displaying New Names', {ttl: 2000});
+            //growl.info('Displaying New Names', {ttl: 2000});
           resetBooleanSummarySlideVars();
           self.displayNewName = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -797,7 +797,7 @@ if(self.greeting ==='t'){
         };
 
         self.getrootsToExplores = function() {
-            growl.info('Displaying Roots to Explore', {ttl: 2000});
+            //growl.info('Displaying Roots to Explore', {ttl: 2000});
           getNotesFromServer();
           resetBooleanSummarySlideVars();
           self.displayRootExplore = true;
@@ -812,7 +812,7 @@ if(self.greeting ==='t'){
         };
 
         self.getrootsToAvoids = function() {
-            growl.error('Displaying Roots to Avoid', {ttl: 2000});
+            //growl.error('Displaying Roots to Avoid', {ttl: 2000});
           getNotesFromServer();
           resetBooleanSummarySlideVars();
           self.displayRootAvoid = true;
@@ -875,22 +875,28 @@ if(self.greeting ==='t'){
         };
 
         self.goHome = function() {
-            growl.info('Welcome to the test', {ttl: 2000});
+            //growl.info('Welcome to the test', {ttl: 2000});
             if(_IsTheAppStarted){self.goNextSlide();}
-            var negativeNames = self.sendStoredKatakana.join(',');
-            var initialSlideModel = JSON.stringify(new SlideInfoModel(projectId, 0, '', '', '', '', 'Next', negativeNames));
-            getTestNamesObject(initialSlideModel);
+            setTimeout(function () {
+                var negativeNames = self.sendStoredKatakana.join(',');
+                var initialSlideModel = JSON.stringify(new SlideInfoModel(projectId, 0, '', '', '', '', 'Next', negativeNames));
+                getTestNamesObject(initialSlideModel);
+            },10);
+
         };
 
         self.goToSummarySlide = function() {
-            growl.info('Going to Summary Slides', {ttl: 2000});
+            //growl.info('Going to Summary Slides', {ttl: 2000});
             self.goNextSlide();
-            setProgressBarsSummary();
-            self.selectSlide(_nameSummarySlideNumber - 1);
+            setTimeout(function () {
+                setProgressBarsSummary();
+                self.selectSlide(_nameSummarySlideNumber - 1);
+            },10);
+
         };
 
         self.goNextSlide = function() {
-            growl.info('Goes to Next Slide', {ttl: 2000});
+            //growl.info('Goes to Next Slide', {ttl: 2000});
             var negativeNames = self.sendStoredKatakana.join(',');
             var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
             if (_SlideType === 'NameEvaluation') {
@@ -915,7 +921,7 @@ if(self.greeting ==='t'){
         self.selectedName = '';
 
         self.onSelect = function(slideName) {
-            growl.success('Selecting Slide name to travel', {ttl: 2000});
+            //growl.success('Selecting Slide name to travel', {ttl: 2000});
           var foundMatch = false;
           var amount = 0;
           if(self.testName.indexOf(slideName) < 0){
@@ -962,7 +968,7 @@ if(self.greeting ==='t'){
         });
 
         self.resetSlide = function() {
-            growl.error('Slide will be Reset', {ttl: 2000});
+            //growl.error('Slide will be Reset', {ttl: 2000});
             self.nameRamking = false;
             self.newName = '';
             self.explore = '';
@@ -970,7 +976,7 @@ if(self.greeting ==='t'){
         };
 
         self.tally = function() {
-            growl.info('Displaying Tally', {ttl: 2000});
+            //growl.info('Displaying Tally', {ttl: 2000});
             self.displayTally = true;
         };
 
