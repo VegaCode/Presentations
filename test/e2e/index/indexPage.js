@@ -28,7 +28,7 @@ function indexPage(){
 
   var _minimumRank = 1;
   var _maximumRank = 3;
-  var _startTesting = 70;
+  var _startTesting = 19;
   var _finishTesting = 69;
   var _alreadyPositive = true;
   var _alreadyNegative = true;
@@ -121,23 +121,23 @@ function indexPage(){
           this.clickRadioButtonNegative();
           _alreadyNegative = true;
           _alreadyNeutral = false;
-          // this.sendKeysOfInputNewName(index - 19);
-          // this.sendKeysOfInputExplore(index - 19);
-          // this.sendKeysOfInputAvoid(index - 19);
+          this.sendKeysOfInputNewName(index - 19);
+          this.sendKeysOfInputExplore(index - 19);
+          this.sendKeysOfInputAvoid(index - 19);
         }else if (_alreadyNeutral === true && _alreadyNegative === true) {
           this.clickRadioButtonPositive();
           _alreadyPositive = true;
           _alreadyNegative = false;
-          // this.sendKeysOfInputNewName(index - 19);
-          // this.sendKeysOfInputExplore(index - 19);
-          // this.sendKeysOfInputAvoid(index - 19);
+          this.sendKeysOfInputNewName(index - 19);
+          this.sendKeysOfInputExplore(index - 19);
+          this.sendKeysOfInputAvoid(index - 19);
         }else if (_alreadyNegative === true && _alreadyPositive === true){
           this.clickRadioButtonNeutral();
           _alreadyNeutral = true;
           _alreadyPositive = false;
-          // this.sendKeysOfInputNewName(index - 19);
-          // this.sendKeysOfInputExplore(index - 19);
-          // this.sendKeysOfInputAvoid(index - 19);
+          this.sendKeysOfInputNewName(index - 19);
+          this.sendKeysOfInputExplore(index - 19);
+          this.sendKeysOfInputAvoid(index - 19);
         }
         this.sleep(_SleepyTime);
         this.clickButtonNextSlide();
