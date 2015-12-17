@@ -43,7 +43,7 @@ angular.module('nwApp')
             self.slidesNames = [];
             self.testName = [];
             self.isOverview = false;
-            self.greeting = 'Hello World!';//****************************** test Karma variable
+            self.greeting = 'Hello World!';//***test Karma variable
             self.positiveCount = 0;
             self.neutralCount = 0;
             self.negativeCount = 0;
