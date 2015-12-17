@@ -16,12 +16,12 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
     'bower_components/angular/angular.js',
-    'app/scripts/app.js',
     'bower_components/jquery/dist/jquery.js',
     'bower_components/reveal-js/js/reveal.js',
     'bower_components/reveal-js/js/rvealLatest.js',
     'bower_components/reveal.js-master/js/reveal.js',
-    'bower_components/reveal-js/css/theme/moon.css',
+    'bower_components/reveal-js/lib/js/head.min.js',
+    'bower_components/reveal-js/lib/js/html5shiv.js',
     'bower_components/angular-mocks/angular-mocks.js',
     'bower_components/angular-route/angular-route.js',
     'bower_components/angular-bootstrap/ui-bootstrap.js',
@@ -38,10 +38,7 @@ module.exports = function(config) {
     'bower_components/bootstrap/dist/js/bootstrap.js',
     'bower_components/screenfull/dist/screenfull.js',
     'bower_components/angular-growl-v2/build/angular-growl.js',
-    'bower_components/bootstrap/dist/css/bootstrap.css',
-    'bower_components/alertifyjs/css/alertify.css',
-    'bower_components/alertifyjs/css/themes/default.css',
-    'bower_components/angular-hotkeys/build/hotkeys.css    ',
+    'app/scripts/app.js',
     'app/scripts/**/*.js',
     'test/spec/**/*.js'
     ],
@@ -55,6 +52,9 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      '**/app/js/*/*.js' : 'coverage',
+        '**/app/js/modules/*/*.js' : 'coverage',
+        '**/app/js/services/*/*.js' : 'coverage'
     },
 
     hostname:'localhost',
@@ -66,7 +66,6 @@ module.exports = function(config) {
 
     // web server port
     port: 9876,
-
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,

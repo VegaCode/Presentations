@@ -28,7 +28,7 @@ function indexPage(){
 
   var _minimumRank = 1;
   var _maximumRank = 3;
-  var _startTesting = 70;
+  var _startTesting = 19;
   var _finishTesting = 69;
   var _alreadyPositive = true;
   var _alreadyNegative = true;
@@ -59,7 +59,6 @@ function indexPage(){
   this.displayRetainedNames = element(by.id('showRetainedNames'));
   this.displayNegativeNames = element(by.id('showNegativeNames'));
   this.displayNewNames = element(by.id('showNewNames'));
-  this.stackedProgressBar = element(by.id('stackedProgressBar'));
   this.displayExploreRoots = element(by.id('showExploreRoots'));
   this.displayAvoidRoots = element(by.id('showAvoidRoots'));
 // ************** General functions ****************************************************************************************************

@@ -6,10 +6,10 @@
  * # MainCtrl
  * Controller of the nwApp
  */
-var angular, Reveal, alertify, hljs;
+
 angular.module('nwApp')
-.controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings', 'growl',
-    function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, growl) {
+.controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings',
+    function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings) {
             var    _nameSummarySlideNumber , _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke,
                     _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo,
                     _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames,
@@ -46,7 +46,6 @@ angular.module('nwApp')
             self.slidesNames = [];
             self.testName = [];
             self.isOverview = false;
-
             self.greeting = 'Hello World!';//****************************** test Karma variable
             self.positiveCount = 0;
             self.neutralCount = 0;
@@ -100,16 +99,15 @@ angular.module('nwApp')
                      };
 
         self.resetingProjects = function(){
-            growl.warning('Project will be Reset', {title: 'Warning!'});
-            var resetIsTrue = false;
-            resetIsTrue = confirm('You are about to Reset the Project');
-            if(resetIsTrue){
                 var apiCall = 'api/ResetAllSlidesData/';
-                $http.get(webBaseUrl + apiCall + projectId).success(function (result) {
-                    self.goHome();
-                });
-            }
-        };
+                alertify.confirm('Slides will be reset').set('labels', {cancel:'cancel', ok:'ok'}).set('onok', function(){
+                 self.displayTally = false;
+                  $http.get(webBaseUrl + apiCall + projectId).success(function (result) {
+                      self.goHome();
+                  });
+               }).set('oncancel', function(){}).set('title', 'Resetting Slides');
+             };
+
         self.setOverlay = function() {
           if (self.isOverlayAvailable === true) {
               self.overlayStyle = 'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)';
@@ -119,16 +117,13 @@ angular.module('nwApp')
         };
 
         self.showThemeOptions = function() {
-
             if(self.displaySettings === true){
                     self.displaySettings =false;
             }else{
               var password = prompt('Enter Password');
               if(password !== 'admin123'){
                 alert('Please provide the correct password');
-                growl.warning('admin wrong password', {title: 'Settings Info'});
               }else{
-                  growl.success('admin settings displaying', {title: 'Settings Info'});
                 self.displaySettings = true;
               }
            }
@@ -146,6 +141,28 @@ angular.module('nwApp')
            }
         };
 
+// **********  Event listeners for revealjs  ****************************************************************************************************
+//if(self.greeting ==='t'){
+        Reveal.addEventListener('overviewshown', function() {
+            if(_SlideNumber > 4){
+                Reveal.slide(  0, _SlideNumber-2, 0 );
+            }else{ Reveal.slide(  0, _SlideNumber-1, 0 );}
+                    $rootScope.$apply(function() {
+                        self.isOverview = true;
+                    });
+                });
+
+
+        Reveal.addEventListener('overviewhidden', function() {
+                    $rootScope.$apply(function() {
+                        self.isOverview = false;
+                    });
+             });
+//}//
+        self.selectSlide = function(index) {
+                var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '', '' ));
+                 getTestNamesObject(slideModel);
+               };
 
 // **********  Getting Slides URL Images and the description for over view  *************************************************************************************
          var apicall = 'api/NW_NamesAndSlides?projectId=';
@@ -284,26 +301,7 @@ angular.module('nwApp')
                     Reveal.configure({});
                 }, 300);
            });
-// **********  Event listeners for revealjs  ****************************************************************************************************
-                //    Reveal.addEventListener('overviewshown', function() {
-                //        if(_SlideNumber > 4){
-                //            Reveal.slide(  0, _SlideNumber-2, 0 );
-                //        }else{ Reveal.slide(  0, _SlideNumber-1, 0 );}
-                //                $rootScope.$apply(function() {
-                //                    self.isOverview = true;
-                //                });
-                //            });
-                   //
-                //    Reveal.addEventListener('overviewhidden', function() {
-                //                $rootScope.$apply(function() {
-                //                    self.isOverview = false;
-                //                });
-                //            });
 
-                   self.selectSlide = function(index) {
-                           var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '', '' ));
-                            getTestNamesObject(slideModel);
-                          };
 // **********  Getting Slides TEST NAMES presentation  ****************************************************************************************************
 
         self.backGroundChanged = function(backGroundName){
@@ -715,7 +713,6 @@ angular.module('nwApp')
             };
  //************ Methods to get summary data ***********************************************************************************************************
         self.getRetainedNames = function() {
-            growl.success('About to display Retained Names', {title: 'Info for Retained Names'});
           resetBooleanSummarySlideVars();
           self.displayRetained = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -762,7 +759,6 @@ angular.module('nwApp')
         };
 
         self.getNegativesNames = function() {
-            growl.warning('About to display Negative Names', {title: 'Info for Negative Names'});
           resetBooleanSummarySlideVars();
           self.displayNegative = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -776,7 +772,6 @@ angular.module('nwApp')
         };
 
         self.getNewsNames = function() {
-            growl.info('About to display New Names', {title: 'Info for New Names'});
           resetBooleanSummarySlideVars();
           self.displayNewName = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -799,7 +794,6 @@ angular.module('nwApp')
         };
 
         self.getrootsToExplores = function() {
-            growl.info('About to display Roots to Explore', {title: 'Info for Roots to Explore'});
           getNotesFromServer();
           resetBooleanSummarySlideVars();
           self.displayRootExplore = true;
@@ -814,7 +808,6 @@ angular.module('nwApp')
         };
 
         self.getrootsToAvoids = function() {
-            growl.error('About to display Roots to Avoid', {title: 'Info for Roots to Avoid'});
           getNotesFromServer();
           resetBooleanSummarySlideVars();
           self.displayRootAvoid = true;
@@ -877,7 +870,6 @@ angular.module('nwApp')
         };
 
         self.goHome = function() {
-            growl.info('Going to the Beginning', {title: 'Info for Testing!'});
             if(_IsTheAppStarted){self.goNextSlide();}
             var negativeNames = self.sendStoredKatakana.join(',');
             var initialSlideModel = JSON.stringify(new SlideInfoModel(projectId, 0, '', '', '', '', 'Next', negativeNames));
@@ -885,14 +877,12 @@ angular.module('nwApp')
         };
 
         self.goToSummarySlide = function() {
-            growl.info('Going to Summary Slides', {title: 'Info for Testing!'});
             self.goNextSlide();
             setProgressBarsSummary();
             self.selectSlide(_nameSummarySlideNumber - 1);
         };
 
         self.goNextSlide = function() {
-            growl.info('Goes to Next Slide', {title: 'Info for Testing!'});
             var negativeNames = self.sendStoredKatakana.join(',');
             var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
             if (_SlideType === 'NameEvaluation') {
@@ -917,7 +907,7 @@ angular.module('nwApp')
         self.selectedName = '';
 
         self.onSelect = function(slideName) {
-            growl.success('Selecting Slide name to travel', {title: 'Success!'});
+
           var foundMatch = false;
           var amount = 0;
           if(self.testName.indexOf(slideName) < 0){
@@ -964,7 +954,6 @@ angular.module('nwApp')
         });
 
         self.resetSlide = function() {
-            growl.error('Slide will be Reset', {title: 'Danger Reset of Slide'});
             self.nameRamking = false;
             self.newName = '';
             self.explore = '';
@@ -972,7 +961,6 @@ angular.module('nwApp')
         };
 
         self.tally = function() {
-            growl.info('Displaying Tally', {title: 'Tally info'});
             self.displayTally = true;
         };
 

@@ -333,7 +333,7 @@ label {
                                 </div>
                                 <div class="col-md-8">
                                     <uib-progress class="progress-bar-height">
-                                      <uib-bar id="stackedProgressBar" ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.value}}%</span></uib-bar>
+                                      <uib-bar  ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.value}}%</span></uib-bar>
                                       <!-- <uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.description}}{{bar.value}}%</span></uib-bar> -->
                                     </uib-progress>
                                 </div>
