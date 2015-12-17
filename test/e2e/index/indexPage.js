@@ -60,7 +60,7 @@ function indexPage(){
   this.buttonGrowlTriggerWelcome = element(by.id('growlTriggerWelcome'));
   this.buttonGrowlTriggerSummary = element(by.id('growlTriggerSummary'));
   this.buttonGrowlTriggerTypeAhead = element(by.id('growlTriggerTypeAhead'));
-
+//trying to push new code
 // ************** Declaration For Summary Slides ****************************************************************************************************
   this.buttonGoToSummary = element(by.id('goesToSummary'));
   this.displayRetainedNames = element(by.id('showRetainedNames'));
