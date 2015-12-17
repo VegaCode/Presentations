@@ -1,3 +1,4 @@
+require
 function indexPage(){
 
   var arrayOfNewNames = ['APTIERA', 'ARCTECA', 'ARKIZEL', 'AVENSIVE', 'ELATHERA', 'FIRLYNSA', 'FUTROZEL', 'FYNHESS', 'KLAUSTRA',
@@ -28,14 +29,12 @@ function indexPage(){
 
   var _minimumRank = 1;
   var _maximumRank = 3;
-  var _startTesting = 19; //starts Ranking Names in the slide # provided
-  var _pauseTesting = 35; //pauses the Ranking process in the slide # provided and then starts at the paused slide #
-  var _finishTesting = 69;  //ends Ranking Names in the slide # provided
+  var _startTesting = 19;
+  var _finishTesting = 69;
   var _alreadyPositive = true;
   var _alreadyNegative = true;
   var _alreadyNeutral = false;
   var _SleepyTime = 0000;
-
 // ************** Menu Bar Declaration ****************************************************************************************************
   this.buttonNextSlide = element(by.id('navright'));
   this.selectNameModel = element(by.model('main.selectedName'));
@@ -53,7 +52,6 @@ function indexPage(){
   this.inputNewName = element(by.id('newNameBox'));
   this.inputExplore = element(by.id('exploreBox'));
   this.inputAvoid = element(by.id('avoidBox'));
-
   this.buttonAdminLogin = element(by.id('cogSettings'));
 
   this.buttonGrowlTrigger = element(by.id('growlTrigger'));
@@ -75,10 +73,6 @@ function indexPage(){
 
   this.sleep = function(time){
     browser.sleep(time);
-  };
-
-  this.pause = function(){
-    browser.pause();
   };
 
   this.getTitle = function(){
@@ -125,59 +119,29 @@ function indexPage(){
   };
   this.testNames = function(){
     var index;
-      for (index = _startTesting; index< _pauseTesting; index++){
+      for (index = 19; index< _finishTesting; index++){
         //debugger;
         if(_alreadyPositive === true && _alreadyNeutral === true){
           this.clickRadioButtonNegative();
           _alreadyNegative = true;
           _alreadyNeutral = false;
-          this.sendKeysOfInputNewName(index - _startTesting);
-          this.sendKeysOfInputExplore(index - _startTesting);
-          this.sendKeysOfInputAvoid(index - _startTesting);
+          this.sendKeysOfInputNewName(index - 19);
+          this.sendKeysOfInputExplore(index - 19);
+          this.sendKeysOfInputAvoid(index - 19);
         }else if (_alreadyNeutral === true && _alreadyNegative === true) {
           this.clickRadioButtonPositive();
           _alreadyPositive = true;
           _alreadyNegative = false;
-          this.sendKeysOfInputNewName(index - _startTesting);
-          this.sendKeysOfInputExplore(index - _startTesting);
-          this.sendKeysOfInputAvoid(index - _startTesting);
+          this.sendKeysOfInputNewName(index - 19);
+          this.sendKeysOfInputExplore(index - 19);
+          this.sendKeysOfInputAvoid(index - 19);
         }else if (_alreadyNegative === true && _alreadyPositive === true){
           this.clickRadioButtonNeutral();
           _alreadyNeutral = true;
           _alreadyPositive = false;
-          this.sendKeysOfInputNewName(index - _startTesting);
-          this.sendKeysOfInputExplore(index - _startTesting);
-          this.sendKeysOfInputAvoid(index - _startTesting);
-        }
-        this.sleep(_SleepyTime);
-        this.clickButtonNextSlide();
-      }
-
-      this.sleep(20000);
-
-      for (index = _pauseTesting; index< _finishTesting; index++){
-        //debugger;
-        if(_alreadyPositive === true && _alreadyNeutral === true){
-          this.clickRadioButtonNegative();
-          _alreadyNegative = true;
-          _alreadyNeutral = false;
-          this.sendKeysOfInputNewName(index - _startTesting);
-          this.sendKeysOfInputExplore(index - _startTesting);
-          this.sendKeysOfInputAvoid(index - _startTesting);
-        }else if (_alreadyNeutral === true && _alreadyNegative === true) {
-          this.clickRadioButtonPositive();
-          _alreadyPositive = true;
-          _alreadyNegative = false;
-          this.sendKeysOfInputNewName(index - _startTesting);
-          this.sendKeysOfInputExplore(index - _startTesting);
-          this.sendKeysOfInputAvoid(index - _startTesting);
-        }else if (_alreadyNegative === true && _alreadyPositive === true){
-          this.clickRadioButtonNeutral();
-          _alreadyNeutral = true;
-          _alreadyPositive = false;
-          this.sendKeysOfInputNewName(index - _startTesting);
-          this.sendKeysOfInputExplore(index - _startTesting);
-          this.sendKeysOfInputAvoid(index - _startTesting);
+          this.sendKeysOfInputNewName(index - 19);
+          this.sendKeysOfInputExplore(index - 19);
+          this.sendKeysOfInputAvoid(index - 19);
         }
         this.sleep(_SleepyTime);
         this.clickButtonNextSlide();
@@ -287,21 +251,6 @@ function indexPage(){
   this.stackedProgressBarClick = function(){
     this.stackedProgressBar.click();
   };
-
-  this.clickButtonGrowlTrigger = function(){
-    this.buttonGrowlTrigger.click();
-  };
-
-  this.clickButtonGrowlTriggerWelcome = function(){
-    this.buttonGrowlTriggerWelcome.click();
-  };
-  this.clickButtonGrowlTriggerSummary = function(){
-    this.buttonGrowlTriggerSummary.click();
-  };
-  this.clickButtonGrowlTriggerTypeAhead = function(){
-    this.buttonGrowlTriggerTypeAhead.click();
-  };
-
 }// end of the function
 
 module.exports = indexPage;
