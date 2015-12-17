@@ -8,8 +8,8 @@
  */
 
 angular.module('nwApp')
-.controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings',
-    function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings) {
+.controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','growl',
+    function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, growl) {
             var    _nameSummarySlideNumber , _id, _DisplayName, _StrokeRange,  _StrokeColor, _Stroke,
                     _HeaderFontColor, _HeaderFontFamily, _Name, _NameCategory, _NameGroup, _NameLogo,
                     _NameNotation, _NameRanking, _NameRationale, _NamesToAvoid, _NamesToExplore, _NewNames,
@@ -26,9 +26,6 @@ angular.module('nwApp')
             self.slides = [];
             self.progressBarValue = 0;
             self.presentTestNamesAtSlide = '';
-            // CA- Added variable to turn on the katakana input trying to push
-            // self.phonetics = ['カタカナ', 'チャーシューー' ,'いいえ', '麻將' , 'シューマイ', 'こんにちは'];
-            // self.KatakanaNegativeFromDB =['カタカナ', 'チャーシューー'];
             self.sendStoredKatakana =[];
             self.katakanaObjToDisplay = [];
             self.katakanaColor = '#000000';
@@ -144,7 +141,7 @@ angular.module('nwApp')
         };
 
 // **********  Event listeners for revealjs  ****************************************************************************************************
-//if(self.greeting ==='t'){
+if(self.greeting ==='t'){
         Reveal.addEventListener('overviewshown', function() {
             if(_SlideNumber > 4){
                 Reveal.slide(  0, _SlideNumber-2, 0 );
@@ -159,8 +156,8 @@ angular.module('nwApp')
                     $rootScope.$apply(function() {
                         self.isOverview = false;
                     });
-             });
-//}//
+         });
+}
         self.selectSlide = function(index) {
                 var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '', '' ));
                  getTestNamesObject(slideModel);
@@ -709,7 +706,7 @@ angular.module('nwApp')
                 };
 
          self.blurEffect= function(){
-             growl.info('Selecting a Rank', {ttl: 2000});
+             growl.info('Selecting a Rank', {ttl: -1, title:'hello'});
                 $('input[type="radio"]').each(function( ) {
                           $(this).blur();
                         });

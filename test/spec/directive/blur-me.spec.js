@@ -1,11 +1,11 @@
 
-describe('Blur-Me Directive, ', function() {
+describe('Red-Me Directive, ', function() {
   var element;
   var $scope;
   beforeEach(module('nwApp'));
   beforeEach(inject(function($compile, $rootScope) {
     $scope = $rootScope;
-    element = angular.element('<div Blur-Me>{{2+2}}</div>');
+    element = angular.element('<div red-me>{{2+2}}</div>');
     $compile(element)($rootScope);
   }));
 
