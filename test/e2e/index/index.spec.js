@@ -21,7 +21,13 @@ describe('Protractor Demo App', function() {
   });
 
   it('should reset the whole project', function(){
+    page.sleep(3000);
     page.clickButtonResetProject();
+    page.alertAccept();
+  });
+
+  it('should go home if reseting project does not go home', function(){
+    page.clickButtonGoHome();
     page.alertAccept();
   });
 
@@ -30,8 +36,9 @@ describe('Protractor Demo App', function() {
   });
 
   it('should no longer display the settings for the admin by clicking the cog button', function(){
+    page.sleep(3000);
     page.clickButtonAdminLogin();
-    page.sleep(1000);
+    page.sleep(2000);
   });
 
   it('should start ranking Names and providing input information', function(){
@@ -72,9 +79,9 @@ describe('Protractor Demo App', function() {
   });
 
   it('should input a name in Search Bar and go to slide of the name', function(){
-    page.sendKeysOfSelectedName('ARKIZEL');
+    page.sendKeysOfSelectedName('APTIERA');
     page.pressKeyEnter();
-    expect(page.getTextOfSelectedName()).toBe('ARKIZEL');
+    expect(page.getTextOfSelectedName()).toBe('APTIERA');
     page.sleep(2000);
   });
 
@@ -84,12 +91,13 @@ describe('Protractor Demo App', function() {
   });
 
   it('should display Tally', function(){
+    page.sleep(2000);
     page.clickButtonTally();
     expect(page.tallyIsDisplayed()).toBe(true);
-    page.sleep(1000);
   });
 
   it('should go to summary slide', function(){
+    page.clickButtonGoToSummary();
     page.clickButtonGoToSummary();
     page.sleep(2000);
   });
