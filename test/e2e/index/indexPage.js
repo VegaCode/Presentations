@@ -1,4 +1,4 @@
-require
+
 function indexPage(){
 
   var arrayOfNewNames = ['APTIERA', 'ARCTECA', 'ARKIZEL', 'AVENSIVE', 'ELATHERA', 'FIRLYNSA', 'FUTROZEL', 'FYNHESS', 'KLAUSTRA',
@@ -58,6 +58,7 @@ function indexPage(){
   this.buttonGrowlTriggerWelcome = element(by.id('growlTriggerWelcome'));
   this.buttonGrowlTriggerSummary = element(by.id('growlTriggerSummary'));
   this.buttonGrowlTriggerTypeAhead = element(by.id('growlTriggerTypeAhead'));
+
 //trying to push new code
 // ************** Declaration For Summary Slides ****************************************************************************************************
   this.buttonGoToSummary = element(by.id('goesToSummary'));
@@ -250,6 +251,19 @@ function indexPage(){
   };
   this.stackedProgressBarClick = function(){
     this.stackedProgressBar.click();
+  };
+    this.clickButtonGrowlTrigger = function(){
+    this.buttonGrowlTrigger.click();
+  };
+
+  this.clickButtonGrowlTriggerWelcome = function(){
+    this.buttonGrowlTriggerWelcome.click();
+  };
+  this.clickButtonGrowlTriggerSummary = function(){
+    this.buttonGrowlTriggerSummary.click();
+  };
+  this.clickButtonGrowlTriggerTypeAhead = function(){
+    this.buttonGrowlTriggerTypeAhead.click();
   };
 }// end of the function
 

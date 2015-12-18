@@ -5,7 +5,7 @@ exports.config = {
 
   specs: ['./e2e/**/*.spec.js'],
    capabilities: {
-    browserName: 'firefox'
+    browserName: 'chrome'
   },
 
   onPrepare: function() {

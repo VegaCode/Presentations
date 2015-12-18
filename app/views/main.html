@@ -161,7 +161,7 @@ label {
     <div class="backGroundStyle">
         <div class="container-fluid" style="background-image: url({{main.BackGround}});
             !important;color:white; background-repeat: no-repeat; background-size: cover;height:800px;">
-            <div id="growlTriggerWelcome" style="width: 100%; height: 5px;" ng-click="main.growlTrigger('success', 'Welcome, you are about to test the NW', '', 2000)">
+            <div id="growlTriggerWelcome" style="width: 100%; height: 5px;" data-color="{{main.color}}" ng-click="main.growlTrigger({{data-color}}, 'Welcome, you are about to test the NW', '', 2000)">
             </div>
             <div class="row" style="height: 30px;">
                 <div class="col-md-12">

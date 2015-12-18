@@ -66,6 +66,8 @@ angular.module('nwApp')
              self.displayRootAvoid = false;
              self.displayRetained = false;
 
+
+
 // **********  Slides ADMIN back end  ****************************************************************************************************
         self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
                                                     'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',  'Cardiology','Cognition',
@@ -141,6 +143,7 @@ angular.module('nwApp')
         };
         //typeOf = string made of only (success, warning, error, info), titleForMessage and message must be string, timeOutLimit = milliseconds (-1 never disappear, 1000ms = 1 second; seconds to display message)
       self.growlTrigger = function(typeOfMesage, message, titleForMessage, timeOutLimit){
+
       if(typeOfMesage === 'success'){
           growl.success(message, {title: titleForMessage, ttl: timeOutLimit});
       }else if (typeOfMesage === 'warning'){
@@ -151,23 +154,26 @@ angular.module('nwApp')
           growl.info(message, {title: titleForMessage, ttl: timeOutLimit});
       }
     };
+
+
+
 // **********  Event listeners for revealjs  ****************************************************************************************************
 //if(self.greeting ==='t'){
-        Reveal.addEventListener('overviewshown', function() {
-            if(_SlideNumber > 4){
-                Reveal.slide(  0, _SlideNumber-2, 0 );
-            }else{ Reveal.slide(  0, _SlideNumber-1, 0 );}
-                    $rootScope.$apply(function() {
-                        self.isOverview = true;
-                    });
-                });
-
-
-        Reveal.addEventListener('overviewhidden', function() {
-                    $rootScope.$apply(function() {
-                        self.isOverview = false;
-                    });
-             });
+        // Reveal.addEventListener('overviewshown', function() {
+        //     if(_SlideNumber > 4){
+        //         Reveal.slide(  0, _SlideNumber-2, 0 );
+        //     }else{ Reveal.slide(  0, _SlideNumber-1, 0 );}
+        //             $rootScope.$apply(function() {
+        //                 self.isOverview = true;
+        //             });
+        //         });
+        //
+        //
+        // Reveal.addEventListener('overviewhidden', function() {
+        //             $rootScope.$apply(function() {
+        //                 self.isOverview = false;
+        //             });
+        //      });
 //}//
         self.selectSlide = function(index) {
                 var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '', '' ));
@@ -342,7 +348,7 @@ angular.module('nwApp')
               self.isTextShadow = '';
           }
 
-        var centerTestNames = function(nameCandidate) {
+        self.centerTestNames = function(nameCandidate) {
                // CA- added function above to make sure if it is katakana or not when billboard or subwaystop is displayed
                         self.testNameWidth= '85';
                     if(_TemplateName === 'Billboard' ||_TemplateName ==='SubwayStop'){
