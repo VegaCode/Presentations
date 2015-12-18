@@ -8,6 +8,7 @@ describe('Protractor Demo App', function() {
 
   it("should welcome the tester to the testing unit", function(){
     page.clickButtonGrowlTriggerWelcome();
+    page.sleep(4000);
   });
 
   it("should show correct title and displays menu", function(){
@@ -21,18 +22,18 @@ describe('Protractor Demo App', function() {
 
   it('should open prompt for login password', function(){
     page.switchToAlert('admin123');
-    page.sleep(8000);
+    page.sleep(3000);
   });
 
-  it('should reset the whole project', function(){
+  it('should display: we are going to reset project in about 3 seconds', function(){
     page.sleep(3000);
+    page.clickButtonGrowlTriggerResetProject();
+  });
+  
+  it('should reset the whole project', function(){
     page.clickButtonResetProject();
     page.alertAccept();
-  });
-
-  it('should go home if reseting project does not go home', function(){
-    page.clickButtonGoHome();
-    page.alertAccept();
+    page.sleep(3000);
   });
 
   it('should go through slides', function(){
@@ -61,11 +62,6 @@ describe('Protractor Demo App', function() {
     page.clickDisplayRetainedNames();
     expect(page.retainedNamesAreDisplayed()).toBeTruthy();
     page.sleep(2000);
-  });
-
-  it('should show Retained names', function(){
-    page.stackedProgressBarClick();
-    page.sleep(8000);
   });
 
   it('should show negative names', function(){
@@ -113,6 +109,8 @@ describe('Protractor Demo App', function() {
   });
 
   it('should go to summary slide', function(){
+    page.clickButtonGrowlTriggerGoToSummary();
+    page.sleep(6000);
     page.clickButtonGoToSummary();
     page.sleep(2000);
   });

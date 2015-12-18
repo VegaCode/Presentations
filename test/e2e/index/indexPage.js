@@ -1,4 +1,4 @@
-require
+require;
 function indexPage(){
 
   var arrayOfNewNames = ['APTIERA', 'ARCTECA', 'ARKIZEL', 'AVENSIVE', 'ELATHERA', 'FIRLYNSA', 'FUTROZEL', 'FYNHESS', 'KLAUSTRA',
@@ -29,8 +29,9 @@ function indexPage(){
 
   var _minimumRank = 1;
   var _maximumRank = 3;
-  var _startTesting = 19;
-  var _finishTesting = 69;
+  var _startTesting = 19; //starts Ranking Names in the slide # provided
+  var _pauseTesting = 35; //pauses the Ranking process in the slide # provided and then starts at the paused slide #
+  var _finishTesting = 69;  //ends Ranking Names in the slide # provided
   var _alreadyPositive = true;
   var _alreadyNegative = true;
   var _alreadyNeutral = false;
@@ -58,7 +59,8 @@ function indexPage(){
   this.buttonGrowlTriggerWelcome = element(by.id('growlTriggerWelcome'));
   this.buttonGrowlTriggerSummary = element(by.id('growlTriggerSummary'));
   this.buttonGrowlTriggerTypeAhead = element(by.id('growlTriggerTypeAhead'));
-//trying to push new code
+  this.buttonGrowlTriggerResetProject = element(by.id('growlTriggerResetProject'));
+  this.buttonGrowlTriggerGoToSummary = element(by.id('growlTriggerGoToSummary'));
 // ************** Declaration For Summary Slides ****************************************************************************************************
   this.buttonGoToSummary = element(by.id('goesToSummary'));
   this.displayRetainedNames = element(by.id('showRetainedNames'));
@@ -73,6 +75,10 @@ function indexPage(){
 
   this.sleep = function(time){
     browser.sleep(time);
+  };
+
+  this.pause = function(){
+    browser.pause();
   };
 
   this.getTitle = function(){
@@ -119,33 +125,62 @@ function indexPage(){
   };
   this.testNames = function(){
     var index;
-      for (index = 19; index< _finishTesting; index++){
-        //debugger;
-        if(_alreadyPositive === true && _alreadyNeutral === true){
-          this.clickRadioButtonNegative();
-          _alreadyNegative = true;
-          _alreadyNeutral = false;
-          this.sendKeysOfInputNewName(index - 19);
-          this.sendKeysOfInputExplore(index - 19);
-          this.sendKeysOfInputAvoid(index - 19);
-        }else if (_alreadyNeutral === true && _alreadyNegative === true) {
-          this.clickRadioButtonPositive();
-          _alreadyPositive = true;
-          _alreadyNegative = false;
-          this.sendKeysOfInputNewName(index - 19);
-          this.sendKeysOfInputExplore(index - 19);
-          this.sendKeysOfInputAvoid(index - 19);
-        }else if (_alreadyNegative === true && _alreadyPositive === true){
-          this.clickRadioButtonNeutral();
-          _alreadyNeutral = true;
-          _alreadyPositive = false;
-          this.sendKeysOfInputNewName(index - 19);
-          this.sendKeysOfInputExplore(index - 19);
-          this.sendKeysOfInputAvoid(index - 19);
-        }
-        this.sleep(_SleepyTime);
-        this.clickButtonNextSlide();
+    for (index = _startTesting; index< _pauseTesting; index++){
+      //debugger;
+      if(_alreadyPositive === true && _alreadyNeutral === true){
+        this.clickRadioButtonNegative();
+        _alreadyNegative = true;
+        _alreadyNeutral = false;
+        this.sendKeysOfInputNewName(index - _startTesting);
+        this.sendKeysOfInputExplore(index - _startTesting);
+        this.sendKeysOfInputAvoid(index - _startTesting);
+      }else if (_alreadyNeutral === true && _alreadyNegative === true) {
+        this.clickRadioButtonPositive();
+        _alreadyPositive = true;
+        _alreadyNegative = false;
+        this.sendKeysOfInputNewName(index - _startTesting);
+        this.sendKeysOfInputExplore(index - _startTesting);
+        this.sendKeysOfInputAvoid(index - _startTesting);
+      }else if (_alreadyNegative === true && _alreadyPositive === true){
+        this.clickRadioButtonNeutral();
+        _alreadyNeutral = true;
+        _alreadyPositive = false;
+        this.sendKeysOfInputNewName(index - _startTesting);
+        this.sendKeysOfInputExplore(index - _startTesting);
+        this.sendKeysOfInputAvoid(index - _startTesting);
       }
+      this.sleep(_SleepyTime);
+      this.clickButtonNextSlide();
+    }
+
+    this.sleep(20000);
+
+    for (index = _pauseTesting; index< _finishTesting; index++){
+      if(_alreadyPositive === true && _alreadyNeutral === true){
+        this.clickRadioButtonNegative();
+        _alreadyNegative = true;
+        _alreadyNeutral = false;
+        this.sendKeysOfInputNewName(index - _startTesting);
+        this.sendKeysOfInputExplore(index - _startTesting);
+        this.sendKeysOfInputAvoid(index - _startTesting);
+      }else if (_alreadyNeutral === true && _alreadyNegative === true) {
+        this.clickRadioButtonPositive();
+        _alreadyPositive = true;
+        _alreadyNegative = false;
+        this.sendKeysOfInputNewName(index - _startTesting);
+        this.sendKeysOfInputExplore(index - _startTesting);
+        this.sendKeysOfInputAvoid(index - _startTesting);
+      }else if (_alreadyNegative === true && _alreadyPositive === true){
+        this.clickRadioButtonNeutral();
+        _alreadyNeutral = true;
+        _alreadyPositive = false;
+        this.sendKeysOfInputNewName(index - _startTesting);
+        this.sendKeysOfInputExplore(index - _startTesting);
+        this.sendKeysOfInputAvoid(index - _startTesting);
+      }
+      this.sleep(_SleepyTime);
+      this.clickButtonNextSlide();
+    }
   };
 
   this.switchToAlert = function(string){
@@ -248,8 +283,24 @@ function indexPage(){
   this.clickButtonAdminLogin = function(){
     this.buttonAdminLogin.click();
   };
-  this.stackedProgressBarClick = function(){
-    this.stackedProgressBar.click();
+
+  this.clickButtonGrowlTrigger = function(){
+    this.buttonGrowlTrigger.click();
+  };
+  this.clickButtonGrowlTriggerWelcome = function(){
+    this.buttonGrowlTriggerWelcome.click();
+  };
+  this.clickButtonGrowlTriggerSummary = function(){
+    this.buttonGrowlTriggerSummary.click();
+  };
+  this.clickButtonGrowlTriggerTypeAhead = function(){
+    this.buttonGrowlTriggerTypeAhead.click();
+  };
+  this.clickButtonGrowlTriggerResetProject = function(){
+    this.buttonGrowlTriggerResetProject.click();
+  };
+  this.clickButtonGrowlTriggerGoToSummary = function(){
+    this.buttonGrowlTriggerGoToSummary.click();
   };
 }// end of the function
 
