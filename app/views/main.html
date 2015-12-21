@@ -239,7 +239,7 @@ label {
                               <ul class="col-md-2" style="list-style-type: none;min-width: 98%; margin-top: -30px;">
                                   <li ng-repeat="kana in main.kanaNamestoDisplay" class="text-center" style="margin-bottom: -20px">
                                     <ul>
-                                        <li  ng-repeat="phoneticObj in kana"  ng-click="main.isKatakanaNegative(phoneticObj.name)"
+                                        <li  ng-repeat="phoneticObj in kana"  ng-click="main.isKatakanaNegative(phoneticObj)"
                                              ng-model="phoneticObj.name"  red-me
                                              style="color:{{phoneticObj.katakanaColor}};"
                                              class="label">{{phoneticObj.name}}
@@ -408,7 +408,7 @@ label {
     </div>
 </div>
 <!-- div for GROWL TRIGGER -->
-<div id="growlTriggerresetProject" style="width: 100%; height: 7px;" ng-click="main.growlTrigger('success', 'We are going to Reset Project in about 3 seconds', '', 4000)">
+<!-- <div id="growlTriggerresetProject" style="width: 100%; height: 7px;" ng-click="main.growlTrigger('success', 'We are going to Reset Project in about 3 seconds', '', 4000)">
 </div>
 <div id="growlTriggerWelcome" style="width: 100%; height: 5px;" ng-click="main.growlTrigger('success', 'Welcome, you are about to test the NW', '', 4000)">
 </div>
@@ -419,7 +419,7 @@ label {
 <div id="growlTriggerSummary" style="width: 100%; height: 5px;" ng-click="main.growlTrigger('warning', 'Now we are displaying the Summary Slide', '', 4000)">
 </div>
 <div id="growlTriggerGoToSummary" style="width: 100%; height: 5px;" ng-click="main.growlTrigger('warning', 'After reseting slide and ranking it, now we are heading to summary slide', '', 6000)">
-</div>
+</div> -->
 <!-- End if NW -->
 
 <!-- Side menu Settings-->

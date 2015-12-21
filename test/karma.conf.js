@@ -52,8 +52,8 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       '**/app/js/*/*.js' : 'coverage',
-        '**/app/js/modules/*/*.js' : 'coverage',
-        '**/app/js/services/*/*.js' : 'coverage'
+      '**/app/js/modules/*/*.js' : 'coverage',
+      '**/app/js/services/*/*.js' : 'coverage'
     },
 
     hostname:'localhost',

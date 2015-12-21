@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 /**
  * @ngdoc function
  * @name nwApp.controller:MainCtrl
@@ -6,7 +6,6 @@
  * # MainCtrl
  * Controller of the nwApp
  */
-
 angular.module('nwApp')
 .controller('MainCtrl', ['hotkeys','$timeout', 'localStorageService', '$http', '$rootScope', '$routeParams', 'queryStringCheck', '$modal', 'setSettings','growl',
     function(hotkeys, $timeout, localStorageService, $http, $rootScope,  $routeParams, queryStringCheck, $modal, setSettings, growl) {
@@ -19,8 +18,8 @@ angular.module('nwApp')
                      _IsBackgroundDefault, _TemporaryBackGround, _KanaNames, _KanaNamesNegative, _PresentationType;
             var projectId, apiCall, webBaseUrl;
             var self = this;
-            webBaseUrl = 'http://localhost:64378/';
             webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
+            webBaseUrl = 'http://localhost:64378/';
             projectId = queryStringCheck;
             self.displaySettings =false;
             self.slides = [];
@@ -657,20 +656,16 @@ angular.module('nwApp')
         self.saveExploreComments = function(note){
               // DO NOT PUT SINGLE QUOATES HERE
               var apiCall = 'api/NW_SaveNotes';
-              var projectIdAndNote = JSON.stringify(projectId + ', N"' + note + ',"Explore"');
+              var projectIdAndNote = JSON.stringify(projectId + ", N'" + note + "', 'Explore'");
               $http.post(webBaseUrl + apiCall , projectIdAndNote);
-                 alertify.confirm('You are about to save').set('onok', function(){
-                      alertify.alert('Thank you !').set('title', 'Comments are saved');
-                    }).set('oncancel', function(){}).set('title', 'Saving Explore Notes');
+                 alertify.confirm('You are about to save');
                 };
 
         self.saveAvoidComments = function(note){
               var apiCall = 'api/NW_SaveNotes';
-              var projectIdAndNote = JSON.stringify(projectId + ', N"' + note + ',"Avoid"');
+              var projectIdAndNote = JSON.stringify(projectId + ", N'" + note + "', 'Avoid'");
               $http.post(webBaseUrl + apiCall , projectIdAndNote);
-               alertify.confirm('You are about to save').set('onok', function(){
-                      alertify.alert('Thank you !').set('title', 'Comments are saved');
-                    }).set('oncancel', function(){}).set('title', 'Saving Avoid Notes');
+               alertify.confirm('You are about to save');
             };
 
             var selectColumnSize = function(totalNames){
@@ -857,11 +852,13 @@ angular.module('nwApp')
         self.isKatakanaNegative = function(phonetic){
             var idx = self.sendStoredKatakana.indexOf(phonetic);
             if( idx < 0){
-                self.sendStoredKatakana.push(phonetic);
+                self.sendStoredKatakana.push(phonetic.name);
+                phonetic.katakanaColor = 'rgb(255, 0, 0)';
             }else{
                 if (idx > -1) {
-                          self.sendStoredKatakana.splice(idx, 1);
-                    }
+                 self.sendStoredKatakana.splice(idx, 1);
+                 phonetic.katakanaColor ='rgb(0, 0, 0)';
+                }
             }
         };
 
