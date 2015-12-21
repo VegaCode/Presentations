@@ -239,7 +239,7 @@ label {
                               <ul class="col-md-2" style="list-style-type: none;min-width: 98%; margin-top: -30px;">
                                   <li ng-repeat="kana in main.kanaNamestoDisplay" class="text-center" style="margin-bottom: -20px">
                                     <ul>
-                                        <li  ng-repeat="phoneticObj in kana"  ng-click="main.isKatakanaNegative(phoneticObj.name)"
+                                        <li  ng-repeat="phoneticObj in kana"  ng-click="main.isKatakanaNegative(phoneticObj)"
                                              ng-model="phoneticObj.name"  red-me
                                              style="color:{{phoneticObj.katakanaColor}};"
                                              class="label">{{phoneticObj.name}}
