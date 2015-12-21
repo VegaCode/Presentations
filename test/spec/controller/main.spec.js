@@ -13,8 +13,12 @@ describe('MainCtrl, ', function() {
   }));
 
   it('it should display greeting', function() {
-    expect(controller.centerTestNames('test')).toBe('5');
+    controller.greeting === 'Hello World!';
+    expect(controller.greeting === 'Hello World!').toBe(true);
+
+
   });
+
 
           // var centerTestNames = function(nameCandidate) {
           //        // CA- added function above to make sure if it is katakana or not when billboard or subwaystop is displayed

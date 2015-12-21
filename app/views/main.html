@@ -161,8 +161,6 @@ label {
     <div class="backGroundStyle">
         <div class="container-fluid" style="background-image: url({{main.BackGround}});
             !important;color:white; background-repeat: no-repeat; background-size: cover;height:800px;">
-            <div id="growlTriggerWelcome" style="width: 100%; height: 5px;" data-color="{{main.color}}" ng-click="main.growlTrigger({{data-color}}, 'Welcome, you are about to test the NW', '', 2000)">
-            </div>
             <div class="row" style="height: 30px;">
                 <div class="col-md-12">
                     <div class="progress" style="height: 5px;" max="max" value="dynamic">
@@ -175,8 +173,6 @@ label {
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}" ng-show="!main.displayNameGroup">
                             <form name="nameRamking" ng-click="main.blurEffect($event)">
                                 <label>
-                                  <div id="growlTrigger" style="width: 100%; height: 5px;" ng-click="main.growlTrigger('success', 'Ranking Name, Filling New Name, Avoid and Explore Roots', '', 2000)">
-                                  </div>
                                     <input id="positiveRank" class="feedBack" type="radio" name="nameRamking" value="Positive" ng-model="main.nameRamking"> Positive
                                 </label>
                                 <br/>
@@ -279,8 +275,7 @@ label {
                             </div>
                         </div>
                     </div>
-                    <div id="growlTriggerTypeAhead" style="width: 100%; height: 3px;" ng-click="main.growlTrigger('success', 'Searching for a name or slide title. Followed by traveling to that slide', '', 2000)">
-                    </div>
+
             <div class="row">
                 <div class="col-md-12" style="position: relative; bottom: {{main.controlsPosition}}px;">
                     <div class="col-md-4">
@@ -334,9 +329,6 @@ label {
                         <uib-tab heading="Summary" class="tabs">
                             <div class="row pointer" style="margin-top: 10px;">
                                 <div class="col-md-2">
-                                  <!-- trying to push new code -->
-                                  <div id="growlTriggerSummary" style="width: 100%; height: 5px;" ng-click="main.growlTrigger('warning', 'Now we are displaying the Summary Slide', '', 2000)">
-                                  </div>
                                     <span id="showRetainedNames" class="label label-style label-and-badge-green font-style-for-label-badges" ng-click="main.getRetainedNames()">Retained</span>
                                 </div>
                                 <div class="col-md-8">
@@ -414,6 +406,19 @@ label {
                 <!-- Display summary slide ENDS here -->
         </div>
     </div>
+</div>
+<!-- div for GROWL TRIGGER -->
+<div id="growlTriggerresetProject" style="width: 100%; height: 7px;" ng-click="main.growlTrigger('success', 'We are going to Reset Project in about 3 seconds', '', 4000)">
+</div>
+<div id="growlTriggerWelcome" style="width: 100%; height: 5px;" ng-click="main.growlTrigger('success', 'Welcome, you are about to test the NW', '', 4000)">
+</div>
+<div id="growlTrigger" style="width: 100%; height: 5px;" ng-click="main.growlTrigger('success', 'Ranking Name, Filling New Name, Avoid and Explore Roots', '', 4000)">
+</div>
+<div id="growlTriggerTypeAhead" style="width: 100%; height: 5px;" ng-click="main.growlTrigger('success', 'Searching for a name or slide title. Followed by traveling to that slide', '', 4000)">
+</div>
+<div id="growlTriggerSummary" style="width: 100%; height: 5px;" ng-click="main.growlTrigger('warning', 'Now we are displaying the Summary Slide', '', 4000)">
+</div>
+<div id="growlTriggerGoToSummary" style="width: 100%; height: 5px;" ng-click="main.growlTrigger('warning', 'After reseting slide and ranking it, now we are heading to summary slide', '', 6000)">
 </div>
 <!-- End if NW -->
 
