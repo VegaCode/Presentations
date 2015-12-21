@@ -239,7 +239,7 @@ label {
                               <ul class="col-md-2" style="list-style-type: none;min-width: 98%; margin-top: -30px;">
                                   <li ng-repeat="kana in main.kanaNamestoDisplay" class="text-center" style="margin-bottom: -20px">
                                     <ul>
-                                        <li  ng-repeat="phoneticObj in kana"  ng-click="main.isKatakanaNegative(phoneticObj)"
+                                        <li  ng-repeat="phoneticObj in kana"  ng-click="main.isKatakanaNegative(phoneticObj.name)"
                                              ng-model="phoneticObj.name"  red-me
                                              style="color:{{phoneticObj.katakanaColor}};"
                                              class="label">{{phoneticObj.name}}
@@ -371,7 +371,7 @@ label {
                               <div class="color-light-blue col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames track by $index" ng-click="main.selectNameFromSummary(newname.Name)">{{newname.NameToDisplay}}</div>
                             </div>
                         </uib-tab>
-                        <uib-tab id="showExploreRoots" heading="Explore" class="tabs" ng-click="main.getRootsToExplores()">
+                        <uib-tab id="showExploreRoots" heading="Explore" class="tabs" ng-click="main.getrootsToExplores()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
                                     <textarea class="color-dark-blue textarea-style" ng-value="main.dataExploreInput" ng-model="main.dataExploreInput" placeholder="Please type additional comments...">{{main.dataExploreInput}}</textarea>
@@ -386,7 +386,7 @@ label {
                                 </div>
                             </div>
                         </uib-tab>
-                        <uib-tab id="showAvoidRoots" heading="Avoid" class="tabs" ng-click="main.getRootsToAvoids()">
+                        <uib-tab id="showAvoidRoots" heading="Avoid" class="tabs" ng-click="main.getrootsToAvoids()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
                                     <textarea class="color-dark-blue textarea-style" ng-value="main.dataAvoidInput"   ng-model="main.dataAvoidInput" placeholder="Please type additional comments...">{{main.dataAvoidInput}}</textarea>
