@@ -596,6 +596,7 @@ angular.module('nwApp')
                               self.displayNameGroup = true;
                               self.controlsPosition = -282;
                               self.isTestNameButtons = false;
+                              stateOfSummarySlide();
                               setProgressBarsSummary();
                             } else {
                               self.displayNameGroup = false;
@@ -828,7 +829,7 @@ angular.module('nwApp')
 
         };
 
-        self.getrootsToExplores = function() {
+        self.getRootsToExplores = function() {
           _SummaryState = 'Summary_Explore';
           getNotesFromServer();
           resetBooleanSummarySlideVars();
@@ -843,7 +844,7 @@ angular.module('nwApp')
           });
         };
 
-        self.getrootsToAvoids = function() {
+        self.getRootsToAvoids = function() {
           _SummaryState = 'Summary_Avoid';
           getNotesFromServer();
           resetBooleanSummarySlideVars();
@@ -874,11 +875,11 @@ angular.module('nwApp')
           });
         };
 
- //************ Navigation Methods KATKANA ***********************************************************************************************************
+ //************ Navigation Methods && KATKANA ***********************************************************************************************************
         self.isKatakanaNegative = function(phonetic){
             var idx = self.sendStoredKatakana.indexOf(phonetic);
             if( idx < 0){
-                self.sendStoredKatakana.push(phonetic);
+                 self.sendStoredKatakana.push(phonetic);
             }else{
                 if (idx > -1) {
                  self.sendStoredKatakana.splice(idx, 1);
@@ -1000,6 +1001,16 @@ angular.module('nwApp')
             self.newName = '';
             self.explore = '';
             self.avoid = '';
+            self.sendStoredKatakana = [];
+            self.kanaNamestoDisplay.map(function (obj) {
+                if(obj.length >1){
+                    obj.map(function (obj2) {
+                        obj2.katakanaColor = 'rgb(0, 0, 0)';
+                    });
+                }else{
+                    obj[0].katakanaColor = 'rgb(0, 0, 0)';
+                }
+            });
         };
 
         self.tally = function() {

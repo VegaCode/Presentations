@@ -1,3 +1,4 @@
+
 <!doctype html>
 <style type="text/css" src="">
 .backGroundStyle {
@@ -10,16 +11,14 @@ label {
 .roundCorners {
     border-radius: 5px;
 }
-.noSelection {
-    -webkit-user-select: none;
-    /* webkit (safari, chrome) browsers */
-    -moz-user-select: none;
-    /* mozilla browsers */
-    -khtml-user-select: none;
-    /* webkit (konqueror) browsers */
-    -ms-user-select: none;
-    /* IE10+ */
+
+::-moz-selection {
+  background: lightblue;
 }
+::selection {
+  background: lightblue;
+}
+
 .btn-question-style {
     position: fixed;
     top: 35px;
@@ -130,13 +129,7 @@ label {
     width: 33%; /* [3] */
     text-align: center;
     font-size: 35px;
-
 }
-.red {
-    color: red;
-}
-
-
 </style>
 
 <!-- Slide Show Overview-->
@@ -371,7 +364,7 @@ label {
                               <div class="color-light-blue col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames track by $index" ng-click="main.selectNameFromSummary(newname.Name)">{{newname.NameToDisplay}}</div>
                             </div>
                         </uib-tab>
-                        <uib-tab id="showExploreRoots" heading="Explore" class="tabs" ng-click="main.getrootsToExplores()">
+                        <uib-tab id="showExploreRoots" heading="Explore" class="tabs" ng-click="main.getRootsToExplores()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
                                     <textarea class="color-dark-blue textarea-style" ng-value="main.dataExploreInput" ng-model="main.dataExploreInput" placeholder="Please type additional comments...">{{main.dataExploreInput}}</textarea>
@@ -386,7 +379,7 @@ label {
                                 </div>
                             </div>
                         </uib-tab>
-                        <uib-tab id="showAvoidRoots" heading="Avoid" class="tabs" ng-click="main.getrootsToAvoids()">
+                        <uib-tab id="showAvoidRoots" heading="Avoid" class="tabs" ng-click="main.getRootsToAvoids()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
                                     <textarea class="color-dark-blue textarea-style" ng-value="main.dataAvoidInput"   ng-model="main.dataAvoidInput" placeholder="Please type additional comments...">{{main.dataAvoidInput}}</textarea>
