@@ -19,7 +19,7 @@ angular.module('nwApp')
             var projectId, apiCall, webBaseUrl;
             var self = this;
             webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
-            webBaseUrl = 'http://localhost:64378/';
+            // webBaseUrl = 'http://localhost:64378/';
             projectId = queryStringCheck;
             self.displaySettings =false;
             self.slides = [];
@@ -27,7 +27,7 @@ angular.module('nwApp')
             self.presentTestNamesAtSlide = '';
             self.sendStoredKatakana =[];
             self.katakanaObjToDisplay = [];
-            self.katakanaColor = '#000000';
+            self.katakanaColor = 'rgb(0,0,0)';
             self.KatakanaNegativeFromDB =[];
             self.phonetics = [];
             self.kanaNegativeString = '';
