@@ -159,22 +159,22 @@ angular.module('nwApp')
 
 // **********  Event listeners for revealjs  ****************************************************************************************************
 //if(self.greeting ==='t'){
-        // Reveal.addEventListener('overviewshown', function() {
-        //     if(_SlideNumber > 4){
-        //         Reveal.slide(  0, _SlideNumber-2, 0 );
-        //     }else{ Reveal.slide(  0, _SlideNumber-1, 0 );}
-        //             $rootScope.$apply(function() {
-        //                 self.isOverview = true;
-        //             });
-        //         });
-        //
-        //
-        // Reveal.addEventListener('overviewhidden', function() {
-        //             $rootScope.$apply(function() {
-        //                 self.isOverview = false;
-        //             });
-        //      });
-//}//
+        Reveal.addEventListener('overviewshown', function() {
+            if(_SlideNumber > 4){
+                Reveal.slide(  0, _SlideNumber-2, 0 );
+            }else{ Reveal.slide(  0, _SlideNumber-1, 0 );}
+                    $rootScope.$apply(function() {
+                        self.isOverview = true;
+                    });
+                });
+
+
+        Reveal.addEventListener('overviewhidden', function() {
+                    $rootScope.$apply(function() {
+                        self.isOverview = false;
+                    });
+             });
+//
         self.selectSlide = function(index) {
                 var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '', '' ));
                  getTestNamesObject(slideModel);
@@ -338,7 +338,7 @@ angular.module('nwApp')
                     self.strokeColor=  theme[0].StrokeColor;
                     self.isOverlayAvailable = theme[0].Overlay === 'False' ? false : true ;
                     self.overlayStyle = self.isOverlayAvailable === true  ?  'url(https://tools.brandinstitute.com/nw/images/Backgrounds/overlay.png)' : '';
-                    centerTestNames(self.nameCandidate);
+                    self.centerTestNames(self.nameCandidate);
                   });
              };
 
@@ -580,7 +580,7 @@ angular.module('nwApp')
                               self.strokeColor = _StrokeColor;
 
                             self.subRationale = (_NameRationale.split('$')[1] !== undefined) ? _NameRationale.split('$')[1] : '';
-                            centerTestNames(_SlideDescription);
+                            self.centerTestNames(_SlideDescription);
 
                             self.typeOfPresentation = _PresentationType;
 
