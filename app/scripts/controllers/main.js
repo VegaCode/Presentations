@@ -18,8 +18,8 @@ angular.module('nwApp')
                      _IsBackgroundDefault, _TemporaryBackGround, _KanaNames, _KanaNamesNegative, _PresentationType;
             var projectId, apiCall, webBaseUrl;
             var self = this;
-            webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
             webBaseUrl = 'http://localhost:64378/';
+            webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
             projectId = queryStringCheck;
             self.displaySettings =false;
             self.slides = [];
