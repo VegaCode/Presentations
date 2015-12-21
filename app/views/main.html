@@ -1,142 +1,134 @@
 <!doctype html>
 <style type="text/css" src="">
 .backGroundStyle {
-  border: solid 5px #93A1A1;
+ border: solid 5px #93A1A1;
 }
 label {
-    font-size: 22px !important;
-    font-weight: 100;
+   font-size: 22px !important;
+   font-weight: 100;
 }
 .roundCorners {
-    border-radius: 5px;
+   border-radius: 5px;
 }
-.noSelection {
-    -webkit-user-select: none;
-    /* webkit (safari, chrome) browsers */
-    -moz-user-select: none;
-    /* mozilla browsers */
-    -khtml-user-select: none;
-    /* webkit (konqueror) browsers */
-    -ms-user-select: none;
-    /* IE10+ */
+
+::-moz-selection {
+ background: lightblue;
 }
+::selection {
+ background: lightblue;
+}
+
 .btn-question-style {
-    position: fixed;
-    top: 35px;
-    left: 1075px;
+   position: fixed;
+   top: 35px;
+   left: 1075px;
 }
 .settings {
-    float: right;
-    top: 12px;
-    right: 0px;
-    position: fixed;
+   float: right;
+   top: 12px;
+   right: 0px;
+   position: fixed;
 }
 .feedBack {
-    width: 20px;
-    height: 20px;
-    position: relative;
-    top: 3px;
+   width: 20px;
+   height: 20px;
+   position: relative;
+   top: 3px;
 }
 .tab-style span{
-    font-family: calibri;
-    margin-top: 15px;
+   font-family: calibri;
+   margin-top: 15px;
 }
 .scrollbar-dynamic {
-    max-height: 460px;
-    max-width: 100%;
-    overflow: auto;
+   max-height: 460px;
+   max-width: 100%;
+   overflow: auto;
 }
 .summary-size-font{
-  font-size: {{main.sizeOfFont}};
+ font-size: {{main.sizeOfFont}};
 }
 .pointer{
-  cursor: pointer;
+ cursor: pointer;
 }
 .comment-style-forRow{
-  margin-top: 10px;
-  margin-right: 0px;
-  margin-left: 0px;
+ margin-top: 10px;
+ margin-right: 0px;
+ margin-left: 0px;
 }
 .textarea-style{
-  width: 100%;
-  height: 40px;
+ width: 100%;
+ height: 40px;
 }
 .button-save{
-  height:40px;
+ height:40px;
 }
 .dropup ul{
-    bottom:100% !important;
-    top:auto !important;
+   bottom:100% !important;
+   top:auto !important;
 }
 .label-style{
-  font-weight: initial;
+ font-weight: initial;
 }
 /*********** color style STARTS here ************/
 .color-purple{
-  color: #4c0099;
+ color: #4c0099;
 }
 .color-green{
-  color: #5cb85c;
+ color: #5cb85c;
 }
 .color-light-blue{
-  color: #5bc0de;
+ color: #5bc0de;
 }
 .color-dark-blue{
- color: #337ab7;
+color: #337ab7;
 }
 .label-and-badge-purple{
- background-color: #4c0099;
+background-color: #4c0099;
 }
 .label-and-badge-green{
- background-color: #5cb85c;
+background-color: #5cb85c;
 }
 .label-and-badge-light-blue{
- background-color: #5bc0de;
+background-color: #5bc0de;
 }
 .label-and-badge-dark-blue{
- background-color: #337ab7;
+background-color: #337ab7;
 }
 .progress-bar-purple{
-  background-color: #4c0099;
+ background-color: #4c0099;
 }
 /************* Color style ENDS here ****************/
 .progress-bar-height{
-  height: 35px;
+ height: 35px;
 }
 .multi-color-bar-font-size{
-  font-size: 25px;
-  text-align: center;
-  line-height: 35px;
+ font-size: 25px;
+ text-align: center;
+ line-height: 35px;
 }
 
 .font-style-for-label-badges{
-  font-size: 25px;
-  width: 50%;
-  font-weight: initial;
+ font-size: 25px;
+ width: 50%;
+ font-weight: initial;
 }
 .tooltip.customClass .tooltip-inner{
-  width: 100px;
+ width: 100px;
 }
 .tooltip.customClassForBiggerTool .tooltip-inner{
-  width: 125px;
+ width: 125px;
 }
 
 .tabs {
-    margin:  0;
-    padding: 0;
-    list-style: none;
-    display: table; /* [1] */
-    table-layout: fixed; /* [2] */
-    width: 33%; /* [3] */
-    text-align: center;
-    font-size: 35px;
-
+   margin:  0;
+   padding: 0;
+   list-style: none;
+   display: table; /* [1] */
+   table-layout: fixed; /* [2] */
+   width: 33%; /* [3] */
+   text-align: center;
+   font-size: 35px;
 }
-.red {
-    color: red;
-}
-
-
 </style>
 
 <!-- Slide Show Overview-->
@@ -374,10 +366,10 @@ label {
                         <uib-tab id="showExploreRoots" heading="Explore" class="tabs" ng-click="main.getrootsToExplores()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
-                                    <textarea class="color-dark-blue textarea-style" ng-value="main.dataExploreInput" ng-model="main.dataExploreInput" placeholder="Please type additional comments...">{{main.dataExploreInput}}</textarea>
+                                    <textarea id="exploreTextArea" class="color-dark-blue textarea-style" ng-value="main.dataExploreInput" ng-model="main.dataExploreInput" placeholder="Please type additional comments...">{{main.dataExploreInput}}</textarea>
                                 </div>
                                 <div class="col-md-1">
-                                    <button blur-me class="btn btn-success pull-right button-save" ng-click="main.saveExploreComments(main.dataExploreInput)">Save</button>
+                                    <button id="saveExploreComments" blur-me class="btn btn-success pull-right button-save" ng-click="main.saveExploreComments(main.dataExploreInput)">Save</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -389,10 +381,10 @@ label {
                         <uib-tab id="showAvoidRoots" heading="Avoid" class="tabs" ng-click="main.getrootsToAvoids()">
                             <div class="row comment-style-forRow">
                                 <div class="col-md-11">
-                                    <textarea class="color-dark-blue textarea-style" ng-value="main.dataAvoidInput"   ng-model="main.dataAvoidInput" placeholder="Please type additional comments...">{{main.dataAvoidInput}}</textarea>
+                                    <textarea id="avoidTextArea" class="color-dark-blue textarea-style" ng-value="main.dataAvoidInput"   ng-model="main.dataAvoidInput" placeholder="Please type additional comments...">{{main.dataAvoidInput}}</textarea>
                                 </div>
                                 <div class="col-md-1">
-                                    <button blur-me class="btn btn-success pull-right button-save"  ng-click="main.saveAvoidComments(main.dataAvoidInput)">Save</button>
+                                    <button id="saveAvoidComments" blur-me class="btn btn-success pull-right button-save"  ng-click="main.saveAvoidComments(main.dataAvoidInput)">Save</button>
                                 </div>
                             </div>
                             <div class="row">

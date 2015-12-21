@@ -596,6 +596,7 @@ angular.module('nwApp')
                               self.displayNameGroup = true;
                               self.controlsPosition = -282;
                               self.isTestNameButtons = false;
+                              stateOfSummarySlide();
                               setProgressBarsSummary();
                             } else {
                               self.displayNameGroup = false;
@@ -677,14 +678,14 @@ angular.module('nwApp')
               var apiCall = 'api/NW_SaveNotes';
               var projectIdAndNote = JSON.stringify(projectId + ", N'" + note + "', 'Explore'");
               $http.post(webBaseUrl + apiCall , projectIdAndNote);
-                 alertify.confirm('You are about to save');
+                 alert('Comments were saved');
                 };
 
         self.saveAvoidComments = function(note){
               var apiCall = 'api/NW_SaveNotes';
               var projectIdAndNote = JSON.stringify(projectId + ", N'" + note + "', 'Avoid'");
               $http.post(webBaseUrl + apiCall , projectIdAndNote);
-               alertify.confirm('You are about to save');
+               alert('Comments were saved');
             };
 
             var selectColumnSize = function(totalNames){

@@ -6,78 +6,63 @@ describe('Protractor Demo App', function() {
   var page = new indexPage();
   jasmine.DEFAULT_TIMEOUT_INTERVAL =2000000;
   page.get('http://localhost:9001/#/main/1013');
-  // var controller;
-  // var $scope;
-  // var queryStringCheckNumber = '1012';
-  // describe('MainCtrl, ', function() {
-  //
-  //   beforeEach(module('nwApp'))
-  //   beforeEach(inject(function(_$rootScope_, $controller) {
-  //     $scope = _$rootScope_.$new();
-  //     controller = $controller('MainCtrl', {$scope: $scope,queryStringCheck:queryStringCheckNumber});
-  //     controller.growlTrigger('success', 'message : hello world', '', 5000);
-  //   }));
-  //
-  //   it('testcase', function() {
-  //     expect(controller.growlTrigger('success', 'message : hello world', '', 5000)).toBe(true);
-  //   });
+
+  // it("should welcome the tester to the testing unit", function(){
+  //   page.clickButtonGrowlTriggerWelcome();
+  //   page.sleep(4000);
   // });
-
-
-  it("should welcome the tester to the testing unit", function(){
-    page.clickButtonGrowlTriggerWelcome();
-    page.sleep(4000);
-  });
 
   it("should show correct title and displays menu", function(){
     page.pressKeyArrowUp();
     expect(page.getTitle()).toEqual('NW');
-    //  growl = require('../../../bower_components/alertifyjs/alertify.js');
-    // var message = 'hello world'
-    // growl.success(message, {title: 'hello', ttl: 5000});
   });
 
-  it('should go through slides', function(){
-    page.continueMoving();
-  });
-
-  it('should open prompt for login password', function(){
-    page.switchToAlert('admin123');
-    page.sleep(3000);
-  });
-
-  it('should display: we are going to reset project in about 3 seconds', function(){
-    page.sleep(3000);
-    page.clickButtonGrowlTriggerResetProject();
-  });
-
-  it('should reset the whole project', function(){
-    page.clickButtonResetProject();
-    page.alertAccept();
-    page.sleep(3000);
-  });
-
-  it('should go through slides', function(){
-    page.continueMoving();
-  });
-
-  it('should no longer display the settings for the admin by clicking the cog button', function(){
-    page.sleep(3000);
-    page.clickButtonAdminLogin();
+  it('should go to summary slide', function(){
+    page.clickButtonGoToSummary();
     page.sleep(2000);
   });
-  it('should display notification of what we are doing in name testing', function(){
-    page.clickButtonGrowlTrigger();
-  });
 
-  it('should start ranking Names and providing input information', function(){
-    page.testNames();
-  });
-
-  it('should start displaying information in the Summary Slide', function(){
-    page.clickButtonGrowlTriggerSummary();
-    page.sleep(2000);
-  });
+  // it('should go through slides', function(){
+  //   page.continueMoving();
+  // });
+  //
+  // it('should open prompt for login password', function(){
+  //   page.switchToAlert('admin123');
+  //   page.sleep(3000);
+  // });
+  //
+  // it('should display: we are going to reset project in about 3 seconds', function(){
+  //   page.sleep(3000);
+  //   page.clickButtonGrowlTriggerResetProject();
+  // });
+  //
+  // it('should reset the whole project', function(){
+  //   page.clickButtonResetProject();
+  //   page.alertAccept();
+  //   page.sleep(3000);
+  // });
+  //
+  // it('should go through slides', function(){
+  //   page.continueMoving();
+  // });
+  //
+  // it('should no longer display the settings for the admin by clicking the cog button', function(){
+  //   page.sleep(3000);
+  //   page.clickButtonAdminLogin();
+  //   page.sleep(2000);
+  // });
+  // it('should display notification of what we are doing in name testing', function(){
+  //   page.clickButtonGrowlTrigger();
+  // });
+  //
+  // it('should start ranking Names and providing input information', function(){
+  //   page.testNames();
+  // });
+  //
+  // it('should start displaying information in the Summary Slide', function(){
+  //   page.clickButtonGrowlTriggerSummary();
+  //   page.sleep(2000);
+  // });
 
   it('should show retained names', function(){
     page.clickDisplayRetainedNames();
@@ -101,16 +86,30 @@ describe('Protractor Demo App', function() {
     expect(page.exploreRootsAreDisplayed()).toBeTruthy();
     page.sleep(2000);
   });
+  it('should input something in the comments for roots to explore', function(){
+    page.sendKeysOfCommentExplore('Protractor Test Explore');
+    // expet()
+    page.clickSaveExploreComments();
+    page.alertAccept();
+    page.sleep(2000);
+  });
   it('should display roots to avoid', function(){
     page.clickDisplayAvoidRoots();
     expect(page.avoidRootsAreDisplayed()).toBeTruthy();
     page.sleep(2000);
   });
-
-  it('should display information of the TypeAhead functionality', function(){
-    page.clickButtonGrowlTriggerTypeAhead();
+  it('should input something in the comments for roots to avoid', function(){
+    page.sendKeysOfCommentAvoid('Protractor Test Avoid');
+    // expet()
+    page.clickSaveAvoidComments();
+    page.alertAccept();
     page.sleep(2000);
   });
+
+  // it('should display information of the TypeAhead functionality', function(){
+  //   page.clickButtonGrowlTriggerTypeAhead();
+  //   page.sleep(2000);
+  // });
   it('should input a name in Search Bar and go to slide of the name', function(){
     page.sendKeysOfSelectedName('APTIERA');
     page.pressKeyEnter();
@@ -130,8 +129,8 @@ describe('Protractor Demo App', function() {
   });
 
   it('should go to summary slide', function(){
-    page.clickButtonGrowlTriggerGoToSummary();
-    page.sleep(6000);
+    // page.clickButtonGrowlTriggerGoToSummary();
+    // page.sleep(6000);
     page.clickButtonGoToSummary();
     page.sleep(2000);
   });
