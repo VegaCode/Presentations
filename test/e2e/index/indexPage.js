@@ -68,6 +68,12 @@ function indexPage(){
   this.displayNewNames = element(by.id('showNewNames'));
   this.displayExploreRoots = element(by.id('showExploreRoots'));
   this.displayAvoidRoots = element(by.id('showAvoidRoots'));
+
+  // Explore and Avoid Save Comments
+  this.exploreTextArea = element(by.id('exploreTextArea'));
+  this.saveExploreComments = element(by.id('saveExploreComments'));
+  this.avoidTextArea = element(by.id('avoidTextArea'));
+  this.saveAvoidComments = element(by.id('saveAvoidComments'));
 // ************** General functions ****************************************************************************************************
   this.get = function(url){
     browser.get(url);
@@ -230,6 +236,13 @@ function indexPage(){
     this.inputAvoid.sendKeys(arrayOfAvoidRoots[arrayIndex]);
   };
 
+  this.sendKeysOfCommentExplore = function(string){
+    this.exploreTextArea.sendKeys(string);
+  };
+  this.sendKeysOfCommentAvoid = function(string){
+    this.avoidTextArea.sendKeys(string);
+  };
+
 // *************************  Click Button Functions ****************************************************************************************************
   this.clickButtonNextSlide = function(){
     this.buttonNextSlide.click();
@@ -314,6 +327,12 @@ function indexPage(){
   };
   this.clickButtonGrowlTriggerTypeAhead = function(){
     this.buttonGrowlTriggerTypeAhead.click();
+  };
+  this.clickSaveExploreComments = function(){
+    this.saveExploreComments.click();
+  };
+  this.clickSaveAvoidComments = function(){
+    this.saveAvoidComments.click();
   };
 }// end of the function
 
