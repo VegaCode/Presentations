@@ -15,7 +15,7 @@ angular.module('nwApp')
                      _Overlay, _PresentationId, _Project, _RationaleFontColor, _RationaleFontFamily, _SlideBGFileName,
                      _SlideDescription, _SlideNumber, _SlideType, _TemplateFileName, _TemplateId, _TemplateName,
                      _TestNameFontColor, _TestNameFontFamily,  _ToNeutral ,_ToPositive, _TotalNames, _IsTheAppStarted ,
-                     _IsBackgroundDefault, _TemporaryBackGround, _KanaNames, _KanaNamesNegative, _PresentationType, _SummaryState;
+                     _IsBackgroundDefault, _TemporaryBackGround, _KanaNames, _KanaNamesNegative, _PresentationType;
             var projectId, apiCall, webBaseUrl;
             var self = this;
             webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
@@ -533,8 +533,7 @@ angular.module('nwApp')
                             _SlideDescription = slideObject[0].SlideDescription;_SlideNumber = slideObject[0].SlideNumber;_SlideType = slideObject[0].SlideType;
                             _TemplateFileName = slideObject[0].TemplateFileName;_TemplateId = slideObject[0].TemplateId;_TemplateName = slideObject[0].TemplateName;
                             _TestNameFontColor = slideObject[0].TestNameFontColor;_TestNameFontFamily = slideObject[0].TestNameFontFamily;
-                            _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive; _KanaNames = slideObject[0].KanaNames;
-                            _KanaNamesNegative = slideObject[0].KanaNamesNegative; _PresentationType = slideObject[0].PresentationType;
+                            _ToNeutral =slideObject[0].TotNeutral; _ToPositive = slideObject[0].TotPositive; _KanaNames = slideObject[0].KanaNames; _KanaNamesNegative = slideObject[0].KanaNamesNegative; _PresentationType = slideObject[0].PresentationType;
 
                             //Cannot move this variable because it must receive information before passing the value to the progressbar since it will cause issues when updating
                             self.pageNumber = _SlideNumber;
@@ -596,9 +595,6 @@ angular.module('nwApp')
                               self.displayNameGroup = true;
                               self.controlsPosition = -282;
                               self.isTestNameButtons = false;
-
-                              stateOfSummarySlide();
-
                               setProgressBarsSummary();
                             } else {
                               self.displayNameGroup = false;
@@ -648,24 +644,6 @@ angular.module('nwApp')
                                  self.whatBackgroundIsIt= false;
                              }
             };
-
-        var stateOfSummarySlide = function (){
-            if (_SummaryState === 'Summary_Retained'){
-                self.getRetainedNames();
-            }else if (_SummaryState === 'Summary_Positive') {
-                self.getPositivesNames();
-            }else if (_SummaryState === 'Summary_Neutral') {
-                self.getNeutralsNames();
-            }else if (_SummaryState === 'Summary_Reconsider') {
-                self.getNegativesNames();
-            }else if (_SummaryState === 'Sumary_NewNames') {
-                self.getNewsNames();
-            }else if (_SummaryState === 'Summary_Explore') {
-                self.getRootsToExplores();
-            }else if (_SummaryState === 'Summary_Avoid') {
-                self.getRootsToAvoids();
-            }
-        };
 
         self.displaySummarys = function(index){
               if(index === 0){
@@ -746,7 +724,6 @@ angular.module('nwApp')
             };
  //************ Methods to get summary data ***********************************************************************************************************
         self.getRetainedNames = function() {
-          _SummaryState = 'Summary_Retained';
           resetBooleanSummarySlideVars();
           self.displayRetained = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -766,7 +743,6 @@ angular.module('nwApp')
         };
 
         self.getPositivesNames = function() {
-          _SummaryState = 'Summary_Positive';
           resetBooleanSummarySlideVars();
           self.displayPositive = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -780,7 +756,6 @@ angular.module('nwApp')
         };
 
         self.getNeutralsNames = function() {
-          _SummaryState = 'Summary_Neutral';
           resetBooleanSummarySlideVars();
           self.displayNeutral = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -795,7 +770,6 @@ angular.module('nwApp')
         };
 
         self.getNegativesNames = function() {
-          _SummaryState = 'Summary_Reconsider';
           resetBooleanSummarySlideVars();
           self.displayNegative = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -809,7 +783,6 @@ angular.module('nwApp')
         };
 
         self.getNewsNames = function() {
-          _SummaryState = 'Sumary_NewNames';
           resetBooleanSummarySlideVars();
           self.displayNewName = true;
           var apiCall = 'api/NW_GetSummary?instruccion=';
@@ -831,8 +804,7 @@ angular.module('nwApp')
 
         };
 
-        self.getRootsToExplores = function() {
-          _SummaryState = 'Summary_Explore';
+        self.getrootsToExplores = function() {
           getNotesFromServer();
           resetBooleanSummarySlideVars();
           self.displayRootExplore = true;
@@ -846,8 +818,7 @@ angular.module('nwApp')
           });
         };
 
-        self.getRootsToAvoids = function() {
-          _SummaryState = 'Summary_Avoid';
+        self.getrootsToAvoids = function() {
           getNotesFromServer();
           resetBooleanSummarySlideVars();
           self.displayRootAvoid = true;
@@ -881,12 +852,10 @@ angular.module('nwApp')
         self.isKatakanaNegative = function(phonetic){
             var idx = self.sendStoredKatakana.indexOf(phonetic);
             if( idx < 0){
-                self.sendStoredKatakana.push(phonetic.name);
-                phonetic.katakanaColor = 'rgb(255, 0, 0)';
+                self.sendStoredKatakana.push(phonetic);
             }else{
                 if (idx > -1) {
                  self.sendStoredKatakana.splice(idx, 1);
-                 phonetic.katakanaColor ='rgb(0, 0, 0)';
                 }
             }
         };

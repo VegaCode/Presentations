@@ -16,11 +16,10 @@ angular.module('nwApp')
  return {
    restrict: 'A',
    link: function (scope, element) {
-      var color = element.css('color');
-      // element.addClass('color');// for karma tests
      element.bind('click', function () {
-       if(color === 'rgb(0, 0, 0)'){
-         element.css('color', 'rgb(255, 0 , 0)');
+       var color = element.css('color');
+       if(color === 'rgb(0, 0, 0)'){//test if color is black
+         element.css('color', 'rgb(255, 0, 0)');
        }else{
          element.css('color', 'rgb(0, 0, 0)');
        }
