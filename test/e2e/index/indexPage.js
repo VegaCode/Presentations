@@ -30,7 +30,7 @@ function indexPage(){
   var _minimumRank = 1;
   var _maximumRank = 3;
   var _startTesting = 19; //starts Ranking Names in the slide # provided
-  var _pauseTesting = 35; //pauses the Ranking process in the slide # provided and then starts at the paused slide #
+  var _pauseTesting = 29; //pauses the Ranking process in the slide # provided and then starts at the paused slide #
   var _finishTesting = 69;  //ends Ranking Names in the slide # provided
   var _alreadyPositive = true;
   var _alreadyNegative = true;
@@ -156,37 +156,37 @@ function indexPage(){
         this.sendKeysOfInputAvoid(index - _startTesting);
       }
       this.sleep(_SleepyTime);
-      this.clickButtonNextSlide();
+      this.clickButtonGoToSummary();
     }
 
-    this.sleep(20000);
+    // this.sleep(20000);
 
-    for (index = _pauseTesting; index< _finishTesting; index++){
-      if(_alreadyPositive === true && _alreadyNeutral === true){
-        this.clickRadioButtonNegative();
-        _alreadyNegative = true;
-        _alreadyNeutral = false;
-        this.sendKeysOfInputNewName(index - _startTesting);
-        this.sendKeysOfInputExplore(index - _startTesting);
-        this.sendKeysOfInputAvoid(index - _startTesting);
-      }else if (_alreadyNeutral === true && _alreadyNegative === true) {
-        this.clickRadioButtonPositive();
-        _alreadyPositive = true;
-        _alreadyNegative = false;
-        this.sendKeysOfInputNewName(index - _startTesting);
-        this.sendKeysOfInputExplore(index - _startTesting);
-        this.sendKeysOfInputAvoid(index - _startTesting);
-      }else if (_alreadyNegative === true && _alreadyPositive === true){
-        this.clickRadioButtonNeutral();
-        _alreadyNeutral = true;
-        _alreadyPositive = false;
-        this.sendKeysOfInputNewName(index - _startTesting);
-        this.sendKeysOfInputExplore(index - _startTesting);
-        this.sendKeysOfInputAvoid(index - _startTesting);
-      }
-      this.sleep(_SleepyTime);
-      this.clickButtonNextSlide();
-    }
+    // for (index = _pauseTesting; index< _finishTesting; index++){
+    //   if(_alreadyPositive === true && _alreadyNeutral === true){
+    //     this.clickRadioButtonNegative();
+    //     _alreadyNegative = true;
+    //     _alreadyNeutral = false;
+    //     this.sendKeysOfInputNewName(index - _startTesting);
+    //     this.sendKeysOfInputExplore(index - _startTesting);
+    //     this.sendKeysOfInputAvoid(index - _startTesting);
+    //   }else if (_alreadyNeutral === true && _alreadyNegative === true) {
+    //     this.clickRadioButtonPositive();
+    //     _alreadyPositive = true;
+    //     _alreadyNegative = false;
+    //     this.sendKeysOfInputNewName(index - _startTesting);
+    //     this.sendKeysOfInputExplore(index - _startTesting);
+    //     this.sendKeysOfInputAvoid(index - _startTesting);
+    //   }else if (_alreadyNegative === true && _alreadyPositive === true){
+    //     this.clickRadioButtonNeutral();
+    //     _alreadyNeutral = true;
+    //     _alreadyPositive = false;
+    //     this.sendKeysOfInputNewName(index - _startTesting);
+    //     this.sendKeysOfInputExplore(index - _startTesting);
+    //     this.sendKeysOfInputAvoid(index - _startTesting);
+    //   }
+      // this.sleep(_SleepyTime);
+      // this.clickButtonNextSlide();
+    // }
   };
 
   this.switchToAlert = function(string){

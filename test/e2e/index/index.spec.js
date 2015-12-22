@@ -4,6 +4,14 @@ var growl;
 
 describe('Protractor Demo App', function() {
   var page = new indexPage();
+
+ //  if (jasmine.version) { //the case for version 2.0.0
+ //    console.log('jasmine-version:' + jasmine.version);
+ // }
+ // else { //the case for version 1.3
+ //    console.log('jasmine-version:' + jasmine.getEnv().versionString());
+ // }
+
   jasmine.DEFAULT_TIMEOUT_INTERVAL =2000000;
   page.get('http://localhost:9001/#/main/1013');
 
