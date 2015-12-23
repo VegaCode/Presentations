@@ -1,5 +1,5 @@
 // conf.js
-var Jasmine2HTMLReporter = require('C:/Users/cacevedo/Documents/Visual Studio 2013/Projects/Angular/nw/node_modules/protractor-jasmine2-html-reporter');
+var Jasmine2HTMLReporter = require('protractor-jasmine2-screenshot-reporter');
 
 exports.config = {
   framework: 'jasmine',
