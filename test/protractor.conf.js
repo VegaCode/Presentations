@@ -17,7 +17,6 @@ exports.config = {
     jasmine.getEnv().addReporter(
       new Jasmine2HTMLReporter({
         savePath: 'target/screenshots', //this one creates the folder target and inside a folder screenshots
-        takeScreenshotsOnlyOnFailures: true, //this will only take screenshots if there is any fail
         metadataBuilder: function(currentSpec, suites, browserCapabilities) {
           return { id: currentSpec.id, os: browserCapabilities.get('browserName') };
         }
