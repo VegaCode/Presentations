@@ -1,5 +1,5 @@
 // conf.js
-var HtmlScreenshotReporter = require('protractor-jasmine2-html-reporter');
+var Jasmine2HTMLReporter = require('C:/Users/cacevedo/Documents/Visual Studio 2013/Projects/Angular/nw/node_modules/protractor-jasmine2-html-reporter');
 
 exports.config = {
   framework: 'jasmine',
@@ -14,17 +14,13 @@ exports.config = {
 
   onPrepare: function() {
     browser.driver.manage().window().maximize();
-
     jasmine.getEnv().addReporter(
-  new HtmlScreenshotReporter({
-    dest: '../test/screenshots',
-    filename: 'my-report.html'
-  })
-);
+      new Jasmine2HTMLReporter({
+        savePath: 'target/screenshots', //this one creates the folder target and inside a folder screenshots
+        takeScreenshotsOnlyOnFailures: true, //this will only take screenshots if there is any fail
+        metadataBuilder: function(currentSpec, suites, browserCapabilities) {
+          return { id: currentSpec.id, os: browserCapabilities.get('browserName') };
+        }
+    }));
   }
-  //  multiCapabilities: [{
-  //   browserName: 'firefox'
-  // }, {
-  //   browserName: 'chrome'
-  // }]
 };
