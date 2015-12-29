@@ -19,7 +19,9 @@ exports.config = {
         savePath: 'target/screenshots', //this one creates the folder target and inside a folder screenshots
         metadataBuilder: function(currentSpec, suites, browserCapabilities) {
           return { id: currentSpec.id, os: browserCapabilities.get('browserName') };
-        }
+        },
+        filename: 'my-report.html',
+        reportTitle: "Report Title"
     }));
   }
 };

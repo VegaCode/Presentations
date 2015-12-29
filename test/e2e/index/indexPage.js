@@ -13,17 +13,17 @@ function indexPage(){
                   'MEPAVLI', 'NATYMOS', 'ONZEDO', 'ORPALO', 'QUPRAZIL', 'RINFEDA', 'STRALADA', 'SYTARIA', 'TALMIVO', 'TAVYON',
                   'TEKACYO', 'XYFEENA', 'YIREZO', 'ZARTRI'];
 
-  var arrayOfExploreRoots = ['AP-','ARC-','ARK','AV-','FU','-LA-','OMP','NEO','PAN','SA','ADA','RE','GAN','TO',
+  var arrayOfExploreRoots = ['AP-','ARC-','ARK','AV-','FU','LA-','OMP','NEO','PAN','SA','ADA','RE','GAN','TO',
                 'ALM','AMUR','CAD','BRI','DA','FOR','GLE','HUV','I','ZATO','AQA','ORB','PRI','TIN','ADE','VIO','PAT','VAL',
                 'VER','GIT','RYN','ZIG','ON','PATHS','SMO','LOR','MO','GAL','MOD','DO','EX','LANCE','NATY','ALO','ZYL','LAD',
-                'AP-','ARC-','ARK','AV-','FU','-LA-','OMP','NEO','PAN','SA','ADA','RE','GAN','TO','ALM','AMUR','CAD','BRI',
+                'AP-','ARC-','ARK','AV-','FU','LA-','OMP','NEO','PAN','SA','ADA','RE','GAN','TO','ALM','AMUR','CAD','BRI',
                 'DA','FOR','GLE','HUV','I','ZATO','AQA','ORB','PRI','TIN','ADE','VIO','PAT','VAL','VER','GIT','RYN','ZIG',
                 'ON','PATHS','SMO','LOR','MO','GAL','MOD','DO','EX','LANCE','NATY','ALO','ZYL','LAD'];
 
-  var arrayOfAvoidRoots = ['APT-','-TEC-','-ZEL','AVE-','FUT-','KLA-','-RIEN-','ORY','BYX','PER-','PLYK-','-BUTRA','SOV',
+  var arrayOfAvoidRoots = ['APT-','-TEC-','ZEL','AVE-','FUT-','KLA-','RIEN-','ORY','BYX','PER-','PLYK-','-BUTRA','SOV',
                 'TRI','-MYN-','-RYS','BAR-','OTA','-ANT','-FENS-','PEUS','-VAR','-BATYS','LYG','QADE','BICTA','SNE','STR','KADE','ALE',
                 'DEP','ENV','GLAV','HED','GOR','OF','PLET','THE','RED','MOL','TAR','LIR','TUVO','ANT-','-IMP-','CER','SOM','ORP','QUP-',
-                'STRA','APT-','-TEC-','-ZEL','AVE-','FUT-','KLA-','-RIEN-','ORY','BYX','PER-','PLYK-','-BUTRA','SOV','TRI','-MYN-','-RYS',
+                'STRA','APT-','-TEC-','ZEL','AVE-','FUT-','KLA-','RIEN-','ORY','BYX','PER-','PLYK-','-BUTRA','SOV','TRI','-MYN-','-RYS',
                 'BAR-','OTA','-ANT','-FENS-','PEUS','-VAR','-BATYS','LYG','QADE','BICTA','SNE','STR','KADE','ALE','DEP','ENV','GLAV','HED',
                 'GOR','OF','PLET','THE','RED','MOL','TAR','LIR','TUVO','ANT-','-IMP-','CER','SOM','ORP','QUP-','STRA'];
 
@@ -130,7 +130,6 @@ function indexPage(){
     }
   };
   this.testNames = function(){
-    var index;
     for (index = _startTesting; index< _pauseTesting; index++){
       //debugger;
       if(_alreadyPositive === true && _alreadyNeutral === true){
@@ -155,11 +154,8 @@ function indexPage(){
         this.sendKeysOfInputExplore(index - _startTesting);
         this.sendKeysOfInputAvoid(index - _startTesting);
       }
-      this.sleep(_SleepyTime);
-      this.clickButtonGoToSummary();
+      this.clickButtonNextSlide();
     }
-
-    // this.sleep(20000);
 
     // for (index = _pauseTesting; index< _finishTesting; index++){
     //   if(_alreadyPositive === true && _alreadyNeutral === true){
@@ -184,8 +180,8 @@ function indexPage(){
     //     this.sendKeysOfInputExplore(index - _startTesting);
     //     this.sendKeysOfInputAvoid(index - _startTesting);
     //   }
-      // this.sleep(_SleepyTime);
-      // this.clickButtonNextSlide();
+    //   this.sleep(_SleepyTime);
+    //   this.clickButtonNextSlide();
     // }
   };
 
