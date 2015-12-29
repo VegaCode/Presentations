@@ -1,3 +1,4 @@
+ 'use strict';
 // spec.js
 var indexPage = require('./indexPage2');
 var growl;
