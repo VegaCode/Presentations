@@ -43,8 +43,13 @@ function indexPage2(){
       browser.get(url);
   };
 
-  this.AppDisplaysInformation = function(elementTest) {
-    return this.elementFinder(elementTest).isPresent();
+  this.AppDisplaysInformation = function(elementTest, typeOfInformation) {
+    if (typeOfInformation === 'isPresent'){
+      return this.elementFinder(elementTest).isPresent();
+    }else if (typeOfInformation === 'isDisplayed'){
+      return this.elementFinder(elementTest).isDisplayed();
+    }
+
   };
 
   this.AppSleep = function(time){
