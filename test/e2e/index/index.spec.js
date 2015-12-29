@@ -26,23 +26,23 @@ describe('Protractor Demo App', function() {
   });
 
   it('should go through slides', function(){
-    page.AppSleep(3000);
+    page.AppSleep(1000);
     page.continueMoving({id: 'navright'});
   });
 
   it('should open prompt for login password', function(){
     page.elementClick({id: 'cogSettings'});
-    page.AppSleep(5000);
+    page.AppSleep(1000);
     page.switchToPopupString('admin123');
-    page.AppSleep(5000);
+    page.AppSleep(1000);
     page.switchToPopup('accept');
-    page.AppSleep(3000);
+    page.AppSleep(1000);
   });
 
   it('should reset the whole project', function(){
     page.elementClick({id: 'resetProject'});
     page.switchToPopup('accept');
-    page.AppSleep(3000);
+    page.AppSleep(1000);
   });
 
   it('should go through slides', function(){
@@ -51,7 +51,7 @@ describe('Protractor Demo App', function() {
 
   it('should no longer display the settings for the admin by clicking the cog button', function(){
     page.elementClick({id: 'cogSettings'});
-    page.AppSleep(2000);
+    page.AppSleep(1000);
   });
 
   it('should start ranking Names and providing input information', function(){
@@ -60,48 +60,48 @@ describe('Protractor Demo App', function() {
 
   it('should show the Summary Slide', function(){
     page.elementClick({id: 'goesToSummary'});
-    page.AppSleep(2000);
+    page.AppSleep(1000);
     page.switchToPopup('accept');
   });
 
   it('should show retained names', function(){
     page.elementClick({id: 'showRetainedNames'});
-    expect(page.AppDisplaysInformation({id: 'showRetainedNames'})).toBeTruthy();
-    page.AppSleep(10000);
+    expect(page.AppDisplaysInformation({id: 'showRetainedNames'}, 'isPresent')).toBeTruthy();
+    page.AppSleep(1000);
   });
 
   it('should show negative names', function(){
     page.elementClick({id: 'showNegativeNames'});
-    expect(page.AppDisplaysInformation({id: 'showNegativeNames'})).toBeTruthy();
-    page.AppSleep(10000);
+    expect(page.AppDisplaysInformation({id: 'showNegativeNames'}, 'isPresent')).toBeTruthy();
+    page.AppSleep(1000);
   });
 
   it('should display new names', function(){
     page.elementClick({id: 'showNewNames'});
-    expect(page.AppDisplaysInformation({id: 'showNewNames'})).toBeTruthy();
-    page.AppSleep(10000);
+    expect(page.AppDisplaysInformation({id: 'showNewNames'}, 'isPresent')).toBeTruthy();
+    page.AppSleep(1000);
   });
   it('should display roots to explore', function(){
     page.elementClick({id: 'showExploreRoots'});
-    expect(page.AppDisplaysInformation({id: 'showExploreRoots'})).toBeTruthy();
-    page.AppSleep(10000);
+    expect(page.AppDisplaysInformation({id: 'showExploreRoots'}, 'isPresent')).toBeTruthy();
+    page.AppSleep(1000);
   });
   it('should input something in the comments for roots to explore', function(){
     page.sendStringToBox({id: 'exploreTextArea'}, 'Test Explore');
     page.elementClick({id: 'saveExploreComments'});
     page.switchToPopup('accept');
-    page.AppSleep(10000);
+    page.AppSleep(1000);
   });
   it('should display roots to avoid', function(){
     page.elementClick({id: 'showAvoidRoots'});
-    expect(page.AppDisplaysInformation({id: 'showAvoidRoots'})).toBeTruthy();
-    page.AppSleep(10000);
+    expect(page.AppDisplaysInformation({id: 'showAvoidRoots'}, 'isPresent')).toBeTruthy();
+    page.AppSleep(1000);
   });
   it('should input something in the comments for roots to avoid', function(){
     page.sendStringToBox({id: 'avoidTextArea'}, 'Test Avoid');
     page.elementClick({id: 'saveAvoidComments'});
     page.switchToPopup('accept');
-    page.AppSleep(10000);
+    page.AppSleep(1000);
   });
 
 
@@ -110,13 +110,13 @@ describe('Protractor Demo App', function() {
 
   // it('should display information of the TypeAhead functionality', function(){
   //   page.clickButtonGrowlTriggerTypeAhead();
-  //   page.AppSleep(2000);
+  //   page.AppSleep(1000);
   // });
   // it('should input a name in Search Bar and go to slide of the name', function(){
   //   page.sendKeysOfSelectedName('APTIERA');
   //   page.pressKeyEnter();
   //   expect(page.getTextOfSelectedName()).toBe('APTIERA');
-  //   page.AppSleep(2000);
+  //   page.AppSleep(1000);
   // });
   //
   // it('should reset the slide and then change the rank', function(){
@@ -125,7 +125,7 @@ describe('Protractor Demo App', function() {
   // });
   //
   // it('should display Tally', function(){
-  //   page.AppSleep(2000);
+  //   page.AppSleep(1000);
   //   page.clickButtonTally();
   //   expect(page.tallyIsDisplayed()).toBe(true);
   // });
@@ -134,7 +134,7 @@ describe('Protractor Demo App', function() {
   //   // page.clickButtonGrowlTriggerGoToSummary();
   //   // page.AppSleep(6000);
   //   page.clickButtonGoToSummary();
-  //   page.AppSleep(2000);
+  //   page.AppSleep(1000);
   // });
 
 });

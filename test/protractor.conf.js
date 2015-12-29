@@ -6,7 +6,11 @@ exports.config = {
 
   seleniumAddress: 'http://localhost:4444/wd/hub',
 
-  specs: ['./e2e/**/*.spec.js'],
+  suites:{
+    basicTest: ['./e2e/**/index.spec.js'],
+    longerTest: ['./e2e/**/index2.spec.js'],
+  },
+
 
    capabilities: {
     browserName: 'chrome'
