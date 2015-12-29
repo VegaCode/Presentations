@@ -15,7 +15,7 @@ describe('Protractor Demo App', function() {
   jasmine.DEFAULT_TIMEOUT_INTERVAL =2000000;
   page.AppUrl('http://localhost:9001/#/main/1013');
 
-  // it("should welcome the tester to the testing unit", function(){
+  // it("it should welcome the tester to the testing unit", function(){
   //   page.clickButtonGrowlTriggerWelcome();
   //   page.AppSleep(4000);
   // });
