@@ -674,16 +674,16 @@ angular.module('nwApp')
         };
 
         self.saveExploreComments = function(note){
-              // DO NOT PUT SINGLE QUOATES HERE
+
               var apiCall = 'api/NW_SaveNotes';
-              var projectIdAndNote = JSON.stringify(projectId + ", N'" + note + "', 'Explore'");
+              var projectIdAndNote = JSON.stringify(projectId + ", N'" + note + "', 'Explore'"); // DO NOT PUT SINGLE QUOTES HERE
               $http.post(webBaseUrl + apiCall , projectIdAndNote);
                  alert('Comments were saved');
                 };
 
         self.saveAvoidComments = function(note){
               var apiCall = 'api/NW_SaveNotes';
-              var projectIdAndNote = JSON.stringify(projectId + ", N'" + note + "', 'Avoid'");
+              var projectIdAndNote = JSON.stringify(projectId + ", N'" + note + "', 'Avoid'"); // DO NOT PUT SINGLE QUOTES HERE
               $http.post(webBaseUrl + apiCall , projectIdAndNote);
                alert('Comments were saved');
             };
