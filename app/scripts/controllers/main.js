@@ -621,6 +621,7 @@ angular.module('nwApp')
                             self.Rationale = _NameRationale.split('$')[0];
                             // inputs
                             self.nameRamking = (_SlideType !== 'NameSummary') ? _NameRanking : true;
+                            self.nameRamking = (self.nameRamking === 'False') ? false: self.nameRamking;
                             self.newName = _NewNames;
                             self.avoid = _NamesToAvoid;
                             self.explore = _NamesToExplore;
@@ -997,7 +998,7 @@ angular.module('nwApp')
         });
 
         self.resetSlide = function() {
-            self.nameRamking = false;
+            self.nameRamking = '';
             self.newName = '';
             self.explore = '';
             self.avoid = '';
