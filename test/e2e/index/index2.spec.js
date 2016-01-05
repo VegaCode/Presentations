@@ -8,8 +8,6 @@ describe('Protractor Demo App', function() {
   jasmine.DEFAULT_TIMEOUT_INTERVAL =2000000;
   page.AppUrl('http://localhost:9001/#/main/1013');
 
-<<<<<<< HEAD
-=======
   it("should show correct title and displays menu", function(){
     page.sendKeyBoard('ARROW_UP');
     expect(page.AppTitle()).toEqual('NW');
@@ -19,7 +17,6 @@ describe('Protractor Demo App', function() {
     page.elementClick({id: 'goHome'});
   });
 
->>>>>>> af26f07747a5df7428cd09dd3871d13d192bf018
   it('should input a name in Search Bar and go to slide of the name', function(){
     page.sendStringToBox({model: 'main.selectedName'}, 'APTIERA');
     page.sendKeyBoard('ENTER');
