@@ -6,20 +6,8 @@ var growl;
 describe('Protractor Demo App', function() {
   var page = new indexPage();
 
- //  if (jasmine.version) { //the case for version 2.0.0
- //    console.log('jasmine-version:' + jasmine.version);
- // }
- // else { //the case for version 1.3
- //    console.log('jasmine-version:' + jasmine.getEnv().versionString());
- // }
-
   jasmine.DEFAULT_TIMEOUT_INTERVAL =2000000;
   page.AppUrl('http://localhost:9001/#/main/1013');
-
-  // it("it should welcome the tester to the testing unit", function(){
-  //   page.clickButtonGrowlTriggerWelcome();
-  //   page.AppSleep(4000);
-  // });
 
   it("should show correct title and displays menu", function(){
     page.sendKeyBoard('ARROW_UP');
@@ -29,6 +17,10 @@ describe('Protractor Demo App', function() {
   it('should go through slides', function(){
     page.AppSleep(1000);
     page.continueMoving({id: 'navright'});
+  });
+
+  it('should reset the current slide', function(){
+    page.elementClick({id: 'resetSlide'});
   });
 
   it('should open prompt for login password', function(){
@@ -68,24 +60,24 @@ describe('Protractor Demo App', function() {
   it('should show retained names', function(){
     page.elementClick({id: 'showRetainedNames'});
     expect(page.AppDisplaysInformation({id: 'showRetainedNames'}, 'isPresent')).toBeTruthy();
-    page.AppSleep(1000);
+    page.AppSleep(5000);
   });
 
   it('should show negative names', function(){
     page.elementClick({id: 'showNegativeNames'});
     expect(page.AppDisplaysInformation({id: 'showNegativeNames'}, 'isPresent')).toBeTruthy();
-    page.AppSleep(1000);
+    page.AppSleep(5000);
   });
 
   it('should display new names', function(){
     page.elementClick({id: 'showNewNames'});
     expect(page.AppDisplaysInformation({id: 'showNewNames'}, 'isPresent')).toBeTruthy();
-    page.AppSleep(1000);
+    page.AppSleep(5000);
   });
   it('should display roots to explore', function(){
     page.elementClick({id: 'showExploreRoots'});
     expect(page.AppDisplaysInformation({id: 'showExploreRoots'}, 'isPresent')).toBeTruthy();
-    page.AppSleep(1000);
+    page.AppSleep(5000);
   });
   it('should input something in the comments for roots to explore', function(){
     page.sendStringToBox({id: 'exploreTextArea'}, 'Test Explore');
@@ -96,7 +88,7 @@ describe('Protractor Demo App', function() {
   it('should display roots to avoid', function(){
     page.elementClick({id: 'showAvoidRoots'});
     expect(page.AppDisplaysInformation({id: 'showAvoidRoots'}, 'isPresent')).toBeTruthy();
-    page.AppSleep(1000);
+    page.AppSleep(5000);
   });
   it('should input something in the comments for roots to avoid', function(){
     page.sendStringToBox({id: 'avoidTextArea'}, 'Test Avoid');

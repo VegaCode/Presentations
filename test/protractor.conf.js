@@ -28,7 +28,7 @@ exports.config = {
 
   suites:{
     basicTest: ['./e2e/**/index.spec.js'],
-    longerTest: ['./e2e/**/index2.spec.js'],
+    // longerTest: ['./e2e/**/index2.spec.js'],
   },
 
 
@@ -47,6 +47,7 @@ exports.config = {
                   jar: jar
                 });
 
+<<<<<<< HEAD
               //   var apiCall = 'api/NW_NamesAndSlides?projectId=';
               //   webBaseUrl = 'http://localhost:64378/';
               //   req.get(webBaseUrl + apiCall+ '1012', function(result) {
@@ -56,6 +57,17 @@ exports.config = {
               //  console.log('currentSpec: '+ simpleStringify(currentSpec));
               //  console.log('suites: '+ simpleStringify(suites));
               //  console.log('browserCapabilities string: '+ JSON.stringify(browserCapabilities));
+=======
+                var apiCall = 'api/NW_NamesAndSlides?projectId=';
+                webBaseUrl = 'http://localhost:64378/';
+                req.get(webBaseUrl + apiCall+ '1013', function(result) {
+                               console.log('result api call : ' + result);
+                           });
+
+               console.log('currentSpec: '+ simpleStringify(currentSpec));
+               console.log('suites: '+ simpleStringify(suites));
+               console.log('browserCapabilities string: '+ JSON.stringify(browserCapabilities));
+>>>>>>> af26f07747a5df7428cd09dd3871d13d192bf018
                return browserCapabilities.get('browserName') + '/' + currentSpec.fullName;
                //return { id: currentSpec.id, os: browserCapabilities.get('browserName') };
               }
