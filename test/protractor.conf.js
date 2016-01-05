@@ -28,7 +28,7 @@ exports.config = {
 
   suites:{
     basicTest: ['./e2e/**/index.spec.js'],
-    longerTest: ['./e2e/**/index2.spec.js'],
+    // longerTest: ['./e2e/**/index2.spec.js'],
   },
 
 
@@ -49,7 +49,7 @@ exports.config = {
 
                 var apiCall = 'api/NW_NamesAndSlides?projectId=';
                 webBaseUrl = 'http://localhost:64378/';
-                req.get(webBaseUrl + apiCall+ '1012', function(result) {
+                req.get(webBaseUrl + apiCall+ '1013', function(result) {
                                console.log('result api call : ' + result);
                            });
 

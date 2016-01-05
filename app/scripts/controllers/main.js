@@ -453,7 +453,7 @@ angular.module('nwApp')
         };
 
         self.mustRank = function(){
-              if (self.nameRamking === false || self.nameRamking ===''){
+              if (self.nameRamking === false || self.nameRamking === ''){
                 alert('Please vote on the name');
               }else{
                   var negativeNames = self.sendStoredKatakana.join(',');
