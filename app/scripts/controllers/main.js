@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 /**
  * @ngdoc function
  * @name nwApp.controller:MainCtrl
@@ -64,8 +64,6 @@ angular.module('nwApp')
              self.displayRootExplore = false;
              self.displayRootAvoid = false;
              self.displayRetained = false;
-
-
 
 // **********  Slides ADMIN back end  ****************************************************************************************************
         self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
@@ -349,7 +347,6 @@ angular.module('nwApp')
 
         self.centerTestNames = function(nameCandidate) {
                // CA- added function above to make sure if it is katakana or not when billboard or subwaystop is displayed
-                        self.testNameWidth= '85';
                     if(_TemplateName === 'Billboard' ||_TemplateName ==='SubwayStop'){
                             self.textAttribute = 'left';
 
@@ -370,6 +367,10 @@ angular.module('nwApp')
                                     break;
                                 case 10:
                                     self.columnOffSet = '2';
+                                    break;
+                                case  (nameCandidate.length > 14):
+                                    self.columnOffSet = '2';
+                                    self.testNameWidth= '100';
                                     break;
                                 default:
                                     break;
@@ -433,9 +434,10 @@ angular.module('nwApp')
                               self.columnSet = '12';
                               self.columnOffSet = '0';
                               self.marginLeftImage = '0';
-                               self.marginLeftTestName = '0';
+                              self.marginLeftTestName = '0';
                               self.columnNameCandSet= '12';
                               self.textAttribute = 'center';
+                              self.testNameWidth= (nameCandidate.length > 20) ? '100': '85';
                         }
 
                    };
@@ -1015,7 +1017,7 @@ angular.module('nwApp')
         };
 
         self.tally = function() {
-            self.displayTally = true;
+            self.displayTally = (self.displayTally === true ) ? false : true;
         };
 
  //************ Cheat Sheet  ***********************************************************************************************************

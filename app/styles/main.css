@@ -95,22 +95,23 @@
 
 
 @font-face {
+  font-family: 'Calibri';
+  src:  url('../fonts/Calibri.ttf')  format('truetype');
+}
+
+.Calibri{
+  font-family: 'Calibri';
+  font-weight: normal;
+}
+
+
+@font-face {
   font-family: 'LaBelleAurore';
   src:  url('../fonts/LaBelleAurore.ttf')  format('truetype');
 }
 
 .LaBelleAurore{
  font-family: 'LaBelleAurore';
- font-weight: normal;
-}
-
-@font-face {
-  font-family: 'Calibri';
-  src:  url('../fonts/Calibri.ttf')  format('truetype');
-}
-
-.Calibri{
- font-family: 'Calibri';
  font-weight: normal;
 }
 
