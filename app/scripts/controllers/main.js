@@ -20,7 +20,10 @@ angular.module('nwApp')
             var self = this;
             webBaseUrl = 'http://localhost:64378/';
             webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
-            projectId = queryStringCheck;
+
+            // Gettinh the project id wtih the prject Name
+            $http.get(webBaseUrl + 'api/NW_GetProjectIdWithProjectName?projectName=' + queryStringCheck ).success(function(projectIdFromDatabase){
+            projectId = JSON.parse(projectIdFromDatabase)[0].presentationid;
             self.displaySettings =false;
             self.slides = [];
             self.progressBarValue = 0;
@@ -98,6 +101,7 @@ angular.module('nwApp')
             var resetIsTrue = false;
             resetIsTrue = confirm('You are about to Reset the Project');
             if(resetIsTrue){
+                self.resetSlide();
                 var apiCall = 'api/ResetAllSlidesData/';
                  self.displayTally = false;
                   $http.get(webBaseUrl + apiCall + projectId).success(function (result) {
@@ -462,6 +466,11 @@ angular.module('nwApp')
                   var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
                   getTestNamesObject(slideModel);
               }
+              // ONLY FOR NW_DEVELOPMENT
+            //   var negativeNames = self.sendStoredKatakana.join(',');
+            //   var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
+            //   getTestNamesObject(slideModel);
+
         };
 
         var SlideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction, KanaNamesNegative) {
@@ -1075,6 +1084,9 @@ angular.module('nwApp')
                                     callback: function(){
                                                self.displayMenu = false;
                             }});
+
+
+        });// end of ajax call for project id
       }// end of controller
 
     ]);
