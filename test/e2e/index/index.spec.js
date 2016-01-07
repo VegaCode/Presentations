@@ -11,7 +11,7 @@ describe('Protractor Demo App', function() {
 
   it("should show correct title and displays menu", function(){
     page.sendKeyBoard('ARROW_UP');
-    expect(page.AppTitle()).toEqual('NW@');
+    expect(page.AppTitle()).toEqual('NW');
   });
 
   it('should go through slides', function(){
