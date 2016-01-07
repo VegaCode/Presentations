@@ -48,18 +48,6 @@ angular.module('nwApp', [
         templateUrl: 'views/slideShow.html',
         controller: '',
         controllerAs: 'slideShow',
-          // resolve: {
-          //           queryStringCheck: function($q, $location, $route) {
-          //               var deferred = $q.defer();
-          //               var queryString = 2;//$route.current.params.projectId;
-          //               if (queryString !== undefined) {
-          //                   deferred.resolve(queryString);
-          //               } else {
-          //                   deferred.reject('not_id');
-          //               }
-          //               return deferred.promise;
-          //           }
-          //       }
       })
       .otherwise({
         redirectTo: '/'

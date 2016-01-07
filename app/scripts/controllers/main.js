@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 /**
  * @ngdoc function
  * @name nwApp.controller:MainCtrl
@@ -20,7 +20,10 @@ angular.module('nwApp')
             var self = this;
             webBaseUrl = 'http://localhost:64378/';
             webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
-            projectId = queryStringCheck;
+
+            // Gettinh the project id wtih the prject Name
+            $http.get(webBaseUrl + 'api/NW_GetProjectIdWithProjectName?projectName=' + queryStringCheck ).success(function(projectIdFromDatabase){
+            projectId = JSON.parse(projectIdFromDatabase)[0].presentationid;
             self.displaySettings =false;
             self.slides = [];
             self.progressBarValue = 0;
@@ -65,8 +68,6 @@ angular.module('nwApp')
              self.displayRootAvoid = false;
              self.displayRetained = false;
 
-
-
 // **********  Slides ADMIN back end  ****************************************************************************************************
         self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
                                                     'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',  'Cardiology','Cognition',
@@ -100,6 +101,7 @@ angular.module('nwApp')
             var resetIsTrue = false;
             resetIsTrue = confirm('You are about to Reset the Project');
             if(resetIsTrue){
+                self.resetSlide();
                 var apiCall = 'api/ResetAllSlidesData/';
                  self.displayTally = false;
                   $http.get(webBaseUrl + apiCall + projectId).success(function (result) {
@@ -349,7 +351,6 @@ angular.module('nwApp')
 
         self.centerTestNames = function(nameCandidate) {
                // CA- added function above to make sure if it is katakana or not when billboard or subwaystop is displayed
-                        self.testNameWidth= '85';
                     if(_TemplateName === 'Billboard' ||_TemplateName ==='SubwayStop'){
                             self.textAttribute = 'left';
 
@@ -370,6 +371,10 @@ angular.module('nwApp')
                                     break;
                                 case 10:
                                     self.columnOffSet = '2';
+                                    break;
+                                case  (nameCandidate.length > 14):
+                                    self.columnOffSet = '2';
+                                    self.testNameWidth= '100';
                                     break;
                                 default:
                                     break;
@@ -433,9 +438,10 @@ angular.module('nwApp')
                               self.columnSet = '12';
                               self.columnOffSet = '0';
                               self.marginLeftImage = '0';
-                               self.marginLeftTestName = '0';
+                              self.marginLeftTestName = '0';
                               self.columnNameCandSet= '12';
                               self.textAttribute = 'center';
+                              self.testNameWidth= (nameCandidate.length > 20) ? '100': '85';
                         }
 
                    };
@@ -453,13 +459,18 @@ angular.module('nwApp')
         };
 
         self.mustRank = function(){
-              if (self.nameRamking === false || self.nameRamking === ''){
+              if (self.nameRamking === false || self.nameRamking ===''){
                 alert('Please vote on the name');
               }else{
                   var negativeNames = self.sendStoredKatakana.join(',');
                   var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
                   getTestNamesObject(slideModel);
               }
+              // ONLY FOR NW_DEVELOPMENT
+            //   var negativeNames = self.sendStoredKatakana.join(',');
+            //   var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
+            //   getTestNamesObject(slideModel);
+
         };
 
         var SlideInfoModel = function(presentationid, slideNumber, NameRanking, NewNames, NamesToExplore,NamesToAvoid, Direction, KanaNamesNegative) {
@@ -621,6 +632,7 @@ angular.module('nwApp')
                             self.Rationale = _NameRationale.split('$')[0];
                             // inputs
                             self.nameRamking = (_SlideType !== 'NameSummary') ? _NameRanking : true;
+                            self.nameRamking = (self.nameRamking === 'False') ? false: self.nameRamking;
                             self.newName = _NewNames;
                             self.avoid = _NamesToAvoid;
                             self.explore = _NamesToExplore;
@@ -997,7 +1009,7 @@ angular.module('nwApp')
         });
 
         self.resetSlide = function() {
-            self.nameRamking = false;
+            self.nameRamking = '';
             self.newName = '';
             self.explore = '';
             self.avoid = '';
@@ -1014,7 +1026,7 @@ angular.module('nwApp')
         };
 
         self.tally = function() {
-            self.displayTally = true;
+            self.displayTally = (self.displayTally === true ) ? false : true;
         };
 
  //************ Cheat Sheet  ***********************************************************************************************************
@@ -1072,6 +1084,9 @@ angular.module('nwApp')
                                     callback: function(){
                                                self.displayMenu = false;
                             }});
+
+
+        });// end of ajax call for project id
       }// end of controller
 
     ]);

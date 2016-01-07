@@ -42,7 +42,7 @@ angular.module('AutoFontSize', [])
                                 }else if(fontLength <= 20){
                                   setFontSize(85);
                                 }else if(fontLength <= 22){
-                                  setFontSize(77);
+                                  setFontSize(72);
                                 }else if(fontLength <= 23){
                                   setFontSize(73);
                                 }else if(fontLength <= 26){
@@ -50,11 +50,11 @@ angular.module('AutoFontSize', [])
                                 }else if(fontLength <= 29){
                                   setFontSize(60);
                                 }else if(fontLength <= 33){
-                                  setFontSize(52);
+                                  setFontSize(55);
                                 }else if(fontLength <= 38){
-                                  setFontSize(47);
+                                  setFontSize(50);
                                 }else{
-                                    setFontSize(28);
+                                    setFontSize(50);
                                 }
                             }else if( elem[0].id === 'subRationale'){
 
