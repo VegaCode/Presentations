@@ -153,7 +153,7 @@ background-color: #337ab7;
 <div class="container-fluid" >
     <div class="backGroundStyle">
         <div class="container-fluid" style="background-image: url({{main.BackGround}});
-            !important;color:white; background-repeat: no-repeat; background-size: cover;height:800px;">
+            !important; background-repeat: no-repeat; background-size: cover;height:800px;">
             <div class="row" style="height: 30px;">
                 <div class="col-md-12">
                     <div class="progress" style="height: 5px;" max="max" value="dynamic">
@@ -182,13 +182,16 @@ background-color: #337ab7;
                             {{main.nameCategory}}
                         </div>
                         <div class="col-md-2" style="font-family:{{main.headerFontFamily}}; color:{{main.headerFontColor}}"  ng-show="!main.displayNameGroup">
-                          <button blur-me id="buttonTally" type="button" class="btn btn-default glyphicon " ng-click="main.tally()" style="font-family:arial;margin-left:50px;">Tally
-                          </button>
-                            <!-- <div class="btn-group" role="group">
+                          <!--DEPLOYMENT CODE-->
+                          <!-- <button blur-me id="buttonTally" type="button" class="btn btn-default glyphicon " ng-click="main.tally()" style="font-family:arial;margin-left:50px;">Tally
+                          </button> -->
+
+                            <!--DEVELOPMENT CODE-->
+                            <div class="btn-group" role="group">
                                 <button blur-me id="buttonTally" type="button" class="btn btn-default glyphicon " ng-click="main.tally()" style="font-family:arial">Tally
                                 </button>
                                 <button blur-me id="cogSettings" type="button" class="btn btn-default glyphicon glyphicon-cog" data-toggle="dropdown" ng-click="main.showThemeOptions()"></button>
-                            </div> -->
+                            </div>
                             <div class="row" ng-show="main.displayTally">
                                 <div class="col-md-8">
                                     <label>Positive

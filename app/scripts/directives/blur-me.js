@@ -18,10 +18,14 @@ angular.module('nwApp')
    link: function (scope, element) {
      element.bind('click', function () {
        var color = element.css('color');
-       if(color === 'rgb(0, 0, 0)'){//test if color is black
-         element.css('color', 'rgb(255, 0, 0)');
+       if(color === 'rgb(0, 0, 0)'||color === '#000000' || color === 'hsl(0, 0%, 0)'
+                                  || color === 'rgb(255, 255, 255)'
+                                  ||color === 'hsl(360, 100%, 100%)'
+                                  ||color === '#ffffff'){//test if color is black or white
+
+         element.css('color', '#FF0000');
        }else{
-         element.css('color', 'rgb(0, 0, 0)');
+         element.css('color', '#000000');
        }
      });
    }

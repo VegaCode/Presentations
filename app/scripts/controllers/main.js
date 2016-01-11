@@ -45,7 +45,6 @@ angular.module('nwApp')
             self.slidesNames = [];
             self.testName = [];
             self.isOverview = false;
-            self.greeting = 'Hello World!';//***test Karma variable
             self.positiveCount = 0;
             self.neutralCount = 0;
             self.negativeCount = 0;
@@ -125,11 +124,11 @@ angular.module('nwApp')
               var password = prompt('Enter Password');
               if(password !== 'admin123'){
                 alert('Please provide the correct password');
-              }else{
+            }else{
                 self.displaySettings = true;
               }
-           }
-        };
+          }
+      };
 
         self.saveThemeSettings = function() {
          if ( self.BackGroundName !== '') {
@@ -142,9 +141,8 @@ angular.module('nwApp')
              });
            }
         };
-        //typeOf = string made of only (success, warning, error, info), titleForMessage and message must be string, timeOutLimit = milliseconds (-1 never disappear, 1000ms = 1 second; seconds to display message)
-      self.growlTrigger = function(typeOfMesage, message, titleForMessage, timeOutLimit){
 
+      self.growlTrigger = function(typeOfMesage, message, titleForMessage, timeOutLimit){
       if(typeOfMesage === 'success'){
           growl.success(message, {title: titleForMessage, ttl: timeOutLimit});
       }else if (typeOfMesage === 'warning'){
@@ -156,10 +154,8 @@ angular.module('nwApp')
       }
     };
 
-
-
 // **********  Event listeners for revealjs  ****************************************************************************************************
-//if(self.greeting ==='t'){
+
         Reveal.addEventListener('overviewshown', function() {
             if(_SlideNumber > 4){
                 Reveal.slide(  0, _SlideNumber-2, 0 );
@@ -175,7 +171,7 @@ angular.module('nwApp')
                         self.isOverview = false;
                     });
              });
-//
+
         self.selectSlide = function(index) {
                 var slideModel = JSON.stringify( new SlideInfoModel(projectId, index+1, '','','','', '', '' ));
                  getTestNamesObject(slideModel);
@@ -441,7 +437,7 @@ angular.module('nwApp')
                               self.marginLeftTestName = '0';
                               self.columnNameCandSet= '12';
                               self.textAttribute = 'center';
-                              self.testNameWidth= (nameCandidate.length > 20) ? '100': '85';
+                              self.testNameWidth= (nameCandidate.length > 10) ? '100': '85';
                         }
 
                    };
@@ -459,17 +455,20 @@ angular.module('nwApp')
         };
 
         self.mustRank = function(){
-              if (self.nameRamking === false || self.nameRamking ===''){
-                alert('Please vote on the name');
-              }else{
-                  var negativeNames = self.sendStoredKatakana.join(',');
-                  var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
-                  getTestNamesObject(slideModel);
-              }
-              // ONLY FOR NW_DEVELOPMENT
-            //   var negativeNames = self.sendStoredKatakana.join(',');
-            //   var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
-            //   getTestNamesObject(slideModel);
+            //   FOR NW DEPLOYMENT ************
+
+            //   if (self.nameRamking === false || self.nameRamking ===''){
+            //     alert('Please vote on the name');
+            //   }else{
+            //       var negativeNames = self.sendStoredKatakana.join(',');
+            //       var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
+            //       getTestNamesObject(slideModel);
+            //   }
+
+            //   ONLY FOR NW_DEVELOPMENT *********
+              var negativeNames = self.sendStoredKatakana.join(',');
+              var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
+              getTestNamesObject(slideModel);
 
         };
 
@@ -572,7 +571,6 @@ angular.module('nwApp')
                               } else {
                                 self.progressBarValue = (parseInt(self.pageNumber) * self.progressBarUnit);
                               }
-
 
                               // color and font settings
                               self.headerFontFamily = _HeaderFontFamily;
@@ -903,11 +901,11 @@ angular.module('nwApp')
           self.phonetics.map(function(obj){
             var isKatakanaEqual = self.KatakanaNegativeFromDB.indexOf(obj);
             if(isKatakanaEqual === -1){
-              var newKatakanaObj = new KatakanaModel(obj, 'rgb(0, 0, 0)');
+              var newKatakanaObj = new KatakanaModel(obj, '#000000');
               self.katakanaObjToDisplay.push(newKatakanaObj);
 
             }else{
-              var newKatakanaObj2 = new KatakanaModel(obj, 'rgb(255, 0, 0)');
+              var newKatakanaObj2 = new KatakanaModel(obj, '#FF0000');
               self.sendStoredKatakana.push(obj);
               self.katakanaObjToDisplay.push(newKatakanaObj2);
             }
@@ -1088,5 +1086,4 @@ angular.module('nwApp')
 
         });// end of ajax call for project id
       }// end of controller
-
     ]);
