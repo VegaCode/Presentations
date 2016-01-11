@@ -7,20 +7,16 @@ describe('Protractor Demo App', function() {
   var page = new indexPage();
 
   jasmine.DEFAULT_TIMEOUT_INTERVAL =2000000;
-  page.AppUrl('http://localhost:9001/#/main/1013');
+  page.AppUrl('https://tools.brandinstitute.com/nw_development/#/main/a2');
 
   it("should show correct title and displays menu", function(){
     page.sendKeyBoard('ARROW_UP');
-    expect(page.AppTitle()).toEqual('NW@');
+    expect(page.AppTitle()).toEqual('NW');
   });
 
   it('should go through slides', function(){
     page.AppSleep(1000);
     page.continueMoving({id: 'navright'});
-  });
-
-  it('should reset the current slide', function(){
-    page.elementClick({id: 'resetSlide'});
   });
 
   it('should open prompt for login password', function(){
@@ -54,7 +50,6 @@ describe('Protractor Demo App', function() {
   it('should show the Summary Slide', function(){
     page.elementClick({id: 'goesToSummary'});
     page.AppSleep(1000);
-    page.switchToPopup('accept');
   });
 
   it('should show retained names', function(){
@@ -74,60 +69,30 @@ describe('Protractor Demo App', function() {
     expect(page.AppDisplaysInformation({id: 'showNewNames'}, 'isPresent')).toBeTruthy();
     page.AppSleep(5000);
   });
+
   it('should display roots to explore', function(){
     page.elementClick({id: 'showExploreRoots'});
     expect(page.AppDisplaysInformation({id: 'showExploreRoots'}, 'isPresent')).toBeTruthy();
     page.AppSleep(5000);
   });
+
   it('should input something in the comments for roots to explore', function(){
     page.sendStringToBox({id: 'exploreTextArea'}, 'Test Explore');
     page.elementClick({id: 'saveExploreComments'});
     page.switchToPopup('accept');
     page.AppSleep(1000);
   });
+
   it('should display roots to avoid', function(){
     page.elementClick({id: 'showAvoidRoots'});
     expect(page.AppDisplaysInformation({id: 'showAvoidRoots'}, 'isPresent')).toBeTruthy();
     page.AppSleep(5000);
   });
+
   it('should input something in the comments for roots to avoid', function(){
     page.sendStringToBox({id: 'avoidTextArea'}, 'Test Avoid');
     page.elementClick({id: 'saveAvoidComments'});
     page.switchToPopup('accept');
     page.AppSleep(1000);
   });
-
-
-
-
-
-  // it('should display information of the TypeAhead functionality', function(){
-  //   page.clickButtonGrowlTriggerTypeAhead();
-  //   page.AppSleep(1000);
-  // });
-  // it('should input a name in Search Bar and go to slide of the name', function(){
-  //   page.sendKeysOfSelectedName('APTIERA');
-  //   page.pressKeyEnter();
-  //   expect(page.getTextOfSelectedName()).toBe('APTIERA');
-  //   page.AppSleep(1000);
-  // });
-  //
-  // it('should reset the slide and then change the rank', function(){
-  //   page.clickButtonResetSlide();
-  //   page.clickRadioButtonPositive();
-  // });
-  //
-  // it('should display Tally', function(){
-  //   page.AppSleep(1000);
-  //   page.clickButtonTally();
-  //   expect(page.tallyIsDisplayed()).toBe(true);
-  // });
-  //
-  // it('should go to summary slide', function(){
-  //   // page.clickButtonGrowlTriggerGoToSummary();
-  //   // page.AppSleep(6000);
-  //   page.clickButtonGoToSummary();
-  //   page.AppSleep(1000);
-  // });
-
 });
