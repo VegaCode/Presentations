@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "bower": "^1.7.2",
+    "grunt-cli": "^0.1.13",
     "karma-jasmine-jquery": "^0.1.1",
     "request": "^2.67.0"
   }
