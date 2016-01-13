@@ -9,7 +9,8 @@
 *~
 test/target/
 nw_slides/
-
+node_modules/
+bower_components/
 # ZIP files #
 ######################
 *.7z
