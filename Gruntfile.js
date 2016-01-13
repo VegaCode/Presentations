@@ -419,6 +419,14 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.registerTask('protractor:run', function () {
+     var run = {
+       files: ['protractor.conf.js'],
+       tasks: ['protractor protractor:run']
+     };
+     grunt.config.set('protractor', run);
+     return grunt.task.run(['protractor']);
+   });
 
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
