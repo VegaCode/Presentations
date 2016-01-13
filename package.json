@@ -39,14 +39,16 @@
     "node": ">=0.10.0"
   },
   "scripts": {
+    "preinstall": "lockdown" ,
     "test": "grunt test",
-    "preinstall": "lockdown",
     "install": "node node_modules/protractor/bin/webdriver-manager update"
   },
   "dependencies": {
     "bower": "^1.7.2",
+    "karma": "^0.13.19",
     "karma-jasmine-jquery": "^0.1.1",
     "lockdown": "0.0.8-dev",
+    "protractor": "^3.0.0",
     "request": "^2.67.0"
   }
 }
