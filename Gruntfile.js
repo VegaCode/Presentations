@@ -16,7 +16,8 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-
+    cdnify: 'grunt-google-cdn'
+  });
 
   // Configurable paths for the application
   var appConfig = {
@@ -398,17 +399,6 @@ module.exports = function (grunt) {
       ]
     },
 
-
-
-    //to automate test
-    protractor: {
-      options: {
-        keepAlive: true,
-        configFile:'protractor.conf.js'
-      },
-      run: {}
-    },
-
     // Test settings
     karma: {
       unit: {
@@ -417,15 +407,6 @@ module.exports = function (grunt) {
       }
     }
   });
-
-  grunt.registerTask('protractor:run', function () {
-     var run = {
-       files: ['protractor.conf.js'],
-       tasks: ['protractor protractor:run']
-     };
-     grunt.config.set('protractor', run);
-     return grunt.task.run(['protractor']);
-   });
 
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
@@ -454,8 +435,7 @@ module.exports = function (grunt) {
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma',
-    'protractor:run'
+    'karma'
   ]);
 
   grunt.registerTask('build', [
