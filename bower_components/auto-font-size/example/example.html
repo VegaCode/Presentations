@@ -1,0 +1,44 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    
+	<style>
+		div.section {
+			border: 1px solid grey;
+			padding: 4px;
+			margin: 20px 0px;
+		}
+	</style>
+		
+		
+		
+</head>
+  <body ng-app="myApp">
+    
+	<div class="section" style="width: 250px; height: 30px; border: 1px solid grey;" auto-font-size>
+		Here is so much text that it would never fit in this little div
+		if we did not shrink it a bit.
+	</div>
+	
+	<div class="section"  style="width: 400px; height: 50px; border: 1px solid grey;" auto-font-size>
+		Make this bigger.
+	</div>
+
+	<script src="../bower_components/jquery/jquery.js"></script>
+	<script src="../bower_components/angular/angular.js"></script>
+	<script src="../dist/auto_font_size.js"></script>
+	
+	<script>
+		var myApp = angular.module('myApp', ['AutoFontSize']);
+	</script>
+	
+</body>
+</html>
