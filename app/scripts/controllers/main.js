@@ -627,7 +627,15 @@ angular.module('nwApp')
 
                             self.nameCategory = _NameCategory;
                             self.nameNotation = _NameNotation;
-                            self.Rationale = _NameRationale.split('$')[0];
+
+                            if (_NameRationale.length > 150){
+                                self.RationaleArray = _NameRationale.split('');
+                                self.RationaleArray.splice(150, 200);
+                                self.Rationale = self.RationaleArray.join('');
+                            }else{
+                                self.Rationale = _NameRationale.split('$')[0];
+                            }
+
                             // inputs
                             self.nameRamking = (_SlideType !== 'NameSummary') ? _NameRanking : true;
                             self.nameRamking = (self.nameRamking === 'False') ? false: self.nameRamking;
