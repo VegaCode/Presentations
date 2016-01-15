@@ -45,5 +45,7 @@
     "test": "grunt test",
     "install": "node node_modules/protractor/bin/webdriver-manager update"
   },
-  "dependencies": {}
+  "dependencies": {
+    "jasmine-reporters": "^2.1.1"
+  }
 }
