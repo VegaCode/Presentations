@@ -6,7 +6,7 @@ describe('Protractor Demo App', function() {
   var page = new indexPage();
 
   jasmine.DEFAULT_TIMEOUT_INTERVAL =2000000;
-  page.AppUrl('http://localhost:9001/#/main/1013');
+  page.AppUrl('https://tools.brandinstitute.com/nw_development/#/main/a2');
 
   it("should show correct title and displays menu", function(){
     page.sendKeyBoard('ARROW_UP');
