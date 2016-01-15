@@ -4391,11 +4391,6 @@
       "from": "jasmine-core@>=2.3.0 <2.4.0",
       "resolved": "https://registry.npmjs.org/jasmine-core/-/jasmine-core-2.3.4.tgz"
     },
-    "jasmine-reporters": {
-      "version": "2.1.1",
-      "from": "jasmine-reporters@latest",
-      "resolved": "https://registry.npmjs.org/jasmine-reporters/-/jasmine-reporters-2.1.1.tgz"
-    },
     "jodid25519": {
       "version": "1.0.2",
       "from": "jodid25519@>=1.0.0 <2.0.0",
