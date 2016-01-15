@@ -1,5 +1,6 @@
 // conf.js
 var request = require('request');
+
 var Jasmine2HTMLReporter = require('protractor-jasmine2-screenshot-reporter');
 var  webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
 var   simpleStringify = function(object){
@@ -37,30 +38,34 @@ exports.config = {
   },
   onPrepare: function() {
     browser.driver.manage().window().maximize();
-    report = new Jasmine2HTMLReporter({
-              dest: 'target/screenshots_'+ datestring, //this one creates the folder target and inside a folder screenshots
-              filename: 'jasmineReport.html',
-              metadataBuilder: function(currentSpec, suites, browserCapabilities)
-              {
-                var jar = request.jar();
-                var req = request.defaults({
-                  jar: jar
-                });
-
-                var apiCall = 'api/NW_NamesAndSlides?projectId=';
-                webBaseUrl = 'http://localhost:64378/';
-                req.get(webBaseUrl + apiCall+ '1013', function(result) {
-                               console.log('result api call : ' + result);
-                           });
-
-               console.log('currentSpec: '+ simpleStringify(currentSpec));
-               console.log('suites: '+ simpleStringify(suites));
-               console.log('browserCapabilities string: '+ JSON.stringify(browserCapabilities));
-
-               return browserCapabilities.get('browserName') + '/' + currentSpec.fullName;
-               //return { id: currentSpec.id, os: browserCapabilities.get('browserName') };
-              }
-              });
-    jasmine.getEnv().addReporter(report);
+    // report = new Jasmine2HTMLReporter({
+    //           dest: 'target/screenshots_'+ datestring, //this one creates the folder target and inside a folder screenshots
+    //           filename: 'jasmineReport.html',
+    //           metadataBuilder: function(currentSpec, suites, browserCapabilities)
+    //           {
+    //             var jar = request.jar();
+    //             var req = request.defaults({
+    //               jar: jar
+    //             });
+    //
+    //             var apiCall = 'api/NW_NamesAndSlides?projectId=';
+    //             webBaseUrl = 'http://localhost:64378/';
+    //             req.get(webBaseUrl + apiCall+ '1013', function(result) {
+    //                            console.log('result api call : ' + result);
+    //                        });
+    //
+    //            console.log('currentSpec: '+ simpleStringify(currentSpec));
+    //            console.log('suites: '+ simpleStringify(suites));
+    //            console.log('browserCapabilities string: '+ JSON.stringify(browserCapabilities));
+    //
+    //            return browserCapabilities.get('browserName') + '/' + currentSpec.fullName;
+    //            //return { id: currentSpec.id, os: browserCapabilities.get('browserName') };
+    //           }
+    //           });
+    // jasmine.getEnv().addReporter(report);
+require('jasmineReporters');
+    jasmine.getEnv().addReporter(
+      new jasmine.JUnitxmlreporter('text/text-reports/', true,true));
+      jasmine.getEnv().addReporter(new ScreenshotReporter({baseDirectory:'test/test-reports/'}))
   }
 };
