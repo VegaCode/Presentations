@@ -43,7 +43,6 @@ Thumbs.db
 .sass-cache
 *.css.map
 build/
-dist/
 maps/
 
 # Compiled Files #
