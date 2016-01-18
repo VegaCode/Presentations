@@ -5,6 +5,7 @@
 
 # Custom ignored files #
 ######################
+.*
 *~
 test/target/
 nw_slides/
@@ -44,3 +45,9 @@ Thumbs.db
 build/
 dist/
 maps/
+
+# Compiled Files #
+######################
+public/css/
+public/maps/
+public/js/
