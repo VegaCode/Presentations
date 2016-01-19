@@ -1,8 +1,7 @@
-// conf.js
+'use strict';
+
 var request = require('request');
 var reporters = require('jasmine-reporters');
-var Jasmine2HTMLReporter = require('protractor-jasmine2-screenshot-reporter');
-var  webBaseUrl = 'https://tools.brandinstitute.com/BIWebServices/';
 var   simpleStringify = function(object){
       var simpleObject = {};
       for (var prop in object ){
@@ -38,39 +37,9 @@ exports.config = {
   },
   onPrepare: function() {
     browser.driver.manage().window().maximize();
-
     jasmine.getEnv().addReporter(
-      new reporters.JUnitXmlReporter('target/text-reports/', true,true));
-
-    report = new Jasmine2HTMLReporter({
-              dest: 'target/screenshots_'+ datestring, //this one creates the folder target and inside a folder screenshots
-              filename: 'jasmineReport.html',
-              metadataBuilder: function(currentSpec, suites, browserCapabilities)
-              {
-                var jar = request.jar();
-                var req = request.defaults({
-                  jar: jar
-                });
-
-              //   var apiCall = 'api/NW_NamesAndSlides?projectId=';
-              //   webBaseUrl = 'http://localhost:64378/';
-              //   req.get(webBaseUrl + apiCall+ '1013', function(result) {
-              //                  console.log('result api call : ' + result);
-              //              });
-               //
-              //  console.log('currentSpec: '+ simpleStringify(currentSpec));
-              //  console.log('suites: '+ simpleStringify(suites));
-              //  console.log('browserCapabilities string: '+ JSON.stringify(browserCapabilities));
-
-               return browserCapabilities.get('browserName') + '/' + currentSpec.fullName;
-               //return { id: currentSpec.id, os: browserCapabilities.get('browserName') };
-              }
-              });
-    jasmine.getEnv().addReporter(report);
-
-
-      // jasmine.getEnv().addReporter(new reporters.ScreenShotReporter({
-      //   baseDirectory:'test/test-reports/'
-      // }));
+      new reporters.JUnitXmlReporter({
+        savePath:'target/text-reports/', consolidateAll:false})
+      );
   }
 };
