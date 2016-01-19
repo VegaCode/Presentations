@@ -451,7 +451,7 @@ angular.module('nwApp')
         };
 
         self.mustRank = function(){
-            //   FOR NW DEPLOYMENT ************
+            //   FOR NW PRODUCTION ************
 
             //   if (self.nameRamking === false || self.nameRamking ===''){
             //     alert('Please vote on the name');
