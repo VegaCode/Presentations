@@ -39,7 +39,7 @@ exports.config = {
     browser.driver.manage().window().maximize();
     jasmine.getEnv().addReporter(
       new reporters.JUnitXmlReporter({
-        savePath:'target/text-reports/', consolidateAll:false})
+        savePath:'text-reports/', consolidateAll:false})
       );
   }
 };
