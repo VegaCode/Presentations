@@ -104,6 +104,15 @@
   font-weight: normal;
 }
 
+@font-face {
+  font-family: 'CenturyGothic';
+  src:  url('../fonts/CenturyGothic.ttf')  format('truetype');
+}
+
+.CenturyGothic{
+  font-family: 'CenturyGothic';
+  font-weight: normal;
+}
 
 @font-face {
   font-family: 'LaBelleAurore';

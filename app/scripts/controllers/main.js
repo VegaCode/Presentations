@@ -68,15 +68,11 @@ angular.module('nwApp')
              self.displayRetained = false;
 
 // **********  Slides ADMIN back end  ****************************************************************************************************
-        self.changeBackground = ['Default','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
+        self.changeBackground = ['Default','CenturyGothic','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
                                                     'PrescriptionPad',   'SunCouple','SubwayStop','Victory','WhiteFlowers','WomanWithTree',  'Cardiology','Cognition',
                                                     'OlderRunningCouple','Respiratory','Sleep','Synapses','Synapses_Blue', 'Molecules' ];
 
-        self.typeOfFont = ['Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore','Calibri'];
-
-        self.help = function() {
-                 alertify.alert(document.getElementById('help').innerHTML).set('title', 'Help info').set('resizable',true).resizeTo('35%', '60%');
-            };
+        self.typeOfFont = ['CenturyGothic','Serif','Sans-serif','Roboto','BabelSans','BabelSans-BoldOblique','BadScript','Gidole','LaBelleAurore','Calibri'];
 
         // Model for theme configuration
         var themeConfigurationModel = function(TemplateName,TemplateFileName,HeaderFontColor,HeaderFontFamily, RationaleFontColor,RationaleFontFamily,TestNameFontColor,TestNameFontFamily,StrokeColor,StrokeRange,Stroke,Overlay){
@@ -137,7 +133,7 @@ angular.module('nwApp')
              self.testNameFontColor, self.testNameFontFamily,  self.strokeColor,  self.strokeRange, self.isStrokeIt, self.isOverlayAvailable);
              configModel = JSON.stringify(configModel);
              setSettings.postdata(configModel).then(function(result) {
-               alertify.alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
+               alert('Your  settings for Theme: ' + result[0].TemplateName + '  are saved').set('resizable',true).set('title','Template Saved ');
              });
            }
         };
@@ -455,7 +451,7 @@ angular.module('nwApp')
         };
 
         self.mustRank = function(){
-            //   FOR NW DEPLOYMENT ************
+            //   FOR NW PRODUCTION ************
 
             //   if (self.nameRamking === false || self.nameRamking ===''){
             //     alert('Please vote on the name');
@@ -885,8 +881,6 @@ angular.module('nwApp')
               self.totalOfTestNames = parseInt(_TotalNames);
               self.progressBarUnit = 100 / self.totalOfTestNames;
               setUpTheSlideInfo(slideObject);
-            } else {
-              alertify.alert('The test names for the  project: ' + projectId + ' is not available plese contact IS for further support').set('title', 'Help info');
             }
           }).error(function(err) {
             return err;

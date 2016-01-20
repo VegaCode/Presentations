@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+ <testsuite name="Protractor Demo App" timestamp="2016-01-19T12:45:17" hostname="localhost" time="42.907" errors="0" tests="11" skipped="0" disabled="0" failures="0">
+  <testcase classname="Protractor Demo App" name="should show correct title and displays menu" time="2.812" />
+  <testcase classname="Protractor Demo App" name="should go through slides" time="2.594" />
+  <testcase classname="Protractor Demo App" name="should start ranking Names and providing input information" time="8.496" />
+  <testcase classname="Protractor Demo App" name="should show the Summary Slide" time="1.547" />
+  <testcase classname="Protractor Demo App" name="should show retained names" time="5.645" />
+  <testcase classname="Protractor Demo App" name="should show negative names" time="5.293" />
+  <testcase classname="Protractor Demo App" name="should display new names" time="5.433" />
+  <testcase classname="Protractor Demo App" name="should display roots to explore" time="5.36" />
+  <testcase classname="Protractor Demo App" name="should input something in the comments for roots to explore" time="0.264" />
+  <testcase classname="Protractor Demo App" name="should display roots to avoid" time="5.231" />
+  <testcase classname="Protractor Demo App" name="should input something in the comments for roots to avoid" time="0.226" />
+ </testsuite>
+</testsuites>
