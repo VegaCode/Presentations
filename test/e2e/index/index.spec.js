@@ -56,25 +56,25 @@ describe('NW App', function() {
   it('should show retained names', function(){
     page.elementClick({id: 'showRetainedNames'});
     expect(page.AppDisplaysInformation({id: 'showRetainedNames'}, 'isPresent')).toBeTruthy();
-    page.AppSleep(5000);
+    page.AppSleep(2000);
   });
 
   it('should show negative names', function(){
     page.elementClick({id: 'showNegativeNames'});
     expect(page.AppDisplaysInformation({id: 'showNegativeNames'}, 'isPresent')).toBeTruthy();
-    page.AppSleep(5000);
+    page.AppSleep(2000);
   });
 
   it('should display new names', function(){
     page.elementClick({id: 'showNewNames'});
     expect(page.AppDisplaysInformation({id: 'showNewNames'}, 'isPresent')).toBeTruthy();
-    page.AppSleep(5000);
+    page.AppSleep(2000);
   });
 
   it('should display roots to explore', function(){
     page.elementClick({id: 'showExploreRoots'});
     expect(page.AppDisplaysInformation({id: 'showExploreRoots'}, 'isPresent')).toBeTruthy();
-    page.AppSleep(5000);
+    page.AppSleep(2000);
   });
 
   it('should input something in the comments for roots to explore', function(){
@@ -87,7 +87,7 @@ describe('NW App', function() {
   it('should display roots to avoid', function(){
     page.elementClick({id: 'showAvoidRoots'});
     expect(page.AppDisplaysInformation({id: 'showAvoidRoots'}, 'isPresent')).toBeTruthy();
-    page.AppSleep(5000);
+    page.AppSleep(2000);
   });
 
   it('should input something in the comments for roots to avoid', function(){

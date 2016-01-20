@@ -452,20 +452,20 @@ angular.module('nwApp')
 
         self.mustRank = function(){
             //   FOR NW PRODUCTION ************
-
-              if (self.nameRamking === false || self.nameRamking ===''){
-                alert('Please vote on the name');
-              }else{
-                  var negativeNames = self.sendStoredKatakana.join(',');
-                  var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
-                  getTestNamesObject(slideModel);
-              }
+              //
+            //   if (self.nameRamking === false || self.nameRamking ===''){
+            //     alert('Please vote on the name');
+            //   }else{
+            //       var negativeNames = self.sendStoredKatakana.join(',');
+            //       var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
+            //       getTestNamesObject(slideModel);
+            //   }
             //FOR NW PRODUCTION ************END
 
-            //   ONLY FOR NW_DEVELOPMENT *********
-            //   var negativeNames = self.sendStoredKatakana.join(',');
-            //   var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
-            //   getTestNamesObject(slideModel);
+             // ONLY FOR NW_DEVELOPMENT *********
+              var negativeNames = self.sendStoredKatakana.join(',');
+              var slideModel = JSON.stringify(new SlideInfoModel(projectId, self.pageNumber, self.nameRamking, self.newName, self.explore, self.avoid, 'Next',negativeNames));
+              getTestNamesObject(slideModel);
             //   ONLY FOR NW_DEVELOPMENT *********END
         };
 
