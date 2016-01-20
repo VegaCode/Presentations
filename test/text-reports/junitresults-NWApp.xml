@@ -1,20 +1,443 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
- <testsuite name="NW App" timestamp="2016-01-19T12:32:30" hostname="localhost" time="59.538" errors="0" tests="15" skipped="0" disabled="0" failures="0">
-  <testcase classname="NW App" name="should show correct title and displays menu" time="6.652" />
-  <testcase classname="NW App" name="should go through slides" time="4.667" />
-  <testcase classname="NW App" name="should open prompt for login password" time="3.69" />
-  <testcase classname="NW App" name="should reset the whole project" time="1.148" />
-  <testcase classname="NW App" name="should go through slides" time="3.387" />
-  <testcase classname="NW App" name="should no longer display the settings for the admin by clicking the cog button" time="1.16" />
-  <testcase classname="NW App" name="should start ranking Names and providing input information" time="8.172" />
-  <testcase classname="NW App" name="should show the Summary Slide" time="1.358" />
-  <testcase classname="NW App" name="should show retained names" time="5.392" />
-  <testcase classname="NW App" name="should show negative names" time="5.263" />
-  <testcase classname="NW App" name="should display new names" time="5.27" />
-  <testcase classname="NW App" name="should display roots to explore" time="5.245" />
-  <testcase classname="NW App" name="should input something in the comments for roots to explore" time="1.31" />
-  <testcase classname="NW App" name="should display roots to avoid" time="5.502" />
-  <testcase classname="NW App" name="should input something in the comments for roots to avoid" time="1.321" />
+ <testsuite name="NW App" timestamp="2016-01-20T16:31:32" hostname="localhost" time="33.517" errors="0" tests="11" skipped="0" disabled="0" failures="7">
+  <testcase classname="NW App" name="should show correct title and displays menu" time="5.29" />
+  <testcase classname="NW App" name="should go through slides" time="1.739" />
+  <testcase classname="NW App" name="should start ranking Names and providing input information" time="22.46" />
+  <testcase classname="NW App" name="should show the Summary Slide" time="1.325" />
+  <testcase classname="NW App" name="should show retained names" time="0.384">
+   <failure type="exception" message="Failed: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;IS-WK-CVEGA01&apos;, ip: &apos;192.168.109.107&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_66&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810"><![CDATA[UnexpectedAlertOpenError: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: '2.48.2', revision: '41bccdd', time: '2015-10-09 19:59:12'
+System info: host: 'IS-WK-CVEGA01', ip: '192.168.109.107', os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_66'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810
+    at [object Object].bot.Error [as constructor] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\atoms\error.js:108:18)
+    at Function.childCtor.base (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2256:45)
+    at new webdriver.UnhandledAlertError (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:2455:33)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:384:15
+    at [object Object].promise.Promise.goog.defineClass.invokeCallback_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1337:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2758:21)
+    at goog.async.run.processWorkQueue (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\async\run.js:124:15)
+    at process._tickCallback (node.js:368:9)
+Error
+    at [object Object].ElementArrayFinder.applyAction_ (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:382:21)
+    at [object Object].ElementArrayFinder.(anonymous function) [as click] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:78:17)
+    at [object Object].ElementFinder.(anonymous function) [as click] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:711:7)
+    at indexPage2.elementClick (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\indexPage2.js:95:37)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:57:10)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:96:23
+    at [object Object].promise.Promise.goog.defineClass.constructor (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1056:7)
+    at new wrappedCtr (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2468:26)
+    at controlFlowExecute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:82:18)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+From: Task: Run it("should show retained names") in control flow
+    at Object.<anonymous> (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:81:14)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at QueueRunner.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1762:10)
+    at Spec.Env.queueRunnerFactory (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:627:35)
+    at Spec.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:353:10)
+    at Object.fn (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:2360:37)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1801:16
+From asynchronous test: 
+Error
+    at Suite.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:56:3)
+    at addSpecsToSuite (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:743:25)
+    at Env.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:713:7)
+    at jasmineInterface.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:3219:18)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:6:1)
+    at Module._compile (module.js:435:26)
+    at Object.Module._extensions..js (module.js:442:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:311:12)]]>
+   </failure>
+  </testcase>
+  <testcase classname="NW App" name="should show negative names" time="0.39">
+   <failure type="exception" message="Failed: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;IS-WK-CVEGA01&apos;, ip: &apos;192.168.109.107&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_66&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810"><![CDATA[UnexpectedAlertOpenError: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: '2.48.2', revision: '41bccdd', time: '2015-10-09 19:59:12'
+System info: host: 'IS-WK-CVEGA01', ip: '192.168.109.107', os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_66'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810
+    at [object Object].bot.Error [as constructor] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\atoms\error.js:108:18)
+    at Function.childCtor.base (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2256:45)
+    at new webdriver.UnhandledAlertError (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:2455:33)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:384:15
+    at [object Object].promise.Promise.goog.defineClass.invokeCallback_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1337:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2758:21)
+    at goog.async.run.processWorkQueue (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\async\run.js:124:15)
+    at process._tickCallback (node.js:368:9)
+Error
+    at [object Object].ElementArrayFinder.applyAction_ (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:382:21)
+    at [object Object].ElementArrayFinder.(anonymous function) [as click] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:78:17)
+    at [object Object].ElementFinder.(anonymous function) [as click] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:711:7)
+    at indexPage2.elementClick (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\indexPage2.js:95:37)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:63:10)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:96:23
+    at [object Object].promise.Promise.goog.defineClass.constructor (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1056:7)
+    at new wrappedCtr (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2468:26)
+    at controlFlowExecute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:82:18)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+From: Task: Run it("should show negative names") in control flow
+    at Object.<anonymous> (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:81:14)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at QueueRunner.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1762:10)
+    at Spec.Env.queueRunnerFactory (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:627:35)
+    at Spec.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:353:10)
+    at Object.fn (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:2360:37)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1801:16
+From asynchronous test: 
+Error
+    at Suite.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:62:3)
+    at addSpecsToSuite (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:743:25)
+    at Env.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:713:7)
+    at jasmineInterface.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:3219:18)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:6:1)
+    at Module._compile (module.js:435:26)
+    at Object.Module._extensions..js (module.js:442:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:311:12)]]>
+   </failure>
+  </testcase>
+  <testcase classname="NW App" name="should display new names" time="0.375">
+   <failure type="exception" message="Failed: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;IS-WK-CVEGA01&apos;, ip: &apos;192.168.109.107&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_66&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810"><![CDATA[UnexpectedAlertOpenError: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: '2.48.2', revision: '41bccdd', time: '2015-10-09 19:59:12'
+System info: host: 'IS-WK-CVEGA01', ip: '192.168.109.107', os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_66'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810
+    at [object Object].bot.Error [as constructor] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\atoms\error.js:108:18)
+    at Function.childCtor.base (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2256:45)
+    at new webdriver.UnhandledAlertError (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:2455:33)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:384:15
+    at [object Object].promise.Promise.goog.defineClass.invokeCallback_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1337:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2758:21)
+    at goog.async.run.processWorkQueue (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\async\run.js:124:15)
+    at process._tickCallback (node.js:368:9)
+Error
+    at [object Object].ElementArrayFinder.applyAction_ (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:382:21)
+    at [object Object].ElementArrayFinder.(anonymous function) [as click] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:78:17)
+    at [object Object].ElementFinder.(anonymous function) [as click] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:711:7)
+    at indexPage2.elementClick (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\indexPage2.js:95:37)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:69:10)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:96:23
+    at [object Object].promise.Promise.goog.defineClass.constructor (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1056:7)
+    at new wrappedCtr (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2468:26)
+    at controlFlowExecute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:82:18)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+From: Task: Run it("should display new names") in control flow
+    at Object.<anonymous> (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:81:14)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at QueueRunner.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1762:10)
+    at Spec.Env.queueRunnerFactory (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:627:35)
+    at Spec.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:353:10)
+    at Object.fn (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:2360:37)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1801:16
+From asynchronous test: 
+Error
+    at Suite.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:68:3)
+    at addSpecsToSuite (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:743:25)
+    at Env.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:713:7)
+    at jasmineInterface.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:3219:18)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:6:1)
+    at Module._compile (module.js:435:26)
+    at Object.Module._extensions..js (module.js:442:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:311:12)]]>
+   </failure>
+  </testcase>
+  <testcase classname="NW App" name="should display roots to explore" time="0.374">
+   <failure type="exception" message="Failed: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;IS-WK-CVEGA01&apos;, ip: &apos;192.168.109.107&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_66&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810"><![CDATA[UnexpectedAlertOpenError: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: '2.48.2', revision: '41bccdd', time: '2015-10-09 19:59:12'
+System info: host: 'IS-WK-CVEGA01', ip: '192.168.109.107', os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_66'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810
+    at [object Object].bot.Error [as constructor] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\atoms\error.js:108:18)
+    at Function.childCtor.base (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2256:45)
+    at new webdriver.UnhandledAlertError (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:2455:33)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:384:15
+    at [object Object].promise.Promise.goog.defineClass.invokeCallback_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1337:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2758:21)
+    at goog.async.run.processWorkQueue (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\async\run.js:124:15)
+    at process._tickCallback (node.js:368:9)
+Error
+    at [object Object].ElementArrayFinder.applyAction_ (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:382:21)
+    at [object Object].ElementArrayFinder.(anonymous function) [as click] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:78:17)
+    at [object Object].ElementFinder.(anonymous function) [as click] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:711:7)
+    at indexPage2.elementClick (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\indexPage2.js:95:37)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:75:10)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:96:23
+    at [object Object].promise.Promise.goog.defineClass.constructor (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1056:7)
+    at new wrappedCtr (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2468:26)
+    at controlFlowExecute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:82:18)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+From: Task: Run it("should display roots to explore") in control flow
+    at Object.<anonymous> (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:81:14)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at QueueRunner.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1762:10)
+    at Spec.Env.queueRunnerFactory (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:627:35)
+    at Spec.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:353:10)
+    at Object.fn (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:2360:37)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1801:16
+From asynchronous test: 
+Error
+    at Suite.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:74:3)
+    at addSpecsToSuite (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:743:25)
+    at Env.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:713:7)
+    at jasmineInterface.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:3219:18)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:6:1)
+    at Module._compile (module.js:435:26)
+    at Object.Module._extensions..js (module.js:442:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:311:12)]]>
+   </failure>
+  </testcase>
+  <testcase classname="NW App" name="should input something in the comments for roots to explore" time="0.374">
+   <failure type="exception" message="Failed: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;IS-WK-CVEGA01&apos;, ip: &apos;192.168.109.107&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_66&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810"><![CDATA[UnexpectedAlertOpenError: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: '2.48.2', revision: '41bccdd', time: '2015-10-09 19:59:12'
+System info: host: 'IS-WK-CVEGA01', ip: '192.168.109.107', os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_66'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810
+    at [object Object].bot.Error [as constructor] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\atoms\error.js:108:18)
+    at Function.childCtor.base (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2256:45)
+    at new webdriver.UnhandledAlertError (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:2455:33)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:384:15
+    at [object Object].promise.Promise.goog.defineClass.invokeCallback_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1337:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2758:21)
+    at goog.async.run.processWorkQueue (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\async\run.js:124:15)
+    at process._tickCallback (node.js:368:9)
+Error
+    at [object Object].ElementArrayFinder.applyAction_ (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:382:21)
+    at [object Object].ElementArrayFinder.(anonymous function) [as sendKeys] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:78:17)
+    at [object Object].ElementFinder.(anonymous function) [as sendKeys] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:711:7)
+    at indexPage2.sendStringToBox (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\indexPage2.js:90:18)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:81:10)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:96:23
+    at [object Object].promise.Promise.goog.defineClass.constructor (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1056:7)
+    at new wrappedCtr (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2468:26)
+    at controlFlowExecute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:82:18)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+From: Task: Run it("should input something in the comments for roots to explore") in control flow
+    at Object.<anonymous> (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:81:14)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at QueueRunner.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1762:10)
+    at Spec.Env.queueRunnerFactory (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:627:35)
+    at Spec.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:353:10)
+    at Object.fn (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:2360:37)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1801:16
+From asynchronous test: 
+Error
+    at Suite.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:80:3)
+    at addSpecsToSuite (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:743:25)
+    at Env.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:713:7)
+    at jasmineInterface.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:3219:18)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:6:1)
+    at Module._compile (module.js:435:26)
+    at Object.Module._extensions..js (module.js:442:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:311:12)]]>
+   </failure>
+  </testcase>
+  <testcase classname="NW App" name="should display roots to avoid" time="0.377">
+   <failure type="exception" message="Failed: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;IS-WK-CVEGA01&apos;, ip: &apos;192.168.109.107&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_66&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810"><![CDATA[UnexpectedAlertOpenError: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: '2.48.2', revision: '41bccdd', time: '2015-10-09 19:59:12'
+System info: host: 'IS-WK-CVEGA01', ip: '192.168.109.107', os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_66'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810
+    at [object Object].bot.Error [as constructor] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\atoms\error.js:108:18)
+    at Function.childCtor.base (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2256:45)
+    at new webdriver.UnhandledAlertError (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:2455:33)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:384:15
+    at [object Object].promise.Promise.goog.defineClass.invokeCallback_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1337:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2758:21)
+    at goog.async.run.processWorkQueue (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\async\run.js:124:15)
+    at process._tickCallback (node.js:368:9)
+Error
+    at [object Object].ElementArrayFinder.applyAction_ (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:382:21)
+    at [object Object].ElementArrayFinder.(anonymous function) [as click] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:78:17)
+    at [object Object].ElementFinder.(anonymous function) [as click] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:711:7)
+    at indexPage2.elementClick (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\indexPage2.js:95:37)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:88:10)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:96:23
+    at [object Object].promise.Promise.goog.defineClass.constructor (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1056:7)
+    at new wrappedCtr (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2468:26)
+    at controlFlowExecute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:82:18)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+From: Task: Run it("should display roots to avoid") in control flow
+    at Object.<anonymous> (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:81:14)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at QueueRunner.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1762:10)
+    at Spec.Env.queueRunnerFactory (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:627:35)
+    at Spec.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:353:10)
+    at Object.fn (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:2360:37)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1801:16
+From asynchronous test: 
+Error
+    at Suite.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:87:3)
+    at addSpecsToSuite (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:743:25)
+    at Env.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:713:7)
+    at jasmineInterface.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:3219:18)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:6:1)
+    at Module._compile (module.js:435:26)
+    at Object.Module._extensions..js (module.js:442:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:311:12)]]>
+   </failure>
+  </testcase>
+  <testcase classname="NW App" name="should input something in the comments for roots to avoid" time="0.405">
+   <failure type="exception" message="Failed: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:59:12&apos;
+System info: host: &apos;IS-WK-CVEGA01&apos;, ip: &apos;192.168.109.107&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_66&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810"><![CDATA[UnexpectedAlertOpenError: unexpected alert open
+  (Session info: chrome=47.0.2526.111)
+  (Driver info: chromedriver=2.20.353145 (343b531d31eeb933ec778dbcf7081628a1396067),platform=Windows NT 6.1 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds: null
+Build info: version: '2.48.2', revision: '41bccdd', time: '2015-10-09 19:59:12'
+System info: host: 'IS-WK-CVEGA01', ip: '192.168.109.107', os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_66'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=C:\Users\cvega\AppData\Local\Temp\scoped_dir11108_1759}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.111, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1c57d0a6b19106e23c8e4e476f7b6810
+    at [object Object].bot.Error [as constructor] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\atoms\error.js:108:18)
+    at Function.childCtor.base (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2256:45)
+    at new webdriver.UnhandledAlertError (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:2455:33)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\webdriver\webdriver.js:384:15
+    at [object Object].promise.Promise.goog.defineClass.invokeCallback_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1337:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2758:21)
+    at goog.async.run.processWorkQueue (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\async\run.js:124:15)
+    at process._tickCallback (node.js:368:9)
+Error
+    at [object Object].ElementArrayFinder.applyAction_ (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:382:21)
+    at [object Object].ElementArrayFinder.(anonymous function) [as sendKeys] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:78:17)
+    at [object Object].ElementFinder.(anonymous function) [as sendKeys] (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\lib\element.js:711:7)
+    at indexPage2.sendStringToBox (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\indexPage2.js:90:18)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:94:10)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:96:23
+    at [object Object].promise.Promise.goog.defineClass.constructor (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1056:7)
+    at new wrappedCtr (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\selenium-webdriver\lib\goog\base.js:2468:26)
+    at controlFlowExecute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:82:18)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (C:/Users/cvega/AppData/Roaming/npm/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+From: Task: Run it("should input something in the comments for roots to avoid") in control flow
+    at Object.<anonymous> (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasminewd2\index.js:81:14)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at QueueRunner.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1762:10)
+    at Spec.Env.queueRunnerFactory (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:627:35)
+    at Spec.execute (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:353:10)
+    at Object.fn (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:2360:37)
+    at attemptAsync (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1819:24)
+    at QueueRunner.run (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1774:9)
+    at C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:1801:16
+From asynchronous test: 
+Error
+    at Suite.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:93:3)
+    at addSpecsToSuite (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:743:25)
+    at Env.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:713:7)
+    at jasmineInterface.describe (C:\Users\cvega\AppData\Roaming\npm\node_modules\protractor\node_modules\jasmine\node_modules\jasmine-core\lib\jasmine-core\jasmine.js:3219:18)
+    at Object.<anonymous> (C:\Users\cvega\Desktop\Cesar Settings\SampleProjects\NWGit\nw\test\e2e\index\index.spec.js:6:1)
+    at Module._compile (module.js:435:26)
+    at Object.Module._extensions..js (module.js:442:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:311:12)]]>
+   </failure>
+  </testcase>
  </testsuite>
 </testsuites>

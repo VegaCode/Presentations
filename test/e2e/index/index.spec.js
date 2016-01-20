@@ -7,7 +7,8 @@ describe('NW App', function() {
   var page = new indexPage();
 
   jasmine.DEFAULT_TIMEOUT_INTERVAL =2000000;
-  page.AppUrl('https://tools.brandinstitute.com/nw_development/#/main/a2');
+  //page.AppUrl('https://tools.brandinstitute.com/nw_development/#/main/a2');
+  page.AppUrl('http://localhost:9001/#/main/A2');
 
   it("should show correct title and displays menu", function(){
     page.sendKeyBoard('ARROW_UP');
@@ -19,29 +20,29 @@ describe('NW App', function() {
     page.continueMoving({id: 'navright'});
   });
 
-  it('should open prompt for login password', function(){
-    page.elementClick({id: 'cogSettings'});
-    page.AppSleep(1000);
-    page.switchToPopupString('admin123');
-    page.AppSleep(1000);
-    page.switchToPopup('accept');
-    page.AppSleep(1000);
-  });
-
-  it('should reset the whole project', function(){
-    page.elementClick({id: 'resetProject'});
-    page.switchToPopup('accept');
-    page.AppSleep(1000);
-  });
-
-  it('should go through slides', function(){
-    page.continueMoving({id: 'navright'});
-  });
-
-  it('should no longer display the settings for the admin by clicking the cog button', function(){
-    page.elementClick({id: 'cogSettings'});
-    page.AppSleep(1000);
-  });
+  // it('should open prompt for login password', function(){
+  //   page.elementClick({id: 'cogSettings'});
+  //   page.AppSleep(1000);
+  //   page.switchToPopupString('admin123');
+  //   page.AppSleep(1000);
+  //   page.switchToPopup('accept');
+  //   page.AppSleep(1000);
+  // });
+  //
+  // it('should reset the whole project', function(){
+  //   page.elementClick({id: 'resetProject'});
+  //   page.switchToPopup('accept');
+  //   page.AppSleep(1000);
+  // });
+  //
+  // it('should go through slides', function(){
+  //   page.continueMoving({id: 'navright'});
+  // });
+  //
+  // it('should no longer display the settings for the admin by clicking the cog button', function(){
+  //   page.elementClick({id: 'cogSettings'});
+  //   page.AppSleep(1000);
+  // });
 
   it('should start ranking Names and providing input information', function(){
     page.testNames();
