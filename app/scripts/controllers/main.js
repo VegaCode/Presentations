@@ -1088,4 +1088,12 @@ angular.module('nwApp')
 
         });// end of ajax call for project id
       }// end of controller
-    ]);
+  ])
+
+  .filter('singleQuote', function(){
+      return function(input){
+          if(input){
+              return input.replace("`","'");
+          }
+      };
+  });

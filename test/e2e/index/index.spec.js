@@ -7,7 +7,7 @@ describe('NW App', function() {
   var page = new indexPage();
 
   jasmine.DEFAULT_TIMEOUT_INTERVAL =2000000;
-  page.AppUrl('http://localhost:3000/#/main/625b');
+  page.AppUrl('http://localhost:9001/#/main/LUXS');
 
   it("should show correct title and displays menu", function(){
     page.sendKeyBoard('ARROW_UP');

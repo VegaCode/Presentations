@@ -405,6 +405,18 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    browserSync: {
+      dev: {
+          options: {
+              proxy: "https://tools.brandinstitute.com/nw/#/main/625b",
+              ghostmode: true,
+              // port: 8080,
+              // tunnel: "testing", // < Used for iPhone testing
+              watchTask: true // < VERY important
+          }
+        }
     }
   });
 
@@ -456,9 +468,15 @@ module.exports = function (grunt) {
     'htmlmin'
   ]);
 
+  grunt.loadNpmTasks('grunt-browser-sync');
+
   grunt.registerTask('default', [
+    'browserSync',
     'newer:jshint',
     'test',
+    'watch',
     'build'
   ]);
+
+
 };

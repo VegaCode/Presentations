@@ -226,8 +226,8 @@ background-color: #337ab7;
                                                          {{main.strokeRange}}px  {{main.strokeRange}}px   0 {{main.strokeColor}};
                                   margin-left: -{{main.marginLeftTestName}}px;
                                   color:{{main.testNameFontColor}};
-                                  border-radius: 5px; width:{{main.testNameWidth}}%;" id="testName" auto-font-size>
-                                {{main.nameCandidate}}
+                                  border-radius: 5px; width:{{main.testNameWidth}}%;" id="testName" ng-model="main.nameCandidate" auto-font-size >
+                                {{main.nameCandidate | singleQuote}}
                             </div>
 
                         </div>
@@ -277,7 +277,7 @@ background-color: #337ab7;
                     <div class="col-md-4">
                         <div class="btn-group"  ng-show="!main.displayNameGroup">
                             <button blur-me type="button" class="btn btn-default" aria-label="Left Align">
-                                <span aria-hidden="true"></span>Propietary & Confidential</button>
+                                <span aria-hidden="true"></span>Proprietary & Confidential</button>
                             <button blur-me type="button" class="btn btn-default" aria-label="Center Align" ng-show="main.nameNotation.length > 0">
                                 <span aria-hidden="true"></span>{{main.nameNotation}}</button>
                         </div>
@@ -360,11 +360,11 @@ background-color: #337ab7;
                                 </div>
                             </div>
                             <div class="scrollbar-dynamic pointer" data-jquery-scrollbar="main.jqueryScrollBarOptions">
-                              <div class="color-green col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayRetained" ng-repeat="namesRetained in main.retainedNames" ng-click="main.selectNameFromSummary(namesRetained.Name)">{{namesRetained.NameToDisplay}}</div>
-                              <div class="color-green col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename.Name)">{{positivename.NameToDisplay}}</div>
-                              <div class="color-dark-blue col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname.Name)">{{neutralname.NameToDisplay}}</div>
-                              <div id="clickNegativeName" class="color-purple col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename.Name)">{{negativename.NameToDisplay}}</div>
-                              <div class="color-light-blue col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames track by $index" ng-click="main.selectNameFromSummary(newname.Name)">{{newname.NameToDisplay}}</div>
+                              <div class="color-green col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayRetained" ng-repeat="namesRetained in main.retainedNames" ng-click="main.selectNameFromSummary(namesRetained.Name)" ng-model="namesRetained.NameToDisplay">{{namesRetained.NameToDisplay | singleQuote}}</div>
+                              <div class="color-green col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayPositive" ng-repeat="positivename in main.positiveNames" ng-click="main.selectNameFromSummary(positivename.Name)" ng-model="positivename.NameToDisplay">{{positivename.NameToDisplay | singleQuote}}</div>
+                              <div class="color-dark-blue col-md-{{main.columnSize}} pointer summary-size-font" ng-show="main.displayNeutral" ng-repeat="neutralname in main.neutralNames" ng-click="main.selectNameFromSummary(neutralname.Name)" ng-model="neutralname.NameToDisplay">{{neutralname.NameToDisplay | singleQuote}}</div>
+                              <div id="clickNegativeName" class="color-purple col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNegative" ng-repeat="negativename in main.negativeNames" ng-click="main.selectNameFromSummary(negativename.Name)" ng-model="negativename.NameToDisplay">{{negativename.NameToDisplay | singleQuote}}</div>
+                              <div class="color-light-blue col-md-{{main.columnSize}} summary-size-font" ng-show="main.displayNewName" ng-repeat="newname in main.newNames track by $index" ng-click="main.selectNameFromSummary(newname.Name)" ng-model="newname.NameToDisplay">{{newname.NameToDisplay | singleQuote}}</div>
                             </div>
                         </uib-tab>
                         <uib-tab id="showExploreRoots" heading="Explore" class="tabs" ng-click="main.getRootsToExplores()">
