@@ -2,7 +2,7 @@
 function indexPage2(){
   var _minimumRank = 1;
   var _maximumRank = 3;
-  var _startTesting = 19; //starts Ranking Names in the slide # provided
+  var _startTesting = 4; //starts Ranking Names in the slide # provided
   var _pauseTesting = 29; //pauses the Ranking process in the slide # provided and then starts at the paused slide #
   var _finishTesting = 69;  //ends Ranking Names in the slide # provided
   var _alreadyPositive = true;

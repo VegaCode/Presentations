@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
- 
+
 angular.module('nwApp', [
     'ngAnimate',
     'ngCookies',
@@ -21,7 +21,7 @@ angular.module('nwApp', [
     'AutoFontSize',
     'ui.bootstrap',
     'cfp.hotkeys',
-    'angular-growl',
+    'angular-growl'
   ])
   .config(function ($routeProvider) {
     $routeProvider
