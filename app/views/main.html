@@ -169,10 +169,10 @@ background-color: #337ab7;
                                     <input id="positiveRank" class="feedBack" type="radio" name="nameRamking" value="Positive" ng-model="main.nameRamking"> Positive
                                 </label>
                                 <br/>
-                                <label>
+                                <label ng-show="main.noNeutral">
                                     <input id="neutralRank" class="feedBack" type="radio" name="nameRamking" value="Neutral" ng-model="main.nameRamking"> Neutral
                                 </label>
-                                <br/>
+                                <br    ng-show="main.noNeutral"/>
                                 <label>
                                     <input id="negativeRank" class="feedBack" type="radio" name="nameRamking" value="Negative" ng-model="main.nameRamking"> Negative
                                 </label>
@@ -331,7 +331,9 @@ background-color: #337ab7;
                                 </div>
                                 <div class="col-md-8">
                                     <uib-progress class="progress-bar-height">
-                                      <uib-bar  ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.value}}%</span></uib-bar>
+                                      <uib-bar  ng-repeat="bar in main.stacked track by $index" value="bar.value"
+                                      type="{{bar.type}}"
+                                      ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.value}}%</span></uib-bar>
                                       <!-- <uib-bar ng-repeat="bar in main.stacked track by $index" value="bar.value" type="{{bar.type}}" ng-click="main.displaySummarys($index)"><span class="multi-color-bar-font-size">{{bar.description}}{{bar.value}}%</span></uib-bar> -->
                                     </uib-progress>
                                 </div>
@@ -343,7 +345,7 @@ background-color: #337ab7;
                                 <div class="col-md-2">
                                     <span class="label font-style-for-label-badges label-and-badge-purple label-style">Reconsider</span>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-8" >
                                     <uib-progressbar class="progress-bar-height" type="purple" ng-style="{width: main.negativeCount + '%'}"></uib-progressbar>
                                 </div>
                                 <div class="col-md-2">

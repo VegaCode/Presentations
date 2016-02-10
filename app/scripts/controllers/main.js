@@ -66,6 +66,8 @@ angular.module('nwApp')
              self.displayRootExplore = false;
              self.displayRootAvoid = false;
              self.displayRetained = false;
+             self.noNeutral = true;
+
 
 // **********  Slides ADMIN back end  ****************************************************************************************************
         self.changeBackground = ['Default','CenturyGothic','Balloon','Billboard', 'Parasail','GirlWithBalloons','GreenField','NatureCouple','RedFlowers',
@@ -445,14 +447,14 @@ angular.module('nwApp')
               }
               else{
                 self.backGroundChanged(_TemporaryBackGround);
-                _TemporaryBackGround ='';
+                _TemporaryBackGround ='Default';
               }
               _IsBackgroundDefault = (_IsBackgroundDefault === true) ? false:true ;
         };
 
         self.mustRank = function(){
-            //   FOR NW PRODUCTION ************
-              //
+            //***** FOR NW PRODUCTION ************BEGIN
+
             //   if (self.nameRamking === false || self.nameRamking ===''){
             //     alert('Please vote on the name');
             //   }else{
@@ -604,7 +606,8 @@ angular.module('nwApp')
                               self.isTestNameButtons = false;
                               stateOfSummarySlide();
                               setProgressBarsSummary();
-                            } else {
+                            }
+                             else {
                               self.displayNameGroup = false;
                               self.controlsPosition = -23;
                               self.displaySummary = false;
@@ -641,13 +644,17 @@ angular.module('nwApp')
                             self.explore = _NamesToExplore;
                             self.positiveScore = _ToPositive;
                             self.neutralScore = _ToNeutral;
-
                             self.sendStoredKatakana = [];
                             self.katakanaObjToDisplay = [];
                             self.displayKatakana();
+                            if(_SlideType === 'NameEvaluation_noNeutral'){
+                                self.noNeutral = false;
+                            };
 
                             // check if the _IsBackgroundDefault is false or true to  add/remove the default background = _TemplateName;
-                             if((_IsBackgroundDefault === true) && (_SlideType === 'NameEvaluation')){
+                             if((_IsBackgroundDefault === true) &&
+                             ((_SlideType === 'NameEvaluation')||
+                             (_SlideType === 'NameEvaluation_noNeutral'))){
                                  self.BackGround ='mages/BackGrounds/Default.jpg';
                                  // color and font settings
                                  self.headerFontFamily = 'Calibri';
