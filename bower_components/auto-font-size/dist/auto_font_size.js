@@ -51,10 +51,10 @@ angular.module('AutoFontSize', [])
                                   setFontSize(60);
                                 }else if(fontLength <= 33){
                                   setFontSize(55);
-                                }else if(fontLength <= 38){
-                                  setFontSize(50);
+                              }else if(fontLength <= 47){
+                                  setFontSize(44);
                                 }else{
-                                    setFontSize(50);
+                                    setFontSize(40);
                                 }
                             }else if( elem[0].id === 'subRationale'){
 
